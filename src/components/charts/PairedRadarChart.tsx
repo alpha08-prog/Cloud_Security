@@ -45,6 +45,7 @@ export function PairedRadarChart({
   tooltipFooter,
 }: PairedRadarChartProps) {
   const c = useChartColors()
+  const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const narrow = useMediaQuery('(max-width: 480px)')
   const highlighted = new Set(rows.filter((r) => r.highlight).map((r) => r.label))
   const dot = (color: string) => ({ r: 4, fill: color, stroke: c.surface, strokeWidth: 2 })
@@ -102,6 +103,7 @@ export function PairedRadarChart({
       />
       <Tooltip content={(props) => <ChartTooltip {...props} unit={unit} footer={tooltipFooter} />} />
       <Radar
+        isAnimationActive={!reduceMotion}
         name="Concern"
         dataKey="concern"
         stroke={c.concern}
@@ -111,6 +113,7 @@ export function PairedRadarChart({
         dot={dot(c.concern)}
       />
       <Radar
+        isAnimationActive={!reduceMotion}
         name="Solution"
         dataKey="solution"
         stroke={c.solution}

@@ -11,6 +11,7 @@ import {
   type YAxisTickContentProps,
 } from 'recharts'
 import { useChartColors, type ChartColors } from '../../hooks/useChartColors'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { ChartTooltip } from './ChartCard'
 
 export interface PairedRow {
@@ -48,6 +49,7 @@ export function PairedBarChart({
   tooltipFooter,
 }: PairedBarChartProps) {
   const c = useChartColors()
+  const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const height = rows.length * rowHeight + 76
   const isHighlight = (index?: number) => index !== undefined && rows[index]?.highlight
 
@@ -110,10 +112,24 @@ export function PairedBarChart({
         cursor={{ fill: c.grid }}
         content={(props) => <ChartTooltip {...props} unit={unit} footer={tooltipFooter} />}
       />
-      <Bar dataKey="concern" name="Concern" fill={c.concern} barSize={10} radius={[0, 4, 4, 0]}>
+      <Bar
+        isAnimationActive={!reduceMotion}
+        dataKey="concern"
+        name="Concern"
+        fill={c.concern}
+        barSize={10}
+        radius={[0, 4, 4, 0]}
+      >
         <LabelList dataKey="concern" content={valueLabel} />
       </Bar>
-      <Bar dataKey="solution" name="Solution" fill={c.solution} barSize={10} radius={[0, 4, 4, 0]}>
+      <Bar
+        isAnimationActive={!reduceMotion}
+        dataKey="solution"
+        name="Solution"
+        fill={c.solution}
+        barSize={10}
+        radius={[0, 4, 4, 0]}
+      >
         <LabelList dataKey="solution" content={valueLabel} />
       </Bar>
     </BarChart>

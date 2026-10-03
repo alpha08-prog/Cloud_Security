@@ -87,7 +87,7 @@ function TreeItem({ node, expanded, selectedId, onToggle, onSelect }: TreeItemPr
 
 function NodeMeta({ node }: { node: TreeNode }) {
   if (node.emphasis) {
-    return <span className="badge badge--accent">Modelled in simulator</span>
+    return <span className="badge badge--accent">Cross-VM example</span>
   }
   if (!node.category) return null
   const { concern, solution } = getShare(node.category)

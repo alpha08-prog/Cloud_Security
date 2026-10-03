@@ -30,8 +30,8 @@ export function NodeDetails({ figure, context, onOpenCategory }: NodeDetailsProp
             concern-vs-solution gap
           </li>
           <li>
-            <span className="badge badge--accent">Modelled in simulator</span> cross-VM attack
-            examples shown in the Side-channel tab
+            <span className="badge badge--accent">Cross-VM example</span> the paper’s two cross-VM
+            attack examples, inside the under-solved branch
           </li>
           <li>
             <span className="num">concern 12% · solution 3%</span> the category’s share of
@@ -114,9 +114,9 @@ export function NodeDetails({ figure, context, onOpenCategory }: NodeDetailsProp
             Open in Figure {getDimension(getCategory(category).dimension).figure} →
           </button>
         )}
-        {node.emphasis && (
-          <a className="link-cta" href="#side-channel">
-            See the conceptual side-channel simulation →
+        {category === UNDER_SOLVED && (
+          <a className="link-cta" href="#defenses">
+            See the defenses for virtualization →
           </a>
         )}
       </div>

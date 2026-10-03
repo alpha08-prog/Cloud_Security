@@ -48,7 +48,6 @@ export function VirtualizationView() {
           </p>
           <p>
             Least solution coverage ({minSolution} on the scale): {leastSolved.join(', ')}.
-            Cross-VM attacks are the subject of the Side-channel simulator.
           </p>
         </div>
       )}

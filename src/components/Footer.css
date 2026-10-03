@@ -1,0 +1,46 @@
+.site-footer {
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--space-8);
+  padding-block: var(--space-8);
+}
+
+.site-footer__heading {
+  margin: 0 0 var(--space-2);
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer__citation cite {
+  color: var(--text);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.site-footer__notes {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-3) 0 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 760px) {
+  .site-footer__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+    padding-block: var(--space-6);
+  }
+}

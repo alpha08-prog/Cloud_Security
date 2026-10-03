@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { SectionFrame } from './components/SectionFrame'
 import { TabBar } from './components/TabBar'
@@ -48,9 +49,12 @@ export default function App() {
           source={active.source}
           badge={active.badge}
         >
-          <Component />
+          <Suspense fallback={<p className="section-loading">Loading…</p>}>
+            <Component />
+          </Suspense>
         </SectionFrame>
       </main>
+      <Footer />
     </>
   )
 }

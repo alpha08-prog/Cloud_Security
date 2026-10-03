@@ -1,10 +1,18 @@
-import type { ComponentType } from 'react'
-import { DataDashboard } from './data/DataDashboard'
-import { Defenses } from './defenses/Defenses'
-import { Frameworks } from './frameworks/Frameworks'
-import { Overview } from './overview/Overview'
-import { SideChannel } from './side-channel/SideChannel'
-import { Taxonomy } from './taxonomy/Taxonomy'
+import { lazy, type ComponentType } from 'react'
+
+// Each section is its own chunk, loaded when its tab is first opened.
+const Overview = lazy(() => import('./overview/Overview').then((m) => ({ default: m.Overview })))
+const Taxonomy = lazy(() => import('./taxonomy/Taxonomy').then((m) => ({ default: m.Taxonomy })))
+const DataDashboard = lazy(() =>
+  import('./data/DataDashboard').then((m) => ({ default: m.DataDashboard })),
+)
+const SideChannel = lazy(() =>
+  import('./side-channel/SideChannel').then((m) => ({ default: m.SideChannel })),
+)
+const Defenses = lazy(() => import('./defenses/Defenses').then((m) => ({ default: m.Defenses })))
+const Frameworks = lazy(() =>
+  import('./frameworks/Frameworks').then((m) => ({ default: m.Frameworks })),
+)
 
 export type SectionId =
   | 'overview'

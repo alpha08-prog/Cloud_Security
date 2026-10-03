@@ -1,4 +1,4 @@
-import { useRef, type KeyboardEvent } from 'react'
+import { useEffect, useRef, type KeyboardEvent } from 'react'
 import { panelId, tabId } from './tabIds'
 import './TabBar.css'
 
@@ -16,6 +16,10 @@ interface TabBarProps<Id extends string> {
 /** WAI-ARIA tabs: roving tabindex, arrow keys / Home / End move between tabs. */
 export function TabBar<Id extends string>({ items, activeId, onSelect }: TabBarProps<Id>) {
   const buttons = useRef(new Map<Id, HTMLButtonElement>())
+
+  useEffect(() => {
+    buttons.current.get(activeId)?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }, [activeId])
 
   const onKeyDown = (event: KeyboardEvent, index: number) => {
     let next: number

@@ -1,0 +1,116 @@
+.overview {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.overview__hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: center;
+  padding: var(--space-6);
+  border-color: var(--highlight);
+  background: linear-gradient(90deg, var(--highlight-soft), var(--surface) 70%);
+}
+
+.overview__number {
+  margin: 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.overview__sub {
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.overview__thesis p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+.overview__thesis p + p {
+  margin-top: var(--space-3);
+}
+
+.overview__dimensions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.overview__dimension {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding: var(--space-5);
+}
+
+.overview__dimension h3 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.overview__dimension .eyebrow {
+  margin: 0;
+}
+
+.overview__dimension.is-deficit {
+  box-shadow: inset 3px 0 0 var(--highlight), var(--shadow);
+}
+
+.overview__categories {
+  margin: 0 0 var(--space-2);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.overview__next {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.overview__link {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  color: inherit;
+  text-decoration: none;
+}
+
+.overview__link:hover {
+  border-color: var(--accent);
+}
+
+.overview__link-title {
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.overview__link-body {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 900px) {
+  .overview__hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5);
+  }
+
+  .overview__dimensions,
+  .overview__next {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 560px) and (max-width: 900px) {
+  .overview__next {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

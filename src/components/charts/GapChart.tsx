@@ -12,6 +12,7 @@ import {
   type YAxisTickContentProps,
 } from 'recharts'
 import { useChartColors } from '../../hooks/useChartColors'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { formatGap } from '../../lib/format'
 import { CategoryTick } from './PairedBarChart'
 
@@ -38,6 +39,7 @@ interface GapChartProps {
  */
 export function GapChart({ rows, bound, xLabel, yLabel }: GapChartProps) {
   const c = useChartColors()
+  const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const height = rows.length * 30 + 76
 
   const gapLabel = (props: { viewBox?: unknown; value?: unknown; index?: number }) => {
@@ -119,6 +121,7 @@ export function GapChart({ rows, bound, xLabel, yLabel }: GapChartProps) {
         }}
       />
       <Bar
+        isAnimationActive={!reduceMotion}
         dataKey="gap"
         name="Gap"
         barSize={14}

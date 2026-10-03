@@ -25,9 +25,9 @@
   --highlight: #b45309;
   --highlight-soft: #fdf1e3;
 
-  /* Data series: dataviz reference palette slots 1–2, validated on --surface. */
-  --series-concern: #2a78d6;
-  --series-solution: #eb6834;
+  /* Categorical slots 1–2 (dataviz reference palette), validated on --surface. */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
   --chart-grid: #eceef1;
   --chart-axis: #c5cad2;
   --chart-muted: #b3b9c3;
@@ -55,8 +55,8 @@
   --highlight: #f5a524;
   --highlight-soft: #2d2212;
 
-  --series-concern: #3987e5;
-  --series-solution: #d95926;
+  --series-1: #3987e5;
+  --series-2: #d95926;
   --chart-grid: #232933;
   --chart-axis: #3a424e;
   --chart-muted: #4b5462;
@@ -77,6 +77,10 @@
   --space-6: 24px;
   --space-8: 32px;
   --space-12: 48px;
+
+  /* Series roles mapped onto the categorical slots. */
+  --series-concern: var(--series-1);
+  --series-solution: var(--series-2);
 
   --radius: 10px;
   --radius-sm: 6px;
