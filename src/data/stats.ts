@@ -14,10 +14,6 @@ export interface CategoryShare {
   /**
    * Coverage gap in percentage points: solution − concern. Negative means the
    * category is raised more often than it is solved.
-   *
-   * paper-content.md states the formula as "concern − solution" but its Gap
-   * column (Legal +3, Virtualization −9, …) and its "negative = under-solved"
-   * rule both match solution − concern, so that is what we compute.
    */
   gap: number
 }
