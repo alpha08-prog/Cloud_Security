@@ -1,0 +1,200 @@
+.chart-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-5);
+}
+
+.chart-card__head {
+  margin-bottom: var(--space-3);
+}
+
+.chart-card__plot {
+  min-width: 0;
+  font-size: 12px;
+}
+
+/* Recharts focus ring on the SVG surface (keyboard tooltip navigation). */
+.chart-card__plot .recharts-wrapper:focus-visible,
+.chart-card__plot .recharts-surface:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.chart-card__plot :focus:not(:focus-visible) {
+  outline: none;
+}
+
+.chart-card__caption {
+  margin-top: var(--space-3);
+}
+
+/* Legend */
+.series-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.series-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.series-legend__key {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.series-legend__key--line {
+  height: 2px;
+  width: 16px;
+  border-radius: 1px;
+}
+
+/* Tooltip */
+.chart-tooltip {
+  min-width: 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.12);
+  color: var(--text);
+  font-size: 0.8125rem;
+}
+
+.chart-tooltip__title {
+  margin: 0 0 var(--space-1);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.chart-tooltip ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chart-tooltip li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.chart-tooltip li span:last-child {
+  color: var(--text-muted);
+}
+
+.chart-tooltip__key {
+  flex: none;
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.chart-tooltip__footer {
+  margin-top: var(--space-1);
+  padding-top: var(--space-1);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* Table view */
+.table-view {
+  margin-top: var(--space-3);
+  font-size: 0.875rem;
+}
+
+.table-view > summary {
+  width: fit-content;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.table-view[open] > summary {
+  margin-bottom: var(--space-2);
+}
+
+.data-table__wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-table th {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.data-table .is-num {
+  text-align: right;
+}
+
+/* Stat tiles */
+.stat-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+.stat-tile {
+  padding: var(--space-4) var(--space-5);
+}
+
+.stat-tile__label {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.stat-tile__value {
+  margin: 2px 0 0;
+  font-size: 1.75rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.stat-tile__note {
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.stat-tile--highlight {
+  border-color: var(--highlight);
+  background: var(--highlight-soft);
+}
+
+.stat-tile__key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 2px;
+}
