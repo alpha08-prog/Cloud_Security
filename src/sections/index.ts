@@ -66,11 +66,11 @@ export const SECTIONS: readonly Section[] = [
   {
     id: 'side-channel',
     label: 'Side-channel',
-    title: 'Cross-VM side-channel simulator',
+    title: 'Cross-VM side channels',
     summary:
-      'An educational model of the principle behind cross-VM attacks (co-residency → shared CPU cache → access-timing differences → statistical recovery of a made-up secret) and of the mitigations that defeat it.',
-    source: 'Gonzalez et al. (2012), Figure 2 — Virtualization › Cross-VM attacks',
-    badge: 'Conceptual model · synthetic data',
+      'Why tenants sharing one physical machine is a security concern, explained conceptually, and the defenses that address it.',
+    source: 'Gonzalez et al. (2012), Figure 2 — Virtualization › Isolation, Cross-VM attacks',
+    badge: 'Conceptual explanation',
     Component: SideChannel,
   },
   {

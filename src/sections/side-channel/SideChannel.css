@@ -1,0 +1,222 @@
+.explainer {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.explainer__intro {
+  margin: 0;
+  max-width: 75ch;
+  font-size: 1.0625rem;
+}
+
+.explainer__figure {
+  margin: 0;
+  padding: var(--space-5);
+}
+
+.explainer__why {
+  max-width: 75ch;
+}
+
+.explainer__why h3,
+.explainer__heading {
+  margin: 0 0 var(--space-3);
+  font-size: 1.25rem;
+}
+
+.explainer__why p {
+  margin: 0;
+}
+
+.explainer__why p + p {
+  margin-top: var(--space-3);
+}
+
+.explainer__note {
+  margin: 0;
+}
+
+/* ---------- Defense cards ---------- */
+
+.defense-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.defense-card {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-2);
+  padding: var(--space-5);
+}
+
+.defense-card__title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.defense-card__prevents {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+/* What a defense targets: label + tint, never colour alone. */
+.aim {
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.aim--residency {
+  border-color: transparent;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.aim--isolation {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.aim--signal {
+  border-color: var(--highlight);
+  background: var(--highlight-soft);
+  color: var(--highlight);
+}
+
+/* ---------- Host diagram (inline SVG, themed via tokens) ---------- */
+
+.host-diagram {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+}
+
+.host-diagram text {
+  fill: var(--text);
+  font-size: 14px;
+}
+
+.host-diagram .dg-title {
+  font-weight: 600;
+}
+
+.host-diagram .dg-role {
+  fill: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.host-diagram .dg-sub {
+  fill: var(--text-muted);
+  font-size: 13px;
+}
+
+.host-diagram .dg-sub--strong {
+  fill: var(--text);
+}
+
+.host-diagram .dg-caption {
+  fill: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dg-host {
+  fill: var(--surface);
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.dg-vm {
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.dg-vm--a,
+.dg-vm--b {
+  fill: var(--surface-2);
+}
+
+.dg-hypervisor {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.dg-hardware {
+  fill: var(--surface);
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.dg-chip {
+  fill: var(--surface-2);
+  stroke: var(--border);
+}
+
+.dg-chip--cache {
+  fill: var(--highlight-soft);
+  stroke: var(--highlight);
+}
+
+.dg-boundary {
+  fill: none;
+  stroke: var(--highlight);
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+
+.dg-legend-bg {
+  fill: var(--surface);
+}
+
+.host-diagram .dg-boundary-label {
+  fill: var(--highlight);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dg-divider {
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.host-diagram .dg-divider-label {
+  fill: var(--text-muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.dg-link {
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+}
+
+.dg-arrowhead {
+  fill: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .explainer__figure {
+    padding: var(--space-3);
+  }
+
+  .explainer__intro {
+    font-size: 1rem;
+  }
+}

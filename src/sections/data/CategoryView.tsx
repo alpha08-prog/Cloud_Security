@@ -56,9 +56,15 @@ export function CategoryView() {
           label="Virtualization · coverage gap"
           value={formatGap(underSolved.gap)}
           note={
-            worst.key === UNDER_SOLVED
-              ? 'The largest deficit of the seven categories'
-              : `Largest deficit: ${worst.label}`
+            <>
+              {worst.key === UNDER_SOLVED
+                ? 'The largest deficit of the seven categories'
+                : `Largest deficit: ${worst.label}`}
+              <br />
+              <a className="link-cta" href="#side-channel">
+                Why it matters: cross-VM side channels →
+              </a>
+            </>
           }
           highlight
         />

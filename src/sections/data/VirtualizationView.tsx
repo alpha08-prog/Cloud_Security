@@ -49,6 +49,11 @@ export function VirtualizationView() {
           <p>
             Least solution coverage ({minSolution} on the scale): {leastSolved.join(', ')}.
           </p>
+          <p>
+            <a className="link-cta" href="#side-channel">
+              Isolation and cross-VM attacks, explained with their defenses →
+            </a>
+          </p>
         </div>
       )}
 

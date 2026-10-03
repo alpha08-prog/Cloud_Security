@@ -7,16 +7,17 @@ The paper surveys 200+ references and counts, for each cloud-security concern, h
 is raised versus how often a solution is proposed. Its headline finding: **virtualization is
 the biggest unsolved gap — 12% of concern citations but only 3% of solution citations.**
 Cross-VM / side-channel attacks sit inside that gap. This project makes the taxonomy, the
-numbers, that gap, and the defenses explorable, with a conceptual side-channel simulator as
-the centerpiece.
+numbers, that gap, and the defenses explorable, with a conceptual cross-VM side-channel
+explainer and its defenses as the centerpiece.
 
 ## Sections
 - **Overview** — the concern-vs-solution thesis at a glance
 - **Taxonomy explorer** — the four taxonomy trees (Figures 1–4), interactive
 - **Data dashboard** — concern vs solution per category (Figures 6 & 8), radar, and the
   virtualization sub-breakdown (Figure 11)
-- **Cross-VM side-channel simulator** — a conceptual, synthetic-data visualization of how
-  shared-cache timing leaks a secret, and how mitigations stop it
+- **Cross-VM side channels** — a labelled diagram of two co-resident VMs on shared hardware,
+  a plain-English explanation of why that can leak information, and the virtualization
+  defenses that address it
 - **Defense matrix** — concrete modern controls answering each category of concern
 - **Frameworks** — CSA, ENISA, and NIST summaries (Tables 1 & 2)
 
@@ -36,11 +37,11 @@ src/data/               # typed content mirrored from paper-content.md
 src/sections/           # one folder per section
 ```
 
-## A note on the simulator
-The side-channel section is an **educational simulation on synthetic data**. It illustrates
-the principle (co-residency → shared cache → timing leakage → secret recovery) and the
-mitigations that defeat it. It performs no real timing measurement and includes no working
-exploit.
+## A note on the side-channel section
+The side-channel section is **explanatory and defense-focused**: a static diagram, a
+conceptual explanation (co-residency plus imperfect isolation of shared hardware), and the
+defenses. It contains no attack and no simulation of one. The defenses are current best
+practice, not taken from the 2012 paper.
 
 ## Credit
 Based on an open-access (CC BY 2.0) paper by Gonzalez et al. (2012). All concept and figure

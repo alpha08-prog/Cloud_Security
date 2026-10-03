@@ -114,6 +114,11 @@ export function NodeDetails({ figure, context, onOpenCategory }: NodeDetailsProp
             Open in Figure {getDimension(getCategory(category).dimension).figure} →
           </button>
         )}
+        {subcategory?.label === 'Cross-VM attacks' && (
+          <a className="link-cta" href="#side-channel">
+            Cross-VM side channels, explained →
+          </a>
+        )}
         {category === UNDER_SOLVED && (
           <a className="link-cta" href="#defenses">
             See the defenses for virtualization →
