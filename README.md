@@ -1,5 +1,7 @@
 # Cloud Security Threat Lab
 
+**Live demo: https://alpha08-prog.github.io/Cloud_Security/**
+
 An interactive explorer for **Gonzalez et al. (2012), *A quantitative analysis of current
 security concerns and solutions for cloud computing*** (Journal of Cloud Computing, 1:11).
 
@@ -9,6 +11,8 @@ the biggest unsolved gap — 12% of concern citations but only 3% of solution ci
 Cross-VM / side-channel attacks sit inside that gap. This project makes the taxonomy, the
 numbers, that gap, and the defenses explorable, with a conceptual cross-VM side-channel
 explainer and its defenses as the centerpiece.
+
+![Overview: the −9 pt virtualization gap](docs/screenshots/overview.png)
 
 ## Sections
 - **Overview** — the concern-vs-solution thesis at a glance
@@ -21,20 +25,50 @@ explainer and its defenses as the centerpiece.
 - **Defense matrix** — concrete modern controls answering each category of concern
 - **Frameworks** — CSA, ENISA, and NIST summaries (Tables 1 & 2)
 
+Each tab has its own URL (`#taxonomy`, `#data`, `#side-channel`, …), so you can link
+straight to a section. The app supports light and dark themes and works down to phone width.
+
+| Data dashboard | Taxonomy explorer | Side-channel explainer |
+| --- | --- | --- |
+| ![Data dashboard](docs/screenshots/data.png) | ![Taxonomy explorer](docs/screenshots/taxonomy.png) | ![Side-channel explainer](docs/screenshots/side-channel.png) |
+
 ## Run locally
+Requires Node.js 22.12+ (CI uses Node 24).
+
 ```bash
 npm install
-npm run dev
+npm run dev       # dev server at http://localhost:5173/
+npm test          # data-integrity and helper tests (Vitest)
+npm run lint      # oxlint
+npm run build     # type-check + production build to dist/
+npm run preview   # serve the build at http://localhost:4173/Cloud_Security/
 ```
-Build for deployment with `npm run build` (static output in `dist/`).
+
+## Tests
+`npm test` runs checks that keep the UI faithful to the paper:
+- the category shares match `docs/paper-content.md` exactly and each series sums to 100%
+- every gap is `solution − concern`, and virtualization is the largest deficit (−9 pts)
+- the sub-category and radar values are in range and place correctly in the taxonomy
+- every category appears once in the taxonomy, the defense matrix, and the charts
+- every virtualization control has its side-channel explanation
+
+## Deploy
+Every push to `main` runs `.github/workflows/deploy.yml`, which lints, tests, builds, and
+publishes `dist/` to GitHub Pages. The production build uses the base path `/Cloud_Security/`
+(set in `vite.config.ts`). If you fork or rename the repo, change that path to match.
+
+One-time setup: in the GitHub repo, open **Settings → Pages** and set **Source** to
+**GitHub Actions**.
 
 ## Project layout
 ```
 docs/paper-content.md   # canonical extracted content — the source of truth
-CLAUDE.md               # guidance for building with Claude Code
-docs/build-plan.md      # phased milestones
-src/data/               # typed content mirrored from paper-content.md
+docs/screenshots/       # images used in this README
+src/data/               # typed content mirrored from paper-content.md (+ data.test.ts)
 src/sections/           # one folder per section
+src/components/         # app shell and shared chart components
+src/lib/                # chart view-models and formatting helpers
+.github/workflows/      # GitHub Pages deployment
 ```
 
 ## A note on the side-channel section
