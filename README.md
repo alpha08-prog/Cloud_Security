@@ -1,82 +1,109 @@
-# Cloud Security Threat Lab
+# IsoLab: Cloud Isolation Lab
 
-**Live demo: https://alpha08-prog.github.io/Cloud_Security/**
+[![CI](https://github.com/alpha08-prog/Cloud_Security/actions/workflows/ci.yml/badge.svg)](https://github.com/alpha08-prog/Cloud_Security/actions/workflows/ci.yml)
+**Live site: https://alpha08-prog.github.io/Cloud_Security/**
 
-An interactive explorer for **Gonzalez et al. (2012), *A quantitative analysis of current
-security concerns and solutions for cloud computing*** (Journal of Cloud Computing, 1:11).
+**Gonzalez et al. (2012)**, *A quantitative analysis of current security concerns and solutions
+for cloud computing* (Journal of Cloud Computing 1:11), counted 200+ references and found one
+area where solutions lag concerns: **virtualization**, with 12% of concern citations but 3% of
+solution citations. Within it, isolation and cross-VM attacks are almost unanswered (Figure 11).
+The paper's future-work section (p.16) says what the missing solution should do:
 
-The paper surveys 200+ references and counts, for each cloud-security concern, how often it
-is raised versus how often a solution is proposed. Its headline finding: **virtualization is
-the biggest unsolved gap — 12% of concern citations but only 3% of solution citations.**
-Cross-VM / side-channel attacks sit inside that gap. This project makes the taxonomy, the
-numbers, that gap, and the defenses explorable, with a conceptual cross-VM side-channel
-explainer and its defenses as the centerpiece.
+> "…employ **virtual machine identification** [R1], provide an **adequate separation of
+> dedicated resources** [R2] combined with a **constant observation of shared ones** [R3], and
+> **examine any attempt of exploiting cross-VM and data leakage** [R4]."
 
-![Overview: the −9 pt virtualization gap](docs/screenshots/overview.png)
+IsoLab builds that solution on a small multi-tenant cloud and measures it.
 
-## Sections
-- **Overview** — the concern-vs-solution thesis at a glance
-- **Taxonomy explorer** — the four taxonomy trees (Figures 1–4), interactive
-- **Data dashboard** — concern vs solution per category (Figures 6 & 8), radar, and the
-  virtualization sub-breakdown (Figure 11)
-- **Cross-VM side channels** — a labelled diagram of two co-resident VMs on shared hardware,
-  a plain-English explanation of why that can leak information, and the virtualization
-  defenses that address it
-- **Defense matrix** — concrete modern controls answering each category of concern
-- **Frameworks** — CSA, ENISA, and NIST summaries (Tables 1 & 2)
+![The Results tab: Figure 11 revisited](docs/screenshots/results.png)
 
-Each tab has its own URL (`#taxonomy`, `#data`, `#side-channel`, …), so you can link
-straight to a section. The app supports light and dark themes and works down to phone width.
+## What's in it
 
-| Data dashboard | Taxonomy explorer | Side-channel explainer |
-| --- | --- | --- |
-| ![Data dashboard](docs/screenshots/data.png) | ![Taxonomy explorer](docs/screenshots/taxonomy.png) | ![Side-channel explainer](docs/screenshots/side-channel.png) |
+| Part | What it does |
+|---|---|
+| `testbed/` | A Docker Compose multi-tenant cloud: three tenants and a hardened provider plane, in two profiles (**insecure** lift-and-shift vs **hardened**, the paper-derived controls). CPU sets are planned from the host's real core/thread topology so no two tenants share a physical core. |
+| `auditor/` | **cloudaudit** (Python, FastAPI, pydantic). It has: <ul><li>**30 checks**, each mapped to a Figure 11 axis, to R1–R4, to the paper's taxonomy nodes, and to CSA / ENISA / NIST</li><li>severity-weighted coverage scores, time-boxed waivers and a policy gate</li><li>JSON, SARIF and a console report</li><li>a per-tenant **cgroup v2 + pressure-stall (PSI)** exporter</li><li>**live detections** from the engine event stream</li><li>a **canary** decoy</li></ul> It only talks to the engine through a read-only socket proxy. |
+| `monitor/` | Prometheus rules and a provisioned Grafana dashboard: the live view during a demo. |
+| `scripts/lab.py` + `experiments/` | A standard-library orchestrator for the whole lab, and three pre-registered experiments: **E1** noisy neighbour (SLO under CPU contention), **E2** segmentation and escape-surface matrix, **E3** detection validation. |
+| `src/` | The site, one tab per step: **The gap → Requirements → The system → Results**, plus the paper in an appendix. It imports the published results at build time. |
+| `.github/workflows/ci.yml` | Lint and contract tests, then both profiles run on a fresh runner with their gates (the hardened gate blocks the deploy). Uploads SARIF to code scanning and deploys to Pages. |
 
-## Run locally
-Requires Node.js 22.12+ (CI uses Node 24).
+## Results
+
+From `results/published/`, measured on a 6-core/12-thread laptop (Docker Desktop, WSL2). The
+Results tab shows them in full.
+
+| | Insecure | Hardened |
+|---|---|---|
+| Policy gate (fail on ≥ high) | fails: 15 blocking checks | **passes** (2 waived host issues) |
+| Isolation coverage, 30 checks | 20% | **94%** |
+| E2: isolation paths open | 12 / 12 | **0 / 12** (controls 3/3) |
+| E1: p99 slowdown from a noisy neighbour | ×3.0 | **×1.1** |
+| E3: isolation-breaking actions detected | 8/8, 0 false positives | **7/7**, 0 false positives, median 132 ms |
+
+Published run: CI-smoke variant (short windows), commit `d0b5395c4d3f`. Pre-registered hypotheses: 6 of 7 supported (H3 inconclusive: optional arm not run).
+
+Hypotheses and pass criteria were written down before any run (`docs/experiments.md`); verdicts
+are computed by `lab.py publish`.
+
+## Run it
+
+You need Docker Desktop (or Docker Engine with cgroup v2), Python 3.10 or newer (standard
+library only), and Node 22.12+ for the site.
 
 ```bash
-npm install
-npm run dev       # dev server at http://localhost:5173/
-npm test          # data-integrity and helper tests (Vitest)
-npm run lint      # oxlint
-npm run build     # type-check + production build to dist/
-npm run preview   # serve the build at http://localhost:4173/Cloud_Security/
+python scripts/lab.py doctor             # Docker, cgroup v2, ports, CPU topology
+python scripts/lab.py up hardened         # or: up insecure (read testbed/README.md first)
+python scripts/lab.py audit hardened      # 30 checks -> console + results/runs/.../audit.{json,sarif}
+python scripts/lab.py demo canary         # one benign trigger, live (also: exec, drift, noisy, ...)
+# Grafana: http://127.0.0.1:3000 (anonymous viewer)
+python scripts/lab.py run-all             # both profiles: audit, E3, E2, E1, gates (~45 min)
+python scripts/lab.py publish             # merge, test hypotheses, validate -> results/published
+python scripts/lab.py down
+
+python scripts/lab.py test                # ruff + pytest (auditor, orchestrator), in a container
+npm install && npm test && npm run dev    # the site, at http://localhost:5173/
 ```
 
-## Tests
-`npm test` runs checks that keep the UI faithful to the paper:
-- the category shares match `docs/paper-content.md` exactly and each series sums to 100%
-- every gap is `solution − concern`, and virtualization is the largest deficit (−9 pts)
-- the sub-category and radar values are in range and place correctly in the taxonomy
-- every category appears once in the taxonomy, the defense matrix, and the charts
-- every virtualization control has its side-channel explanation
+## How it's kept honest
 
-## Deploy
-Every push to `main` runs `.github/workflows/deploy.yml`, which lints, tests, builds, and
-publishes `dist/` to GitHub Pages. The production build uses the base path `/Cloud_Security/`
-(set in `vite.config.ts`). If you fork or rename the repo, change that path to match.
+- **Pre-registered experiments.** Protocol changes go in a changelog with a reason before the
+  data they affect. Runs that break the validity rules are discarded: dropped iterations, more
+  than 1% failures, or noise that didn't happen.
+- **Controls in both directions.** The insecure profile is a negative control: CI fails if the
+  auditor stops catching it. E2 includes positive controls, so "blocked" can't just mean
+  "broken".
+- **One contract, two languages.** The pydantic models generate JSON Schemas. The site validates
+  every published file against them, resolves every taxonomy and framework reference, and
+  recomputes every score in TypeScript, which must equal the Python result.
+- **Waivers are visible.** Two host-level issues on Docker Desktop (CPU microcode, user
+  namespaces) are waived with a reason and an expiry. They earn no coverage credit.
+- **Defensive only.** Configuration auditing, load testing of the victim's own latency,
+  read-only reachability probes and benign detection triggers. There is no attack code, no
+  side-channel measurement and no secret recovery (see `CLAUDE.md` and `testbed/README.md`).
 
-One-time setup: in the GitHub repo, open **Settings → Pages** and set **Source** to
-**GitHub Actions**.
+## Docs
 
-## Project layout
-```
-docs/paper-content.md   # canonical extracted content — the source of truth
-docs/screenshots/       # images used in this README
-src/data/               # typed content mirrored from paper-content.md (+ data.test.ts)
-src/sections/           # one folder per section
-src/components/         # app shell and shared chart components
-src/lib/                # chart view-models and formatting helpers
-.github/workflows/      # GitHub Pages deployment
-```
+- `docs/paper-content.md`: everything taken from the paper (figures, quotes, the p.16 brief).
+- `docs/architecture.md`: components, the requirement mapping, the data contract, design
+  decisions.
+- `docs/experiments.md`: E1–E3 protocol, hypotheses and changelog.
+- `docs/checks.md`: the generated check catalogue.
+- `docs/viva-notes.md`: the demo script and expected questions.
 
-## A note on the side-channel section
-The side-channel section is **explanatory and defense-focused**: a static diagram, a
-conceptual explanation (co-residency plus imperfect isolation of shared hardware), and the
-defenses. It contains no attack and no simulation of one. The defenses are current best
-practice, not taken from the 2012 paper.
+## Limitations
+
+- **Containers stand in for VMs.** The CSA guidance cited by the paper treats multi-tenancy as
+  the essential characteristic, and a shared kernel is the harder isolation case.
+- **One host.** On Docker Desktop the "host" is a Hyper-V VM, so SMT topology is indicative and
+  microcode is out of reach.
+- **Different units.** The paper's Figure 11 counts citations; IsoLab's radar is check coverage.
+  The site never plots them on one scale.
+- **CI E1 is a smoke test.** Two-core runners can't separate tenants onto physical cores
+  (waived there), so CI latency numbers are informative only.
 
 ## Credit
-Based on an open-access (CC BY 2.0) paper by Gonzalez et al. (2012). All concept and figure
-data is attributed to that work in `docs/paper-content.md`.
+
+Based on the open-access (CC BY 2.0) paper by Gonzalez, Miers, Redígolo, Simplício, Carvalho,
+Näslund and Pourzandi (2012). Paper content is attributed in `docs/paper-content.md`; the
+requirements' interpretation, the system and all measurements are this project's.
