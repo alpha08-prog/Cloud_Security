@@ -6,6 +6,7 @@
 
 - checkId: HV-03
   platform: docker-desktop-wsl2
+  covers: [spec_rstack_overflow]   # any other vulnerable CPU flaw fails the gate again
   reason: >-
     The WSL2 kernel reports spec_rstack_overflow as "Vulnerable: Safe RET, no microcode".
     The SRSO microcode fix is delivered through the physical host's firmware/Windows updates;
@@ -25,6 +26,19 @@
   approvedBy: project owner (pending review)
 
 # ---- GitHub-hosted ubuntu-24.04 runners (CI) -------------------------------------------
+
+- checkId: HV-03
+  platform: github-ubuntu
+  covers: [spec_rstack_overflow, spec_store_bypass, tsa]
+  reason: >-
+    Observed on the first CI run (2026-10-12): the hosted runner is an Azure VM whose kernel
+    reports spec_rstack_overflow and tsa as "Vulnerable: ... no microcode" and spec_store_bypass
+    as "Vulnerable". Microcode and the speculative-store-bypass control are provided by the
+    cloud provider's hypervisor host; a CI job cannot load microcode or change the VM's CPU
+    feature exposure. Same provider-layer limit as on Docker Desktop. Scoped to these three
+    flaws: any newly reported one is not covered and fails the gate.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)
 
 - checkId: XVM-05
   platform: github-ubuntu

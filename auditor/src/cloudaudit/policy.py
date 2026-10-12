@@ -85,5 +85,14 @@ def find_waiver(waivers: list[Waiver], check_id: str, platform: str, targets: li
     return None
 
 
+def uncovered(w: Waiver, failing_targets: list) -> list[str]:
+    """Failing items (list-valued evidence on failing targets) that a scoped waiver does not cover."""
+    if w.covers is None:
+        return []
+    items = {str(v) for t in failing_targets for value in t.evidence.values() if isinstance(value, list)
+             for v in value}
+    return sorted(items - set(w.covers))
+
+
 def is_expired(w: Waiver, today: date | None = None) -> bool:
     return w.expires < (today or date.today())

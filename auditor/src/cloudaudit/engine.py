@@ -10,7 +10,7 @@ from . import __version__
 from .catalogue import CATALOGUE
 from .checks import REGISTRY
 from .models import AuditReport, CheckResult, Environment, Gate, Location, Target, Tool
-from .policy import Policy, find_waiver, is_expired
+from .policy import Policy, find_waiver, is_expired, uncovered
 from .scoring import score
 from .snapshot import Snapshot
 
@@ -46,9 +46,12 @@ def run_checks(snap: Snapshot, policy: Policy, waivers: list, today: date | None
         status = worst(targets)
         result = CheckResult(check_id=spec.id, status=status, message=summarise(status, targets), targets=targets)
         if status in ("fail", "warn", "error"):
-            failing = [t.ref for t in targets if t.status in ("fail", "warn", "error")]
-            w = find_waiver(waivers, spec.id, snap.platform, failing)
-            if w:
+            failing = [t for t in targets if t.status in ("fail", "warn", "error")]
+            w = find_waiver(waivers, spec.id, snap.platform, [t.ref for t in failing])
+            missing = uncovered(w, failing) if w else []
+            if missing:  # a scoped waiver never stretches to cover something new
+                result.message += f" (not covered by the {snap.platform} waiver: {', '.join(missing)})"
+            elif w:
                 result.waiver = w
                 result.waived = not is_expired(w, today)
         results.append(result)

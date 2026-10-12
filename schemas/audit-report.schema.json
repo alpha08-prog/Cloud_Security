@@ -638,6 +638,22 @@
           "title": "Checkid",
           "type": "string"
         },
+        "covers": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "If set, the waiver applies only while every item the check reports as failing (e.g. each vulnerable CPU flaw) is in this list; anything new fails the gate again",
+          "title": "Covers"
+        },
         "expires": {
           "format": "date",
           "title": "Expires",

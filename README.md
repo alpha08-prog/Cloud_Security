@@ -77,7 +77,8 @@ npm install && npm test && npm run dev    # the site, at http://localhost:5173/
   every published file against them, resolves every taxonomy and framework reference, and
   recomputes every score in TypeScript, which must equal the Python result.
 - **Waivers are visible.** Two host-level issues on Docker Desktop (CPU microcode, user
-  namespaces) are waived with a reason and an expiry. They earn no coverage credit.
+  namespaces) are waived with a reason and an expiry. They earn no coverage credit, and a waiver can be scoped
+  (`covers`) to the exact CPU flaws observed, so a newly reported flaw fails the gate again.
 - **Defensive only.** Configuration auditing, load testing of the victim's own latency,
   read-only reachability probes and benign detection triggers. There is no attack code, no
   side-channel measurement and no secret recovery (see `CLAUDE.md` and `testbed/README.md`).

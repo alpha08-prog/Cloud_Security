@@ -104,6 +104,10 @@ class Waiver(Model):
     check_id: str
     platform: str = Field(description="Platform the waiver applies to, or '*'")
     target: str | None = None
+    covers: list[str] | None = Field(
+        default=None,
+        description="If set, the waiver applies only while every item the check reports as failing (e.g. each "
+                    "vulnerable CPU flaw) is in this list; anything new fails the gate again")
     reason: str
     expires: date
     approved_by: str

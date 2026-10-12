@@ -60,6 +60,36 @@ def test_waiver_only_applies_on_its_platform(hardened, policy):
     assert not r.waived
 
 
+def test_scoped_waiver_covers_only_the_listed_flaws(hardened, policy):
+    # The Docker Desktop snapshot reports exactly one vulnerable CPU flaw: spec_rstack_overflow.
+    exact = Waiver(check_id="HV-03", platform="*", covers=["spec_rstack_overflow"], reason="x",
+                   expires=date(2099, 1, 1), approved_by="x")
+    assert next(r for r in run_checks(hardened, policy, [exact], TODAY) if r.check_id == "HV-03").waived
+
+    stale = Waiver(check_id="HV-03", platform="*", covers=["tsa"], reason="x",
+                   expires=date(2099, 1, 1), approved_by="x")
+    r = next(r for r in run_checks(hardened, policy, [stale], TODAY) if r.check_id == "HV-03")
+    assert not r.waived and r.waiver is None
+    assert "not covered" in r.message and "spec_rstack_overflow" in r.message
+    assert "HV-03" in gate(run_checks(hardened, policy, [stale], TODAY), policy, TODAY).blocking
+
+
+def test_committed_ci_waiver_matches_what_the_runner_reported(hardened, policy, waivers):
+    # First CI run (2026-10-12): the hosted runner reported these three flaws as vulnerable.
+    ci = hardened.model_copy(deep=True)
+    ci.platform = "github-ubuntu"
+    ci.host.vulnerabilities.update({
+        "spec_rstack_overflow": "Vulnerable: Safe RET, no microcode",
+        "spec_store_bypass": "Vulnerable",
+        "tsa": "Vulnerable: No microcode",
+    })
+    assert build_report(ci, policy, waivers, TODAY).gate.passed
+
+    ci.host.vulnerabilities["retbleed"] = "Vulnerable"  # a new flaw is not silently accepted
+    g = build_report(ci, policy, waivers, TODAY).gate
+    assert not g.passed and "HV-03" in g.blocking
+
+
 def test_waived_checks_earn_no_credit(hardened, policy, waivers):
     report = build_report(hardened, policy, waivers, TODAY)
     hv = next(s for s in report.scores.by_axis if s.key == "hypervisor-vulnerabilities")

@@ -62,8 +62,11 @@ def _out(args) -> Path | None:
 
 
 def cmd_audit(args) -> int:
+    """Audits report; `lab.py gate` enforces. --strict makes a failing hardened gate exit non-zero here too."""
     report = audit.audit(args.profile, _out(args))
-    return 0 if report["gate"]["passed"] or args.profile == "insecure" else 1
+    if args.strict and args.profile == "hardened" and not report["gate"]["passed"]:
+        return 1
+    return 0
 
 
 def cmd_gate(args) -> int:
@@ -158,6 +161,7 @@ def main() -> int:
     p = sub.add_parser("audit", help="audit the running profile; save JSON + SARIF")
     p.add_argument("profile", choices=util.PROFILES)
     p.add_argument("--out", help="results directory (default results/runs/<platform>)")
+    p.add_argument("--strict", action="store_true", help="exit 1 if the hardened gate fails")
     p.set_defaults(fn=cmd_audit)
 
     p = sub.add_parser("gate", help="hardened: policy/E2/E3 gates; insecure: negative control")
