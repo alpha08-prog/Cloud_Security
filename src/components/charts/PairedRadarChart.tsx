@@ -11,16 +11,22 @@ import { useChartColors } from '../../hooks/useChartColors'
 import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { ChartTooltip } from './ChartCard'
 
-export interface RadarRow {
+export interface RadarSeries {
   key: string
-  label: string
-  concern: number
-  solution: number
-  highlight?: boolean
+  name: string
+  color: string
 }
 
-interface PairedRadarChartProps {
-  rows: readonly RadarRow[]
+export interface SeriesRadarRow {
+  key: string
+  label: string
+  highlight?: boolean
+  [series: string]: string | number | boolean | undefined
+}
+
+interface SeriesRadarChartProps {
+  rows: readonly SeriesRadarRow[]
+  series: readonly RadarSeries[]
   max: number
   /** Number of radius ticks including 0 (e.g. 4 → 0/10/20/30 for max 30). */
   tickCount?: number
@@ -35,15 +41,16 @@ function wrapLabel(label: string): string[] {
   return label.length > 10 && space > 0 ? [label.slice(0, space), label.slice(space + 1)] : [label]
 }
 
-/** Concern and solution outlines overlaid on one radar. */
-export function PairedRadarChart({
+/** Outlines of two or more series overlaid on one radar (one radius scale). */
+export function SeriesRadarChart({
   rows,
+  series,
   max,
   tickCount = 4,
   unit = '%',
   height = 340,
   tooltipFooter,
-}: PairedRadarChartProps) {
+}: SeriesRadarChartProps) {
   const c = useChartColors()
   const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const narrow = useMediaQuery('(max-width: 480px)')
@@ -54,7 +61,7 @@ export function PairedRadarChart({
 
   return (
     <RadarChart
-      data={rows as RadarRow[]}
+      data={rows as SeriesRadarRow[]}
       responsive
       style={{ width: '100%', height }}
       outerRadius={narrow ? '56%' : '66%'}
@@ -102,26 +109,51 @@ export function PairedRadarChart({
         tickFormatter={(v: number) => (v === 0 ? '' : `${v}${unit}`)}
       />
       <Tooltip content={(props) => <ChartTooltip {...props} unit={unit} footer={tooltipFooter} />} />
-      <Radar
-        isAnimationActive={!reduceMotion}
-        name="Concern"
-        dataKey="concern"
-        stroke={c.concern}
-        strokeWidth={2}
-        fill={c.concern}
-        fillOpacity={0.1}
-        dot={dot(c.concern)}
-      />
-      <Radar
-        isAnimationActive={!reduceMotion}
-        name="Solution"
-        dataKey="solution"
-        stroke={c.solution}
-        strokeWidth={2}
-        fill={c.solution}
-        fillOpacity={0.1}
-        dot={dot(c.solution)}
-      />
+      {series.map((s) => (
+        <Radar
+          key={s.key}
+          isAnimationActive={!reduceMotion}
+          name={s.name}
+          dataKey={s.key}
+          stroke={s.color}
+          strokeWidth={2}
+          fill={s.color}
+          fillOpacity={0.1}
+          dot={dot(s.color)}
+        />
+      ))}
     </RadarChart>
+  )
+}
+
+export interface RadarRow {
+  key: string
+  label: string
+  concern: number
+  solution: number
+  highlight?: boolean
+}
+
+interface PairedRadarChartProps {
+  rows: readonly RadarRow[]
+  max: number
+  tickCount?: number
+  unit?: string
+  height?: number
+  tooltipFooter?: (label: string) => ReactNode
+}
+
+/** The paper's concern and solution outlines overlaid on one radar. */
+export function PairedRadarChart(props: PairedRadarChartProps) {
+  const c = useChartColors()
+  return (
+    <SeriesRadarChart
+      {...props}
+      rows={props.rows as unknown as SeriesRadarRow[]}
+      series={[
+        { key: 'concern', name: 'Concern', color: c.concern },
+        { key: 'solution', name: 'Solution', color: c.solution },
+      ]}
+    />
   )
 }

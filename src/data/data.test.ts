@@ -1,7 +1,7 @@
 // Integrity checks for the content layer: the figures must match
 // docs/paper-content.md, and the modules must agree with each other.
 import { describe, expect, it } from 'vitest'
-import { VIRTUALIZATION_DEFENSE_NOTES } from '../sections/side-channel/defenseNotes'
+import { VIRTUALIZATION_DEFENSE_NOTES } from './defenseNotes'
 import { DEFENSES } from './defenses'
 import { FRAMEWORKS } from './frameworks'
 import {

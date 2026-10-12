@@ -24,6 +24,27 @@ export const FRAMEWORKS: readonly Framework[] = [
       'Recommendations to reduce risk.',
       'One architectural domain plus governance and operational domains.',
       'Stresses that cloud is not bound to virtualization, but depends on it.',
+      'Names multi-tenancy, not virtualization, as the essential cloud characteristic: segmentation and isolation are required either way.',
+    ],
+    lists: [
+      {
+        label: 'Domains (as listed in the paper, p.12)',
+        items: [
+          'Governance and risk management',
+          'Legal issues',
+          'Compliance and audit',
+          'Information management and data security',
+          'Portability and interoperability',
+          'Traditional security, business continuity and disaster recovery',
+          'Data center operations',
+          'Incident response, notification and remediation',
+          'Application security',
+          'Encryption and key management',
+          'Identity and access management',
+          'Virtualization',
+          'Security as a service',
+        ],
+      },
     ],
   },
   {

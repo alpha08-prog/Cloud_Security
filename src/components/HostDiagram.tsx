@@ -1,4 +1,5 @@
-import { useMediaQuery } from '../../hooks/useMediaQuery'
+import { useMediaQuery } from '../hooks/useMediaQuery'
+import './diagram.css'
 
 interface Box {
   x: number
@@ -115,7 +116,7 @@ export function HostDiagram() {
 
   return (
     <svg
-      className="host-diagram"
+      className="diagram"
       viewBox={`0 0 ${L.width} ${L.height}`}
       role="img"
       aria-labelledby="dg-title dg-desc"

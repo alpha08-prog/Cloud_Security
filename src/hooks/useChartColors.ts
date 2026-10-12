@@ -5,6 +5,11 @@ import { useEffect, useState } from 'react'
 const TOKENS = {
   concern: '--series-concern',
   solution: '--series-solution',
+  insecure: '--series-insecure',
+  hardened: '--series-hardened',
+  pass: '--status-pass',
+  warn: '--status-warn',
+  fail: '--status-fail',
   highlight: '--highlight',
   highlightSoft: '--highlight-soft',
   muted: '--chart-muted',

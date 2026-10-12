@@ -115,13 +115,13 @@ export function NodeDetails({ figure, context, onOpenCategory }: NodeDetailsProp
           </button>
         )}
         {subcategory?.label === 'Cross-VM attacks' && (
-          <a className="link-cta" href="#side-channel">
-            Cross-VM side channels, explained →
+          <a className="link-cta" href="#results/detection">
+            How IsoLab detects cross-tenant attempts →
           </a>
         )}
         {category === UNDER_SOLVED && (
-          <a className="link-cta" href="#defenses">
-            See the defenses for virtualization →
+          <a className="link-cta" href="#system">
+            The checks IsoLab runs for virtualization →
           </a>
         )}
       </div>

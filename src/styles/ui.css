@@ -253,3 +253,173 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* Filter panel: labelled rows of segmented controls and toggle chips. */
+.filters {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.filters__row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.filters__row > .segmented {
+  justify-self: start;
+}
+
+.filters__label {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.filters__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 34px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.chip-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip-toggle {
+  appearance: none;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.chip-toggle:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.chip-toggle[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.chip-toggle--highlight[aria-pressed='true'] {
+  border-color: var(--highlight);
+  background: var(--highlight-soft);
+  color: var(--highlight);
+}
+
+/* Inline code: check ids, rule ids, commands. */
+code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+}
+
+/* Two-up figure layout used by the Data, Gap and Results views. */
+.data-view {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .data-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Data tables (shared by chart table-views and prose tables). */
+.table-view {
+  margin-top: var(--space-3);
+  font-size: 0.875rem;
+}
+
+.table-view > summary {
+  width: fit-content;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.table-view[open] > summary {
+  margin-bottom: var(--space-2);
+}
+
+.data-table__wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-table th {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.data-table .is-num {
+  text-align: right;
+}
+
+/* Tables of prose (not numbers): text wraps, row headers read as text. */
+.data-table.data-table--prose th,
+.data-table.data-table--prose td {
+  vertical-align: top;
+  white-space: normal;
+}
+
+.data-table.data-table--prose tbody th {
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}

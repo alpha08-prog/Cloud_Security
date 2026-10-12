@@ -1,0 +1,151 @@
+.system {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.system__figure {
+  margin: 0;
+  padding: var(--space-5);
+}
+
+.system__block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.system__block .card__title {
+  margin: 0;
+}
+
+.system__profiles th[scope='row'] {
+  white-space: nowrap;
+}
+
+.system__profiles td,
+.system__profiles th {
+  vertical-align: top;
+}
+
+.system__key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 2px;
+}
+
+.system__aim {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.system__ids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.system__scope {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.system__code {
+  margin: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+/* Phones: each profile row becomes a small labelled card. */
+@media (max-width: 640px) {
+  .system__profiles thead {
+    display: none;
+  }
+
+  .system__profiles tr {
+    display: grid;
+    gap: 4px;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .system__profiles.data-table th,
+  .system__profiles.data-table td {
+    padding: 0;
+    border: 0;
+  }
+
+  .system__profiles td::before {
+    content: attr(data-label) ': ';
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+/* Check catalogue */
+.catalogue {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.catalogue__count {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.catalogue__table td {
+  vertical-align: top;
+}
+
+.catalogue__details summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.catalogue__details p {
+  margin: var(--space-2) 0 0;
+  max-width: 62ch;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.catalogue__details p strong {
+  color: var(--text);
+}
+
+.catalogue__note {
+  font-style: italic;
+}
+
+.catalogue__muted {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.catalogue__nodes {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+}
+
+.catalogue__fw {
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}

@@ -24,6 +24,10 @@
   margin: 0;
 }
 
+.site-footer p + p {
+  margin-top: var(--space-2);
+}
+
 .site-footer__citation cite {
   color: var(--text);
   font-style: normal;

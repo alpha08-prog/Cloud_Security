@@ -17,9 +17,9 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
           <div className="brand">
             <ShieldIcon className="brand__mark" />
             <div>
-              <h1 className="brand__title">Cloud Security Threat Lab</h1>
+              <h1 className="brand__title">IsoLab · Cloud Isolation Lab</h1>
               <p className="brand__tagline">
-                An interactive explorer of {PAPER.short}
+                Building the virtualization-security solution {PAPER.short} call for
               </p>
             </div>
           </div>

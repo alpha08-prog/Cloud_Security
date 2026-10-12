@@ -1,0 +1,119 @@
+.gap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.gap__hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: center;
+  padding: var(--space-6);
+  border-color: var(--highlight);
+  background: linear-gradient(90deg, var(--highlight-soft), var(--surface) 70%);
+}
+
+.gap__number {
+  margin: 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.gap__sub {
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.gap__thesis p {
+  margin: 0;
+  max-width: 64ch;
+}
+
+.gap__thesis p + p {
+  margin-top: var(--space-3);
+}
+
+.gap__thesis a,
+.gap__why a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gap__charts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.gap__brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+}
+
+.gap__brief h3 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.gap__brief .eyebrow {
+  margin: 0;
+}
+
+.gap__reqs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+
+.gap__req-phrase {
+  color: var(--text-muted);
+}
+
+.gap__why {
+  padding: var(--space-4) var(--space-5);
+}
+
+.gap__why summary {
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.gap__why-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.gap__why-body > p:first-child {
+  margin: 0;
+  max-width: 72ch;
+}
+
+@media (max-width: 900px) {
+  .gap__hero,
+  .gap__charts,
+  .gap__reqs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gap__hero {
+    gap: var(--space-4);
+    padding: var(--space-5);
+  }
+
+  .gap__brief {
+    padding: var(--space-5);
+  }
+}
