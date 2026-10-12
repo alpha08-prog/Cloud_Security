@@ -3,7 +3,7 @@
 }
 
 .site-header__inner {
-  padding-block: 20px 14px;
+  padding-block: 16px;
 }
 
 .site-header__top {
@@ -57,34 +57,6 @@
 
 .theme-toggle:hover {
   border-color: var(--border-strong);
-}
-
-.citation {
-  margin: 14px 0 0;
-  max-width: 90ch;
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--text-muted);
-}
-
-.citation cite {
-  font-style: normal;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.citation__label {
-  display: inline-block;
-  margin-right: 8px;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  vertical-align: 1px;
 }
 
 @media (max-width: 480px) {

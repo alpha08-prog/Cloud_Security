@@ -1,4 +1,4 @@
-import { PAPER, formatAuthors } from '../data/paper'
+import { PAPER } from '../data/paper'
 import type { Theme } from '../hooks/useTheme'
 import './Header.css'
 
@@ -37,12 +37,6 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
             </span>
           </button>
         </div>
-
-        <p className="citation">
-          <span className="citation__label">Source</span>
-          {formatAuthors(PAPER.authors)} ({PAPER.year}). <cite>{PAPER.title}</cite>.{' '}
-          <i>{PAPER.journal}</i>, {PAPER.volume}({PAPER.number}). {PAPER.license}.
-        </p>
       </div>
     </header>
   )
