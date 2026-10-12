@@ -94,11 +94,14 @@ class Collector:
         for s in r.scores.by_requirement:
             if s.score is not None:
                 req.add_metric([s.key], s.score)
+        overall = GaugeMetricFamily("cloudaudit_overall_coverage_ratio", "Severity-weighted coverage, all checks")
+        if r.scores.overall.score is not None:
+            overall.add_metric([], r.scores.overall.score)
         gate = GaugeMetricFamily("cloudaudit_gate_passed", "1 if the policy gate passes")
         gate.add_metric([], 1 if r.gate.passed else 0)
         last = GaugeMetricFamily("cloudaudit_last_scan_timestamp_seconds", "Time of the last audit scan")
         last.add_metric([], a.last_scan)
-        yield from (status, passed, axis, req, gate, last)
+        yield from (status, passed, axis, req, overall, gate, last)
 
     def _detections(self, a):
         fam = CounterMetricFamily("cloudaudit_detections", "Detections raised", labels=["rule", "tenant", "severity"])

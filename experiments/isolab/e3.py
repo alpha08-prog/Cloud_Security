@@ -184,3 +184,39 @@ def summary_for(profile: str, results: list[dict], false_positives: list[dict]) 
         "maxLatencyMs": round(max(latencies), 1) if latencies else None,
         "attributionAccuracy": round(sum(attributed) / len(attributed), 4) if attributed else None,
     }
+
+
+DEMOS = {"exec": "T1", "privileged": "T2", "socket": "T3", "unlabelled": "T4", "drift": "T5", "canary": "T6",
+         "noisy": "T7", "hostpid": "T8"}
+
+
+def demo(name: str) -> int:
+    """One trigger, live, for a demo: fire it and print the detection the auditor raises."""
+    profile = compose.current_profile()
+    if not profile:
+        raise util.CommandError("the testbed is not running")
+    t = next(x for x in catalogue() if x["id"] == DEMOS[name])
+    util.info(f"{profile}: {t['description']} (expect {t['expectedRule']}: {t['expect'][profile]})")
+    since = auditor.server_now_ns()
+    if t["id"] == "T7":
+        load.build()
+        bg = load.start_k6(profile, 20, 110)
+        time.sleep(5)
+        e1.start_noise(profile, 100)
+        util.info("noisy job running; watch Grafana (http://127.0.0.1:3000) - DET-08 needs 30 s of sustained "
+                  "unfair use")
+    else:
+        _fire(t["id"], profile)
+    hit = _wait_for(t["expectedRule"], since, t["sloMs"] / 1000 + 5)
+    if t["id"] == "T7":
+        e1.stop_noise(profile)
+        bg.terminate()
+        util.docker("rm", "-f", "isolab-loadgen-bg", check=False)
+    for d in auditor.detections(since):
+        util.ok(f"{d['rule']} {d['severity']} tenant={d['tenant']} service={d['service']} "
+                f"latency={d['latencyMs']} ms: {d['message']}")
+    if hit is None:
+        (util.ok if t["expect"][profile] == "silent" else util.fail)(
+            f"no {t['expectedRule']} raised" + (" - as expected for this profile" if t["expect"][profile] == "silent"
+                                                 else ""))
+    return 0

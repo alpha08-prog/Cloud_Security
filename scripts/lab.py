@@ -107,6 +107,10 @@ def cmd_publish(args) -> int:
     return 0
 
 
+def cmd_demo(args) -> int:
+    return e3.demo(args.trigger)
+
+
 def cmd_test(args) -> int:
     return devtools.test()
 
@@ -178,6 +182,10 @@ def main() -> int:
     p.add_argument("--keep", action="store_true", help="leave the last profile running")
     p.add_argument("--out")
     p.set_defaults(fn=cmd_run_all)
+
+    p = sub.add_parser("demo", help="fire one benign trigger live and show the detection (for demos)")
+    p.add_argument("trigger", choices=sorted(e3.DEMOS))
+    p.set_defaults(fn=cmd_demo)
 
     p = sub.add_parser("publish", help="merge both profiles' runs into results/published (validated)")
     p.add_argument("--runs", help="run directory (default results/runs/<platform>)")
