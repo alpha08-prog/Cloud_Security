@@ -1,0 +1,49 @@
+# IsoLab alert and recording rules. Metrics come from the auditor's exporter (cloudaudit).
+groups:
+  - name: isolab-recording
+    rules:
+      # Cores used per tenant (R3 - observation of shared resources).
+      - record: isolab:tenant_cpu_cores:rate30s
+        expr: sum by (tenant) (rate(cloudaudit_tenant_cpu_seconds_total{plane="tenant"}[30s]))
+      # Share of time a tenant's runnable tasks waited for CPU (PSI "some").
+      - record: isolab:tenant_cpu_pressure:ratio30s
+        expr: max by (tenant) (rate(cloudaudit_tenant_pressure_waiting_seconds_total{plane="tenant",resource="cpu"}[30s]))
+      - record: isolab:tenant_cpu_throttled:ratio30s
+        expr: sum by (tenant) (rate(cloudaudit_tenant_cpu_throttled_seconds_total{plane="tenant"}[30s]))
+
+  - name: isolab-alerts
+    rules:
+      # DET-08 mirror for the dashboard: a tenant waits for CPU while another burns > 1.5 cores.
+      - alert: NoisyNeighbour
+        expr: |
+          isolab:tenant_cpu_pressure:ratio30s > 0.10
+          and on() (max(isolab:tenant_cpu_cores:rate30s) > 1.5)
+        for: 30s
+        labels: {severity: warning, requirement: R3}
+        annotations:
+          summary: "Tenant {{ $labels.tenant }} is waiting for CPU {{ $value | humanizePercentage }} of the time"
+      # DET-10: a tenant stopped being observed (R1/R3).
+      - alert: TenantNotObserved
+        expr: |
+          (time() - max by (service) (timestamp(cloudaudit_tenant_cpu_seconds_total{plane="tenant"}))) > 30
+        for: 30s
+        labels: {severity: warning, requirement: R3}
+        annotations:
+          summary: "No usage samples for {{ $labels.service }} for over 30s"
+      - alert: IsolationGateFailing
+        expr: cloudaudit_gate_passed == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: "The isolation policy gate is failing for the running profile"
+      - alert: IsolationDetection
+        expr: increase(cloudaudit_detections_total[1m]) > 0
+        labels: {severity: warning, requirement: R4}
+        annotations:
+          summary: "{{ $labels.rule }} raised for tenant {{ $labels.tenant }}"
+      - alert: EventWatcherDown
+        expr: cloudaudit_events_watcher_up == 0
+        for: 30s
+        labels: {severity: critical, requirement: R4}
+        annotations:
+          summary: "The engine-event watcher is not running: cross-tenant attempts would go unseen"

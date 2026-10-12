@@ -1,0 +1,38 @@
+[project]
+name = "cloudaudit"
+version = "1.0.0"
+description = "IsoLab auditor: virtualization-isolation checks, observation and detection derived from Gonzalez et al. (2012)"
+requires-python = ">=3.12"
+dependencies = [
+  "docker==7.1.0",
+  "pydantic==2.11.7",
+  "fastapi==0.116.1",
+  "uvicorn==0.35.0",
+  "prometheus-client==0.22.1",
+  "PyYAML==6.0.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.1", "jsonschema==4.25.0", "ruff==0.12.7"]
+
+[project.scripts]
+cloudaudit = "cloudaudit.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N"]
+ignore = ["B008"]

@@ -1,0 +1,25 @@
+# Accepted, time-boxed exceptions. A waived check earns NO coverage credit (it still
+# counts against the score) but does not fail the gate. An expired waiver fails the gate.
+#
+# Every entry needs a reason a reviewer can check and an expiry date. Review these
+# before each demo and update approvedBy once you have actually reviewed them.
+
+- checkId: HV-03
+  platform: docker-desktop-wsl2
+  reason: >-
+    The WSL2 kernel reports spec_rstack_overflow as "Vulnerable: Safe RET, no microcode".
+    The SRSO microcode fix is delivered through the physical host's firmware/Windows updates;
+    the container host (a WSL2 VM) cannot load microcode itself. This is a provider-layer
+    weakness outside the testbed's control - the paper's point about tenants depending on a
+    hypervisor they cannot inspect or fix.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)
+
+- checkId: HV-04
+  platform: docker-desktop-wsl2
+  reason: >-
+    User-namespace remapping and rootless mode are not available in Docker Desktop without
+    Enhanced Container Isolation (Business subscription). Compensating controls: every tenant
+    runs as uid 10001 with all capabilities dropped, no-new-privileges and seccomp.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)

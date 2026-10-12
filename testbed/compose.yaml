@@ -1,0 +1,231 @@
+# IsoLab testbed: a small multi-tenant "cloud" on one host.
+#
+# This base file defines the provider plane (identical in both profiles) and bare
+# tenant definitions with NO security settings. A profile overlay adds them:
+#
+#   docker compose -f compose.yaml -f compose.insecure.yaml ...   (weak baseline)
+#   docker compose -f compose.yaml -f compose.hardened.yaml ...   (paper-derived controls)
+#
+# Use `python scripts/lab.py up <profile>` rather than calling compose directly: it
+# generates the CPU placement (cpus.env) and secrets first.
+#
+# Security settings stay out of this file for tenants because Compose merges lists
+# (cap_add, security_opt, ports) across files: a base value could not be removed by
+# an overlay.
+
+name: isolab
+
+x-provider: &provider
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  cpuset: ${CPUSET_PROVIDER:?run scripts/lab.py cpus}
+  pids_limit: 256
+  logging:
+    driver: json-file
+    options: {max-size: "5m", max-file: "2"}
+
+services:
+  # ---------------------------------------------------------------- provider plane
+  socket-proxy:
+    <<: *provider
+    # The only container that holds the engine socket. It exposes a read-only
+    # subset of the Docker API (no POST) to the auditor on an internal network.
+    image: tecnativa/docker-socket-proxy:v0.4.1@sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e
+    environment:
+      CONTAINERS: "1"
+      EVENTS: "1"
+      INFO: "1"
+      NETWORKS: "1"
+      VOLUMES: "1"
+      IMAGES: "1"
+      VERSION: "1"
+      PING: "1"
+      POST: "0"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    tmpfs: ["/run:size=8m", "/tmp:size=8m", "/var/lib/haproxy:size=8m"]
+    mem_limit: 64m
+    networks: [engine-net]
+    labels: &provider-labels
+      io.isolab.plane: provider
+      io.isolab.owner: platform-team
+      io.isolab.workload-id: provider-socket-proxy
+
+  auditor:
+    <<: *provider
+    build:
+      context: ../auditor
+      target: runtime
+      args: {GIT_SHA: "${GIT_SHA:-dev}"}
+    image: isolab/auditor:local
+    user: "10001:10001"
+    environment:
+      DOCKER_HOST: tcp://socket-proxy:2375
+      ISOLAB_PROFILE: ${ISOLAB_PROFILE:?set by scripts/lab.py}
+      ISOLAB_PLATFORM: ${ISOLAB_PLATFORM:-}
+      ISOLAB_CI: ${ISOLAB_CI:-false}
+      GIT_SHA: ${GIT_SHA:-dev}
+      PROMETHEUS_URL: http://prometheus:9090
+      CGROUP_ROOT: /host/cgroup
+      TESTBED_DIR: /workspace/testbed
+      CANARY_TOKEN_FILE: /run/secrets/canary_token
+    volumes:
+      - /sys/fs/cgroup:/host/cgroup:ro      # per-tenant pressure (PSI) and CPU counters
+      - ./:/workspace/testbed:ro            # policy, waivers, compose files (SARIF line numbers)
+    tmpfs: ["/tmp:size=32m"]
+    secrets: [canary_token]
+    mem_limit: 256m
+    ports: ["127.0.0.1:${AUDITOR_PORT:-8088}:8088"]
+    networks: [engine-net, provider-net, ops-net]
+    depends_on: [socket-proxy]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8088/healthz', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    labels:
+      <<: *provider-labels
+      io.isolab.workload-id: provider-auditor
+
+  canary:
+    <<: *provider
+    build:
+      context: ./images
+      dockerfile: canary/Dockerfile
+      args: {GIT_SHA: "${GIT_SHA:-dev}"}
+    image: isolab/canary:local
+    user: "10001:10001"
+    environment:
+      AUDITOR_HOOK_URL: http://auditor:8088/hooks/canary
+      CANARY_TOKEN_FILE: /run/secrets/canary_token
+    secrets: [canary_token]
+    mem_limit: 64m
+    networks:
+      provider-net:
+        aliases: [metadata]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/__health', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+    labels:
+      <<: *provider-labels
+      io.isolab.workload-id: provider-canary
+
+  prometheus:
+    <<: *provider
+    image: prom/prometheus:v3.5.0@sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=12h
+    volumes:
+      - ../monitor/prometheus:/etc/prometheus:ro
+      - prometheus-data:/prometheus
+    mem_limit: 512m
+    ports: ["127.0.0.1:${PROMETHEUS_PORT:-9090}:9090"]
+    networks: [provider-net, ops-net]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9090/-/ready"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    labels:
+      <<: *provider-labels
+      io.isolab.workload-id: provider-prometheus
+
+  grafana:
+    <<: *provider
+    image: grafana/grafana:12.1.1@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/grafana_admin
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/dashboards/isolab-overview.json
+    volumes:
+      - ../monitor/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../monitor/grafana/dashboards:/etc/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    tmpfs: ["/tmp:size=32m"]
+    secrets: [grafana_admin]
+    mem_limit: 256m
+    ports: ["127.0.0.1:${GRAFANA_PORT:-3000}:3000"]
+    networks: [provider-net, ops-net]
+    depends_on: [prometheus]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/api/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+    labels:
+      <<: *provider-labels
+      io.isolab.workload-id: provider-grafana
+
+  # ---------------------------------------------------------------- tenant plane
+  # Bare definitions: image, command and healthcheck only. The overlay decides
+  # identity labels, networks, storage, privileges and resource limits.
+  tenant-a:
+    build:
+      context: ./images
+      dockerfile: payments-api/Dockerfile
+      args: {GIT_SHA: "${GIT_SHA:-dev}"}
+    image: isolab/payments-api:local
+    environment:
+      WORK_ITERATIONS: ${WORK_ITERATIONS:-6000}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+
+  tenant-b:
+    build:
+      context: ./images
+      dockerfile: batch-analytics/Dockerfile
+      args: {GIT_SHA: "${GIT_SHA:-dev}"}
+    image: isolab/batch-analytics:local
+
+  # The E1 "noisy neighbour": CPU-only stress (no memory stressor), started on
+  # demand by `lab.py e1` / `lab.py demo noisy`, never by a plain `up`.
+  tenant-b-job:
+    image: isolab/batch-analytics:local
+    profiles: [noisy]
+    entrypoint: ["stress-ng"]
+    command: ["--cpu", "${STRESS_WORKERS:-4}", "--cpu-method", "matrixprod", "--timeout", "${STRESS_TIMEOUT:-60}s", "--metrics-brief"]
+    depends_on: [tenant-b]
+
+  tenant-c:
+    build:
+      context: ./images
+      dockerfile: legacy-app/Dockerfile
+      args: {GIT_SHA: "${GIT_SHA:-dev}"}
+
+networks:
+  # Only the auditor and the socket proxy: the engine API never meets a tenant.
+  engine-net:
+    internal: true
+    labels: {io.isolab.plane: provider}
+  # Provider services talking to each other (scrapes, canary webhook).
+  provider-net:
+    internal: true
+    labels: {io.isolab.plane: provider}
+  # The only routable provider network, used to publish UIs on 127.0.0.1.
+  ops-net:
+    labels: {io.isolab.plane: provider}
+
+volumes:
+  prometheus-data:
+    labels: {io.isolab.plane: provider}
+  grafana-data:
+    labels: {io.isolab.plane: provider}
+
+secrets:
+  canary_token:
+    file: ./secrets/canary_token
+  grafana_admin:
+    file: ./secrets/grafana_admin

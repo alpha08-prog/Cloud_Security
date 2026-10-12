@@ -1,0 +1,1005 @@
+{
+  "$defs": {
+    "E1Config": {
+      "additionalProperties": false,
+      "properties": {
+        "measureSeconds": {
+          "title": "Measureseconds",
+          "type": "integer"
+        },
+        "ratePerSecond": {
+          "title": "Ratepersecond",
+          "type": "integer"
+        },
+        "repetitions": {
+          "title": "Repetitions",
+          "type": "integer"
+        },
+        "sloP99Ms": {
+          "title": "Slop99Ms",
+          "type": "number"
+        },
+        "stressWorkers": {
+          "title": "Stressworkers",
+          "type": "integer"
+        },
+        "warmupSeconds": {
+          "title": "Warmupseconds",
+          "type": "integer"
+        },
+        "workIterations": {
+          "title": "Workiterations",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ratePerSecond",
+        "warmupSeconds",
+        "measureSeconds",
+        "repetitions",
+        "stressWorkers",
+        "workIterations",
+        "sloP99Ms"
+      ],
+      "title": "E1Config",
+      "type": "object"
+    },
+    "E1ProfileSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "baselineP99Ms": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Baselinep99Ms"
+        },
+        "interferenceFactor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Interferencefactor"
+        },
+        "noisyP99Ms": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Noisyp99Ms"
+        },
+        "profile": {
+          "enum": [
+            "insecure",
+            "hardened"
+          ],
+          "title": "Profile",
+          "type": "string"
+        },
+        "sloMetUnderNoise": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Slometundernoise"
+        },
+        "totalRuns": {
+          "title": "Totalruns",
+          "type": "integer"
+        },
+        "validRuns": {
+          "title": "Validruns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "profile",
+        "baselineP99Ms",
+        "noisyP99Ms",
+        "interferenceFactor",
+        "sloMetUnderNoise",
+        "validRuns",
+        "totalRuns"
+      ],
+      "title": "E1ProfileSummary",
+      "type": "object"
+    },
+    "E1Result": {
+      "additionalProperties": false,
+      "properties": {
+        "config": {
+          "$ref": "#/$defs/E1Config"
+        },
+        "environment": {
+          "$ref": "#/$defs/RunEnvironment"
+        },
+        "generatedAt": {
+          "title": "Generatedat",
+          "type": "string"
+        },
+        "hypotheses": {
+          "items": {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          "title": "Hypotheses",
+          "type": "array"
+        },
+        "kind": {
+          "const": "e1",
+          "default": "e1",
+          "title": "Kind",
+          "type": "string"
+        },
+        "runs": {
+          "items": {
+            "$ref": "#/$defs/E1Run"
+          },
+          "title": "Runs",
+          "type": "array"
+        },
+        "schemaVersion": {
+          "default": "1.0.0",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "summary": {
+          "items": {
+            "$ref": "#/$defs/E1ProfileSummary"
+          },
+          "title": "Summary",
+          "type": "array"
+        },
+        "variant": {
+          "enum": [
+            "full",
+            "ci"
+          ],
+          "title": "Variant",
+          "type": "string"
+        }
+      },
+      "required": [
+        "generatedAt",
+        "variant",
+        "environment",
+        "hypotheses",
+        "config",
+        "runs",
+        "summary"
+      ],
+      "title": "E1Result",
+      "type": "object"
+    },
+    "E1Run": {
+      "additionalProperties": false,
+      "properties": {
+        "arm": {
+          "enum": [
+            "baseline",
+            "noisy"
+          ],
+          "title": "Arm",
+          "type": "string"
+        },
+        "droppedIterations": {
+          "title": "Droppediterations",
+          "type": "integer"
+        },
+        "failedRate": {
+          "title": "Failedrate",
+          "type": "number"
+        },
+        "invalidReason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Invalidreason"
+        },
+        "iterations": {
+          "title": "Iterations",
+          "type": "integer"
+        },
+        "latencyMs": {
+          "$ref": "#/$defs/Percentiles"
+        },
+        "noisyCoresUsed": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "CPU cores used by tenant-b during the window",
+          "title": "Noisycoresused"
+        },
+        "profile": {
+          "enum": [
+            "insecure",
+            "hardened"
+          ],
+          "title": "Profile",
+          "type": "string"
+        },
+        "repetition": {
+          "title": "Repetition",
+          "type": "integer"
+        },
+        "serverWorkMs": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Percentiles"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "startedAt": {
+          "title": "Startedat",
+          "type": "string"
+        },
+        "throttledSeconds": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "per tenant, during the window",
+          "title": "Throttledseconds",
+          "type": "object"
+        },
+        "valid": {
+          "title": "Valid",
+          "type": "boolean"
+        },
+        "victimCpuPressurePct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "share of time tenant-a had runnable tasks waiting",
+          "title": "Victimcpupressurepct"
+        }
+      },
+      "required": [
+        "profile",
+        "arm",
+        "repetition",
+        "startedAt",
+        "latencyMs",
+        "serverWorkMs",
+        "failedRate",
+        "droppedIterations",
+        "iterations",
+        "noisyCoresUsed",
+        "victimCpuPressurePct",
+        "valid"
+      ],
+      "title": "E1Run",
+      "type": "object"
+    },
+    "E2Outcome": {
+      "additionalProperties": false,
+      "properties": {
+        "asExpected": {
+          "title": "Asexpected",
+          "type": "boolean"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "allowed",
+            "blocked",
+            "error"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "probeId": {
+          "title": "Probeid",
+          "type": "string"
+        },
+        "profile": {
+          "enum": [
+            "insecure",
+            "hardened"
+          ],
+          "title": "Profile",
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile",
+        "probeId",
+        "outcome",
+        "detail",
+        "asExpected"
+      ],
+      "title": "E2Outcome",
+      "type": "object"
+    },
+    "E2Probe": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "title": "Axis",
+          "type": "string"
+        },
+        "control": {
+          "title": "Control",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "destination": {
+          "title": "Destination",
+          "type": "string"
+        },
+        "expected": {
+          "additionalProperties": {
+            "enum": [
+              "allowed",
+              "blocked",
+              "platform-dependent"
+            ],
+            "type": "string"
+          },
+          "title": "Expected",
+          "type": "object"
+        },
+        "id": {
+          "pattern": "^[CP]\\d+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "source",
+        "destination",
+        "control",
+        "axis",
+        "expected"
+      ],
+      "title": "E2Probe",
+      "type": "object"
+    },
+    "E2ProfileSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "controls": {
+          "title": "Controls",
+          "type": "integer"
+        },
+        "controlsPassed": {
+          "title": "Controlspassed",
+          "type": "integer"
+        },
+        "openPaths": {
+          "title": "Openpaths",
+          "type": "integer"
+        },
+        "probes": {
+          "title": "Probes",
+          "type": "integer"
+        },
+        "profile": {
+          "enum": [
+            "insecure",
+            "hardened"
+          ],
+          "title": "Profile",
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile",
+        "openPaths",
+        "probes",
+        "controlsPassed",
+        "controls"
+      ],
+      "title": "E2ProfileSummary",
+      "type": "object"
+    },
+    "E2Result": {
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "$ref": "#/$defs/RunEnvironment"
+        },
+        "generatedAt": {
+          "title": "Generatedat",
+          "type": "string"
+        },
+        "hypotheses": {
+          "items": {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          "title": "Hypotheses",
+          "type": "array"
+        },
+        "kind": {
+          "const": "e2",
+          "default": "e2",
+          "title": "Kind",
+          "type": "string"
+        },
+        "probes": {
+          "items": {
+            "$ref": "#/$defs/E2Probe"
+          },
+          "title": "Probes",
+          "type": "array"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/E2Outcome"
+          },
+          "title": "Results",
+          "type": "array"
+        },
+        "schemaVersion": {
+          "default": "1.0.0",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "summary": {
+          "items": {
+            "$ref": "#/$defs/E2ProfileSummary"
+          },
+          "title": "Summary",
+          "type": "array"
+        },
+        "variant": {
+          "enum": [
+            "full",
+            "ci"
+          ],
+          "title": "Variant",
+          "type": "string"
+        }
+      },
+      "required": [
+        "generatedAt",
+        "variant",
+        "environment",
+        "hypotheses",
+        "probes",
+        "results",
+        "summary"
+      ],
+      "title": "E2Result",
+      "type": "object"
+    },
+    "E3FalsePositive": {
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "profile": {
+          "enum": [
+            "insecure",
+            "hardened"
+          ],
+          "title": "Profile",
+          "type": "string"
+        },
+        "rule": {
+          "title": "Rule",
+          "type": "string"
+        },
+        "tenant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Tenant"
+        }
+      },
+      "required": [
+        "profile",
+        "rule",
+        "tenant",
+        "message"
+      ],
+      "title": "E3FalsePositive",
+      "type": "object"
+    },
+    "E3Outcome": {
+      "additionalProperties": false,
+      "properties": {
+        "attributionCorrect": {
+          "title": "Attributioncorrect",
+          "type": "boolean"
+        },
+        "detected": {
+          "title": "Detected",
+          "type": "boolean"
+        },
+        "latencyMs": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Latencyms"
+        },
+        "profile": {
+          "enum": [
+            "insecure",
+            "hardened"
+          ],
+          "title": "Profile",
+          "type": "string"
+        },
+        "rule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rule"
+        },
+        "tenant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Tenant"
+        },
+        "triggerId": {
+          "title": "Triggerid",
+          "type": "string"
+        },
+        "withinSlo": {
+          "title": "Withinslo",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "profile",
+        "triggerId",
+        "detected",
+        "rule",
+        "tenant",
+        "latencyMs",
+        "withinSlo",
+        "attributionCorrect"
+      ],
+      "title": "E3Outcome",
+      "type": "object"
+    },
+    "E3ProfileSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "attributionAccuracy": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Attributionaccuracy"
+        },
+        "detected": {
+          "title": "Detected",
+          "type": "integer"
+        },
+        "detectionRate": {
+          "title": "Detectionrate",
+          "type": "number"
+        },
+        "expected": {
+          "title": "Expected",
+          "type": "integer"
+        },
+        "falsePositives": {
+          "title": "Falsepositives",
+          "type": "integer"
+        },
+        "maxLatencyMs": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Maxlatencyms"
+        },
+        "medianLatencyMs": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Medianlatencyms"
+        },
+        "profile": {
+          "enum": [
+            "insecure",
+            "hardened"
+          ],
+          "title": "Profile",
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile",
+        "detectionRate",
+        "detected",
+        "expected",
+        "falsePositives",
+        "medianLatencyMs",
+        "maxLatencyMs",
+        "attributionAccuracy"
+      ],
+      "title": "E3ProfileSummary",
+      "type": "object"
+    },
+    "E3Result": {
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "$ref": "#/$defs/RunEnvironment"
+        },
+        "falsePositives": {
+          "items": {
+            "$ref": "#/$defs/E3FalsePositive"
+          },
+          "title": "Falsepositives",
+          "type": "array"
+        },
+        "generatedAt": {
+          "title": "Generatedat",
+          "type": "string"
+        },
+        "hypotheses": {
+          "items": {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          "title": "Hypotheses",
+          "type": "array"
+        },
+        "kind": {
+          "const": "e3",
+          "default": "e3",
+          "title": "Kind",
+          "type": "string"
+        },
+        "quietWindowSeconds": {
+          "title": "Quietwindowseconds",
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/E3Outcome"
+          },
+          "title": "Results",
+          "type": "array"
+        },
+        "schemaVersion": {
+          "default": "1.0.0",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "summary": {
+          "items": {
+            "$ref": "#/$defs/E3ProfileSummary"
+          },
+          "title": "Summary",
+          "type": "array"
+        },
+        "triggers": {
+          "items": {
+            "$ref": "#/$defs/E3Trigger"
+          },
+          "title": "Triggers",
+          "type": "array"
+        },
+        "variant": {
+          "enum": [
+            "full",
+            "ci"
+          ],
+          "title": "Variant",
+          "type": "string"
+        }
+      },
+      "required": [
+        "generatedAt",
+        "variant",
+        "environment",
+        "hypotheses",
+        "quietWindowSeconds",
+        "triggers",
+        "results",
+        "falsePositives",
+        "summary"
+      ],
+      "title": "E3Result",
+      "type": "object"
+    },
+    "E3Trigger": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "expectedRule": {
+          "title": "Expectedrule",
+          "type": "string"
+        },
+        "expectedTenant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Expectedtenant"
+        },
+        "id": {
+          "pattern": "^T\\d+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "profiles": {
+          "items": {
+            "enum": [
+              "insecure",
+              "hardened"
+            ],
+            "type": "string"
+          },
+          "title": "Profiles",
+          "type": "array"
+        },
+        "requirements": {
+          "items": {
+            "enum": [
+              "R1",
+              "R2",
+              "R3",
+              "R4"
+            ],
+            "type": "string"
+          },
+          "title": "Requirements",
+          "type": "array"
+        },
+        "sloMs": {
+          "title": "Sloms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "expectedRule",
+        "expectedTenant",
+        "sloMs",
+        "requirements",
+        "profiles"
+      ],
+      "title": "E3Trigger",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^H\\d+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "statement": {
+          "title": "Statement",
+          "type": "string"
+        },
+        "verdict": {
+          "enum": [
+            "supported",
+            "not-supported",
+            "inconclusive"
+          ],
+          "title": "Verdict",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "verdict",
+        "detail"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    },
+    "Percentiles": {
+      "additionalProperties": false,
+      "properties": {
+        "avg": {
+          "title": "Avg",
+          "type": "number"
+        },
+        "max": {
+          "title": "Max",
+          "type": "number"
+        },
+        "med": {
+          "title": "Med",
+          "type": "number"
+        },
+        "min": {
+          "title": "Min",
+          "type": "number"
+        },
+        "p90": {
+          "title": "P90",
+          "type": "number"
+        },
+        "p95": {
+          "title": "P95",
+          "type": "number"
+        },
+        "p99": {
+          "title": "P99",
+          "type": "number"
+        }
+      },
+      "required": [
+        "avg",
+        "min",
+        "med",
+        "p90",
+        "p95",
+        "p99",
+        "max"
+      ],
+      "title": "Percentiles",
+      "type": "object"
+    },
+    "RunEnvironment": {
+      "additionalProperties": false,
+      "properties": {
+        "dockerServerVersion": {
+          "title": "Dockerserverversion",
+          "type": "string"
+        },
+        "gitSha": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gitsha"
+        },
+        "kernelVersion": {
+          "title": "Kernelversion",
+          "type": "string"
+        },
+        "logicalCpus": {
+          "title": "Logicalcpus",
+          "type": "integer"
+        },
+        "physicalCores": {
+          "title": "Physicalcores",
+          "type": "integer"
+        },
+        "placement": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "cpusets per role from cpus.env",
+          "title": "Placement",
+          "type": "object"
+        },
+        "platform": {
+          "title": "Platform",
+          "type": "string"
+        }
+      },
+      "required": [
+        "platform",
+        "dockerServerVersion",
+        "kernelVersion",
+        "logicalCpus",
+        "physicalCores"
+      ],
+      "title": "RunEnvironment",
+      "type": "object"
+    }
+  },
+  "$id": "isolab/experiments.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "discriminator": {
+    "mapping": {
+      "e1": "#/$defs/E1Result",
+      "e2": "#/$defs/E2Result",
+      "e3": "#/$defs/E3Result"
+    },
+    "propertyName": "kind"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/E1Result"
+    },
+    {
+      "$ref": "#/$defs/E2Result"
+    },
+    {
+      "$ref": "#/$defs/E3Result"
+    }
+  ]
+}

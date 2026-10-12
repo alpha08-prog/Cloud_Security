@@ -103,17 +103,31 @@ Redundancy 3 · Administrative interface 2 · Disposal 2 · Firewalling 2 ·
 Hypervisor vulnerabilities 2 · API 2 · Loss of service 1 · Isolation 1 ·
 Security configuration 1.
 
-### Virtualization radar (Figure 11) — approximate, scale ~0–25
+### Virtualization radar (Figure 11) — approximate, scale 0–25
+
+Measured from the figure rendered at 900 dpi (5 scale units ≈ 245 px; values read
+along each axis from the centre). Listed in the figure's clockwise axis order,
+starting at the top.
 
 | Sub-issue                 | Concern | Solution |
 |---------------------------|---------|----------|
-| Isolation                 | 22      | 3        |
-| Cross-VM attacks          | 20      | 1        |
-| Hypervisor vulnerabilities| 20      | 2        |
-| Data leakage              | 18      | 1        |
-| VM identification         | 15      | 1        |
+| Hypervisor vulnerabilities| 21      | 8        |
+| Cross-VM attacks          | 21      | 1        |
+| Isolation                 | 20      | 3        |
+| Data leakage              | 16      | 5        |
+| VM identification         | 15      | 2        |
 
-Mark these as "approximate values read from Fig 11" in the UI.
+Mark these as "approximate values read from Fig 11" in the UI. This matches the
+paper's text (p.10): "The contrast related to isolation and cross-VM attacks is
+more evident than for the other issues."
+
+### Notes on the source figures
+
+- The paper's text swaps the Figure 7 and Figure 8 references. The *image* captioned
+  Figure 8 is the grouped-category solutions pie; the image captioned Figure 7 is the
+  sub-category solutions pie. This file and the app cite the images.
+- The p.9 text gives grouped solution shares as legal 29% / compliance 27%; the Figure 8
+  chart shows Compliance 29% / Legal issues 27%. We use the chart values.
 
 ---
 
@@ -151,6 +165,18 @@ Written as defenses — standard, published best practice.
 
 - **CSA Guidance** — recommendations to reduce risk; one architectural + governance and
   operational domains; stresses cloud is not bound to virtualization but depends on it.
+  The paper (p.12) lists its thirteen domains as:
+  1. Governance and risk management · 2. Legal issues · 3. Compliance and audit ·
+  4. Information management and data security · 5. Portability and interoperability ·
+  6. Traditional security, business continuity and disaster recovery ·
+  7. Data center operations · 8. Incident response, notification and remediation ·
+  9. Application security · 10. Encryption and key management ·
+  11. Identity and access management · 12. Virtualization · 13. Security as a service.
+  On multi-tenancy (p.12): the guidance "denotes multi-tenancy as the essential cloud
+  characteristic while virtualization can be avoided when implementing cloud
+  infrastructures … even if virtualization-related issues can be circumvented,
+  segmentation and isolated policies for addressing proper management and privacy are
+  still required."
 - **CSA Top Threats (7)** — abuse & nefarious use of cloud · insecure APIs · malicious
   insiders · shared-technology vulnerabilities · data loss & leakage · account/service/
   traffic hijacking · unknown risk profile (security obscurity).
@@ -162,3 +188,52 @@ Written as defenses — standard, published best practice.
   must give customers security assurances and a clear contract.
 - **NIST taxonomy (SP 500-292)** — roles-first: cloud provider · consumer · carrier · broker
   · auditor; defines what services should provide rather than how to build them.
+
+Further quotes used by the app:
+
+- CSA Top Threat 4, *Shared technology vulnerabilities* (p.13): "scalability provided by
+  cloud solutions are based on hardware and software components which are not originally
+  designed to provide isolation. Even though hypervisors offer an extra granularity layer,
+  they still exhibit flaws which are exploited for privilege escalation".
+- ENISA (p.12): "Key points to be developed include breach reporting, better logging
+  mechanisms and engineering of large scale computer systems, which encompass the
+  isolation of virtual machines, resources and information."
+
+---
+
+## 8. Discussion and future work (pp.15–16) — the brief for IsoLab
+
+Verbatim from the paper:
+
+- p.15: the new problems "are summarized by isolation and hypervisor vulnerabilities (the
+  main technical concerns according to the studies and graphics presented)".
+- p.16: "the impact of such issues is intensified in cloud computing due to characteristics
+  such as multi-tenancy and resource sharing, since actions from a single customer can
+  affect all other users that inevitably share the same resources and interfaces."
+- p.16: "It is strategic to develop new mechanisms that provide the required security
+  level by isolating virtual machines and the associated resources while following best
+  practices in terms of legal regulations and compliance to SLAs. Among other
+  requirements, such solutions should employ virtual machine identification, provide an
+  adequate separation of dedicated resources combined with a constant observation of
+  shared ones, and examine any attempt of exploiting cross-VM and data leakage."
+- p.16: "A secure cloud computing environment depends on several security solutions
+  working harmoniously together. … Thus, cloud providers need to orchestrate / harmonize
+  security solutions from different places in order to achieve the desired security
+  level."
+- p.16: "In order to verify these conclusions in practice, we deployed testbeds using
+  OpenNebula (based on KVM and XEN) and analyzed its security aspects; we also analyzed
+  virtualized servers based on VMWARE using our testbed networks."
+
+**Our reading (not the paper's words)** — the four requirements IsoLab implements:
+
+| Id | Paper phrase | Our interpretation |
+|----|--------------|--------------------|
+| R1 | "virtual machine identification" | Every workload carries a verifiable tenant identity; nothing runs unattributed; every alert names a tenant. |
+| R2 | "adequate separation of dedicated resources" | Each tenant gets its own CPU cores, memory/PID limits, network and storage, and no shared kernel namespaces or privileges. |
+| R3 | "constant observation of shared ones" | Continuous per-tenant telemetry of the shared host (CPU, throttling, memory, network, pressure stall) with a noisy-neighbour alert. |
+| R4 | "examine any attempt of exploiting cross-VM and data leakage" | Runtime detection of isolation-breaking actions (privileged starts, engine-socket mounts, host-namespace joins, cross-tenant attaches, canary hits). |
+
+In IsoLab a tenant is a container rather than a VM. The CSA guidance quoted in §7 is the
+justification: multi-tenancy, not virtualization, is the essential characteristic, and
+segmentation and isolation are required either way. Containers share a kernel, so they
+are the *harder* isolation case.
