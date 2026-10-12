@@ -38,10 +38,10 @@ Results tab shows them in full.
 | Policy gate (fail on ≥ high) | fails: 15 blocking checks | **passes** (2 waived host issues) |
 | Isolation coverage, 30 checks | 20% | **94%** |
 | E2: isolation paths open | 12 / 12 | **0 / 12** (controls 3/3) |
-| E1: p99 slowdown from a noisy neighbour | ×3.0 | **×1.1** |
-| E3: isolation-breaking actions detected | 8/8, 0 false positives | **7/7**, 0 false positives, median 132 ms |
+| E1: tenant A p99 alone → with a noisy neighbour | 4.3 → 16.5 ms (×3.8) | **4.6 → 5.6 ms (×1.22)** |
+| E3: isolation-breaking actions detected | 8/8, 0 false positives | **7/7**, 0 false positives, median 95 ms |
 
-Published run: CI-smoke variant (short windows), commit `d0b5395c4d3f`. Pre-registered hypotheses: 6 of 7 supported (H3 inconclusive: optional arm not run).
+Published run: full variant: E1 at 50 req/s, 15 s warm-up + 90 s measured, 3 interleaved repetitions per arm; E3 quiet window 120 s. Commit `dffa2c70c553`. Pre-registered hypotheses: 6 of 7 supported (H3 inconclusive: optional arm not run).
 
 Hypotheses and pass criteria were written down before any run (`docs/experiments.md`); verdicts
 are computed by `lab.py publish`.

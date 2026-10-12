@@ -1,15 +1,15 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "e2",
-  "generatedAt": "2026-10-12T16:35:29.742Z",
-  "variant": "ci",
+  "generatedAt": "2026-10-12T18:03:15.674Z",
+  "variant": "full",
   "environment": {
     "platform": "docker-desktop-wsl2",
     "dockerServerVersion": "29.2.1",
     "kernelVersion": "6.6.87.2-microsoft-standard-WSL2",
     "logicalCpus": 12,
     "physicalCores": 6,
-    "gitSha": "d0b5395c4d3f",
+    "gitSha": "dffa2c70c553",
     "placement": {
       "CPUSET_PROVIDER": "0,1",
       "CPUSET_LOADGEN": "2,3",
@@ -234,7 +234,7 @@
       "profile": "insecure",
       "probeId": "C3",
       "outcome": "allowed",
-      "detail": "TCP connect to 127.0.0.1:44331 succeeded",
+      "detail": "TCP connect to 127.0.0.1:47775 succeeded",
       "asExpected": true
     },
     {
@@ -248,7 +248,7 @@
       "profile": "insecure",
       "probeId": "P2",
       "outcome": "allowed",
-      "detail": "HTTP 200 from 172.21.0.3:8080",
+      "detail": "HTTP 200 from 172.20.0.2:8080",
       "asExpected": true
     },
     {
@@ -283,7 +283,7 @@
       "profile": "insecure",
       "probeId": "P7",
       "outcome": "allowed",
-      "detail": "process matching 'payments_api' visible as pid 68733",
+      "detail": "process matching 'payments_api' visible as pid 88829",
       "asExpected": true
     },
     {
@@ -339,7 +339,7 @@
       "profile": "hardened",
       "probeId": "C3",
       "outcome": "allowed",
-      "detail": "TCP connect to 127.0.0.1:56683 succeeded",
+      "detail": "TCP connect to 127.0.0.1:46487 succeeded",
       "asExpected": true
     },
     {

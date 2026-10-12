@@ -92,10 +92,15 @@ They come from `results/published/` (the latest full run), and the Results tab s
 - coverage: 94% hardened vs 20% insecure
 - the gate fails insecure with 15 blocking findings
 - E2: 0/12 paths open hardened vs 12/12 insecure
-- E1: p99 slowdown ×1.1 hardened vs ×3.0 insecure in the published smoke run (20 req/s, 30 s).
-  An interrupted full-length run (50 req/s, 90 s) measured insecure p99 12.6 → 17.9 ms (×1.4) on
-  its first repetition: the effect is still there, but smaller, because the baseline tail is
-  already higher at 50 req/s. If the full run confirms it, H1 (≥ ×2) will be "not supported", and
-  that is a result worth reporting, not hiding.
-- E3: every trigger detected in both profiles, 0 false positives, median detection ~0.1–0.3 s,
-  DET-08 at ~40 s by design (30 s sustain)
+- E1 (50 req/s, 90 s windows, 3 interleaved repetitions): tenant A's p99 latency
+  - insecure: 4.3 → 16.5 ms with a noisy neighbour (×3.8; tenant B used 11.2 cores)
+  - hardened: 4.6 → 5.6 ms (×1.22; tenant B capped at 3 cores)
+  - all 12 runs valid; the SLO (p99 ≤ 25 ms) held in both
+- E3: every expected trigger detected, 0 false positives in a 120 s quiet window
+  - median detection 95 ms hardened, 178 ms insecure
+  - DET-08 ~44 s by design (30 s sustain); silent when hardened
+- Hypotheses: 6 of 7 supported (H3, the optional SMT-shared arm, was not run)
+- An earlier full-length run was interrupted when the laptop ran low on memory. Its one
+  insecure repetition measured a 12.6 ms *baseline* p99: memory pressure inflated the tail. That
+  is why runs are repeated, interleaved and checked for validity, and why the published run was
+  taken with the machine otherwise idle.

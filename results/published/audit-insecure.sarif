@@ -835,40 +835,6 @@
           "ruleId": "ISO-02",
           "level": "error",
           "message": {
-            "text": "[insecure] tenant-c: privileged: holds every capability"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "testbed/compose.insecure.yaml",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 38
-                }
-              },
-              "logicalLocations": [
-                {
-                  "name": "tenant-c",
-                  "kind": "container"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "isolabTarget/v1": "insecure:ISO-02:container:tenant-c"
-          },
-          "properties": {
-            "axis": "isolation",
-            "tenant": null,
-            "severity": "high"
-          }
-        },
-        {
-          "ruleId": "ISO-02",
-          "level": "error",
-          "message": {
             "text": "[insecure] tenant-a: default capability set kept (cap_drop ALL missing)"
           },
           "locations": [
@@ -934,10 +900,10 @@
           }
         },
         {
-          "ruleId": "ISO-03",
+          "ruleId": "ISO-02",
           "level": "error",
           "message": {
-            "text": "[insecure] tenant-c: seccomp unconfined; no-new-privileges not set"
+            "text": "[insecure] tenant-c: privileged: holds every capability"
           },
           "locations": [
             {
@@ -959,7 +925,7 @@
             }
           ],
           "partialFingerprints": {
-            "isolabTarget/v1": "insecure:ISO-03:container:tenant-c"
+            "isolabTarget/v1": "insecure:ISO-02:container:tenant-c"
           },
           "properties": {
             "axis": "isolation",
@@ -1036,10 +1002,10 @@
           }
         },
         {
-          "ruleId": "ISO-04",
+          "ruleId": "ISO-03",
           "level": "error",
           "message": {
-            "text": "[insecure] tenant-c: runs as root (container setting)"
+            "text": "[insecure] tenant-c: seccomp unconfined; no-new-privileges not set"
           },
           "locations": [
             {
@@ -1061,12 +1027,12 @@
             }
           ],
           "partialFingerprints": {
-            "isolabTarget/v1": "insecure:ISO-04:container:tenant-c"
+            "isolabTarget/v1": "insecure:ISO-03:container:tenant-c"
           },
           "properties": {
             "axis": "isolation",
             "tenant": null,
-            "severity": "medium"
+            "severity": "high"
           }
         },
         {
@@ -1104,6 +1070,40 @@
           }
         },
         {
+          "ruleId": "ISO-04",
+          "level": "error",
+          "message": {
+            "text": "[insecure] tenant-c: runs as root (container setting)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "testbed/compose.insecure.yaml",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 38
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "tenant-c",
+                  "kind": "container"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "isolabTarget/v1": "insecure:ISO-04:container:tenant-c"
+          },
+          "properties": {
+            "axis": "isolation",
+            "tenant": null,
+            "severity": "medium"
+          }
+        },
+        {
           "ruleId": "ISO-05",
           "level": "error",
           "message": {
@@ -1135,40 +1135,6 @@
             "axis": "isolation",
             "tenant": null,
             "severity": "critical"
-          }
-        },
-        {
-          "ruleId": "ISO-06",
-          "level": "error",
-          "message": {
-            "text": "[insecure] tenant-c: no limit on cpu, memory, pids"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "testbed/compose.insecure.yaml",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 38
-                }
-              },
-              "logicalLocations": [
-                {
-                  "name": "tenant-c",
-                  "kind": "container"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "isolabTarget/v1": "insecure:ISO-06:container:tenant-c"
-          },
-          "properties": {
-            "axis": "isolation",
-            "tenant": null,
-            "severity": "high"
           }
         },
         {
@@ -1240,10 +1206,10 @@
           }
         },
         {
-          "ruleId": "ISO-07",
+          "ruleId": "ISO-06",
           "level": "error",
           "message": {
-            "text": "[insecure] tenant-c: no cpuset: may run on any CPU, including other tenants'"
+            "text": "[insecure] tenant-c: no limit on cpu, memory, pids"
           },
           "locations": [
             {
@@ -1265,7 +1231,7 @@
             }
           ],
           "partialFingerprints": {
-            "isolabTarget/v1": "insecure:ISO-07:container:tenant-c"
+            "isolabTarget/v1": "insecure:ISO-06:container:tenant-c"
           },
           "properties": {
             "axis": "isolation",
@@ -1338,6 +1304,40 @@
           "properties": {
             "axis": "isolation",
             "tenant": "b",
+            "severity": "high"
+          }
+        },
+        {
+          "ruleId": "ISO-07",
+          "level": "error",
+          "message": {
+            "text": "[insecure] tenant-c: no cpuset: may run on any CPU, including other tenants'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "testbed/compose.insecure.yaml",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 38
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "tenant-c",
+                  "kind": "container"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "isolabTarget/v1": "insecure:ISO-07:container:tenant-c"
+          },
+          "properties": {
+            "axis": "isolation",
+            "tenant": null,
             "severity": "high"
           }
         },
@@ -1461,7 +1461,7 @@
           "ruleId": "DL-01",
           "level": "error",
           "message": {
-            "text": "[insecure] tenant-c: sensitive host paths: /etc, /run/host-services/docker.proxy.sock; writable host paths: /run/host-services/docker.proxy.sock"
+            "text": "[insecure] tenant-c: sensitive host paths: /run/host-services/docker.proxy.sock, /etc; writable host paths: /run/host-services/docker.proxy.sock"
           },
           "locations": [
             {
@@ -1563,40 +1563,6 @@
           "ruleId": "DL-04",
           "level": "error",
           "message": {
-            "text": "[insecure] tenant-c: writable root filesystem"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "testbed/compose.insecure.yaml",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 38
-                }
-              },
-              "logicalLocations": [
-                {
-                  "name": "tenant-c",
-                  "kind": "container"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "isolabTarget/v1": "insecure:DL-04:container:tenant-c"
-          },
-          "properties": {
-            "axis": "data-leakage",
-            "tenant": null,
-            "severity": "medium"
-          }
-        },
-        {
-          "ruleId": "DL-04",
-          "level": "error",
-          "message": {
             "text": "[insecure] tenant-a: writable root filesystem"
           },
           "locations": [
@@ -1662,6 +1628,40 @@
           }
         },
         {
+          "ruleId": "DL-04",
+          "level": "error",
+          "message": {
+            "text": "[insecure] tenant-c: writable root filesystem"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "testbed/compose.insecure.yaml",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 38
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "tenant-c",
+                  "kind": "container"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "isolabTarget/v1": "insecure:DL-04:container:tenant-c"
+          },
+          "properties": {
+            "axis": "data-leakage",
+            "tenant": null,
+            "severity": "medium"
+          }
+        },
+        {
           "ruleId": "DL-05",
           "level": "error",
           "message": {
@@ -1709,7 +1709,7 @@
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 217
+                  "startLine": 219
                 }
               },
               "logicalLocations": [
@@ -1743,7 +1743,7 @@
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 213
+                  "startLine": 215
                 }
               },
               "logicalLocations": [
@@ -1777,7 +1777,7 @@
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 217
+                  "startLine": 219
                 }
               },
               "logicalLocations": [
