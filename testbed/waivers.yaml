@@ -23,3 +23,24 @@
     runs as uid 10001 with all capabilities dropped, no-new-privileges and seccomp.
   expires: 2026-12-31
   approvedBy: project owner (pending review)
+
+# ---- GitHub-hosted ubuntu-24.04 runners (CI) -------------------------------------------
+
+- checkId: XVM-05
+  platform: github-ubuntu
+  reason: >-
+    Hosted runners have 4 vCPUs (2 cores x 2 SMT threads). After the provider plane and the
+    load generator take one core, tenant-a and tenant-b can only be separated onto the two
+    threads of the remaining core; the placement planner records this in PLACEMENT_NOTES.
+    On a host with >= 6 cores (the laptop run) XVM-05 passes without a waiver.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)
+
+- checkId: HV-04
+  platform: github-ubuntu
+  reason: >-
+    The hosted runner's Docker daemon is not configured with userns-remap and the workflow
+    cannot reconfigure it without restarting the daemon mid-job. Compensating controls as on
+    Docker Desktop (uid 10001, no capabilities, no-new-privileges, seccomp, AppArmor).
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)

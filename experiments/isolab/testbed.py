@@ -109,13 +109,14 @@ def _files_with_cr() -> list[str]:
 
 def harden_host() -> None:
     script = "; ".join(f"sysctl -w {k}={v}" for k, v in HOST_SYSCTLS.items())
-    current = util.docker("run", "--rm", "--label", f"{util.L_PLANE}=operator", util.ALPINE, "sh", "-c",
+    current = util.docker("run", "--rm", *util.operator_labels("host-sysctl-read"), util.ALPINE, "sh", "-c",
                           "; ".join(f"sysctl -n {k}" for k in HOST_SYSCTLS)).split()
     if all(int(v) >= want for v, want in zip(current, HOST_SYSCTLS.values(), strict=False)):
         util.ok("host kernel hardening already in place")
         return
     util.info("applying provider host hardening: " + ", ".join(f"{k}={v}" for k, v in HOST_SYSCTLS.items()))
-    util.docker("run", "--rm", "--privileged", "--label", f"{util.L_PLANE}=operator", util.ALPINE, "sh", "-c", script)
+    util.docker("run", "--rm", "--privileged", *util.operator_labels("host-hardening"), util.ALPINE, "sh", "-c",
+                script)
 
 
 def up(profile: str, *, build: bool = True) -> None:

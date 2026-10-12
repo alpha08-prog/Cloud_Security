@@ -33,7 +33,7 @@ def k6_cmd(profile: str, rate: int, warmup: int, duration: int, name: str) -> li
         # Fairness control: the measuring instrument gets its own physical core and the
         # maximum CPU weight in every arm, so it is never the thing being starved.
         "--cpuset-cpus", env["CPUSET_LOADGEN"], "--cpu-shares", "262144",
-        "--label", f"{util.L_PLANE}=operator", "--label", f"{util.L_WORKLOAD}=operator-loadgen",
+        *util.operator_labels("loadgen"),
         IMAGE, "run", "--quiet", "--no-color",
         "-e", "TARGET=http://tenant-a:8080/work", "-e", f"RATE={rate}",
         "-e", f"WARMUP={warmup}s", "-e", f"DURATION={duration}s",

@@ -76,7 +76,7 @@ def run(profile: str, variant: str = "full", out: Path | None = None) -> dict:
 
     # C1: a throwaway client on tenant-a's network, as the load generator would be.
     proc = util.run(["docker", "run", "--rm", "--network", load.victim_network(profile),
-                     "--label", f"{util.L_PLANE}=operator", "--label", f"{util.L_WORKLOAD}=operator-e2-control",
+                     *util.operator_labels("e2-control"),
                      "--entrypoint", "python", "isolab/payments-api:local", "/opt/probes/probe.py",
                      "http-get", "tenant-a", "8080", "/healthz"], check=False, timeout=120)
     c1 = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {"outcome": "error",

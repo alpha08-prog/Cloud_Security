@@ -54,7 +54,7 @@ def read_topology() -> list[list[int]]:
         "for c in /sys/devices/system/cpu/cpu[0-9]*; do "
         "echo $(basename $c) $(cat $c/topology/thread_siblings_list 2>/dev/null || basename $c | tr -d cpu); done"
     )
-    out = util.docker("run", "--rm", "--label", f"{util.L_PLANE}=operator", util.ALPINE, "sh", "-c", script)
+    out = util.docker("run", "--rm", *util.operator_labels("cpu-topology"), util.ALPINE, "sh", "-c", script)
     groups: dict[tuple[int, ...], None] = {}
     for line in out.splitlines():
         parts = line.split()

@@ -16,8 +16,7 @@ def _build() -> None:
 def _run(script: str, *, writable: bool = False) -> int:
     _build()
     mount = f"{util.REPO}:/repo" + ("" if writable else ":ro")
-    proc = util.run(["docker", "run", "--rm", "--label", f"{util.L_PLANE}=operator",
-                     "--label", f"{util.L_WORKLOAD}=operator-devtools", "--network", "none",
+    proc = util.run(["docker", "run", "--rm", *util.operator_labels("devtools"), "--network", "none",
                      "-v", mount, DEV_IMAGE, "sh", "-c", script], check=False, capture=False, timeout=900)
     return proc.returncode
 

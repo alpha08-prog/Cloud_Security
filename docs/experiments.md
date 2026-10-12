@@ -67,7 +67,7 @@ Hyper-V maps vCPUs freely.
   and before the first measured run, with the change logged below.
 - **A run is invalid,** and is repeated, if `dropped_iterations > 0`, if failures exceed 1%,
   or if tenant-b used less than 1 core during a noisy window (meaning the noise didn't
-  happen).
+  happen). In the hardened profile the floor is min(1 core, 80% of tenant-b's CPU quota).
 
 **Hypotheses**
 
@@ -175,3 +175,7 @@ window, and attribution correctness (detected tenant = expected tenant).
     max(1.5, host CPUs ÷ active tenants) cores on CPUs it shares with at least one other
     active tenant. The victims' PSI is still reported as evidence.
   - H4 is unchanged: DET-08 fires in insecure-noisy and is silent in hardened-noisy.
+- **2026-10-12: noise-validity floor made quota-aware, before the first full run.** On a
+  4-vCPU CI runner the hardened tenant-b is capped at 1 core, so "at least 1 core" would
+  reject correctly capped runs on rounding. The floor is now min(1 core, 80% of tenant-b's
+  quota) in the hardened profile; unchanged (1 core) for insecure. E1 never gates CI.

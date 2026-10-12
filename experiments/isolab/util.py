@@ -33,6 +33,11 @@ L_TENANT = "io.isolab.tenant"
 L_OWNER = "io.isolab.owner"
 L_WORKLOAD = "io.isolab.workload-id"
 
+
+def operator_labels(name: str) -> list[str]:
+    """Identity for the orchestrator's own short-lived helper containers (R1 applies to us too)."""
+    return ["--label", f"{L_PLANE}=operator", "--label", f"{L_WORKLOAD}=operator-{name}"]
+
 _COLOR = sys.stdout.isatty() and os.environ.get("NO_COLOR") is None
 
 

@@ -20,8 +20,15 @@ VARIANTS = {
     "ci": dict(rate=20, warmup=5, measure=30, reps=1, cooldown=5),
 }
 SLO_P99_MS = 25.0
-MIN_NOISY_CORES = 1.0
 JOB = "tenant-b-job"
+
+
+def min_noisy_cores(profile: str) -> float:
+    """The noise counts as real if tenant-b used at least 1 core, or 80% of its CPU quota
+    when the hardened profile caps it lower than that (small CI runners)."""
+    if profile == "hardened":
+        return min(1.0, 0.8 * float(cpus.ensure().get("CPUS_TENANT_B", "1")))
+    return 1.0
 
 
 def start_noise(profile: str, seconds: int) -> None:
@@ -68,7 +75,7 @@ def one_run(profile: str, arm: str, rep: int, cfg: dict) -> dict:
         reasons.append(f"{k6['droppedIterations']} dropped iterations")
     if k6["failedRate"] > 0.01:
         reasons.append(f"{k6['failedRate']:.1%} failed requests")
-    if arm == "noisy" and (noisy_cores or 0) < MIN_NOISY_CORES:
+    if arm == "noisy" and (noisy_cores or 0) < min_noisy_cores(profile):
         reasons.append(f"noise did not happen (tenant-b used {noisy_cores or 0:.2f} cores)")
     run = {
         "profile": profile, "arm": arm, "repetition": rep, "startedAt": started,
