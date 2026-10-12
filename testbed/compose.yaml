@@ -176,7 +176,7 @@ services:
       args: {GIT_SHA: "${GIT_SHA:-dev}"}
     image: isolab/payments-api:local
     environment:
-      WORK_ITERATIONS: ${WORK_ITERATIONS:-6000}
+      WORK_ITERATIONS: ${WORK_ITERATIONS:-2500}  # ~2 ms of CPU per request (calibrated, docs/experiments.md)
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=2)"]
       interval: 10s
@@ -196,7 +196,8 @@ services:
     image: isolab/batch-analytics:local
     profiles: [noisy]
     entrypoint: ["stress-ng"]
-    command: ["--cpu", "${STRESS_WORKERS:-4}", "--cpu-method", "matrixprod", "--timeout", "${STRESS_TIMEOUT:-60}s", "--metrics-brief"]
+    command: ["--cpu", "${STRESS_WORKERS:-4}", "--cpu-method", "matrixprod", "--timeout", "${STRESS_TIMEOUT:-60}s",
+              "--temp-path", "/tmp", "--metrics-brief"]
     depends_on: [tenant-b]
 
   tenant-c:

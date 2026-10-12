@@ -6,9 +6,16 @@ and pressure stall information (PSI). PSI says how long a workload's runnable
 tasks waited for a resource - the honest measure of a noisy neighbour, which raw
 CPU% is not. Network bytes come from the engine's stats API.
 
-The noisy-neighbour detector (DET-08) runs on these samples: if a tenant's CPU
-pressure stays above a threshold while another tenant is burning more than a
-given number of cores, the busy tenant is flagged.
+The noisy-neighbour detector (DET-08) runs on these samples. A noisy neighbour
+is a tenant that, for 30 s, uses more than its fair share of CPUs it SHARES with
+other active tenants (fair share = host CPUs / active tenants). Tenants confined
+to dedicated cores share nothing, so they cannot be noisy at the CPU level.
+
+Why not trigger on the victim's own pressure? Measured on the testbed (E1 smoke
+runs, see docs/experiments.md changelog), a lightly loaded victim's PSI stays
+around 1% with or without a noisy neighbour, while its p99 latency triples: the
+victim signal is too weak to threshold. The aggressor signal is unambiguous, and
+the victim's pressure is still reported as evidence.
 """
 
 from __future__ import annotations
@@ -20,14 +27,15 @@ from collections import defaultdict, deque
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from ..host import expand_cpus
 from ..snapshot import docker_time_ns, plane, service, tenant, workload_id
 from .detections import DetectionStore
 
-# DET-08 thresholds (see docs/experiments.md, H4).
-PRESSURE_THRESHOLD = 0.10      # victim's tasks waiting >= 10% of the time ...
-AGGRESSOR_CORES = 1.5          # ... while another tenant uses > 1.5 cores ...
-RATE_WINDOW_S = 10.0           # ... measured over 10 s ...
-SUSTAIN_S = 30.0               # ... for 30 s in a row.
+# DET-08 parameters (see docs/experiments.md, H4).
+MIN_AGGRESSOR_CORES = 1.5      # never flag a tenant using fewer cores than this ...
+ACTIVE_CORES = 0.02            # ... a tenant using more than this counts as active (a potential victim) ...
+RATE_WINDOW_S = 10.0           # ... usage measured over 10 s ...
+SUSTAIN_S = 30.0               # ... condition held for 30 s in a row.
 
 
 @dataclass
@@ -55,6 +63,7 @@ class Workload:
     container_id: str
     started_ns: int
     cgroup: Path | None
+    cpus: frozenset[int] = frozenset()
     history: deque = field(default_factory=lambda: deque(maxlen=64))
 
 
@@ -80,6 +89,13 @@ def _read_psi_some_total(path: Path) -> int | None:
     except OSError:
         return None
     return None
+
+
+def _read_text(path: Path) -> str | None:
+    try:
+        return path.read_text().strip()
+    except OSError:
+        return None
 
 
 def _read_int(path: Path) -> int | None:
@@ -112,8 +128,11 @@ class StatsPoller(threading.Thread):
         self.workloads: dict[str, Workload] = {}
         self.lock = threading.Lock()
         self.host_psi: dict[str, float] = {}
+        self.host_cpus = frozenset(expand_cpus(_read_text(self.root / "cpuset.cpus.effective") or "") or
+                                   range(os.cpu_count() or 1))
         self._onset: dict[str, float] = {}
         self._fired: set[str] = set()
+        self.noisy: dict[str, bool] = {}
         self._cycle = 0
         self.last_error: str | None = None
 
@@ -150,6 +169,8 @@ class StatsPoller(threading.Thread):
                     self.workloads[cid] = w
             if w.cgroup is None:
                 w.cgroup = find_cgroup(self.root, cid)
+            if w.cgroup is not None and not w.cpus:
+                w.cpus = frozenset(expand_cpus(_read_text(w.cgroup / "cpuset.cpus.effective") or "")) or self.host_cpus
             s = Sample(t=time.time())
             if w.cgroup is not None:
                 cpu = _read_kv(w.cgroup / "cpu.stat")
@@ -204,39 +225,45 @@ class StatsPoller(threading.Thread):
     # ------------------------------------------------------------------ DET-08
     def detect_noisy_neighbour(self) -> None:
         tenants = [w for w in self.snapshot() if w.plane == "tenant"]
-        cores_by_tenant: dict[str, float] = defaultdict(float)
-        hottest: dict[str, Workload] = {}
+        cores: dict[str, float] = defaultdict(float)
+        cpus: dict[str, set[int]] = defaultdict(set)
+        members: dict[str, list[Workload]] = defaultdict(list)
         for w in tenants:
-            cores = self.rate(w.history, "usage_us", RATE_WINDOW_S) or 0.0
             key = w.tenant or f"unlabelled:{w.service}"
-            cores_by_tenant[key] += cores
-            if key not in hottest or cores > (self.rate(hottest[key].history, "usage_us", RATE_WINDOW_S) or 0):
-                hottest[key] = w
+            cores[key] += self.rate(w.history, "usage_us", RATE_WINDOW_S) or 0.0
+            cpus[key] |= set(w.cpus or self.host_cpus)
+            members[key].append(w)
+        active = [k for k, c in cores.items() if c > ACTIVE_CORES]
+        fair_share = len(self.host_cpus) / max(1, len(active))
         now = time.time()
-        for victim in tenants:
-            vkey = victim.tenant or f"unlabelled:{victim.service}"
-            pressure = self.rate(victim.history, "psi_cpu_us", RATE_WINDOW_S)
-            others = {k: v for k, v in cores_by_tenant.items() if k != vkey}
-            aggressor, cores = max(others.items(), key=lambda kv: kv[1], default=(None, 0.0))
-            condition = pressure is not None and pressure > PRESSURE_THRESHOLD and cores > AGGRESSOR_CORES
-            key = victim.service
+        for key in cores:
+            victims = [v for v in active if v != key and cpus[v] & cpus[key]]
+            condition = bool(victims) and cores[key] > max(MIN_AGGRESSOR_CORES, fair_share)
+            self.noisy[key] = condition
             if not condition:
                 self._onset.pop(key, None)
                 self._fired.discard(key)
                 continue
             self._onset.setdefault(key, now)
-            if now - self._onset[key] >= SUSTAIN_S and key not in self._fired:
-                self._fired.add(key)
-                hot = hottest[aggressor]
-                self.detections.raise_(
-                    "DET-08", tenant=hot.tenant, workload_id=hot.workload_id, service=hot.service,
-                    event_time_ns=hot.started_ns,
-                    message=f"tenant {aggressor} uses {cores:.1f} cores while {victim.service} "
-                            f"(tenant {vkey}) waits for CPU {pressure * 100:.0f}% of the time",
-                    evidence={"victim": victim.service, "victimTenant": vkey,
-                              "victimCpuPressurePct": round(pressure * 100, 1),
-                              "aggressorCores": round(cores, 2),
-                              "sustainedSeconds": round(now - self._onset[key], 1)})
+            if now - self._onset[key] < SUSTAIN_S or key in self._fired:
+                continue
+            self._fired.add(key)
+            hot = max(members[key], key=lambda w: self.rate(w.history, "usage_us", RATE_WINDOW_S) or 0.0)
+            pressure = []  # victims' CPU pressure, as evidence (see module docstring)
+            for v in victims:
+                for w in members[v]:
+                    p = self.rate(w.history, "psi_cpu_us", RATE_WINDOW_S)
+                    if p is not None:
+                        pressure.append(f"{w.service} {p * 100:.2f}%")
+            self.detections.raise_(
+                "DET-08", tenant=hot.tenant, workload_id=hot.workload_id, service=hot.service,
+                event_time_ns=hot.started_ns,
+                message=f"tenant {key} uses {cores[key]:.1f} cores (fair share {fair_share:.1f}) on CPUs it shares "
+                        f"with tenant(s) {', '.join(sorted(victims))}",
+                evidence={"aggressorCores": round(cores[key], 2), "fairShareCores": round(fair_share, 2),
+                          "victims": sorted(victims), "victimCpuPressurePct": pressure,
+                          "sharedCpus": len(set().union(*(cpus[v] for v in victims)) & cpus[key]),
+                          "sustainedSeconds": round(now - self._onset[key], 1)})
 
     def observed(self) -> dict[str, dict]:
         now = time.time()

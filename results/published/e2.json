@@ -1,0 +1,446 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "e2",
+  "generatedAt": "2026-10-12T16:35:29.742Z",
+  "variant": "ci",
+  "environment": {
+    "platform": "docker-desktop-wsl2",
+    "dockerServerVersion": "29.2.1",
+    "kernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+    "logicalCpus": 12,
+    "physicalCores": 6,
+    "gitSha": "d0b5395c4d3f",
+    "placement": {
+      "CPUSET_PROVIDER": "0,1",
+      "CPUSET_LOADGEN": "2,3",
+      "CPUSET_TENANT_A": "4,5",
+      "CPUSET_TENANT_B": "6,7,8,9",
+      "CPUSET_TENANT_C": "10,11",
+      "PLACEMENT_NOTES": "each tenant on dedicated physical cores"
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "H5",
+      "statement": "Insecure: at least 10 of 12 isolation paths are open",
+      "verdict": "supported",
+      "detail": "12/12 open"
+    },
+    {
+      "id": "H6",
+      "statement": "Hardened: 0 of 12 paths open, with every positive control passing",
+      "verdict": "supported",
+      "detail": "0/12 open, controls 3/3"
+    }
+  ],
+  "probes": [
+    {
+      "id": "C1",
+      "description": "Load generator reaches tenant-a's health endpoint",
+      "source": "loadgen",
+      "destination": "tenant-a:8080",
+      "control": true,
+      "axis": "cross-vm-attacks",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "allowed"
+      }
+    },
+    {
+      "id": "C2",
+      "description": "Prometheus reaches the auditor on the provider network",
+      "source": "prometheus",
+      "destination": "auditor:8088",
+      "control": true,
+      "axis": "cross-vm-attacks",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "allowed"
+      }
+    },
+    {
+      "id": "C3",
+      "description": "tenant-c reaches a listener on its own loopback",
+      "source": "tenant-c",
+      "destination": "127.0.0.1",
+      "control": true,
+      "axis": "isolation",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "allowed"
+      }
+    },
+    {
+      "id": "P1",
+      "description": "tenant-c reaches tenant-a by DNS name",
+      "source": "tenant-c",
+      "destination": "tenant-a:8080",
+      "control": false,
+      "axis": "cross-vm-attacks",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P2",
+      "description": "tenant-c reaches tenant-a by IP address",
+      "source": "tenant-c",
+      "destination": "tenant-a IP:8080",
+      "control": false,
+      "axis": "cross-vm-attacks",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P3",
+      "description": "tenant-c reaches tenant-a through its published host port",
+      "source": "tenant-c",
+      "destination": "host gateway:18080",
+      "control": false,
+      "axis": "cross-vm-attacks",
+      "expected": {
+        "insecure": "platform-dependent",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P4",
+      "description": "tenant-c reaches the decoy metadata service",
+      "source": "tenant-c",
+      "destination": "metadata:8080",
+      "control": false,
+      "axis": "cross-vm-attacks",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P5",
+      "description": "tenant-c reaches provider telemetry (Prometheus API)",
+      "source": "tenant-c",
+      "destination": "prometheus:9090",
+      "control": false,
+      "axis": "data-leakage",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P6",
+      "description": "tenant-c opens a connection to the internet",
+      "source": "tenant-c",
+      "destination": "1.1.1.1:443",
+      "control": false,
+      "axis": "data-leakage",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P7",
+      "description": "tenant-c can see tenant-a's processes",
+      "source": "tenant-c",
+      "destination": "/proc",
+      "control": false,
+      "axis": "isolation",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P8",
+      "description": "tenant-c can talk to the container engine API",
+      "source": "tenant-c",
+      "destination": "/var/run/docker.sock",
+      "control": false,
+      "axis": "hypervisor-vulnerabilities",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P9",
+      "description": "tenant-c can read host system files",
+      "source": "tenant-c",
+      "destination": "/host-etc",
+      "control": false,
+      "axis": "data-leakage",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P10",
+      "description": "tenant-c can read tenant-a's (non-secret) marker file",
+      "source": "tenant-c",
+      "destination": "/data/tenant-a/marker.txt",
+      "control": false,
+      "axis": "data-leakage",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P11",
+      "description": "tenant-c holds Linux capabilities",
+      "source": "tenant-c",
+      "destination": "CapEff",
+      "control": false,
+      "axis": "isolation",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    },
+    {
+      "id": "P12",
+      "description": "tenant-b reaches tenant-a",
+      "source": "tenant-b",
+      "destination": "tenant-a:8080",
+      "control": false,
+      "axis": "cross-vm-attacks",
+      "expected": {
+        "insecure": "allowed",
+        "hardened": "blocked"
+      }
+    }
+  ],
+  "results": [
+    {
+      "profile": "insecure",
+      "probeId": "C1",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from tenant-a:8080",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "C2",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from auditor:8088",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "C3",
+      "outcome": "allowed",
+      "detail": "TCP connect to 127.0.0.1:44331 succeeded",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P1",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from tenant-a:8080",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P2",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from 172.21.0.3:8080",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P3",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from 192.168.65.254:18080",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P4",
+      "outcome": "allowed",
+      "detail": "HTTP 404 from metadata:8080",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P5",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from prometheus:9090",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P6",
+      "outcome": "allowed",
+      "detail": "TCP connect to 1.1.1.1:443 succeeded",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P7",
+      "outcome": "allowed",
+      "detail": "process matching 'payments_api' visible as pid 68733",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P8",
+      "outcome": "allowed",
+      "detail": "engine API answered /_ping",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P9",
+      "outcome": "allowed",
+      "detail": "/host-etc/os-release is readable",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P10",
+      "outcome": "allowed",
+      "detail": "/data/tenant-a/marker.txt is readable",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P11",
+      "outcome": "allowed",
+      "detail": "CapEff=0x1ffffffffff (41 capabilities)",
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "probeId": "P12",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from tenant-a:8080",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "C1",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from tenant-a:8080",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "C2",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from auditor:8088",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "C3",
+      "outcome": "allowed",
+      "detail": "TCP connect to 127.0.0.1:56683 succeeded",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P1",
+      "outcome": "blocked",
+      "detail": "name tenant-a does not resolve",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P2",
+      "outcome": "blocked",
+      "detail": "OSError: Network unreachable",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P3",
+      "outcome": "blocked",
+      "detail": "no host gateway",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P4",
+      "outcome": "blocked",
+      "detail": "name metadata does not resolve",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P5",
+      "outcome": "blocked",
+      "detail": "name prometheus does not resolve",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P6",
+      "outcome": "blocked",
+      "detail": "OSError: Network unreachable",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P7",
+      "outcome": "blocked",
+      "detail": "not visible among 2 processes",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P8",
+      "outcome": "blocked",
+      "detail": "/var/run/docker.sock not present",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P9",
+      "outcome": "blocked",
+      "detail": "/host-etc/os-release not present",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P10",
+      "outcome": "blocked",
+      "detail": "/data/tenant-a/marker.txt not present",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P11",
+      "outcome": "blocked",
+      "detail": "CapEff=0 (no capabilities)",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P12",
+      "outcome": "blocked",
+      "detail": "name tenant-a does not resolve",
+      "asExpected": true
+    }
+  ],
+  "summary": [
+    {
+      "profile": "insecure",
+      "openPaths": 12,
+      "probes": 12,
+      "controlsPassed": 3,
+      "controls": 3
+    },
+    {
+      "profile": "hardened",
+      "openPaths": 0,
+      "probes": 12,
+      "controlsPassed": 3,
+      "controls": 3
+    }
+  ]
+}

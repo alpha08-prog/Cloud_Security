@@ -152,7 +152,8 @@ def _token() -> str:
 
 @app.get("/healthz")
 def healthz():
-    return {"ok": True, "watcherHeartbeatAgeSeconds": auditor.watcher.heartbeat_age() if auditor else None}
+    return {"ok": True, "serverTimeNs": time.time_ns(),
+            "watcherHeartbeatAgeSeconds": auditor.watcher.heartbeat_age() if auditor else None}
 
 
 @app.get("/report")

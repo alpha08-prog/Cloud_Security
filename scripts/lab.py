@@ -21,7 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
 
-from isolab import audit, compose, cpus, devtools, testbed, util  # noqa: E402
+from isolab import audit, compose, cpus, devtools, e1, e2, e3, publish, testbed, util  # noqa: E402
 
 
 def cmd_doctor(args) -> int:
@@ -68,6 +68,43 @@ def cmd_audit(args) -> int:
 
 def cmd_gate(args) -> int:
     return 0 if audit.gate(args.profile, _out(args)) else 1
+
+
+def cmd_e1(args) -> int:
+    e1.run(args.profile, args.variant, _out(args))
+    return 0
+
+
+def cmd_e2(args) -> int:
+    e2.run(args.profile, args.variant, _out(args))
+    return 0
+
+
+def cmd_e3(args) -> int:
+    e3.run(args.profile, args.variant, _out(args))
+    return 0
+
+
+def cmd_run_all(args) -> int:
+    """Both profiles, every experiment, in the protocol's order (E3 before E2: probe execs
+    would otherwise show up during E3's quiet window)."""
+    ok = True
+    for profile in args.profiles:
+        testbed.up(profile)
+        audit.audit(profile, _out(args))
+        e3.run(profile, args.variant, _out(args))
+        e2.run(profile, args.variant, _out(args))
+        if not args.skip_e1:
+            e1.run(profile, args.variant, _out(args))
+        ok &= audit.gate(profile, _out(args))
+    if not args.keep:
+        testbed.down()
+    return 0 if ok else 1
+
+
+def cmd_publish(args) -> int:
+    publish.publish(Path(args.runs).resolve() if args.runs else None, _out(args))
+    return 0
 
 
 def cmd_test(args) -> int:
@@ -125,6 +162,33 @@ def main() -> int:
     p.set_defaults(fn=cmd_gate)
 
     sub.add_parser("snapshot", help="save a sanitized snapshot as a unit-test fixture").set_defaults(fn=cmd_snapshot)
+
+    for name, fn, text in (("e2", cmd_e2, "experiment E2: segmentation and escape-surface matrix"),
+                           ("e3", cmd_e3, "experiment E3: detection validation")):
+        p = sub.add_parser(name, help=text)
+        p.add_argument("profile", choices=util.PROFILES)
+        p.add_argument("--variant", choices=["full", "ci"], default="full")
+        p.add_argument("--out")
+        p.set_defaults(fn=fn)
+
+    p = sub.add_parser("run-all", help="up, audit, E3, E2, E1 and gate for each profile, then down")
+    p.add_argument("--variant", choices=["full", "ci"], default="full")
+    p.add_argument("--profiles", nargs="+", choices=util.PROFILES, default=list(util.PROFILES))
+    p.add_argument("--skip-e1", action="store_true")
+    p.add_argument("--keep", action="store_true", help="leave the last profile running")
+    p.add_argument("--out")
+    p.set_defaults(fn=cmd_run_all)
+
+    p = sub.add_parser("publish", help="merge both profiles' runs into results/published (validated)")
+    p.add_argument("--runs", help="run directory (default results/runs/<platform>)")
+    p.add_argument("--out", help="destination (default results/published)")
+    p.set_defaults(fn=cmd_publish)
+
+    p = sub.add_parser("e1", help="experiment E1: noisy neighbour (latency under CPU contention)")
+    p.add_argument("profile", choices=util.PROFILES)
+    p.add_argument("--variant", choices=["full", "ci"], default="full")
+    p.add_argument("--out")
+    p.set_defaults(fn=cmd_e1)
     sub.add_parser("test", help="ruff + pytest for the auditor and orchestrator (in a container)").set_defaults(
         fn=cmd_test)
     sub.add_parser("contract", help="regenerate schemas/*.schema.json and docs/checks.md").set_defaults(

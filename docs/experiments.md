@@ -162,4 +162,16 @@ window, and attribution correctness (detected tenant = expected tenant).
 
 ## Changelog
 
-- *(empty: protocol as first written)*
+- **2026-10-12: calibration, before any measured run.** The `/work` loop was set to 2500
+  SHA-256 rounds, which measured about 2 ms of server time (6000 rounds measured 4.7 ms).
+- **2026-10-12: DET-08 definition changed after the E1 smoke runs.**
+  - The first definition flagged a noisy neighbour when the victim's CPU pressure (PSI) was
+    above 10% while another tenant used more than 1.5 cores.
+  - The smoke runs showed that a lightly loaded victim's PSI stays around 1% with or without
+    a noisy neighbour: about 1.2% insecure vs 1.0% hardened under noise at 50 req/s. Its p99
+    latency, meanwhile, tripled in the insecure profile. A victim-side PSI threshold would
+    therefore be driven by noise.
+  - DET-08 now flags the aggressor: a tenant that, for 30 s, uses more than
+    max(1.5, host CPUs ÷ active tenants) cores on CPUs it shares with at least one other
+    active tenant. The victims' PSI is still reported as evidence.
+  - H4 is unchanged: DET-08 fires in insecure-noisy and is silent in hardened-noisy.

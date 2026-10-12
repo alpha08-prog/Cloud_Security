@@ -63,7 +63,14 @@ class Collector:
                                  labels=["resource"])
         for res, value in a.poller.host_psi.items():
             host.add_metric([res], value)
-        yield from (cpu, thr, mem, meml, pids, pidl, rx, tx, psi, host)
+        noisy = GaugeMetricFamily("cloudaudit_noisy_neighbour_active",
+                                  "1 while a tenant exceeds its fair share of CPUs shared with active tenants (DET-08)",
+                                  labels=["tenant"])
+        for tenant, active in a.poller.noisy.items():
+            noisy.add_metric([tenant], 1 if active else 0)
+        cpus = GaugeMetricFamily("cloudaudit_host_logical_cpus", "Logical CPUs on the container host")
+        cpus.add_metric([], len(a.poller.host_cpus))
+        yield from (cpu, thr, mem, meml, pids, pidl, rx, tx, psi, host, noisy, cpus)
 
     def _audit(self, a):
         r = a.report

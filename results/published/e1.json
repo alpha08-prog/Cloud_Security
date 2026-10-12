@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "e1",
+  "generatedAt": "2026-10-12T16:35:29.744Z",
+  "variant": "ci",
+  "environment": {
+    "platform": "docker-desktop-wsl2",
+    "dockerServerVersion": "29.2.1",
+    "kernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+    "logicalCpus": 12,
+    "physicalCores": 6,
+    "gitSha": "d0b5395c4d3f",
+    "placement": {
+      "CPUSET_PROVIDER": "0,1",
+      "CPUSET_LOADGEN": "2,3",
+      "CPUSET_TENANT_A": "4,5",
+      "CPUSET_TENANT_B": "6,7,8,9",
+      "CPUSET_TENANT_C": "10,11",
+      "PLACEMENT_NOTES": "each tenant on dedicated physical cores"
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "Insecure: interference factor (p99 noisy / p99 baseline) >= 2",
+      "verdict": "supported",
+      "detail": "IF = 3.024"
+    },
+    {
+      "id": "H2",
+      "statement": "Hardened: interference factor <= 1.25 and p99 under noise <= 25 ms",
+      "verdict": "supported",
+      "detail": "IF = 1.114, p99 under noise = 5.035 ms"
+    },
+    {
+      "id": "H3",
+      "statement": "Optional SMT-shared arm: higher server time than hardened",
+      "verdict": "inconclusive",
+      "detail": "optional arm not run (Hyper-V vCPU mapping makes it indicative only)"
+    },
+    {
+      "id": "H4",
+      "statement": "DET-08 fires under noise in insecure and stays silent in hardened",
+      "verdict": "supported",
+      "detail": "E1 DET-08 detections: {'insecure': 0, 'hardened': 0}; E3 T7 detected: {'insecure': True, 'hardened': False}"
+    }
+  ],
+  "config": {
+    "ratePerSecond": 20,
+    "warmupSeconds": 5,
+    "measureSeconds": 30,
+    "repetitions": 1,
+    "stressWorkers": 12,
+    "workIterations": 2500,
+    "sloP99Ms": 25.0
+  },
+  "runs": [
+    {
+      "profile": "insecure",
+      "arm": "baseline",
+      "repetition": 1,
+      "startedAt": "2026-10-12T16:15:07Z",
+      "latencyMs": {
+        "avg": 3.015222765391015,
+        "min": 2.340441,
+        "med": 2.969657,
+        "p90": 3.249241,
+        "p95": 3.399582,
+        "p99": 5.020632,
+        "max": 13.179508
+      },
+      "serverWorkMs": {
+        "avg": 2.050740432612312,
+        "min": 1.659,
+        "med": 2.026,
+        "p90": 2.214,
+        "p95": 2.4,
+        "p99": 3.454,
+        "max": 9.127
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 601,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.03,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "insecure",
+      "arm": "noisy",
+      "repetition": 1,
+      "startedAt": "2026-10-12T16:15:54Z",
+      "latencyMs": {
+        "avg": 5.738613171381029,
+        "min": 3.697092,
+        "med": 4.939297,
+        "p90": 8.357384,
+        "p95": 10.595886,
+        "p99": 15.182131,
+        "max": 26.196251
+      },
+      "serverWorkMs": {
+        "avg": 3.7544492512479177,
+        "min": 2.897,
+        "med": 3.252,
+        "p90": 4.612,
+        "p95": 5.657,
+        "p99": 10.29,
+        "max": 14.802
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 601,
+      "noisyCoresUsed": 11.36,
+      "victimCpuPressurePct": 0.74,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "baseline",
+      "repetition": 1,
+      "startedAt": "2026-10-12T16:13:05Z",
+      "latencyMs": {
+        "avg": 2.9859426239600624,
+        "min": 2.384079,
+        "med": 2.975378,
+        "p90": 3.199497,
+        "p95": 3.402815,
+        "p99": 4.519783,
+        "max": 7.440986
+      },
+      "serverWorkMs": {
+        "avg": 2.047276206322793,
+        "min": 1.66,
+        "med": 2.036,
+        "p90": 2.224,
+        "p95": 2.393,
+        "p99": 3.175,
+        "max": 4.25
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 601,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.22,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "c": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "noisy",
+      "repetition": 1,
+      "startedAt": "2026-10-12T16:13:52Z",
+      "latencyMs": {
+        "avg": 2.9678154792013305,
+        "min": 2.316757,
+        "med": 2.720553,
+        "p90": 3.923613,
+        "p95": 4.081571,
+        "p99": 5.035025,
+        "max": 15.616765
+      },
+      "serverWorkMs": {
+        "avg": 2.0213976705490846,
+        "min": 1.681,
+        "med": 1.811,
+        "p90": 2.863,
+        "p95": 3.043,
+        "p99": 3.411,
+        "max": 12.404
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 601,
+      "noisyCoresUsed": 3.002,
+      "victimCpuPressurePct": 0.32,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 29.949,
+        "c": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    }
+  ],
+  "summary": [
+    {
+      "profile": "insecure",
+      "baselineP99Ms": 5.021,
+      "noisyP99Ms": 15.182,
+      "interferenceFactor": 3.024,
+      "sloMetUnderNoise": true,
+      "validRuns": 2,
+      "totalRuns": 2
+    },
+    {
+      "profile": "hardened",
+      "baselineP99Ms": 4.52,
+      "noisyP99Ms": 5.035,
+      "interferenceFactor": 1.114,
+      "sloMetUnderNoise": true,
+      "validRuns": 2,
+      "totalRuns": 2
+    }
+  ]
+}

@@ -40,5 +40,10 @@ def detections(since_ns: int = 0) -> list[dict]:
     return get_json(f"/detections?since={since_ns}")
 
 
+def server_now_ns() -> int:
+    """The auditor's clock (inside the VM). Detection times are on this clock, not the host's."""
+    return int(get_json("/healthz", 5)["serverTimeNs"])
+
+
 def now_ns() -> int:
     return time.time_ns()

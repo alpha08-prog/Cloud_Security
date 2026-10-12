@@ -28,6 +28,12 @@ def test() -> int:
                 "python -m pytest -q -p no:cacheprovider tests ../experiments/tests")
 
 
+def validate(dest) -> int:
+    """Validate published result files against the committed schemas (and SARIF 2.1.0)."""
+    rel = dest.resolve().relative_to(util.REPO).as_posix()
+    return _run(f"python -m cloudaudit validate /repo/{rel} --schemas /repo/schemas")
+
+
 def contract() -> int:
     """Regenerate the JSON Schemas and docs/checks.md from the Python models."""
     return _run("python -m cloudaudit schema --out /repo/schemas && "

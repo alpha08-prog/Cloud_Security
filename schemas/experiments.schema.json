@@ -551,13 +551,32 @@
     "E3Outcome": {
       "additionalProperties": false,
       "properties": {
-        "attributionCorrect": {
-          "title": "Attributioncorrect",
+        "asExpected": {
+          "title": "Asexpected",
           "type": "boolean"
+        },
+        "attributionCorrect": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Attributioncorrect"
         },
         "detected": {
           "title": "Detected",
           "type": "boolean"
+        },
+        "expected": {
+          "enum": [
+            "detect",
+            "silent"
+          ],
+          "title": "Expected",
+          "type": "string"
         },
         "latencyMs": {
           "anyOf": [
@@ -612,12 +631,14 @@
       "required": [
         "profile",
         "triggerId",
+        "expected",
         "detected",
         "rule",
         "tenant",
         "latencyMs",
         "withinSlo",
-        "attributionCorrect"
+        "attributionCorrect",
+        "asExpected"
       ],
       "title": "E3Outcome",
       "type": "object"
@@ -786,36 +807,41 @@
           "title": "Description",
           "type": "string"
         },
+        "expect": {
+          "additionalProperties": {
+            "enum": [
+              "detect",
+              "silent"
+            ],
+            "type": "string"
+          },
+          "description": "per profile",
+          "title": "Expect",
+          "type": "object"
+        },
         "expectedRule": {
           "title": "Expectedrule",
           "type": "string"
         },
         "expectedTenant": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Expectedtenant"
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "description": "per profile; null = unattributed workload",
+          "title": "Expectedtenant",
+          "type": "object"
         },
         "id": {
           "pattern": "^T\\d+$",
           "title": "Id",
           "type": "string"
-        },
-        "profiles": {
-          "items": {
-            "enum": [
-              "insecure",
-              "hardened"
-            ],
-            "type": "string"
-          },
-          "title": "Profiles",
-          "type": "array"
         },
         "requirements": {
           "items": {
@@ -839,10 +865,10 @@
         "id",
         "description",
         "expectedRule",
+        "expect",
         "expectedTenant",
         "sloMs",
-        "requirements",
-        "profiles"
+        "requirements"
       ],
       "title": "E3Trigger",
       "type": "object"

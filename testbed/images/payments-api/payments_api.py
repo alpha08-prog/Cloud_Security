@@ -19,7 +19,7 @@ import sys
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-WORK_ITERATIONS = int(os.environ.get("WORK_ITERATIONS", "6000"))
+WORK_ITERATIONS = int(os.environ.get("WORK_ITERATIONS", "2500"))
 DATA_DIR = os.environ.get("DATA_DIR", "/data")
 BLOCK = b"isolab" * 32
 

@@ -111,9 +111,9 @@ def test_cross_tenant_network_attach():
     assert d.rule == "DET-06" and d.evidence["networkOwner"] == "a"
 
 
-def _workload(tenant, service, usage_cores, pressure, n=10, step=5.0):
+def _workload(tenant, service, usage_cores, pressure=0.0, cpus=(), n=10, step=5.0):
     w = Workload(service=service, tenant=tenant, plane="tenant", workload_id=service, container_id=service,
-                 started_ns=time.time_ns(), cgroup=None, history=deque(maxlen=64))
+                 started_ns=time.time_ns(), cgroup=None, cpus=frozenset(cpus), history=deque(maxlen=64))
     t0 = time.time() - n * step
     for i in range(n + 1):
         w.history.append(Sample(t=t0 + i * step, usage_us=int(usage_cores * 1e6 * i * step),
@@ -121,26 +121,48 @@ def _workload(tenant, service, usage_cores, pressure, n=10, step=5.0):
     return w
 
 
-def test_noisy_neighbour_needs_sustained_pressure_and_a_busy_other_tenant(monkeypatch):
+def _poller(monkeypatch, workloads, host_cpus=12):
     store = DetectionStore()
     poller = StatsPoller(client=None, detections=store)
-    victim = _workload("a", "tenant-a", 0.1, 0.30)
-    noisy = _workload("b", "tenant-b-job", 4.0, 0.0)
-    monkeypatch.setattr(poller, "snapshot", lambda: [victim, noisy])
-    poller.detect_noisy_neighbour()                      # condition starts
-    assert store.since() == []
-    poller._onset["tenant-a"] -= 31                      # ... and has held for 31 s
+    poller.host_cpus = frozenset(range(host_cpus))
+    monkeypatch.setattr(poller, "snapshot", lambda: workloads)
+    return poller, store
+
+
+def test_noisy_neighbour_on_shared_cpus_fires_after_30s(monkeypatch):
+    victim = _workload("a", "tenant-a", 0.2, pressure=0.012)       # no cpusets: everything shared
+    noisy = _workload("b", "tenant-b-job", 11.2)
+    poller, store = _poller(monkeypatch, [victim, noisy])
+    poller.detect_noisy_neighbour()                                 # condition starts ...
+    assert store.since() == [] and poller.noisy["b"] is True
+    poller._onset["b"] -= 31                                        # ... and has held for 31 s
     poller.detect_noisy_neighbour()
     [d] = store.since()
-    assert d.rule == "DET-08" and d.tenant == "b" and d.evidence["victim"] == "tenant-a"
+    assert d.rule == "DET-08" and d.tenant == "b" and d.evidence["victims"] == ["a"]
+    assert d.evidence["fairShareCores"] == 6.0                      # 12 CPUs / 2 active tenants
 
 
-def test_no_noisy_neighbour_when_the_busy_tenant_is_alone(monkeypatch):
-    store = DetectionStore()
-    poller = StatsPoller(client=None, detections=store)
-    busy = _workload("b", "tenant-b-job", 4.0, 0.8)     # stressing itself: its own pressure, nobody else's
-    idle = _workload("a", "tenant-a", 0.05, 0.0)
-    monkeypatch.setattr(poller, "snapshot", lambda: [busy, idle])
-    poller._onset["tenant-b-job"] = time.time() - 60
+def test_dedicated_cpusets_cannot_be_noisy(monkeypatch):
+    victim = _workload("a", "tenant-a", 0.2, cpus={4, 5})
+    busy = _workload("b", "tenant-b-job", 7.0, cpus={6, 7, 8, 9, 10, 11, 0})   # big, but no overlap with a
+    poller, store = _poller(monkeypatch, [victim, busy])
+    poller._onset["b"] = time.time() - 60
+    poller.detect_noisy_neighbour()
+    assert store.since() == [] and poller.noisy["b"] is False
+
+
+def test_no_victim_means_no_noisy_neighbour(monkeypatch):
+    busy = _workload("b", "tenant-b-job", 11.0)
+    idle = _workload("a", "tenant-a", 0.001)                        # not active: nobody to disturb
+    poller, store = _poller(monkeypatch, [busy, idle])
+    poller._onset["b"] = time.time() - 60
     poller.detect_noisy_neighbour()
     assert store.since() == []
+
+
+def test_within_fair_share_is_not_noisy(monkeypatch):
+    a = _workload("a", "tenant-a", 0.3)
+    b = _workload("b", "tenant-b", 3.0)                             # fair share 6 on 12 CPUs
+    poller, store = _poller(monkeypatch, [a, b])
+    poller.detect_noisy_neighbour()
+    assert poller.noisy["b"] is False

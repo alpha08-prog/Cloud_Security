@@ -1,0 +1,890 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "cloudaudit",
+          "version": "1.0.0",
+          "informationUri": "https://github.com/alpha08-prog/Cloud_Security",
+          "rules": [
+            {
+              "id": "ISO-01",
+              "name": "Workloadisnotprivileged",
+              "shortDescription": {
+                "text": "Workload is not privileged"
+              },
+              "fullDescription": {
+                "text": "A privileged container has every capability and direct access to host devices; its isolation from the host and from other tenants is nominal."
+              },
+              "help": {
+                "text": "A privileged container has every capability and direct access to host devices; its isolation from the host and from other tenants is nominal.\n\nRemediation: Remove `privileged: true`; grant only the specific capability a workload needs, if any.",
+                "markdown": "A privileged container has every capability and direct access to host devices; its isolation from the host and from other tenants is nominal.\n\n**Remediation:** Remove `privileged: true`; grant only the specific capability a workload needs, if any.\n\nPaper taxonomy: `architecture/virtualization/isolation/logical-isolation`, `privacy/legal-issues/provider-privilege/privilege-escalation`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "9.5",
+                "tags": [
+                  "security",
+                  "axis:isolation",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ISO-02",
+              "name": "Capabilitiesdroppedtotheminimum",
+              "shortDescription": {
+                "text": "Capabilities dropped to the minimum"
+              },
+              "fullDescription": {
+                "text": "Linux capabilities split root's power into pieces. Tenants should drop all of them and add back only what the policy allows."
+              },
+              "help": {
+                "text": "Linux capabilities split root's power into pieces. Tenants should drop all of them and add back only what the policy allows.\n\nRemediation: Set `cap_drop: [ALL]` and keep `cap_add` within the policy allowlist.",
+                "markdown": "Linux capabilities split root's power into pieces. Tenants should drop all of them and add back only what the policy allows.\n\n**Remediation:** Set `cap_drop: [ALL]` and keep `cap_add` within the policy allowlist.\n\nPaper taxonomy: `architecture/virtualization/isolation/logical-isolation`, `privacy/legal-issues/provider-privilege/privilege-escalation`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:isolation",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ISO-03",
+              "name": "Syscallfilteron,privilegegainblocked",
+              "shortDescription": {
+                "text": "Syscall filter on, privilege gain blocked"
+              },
+              "fullDescription": {
+                "text": "The engine's default seccomp profile blocks dangerous syscalls (shrinking the shared-kernel attack surface); no-new-privileges stops setuid binaries from gaining privileges."
+              },
+              "help": {
+                "text": "The engine's default seccomp profile blocks dangerous syscalls (shrinking the shared-kernel attack surface); no-new-privileges stops setuid binaries from gaining privileges.\n\nRemediation: Never run with `seccomp=unconfined`; add `no-new-privileges:true` to `security_opt`.",
+                "markdown": "The engine's default seccomp profile blocks dangerous syscalls (shrinking the shared-kernel attack surface); no-new-privileges stops setuid binaries from gaining privileges.\n\n**Remediation:** Never run with `seccomp=unconfined`; add `no-new-privileges:true` to `security_opt`.\n\nPaper taxonomy: `architecture/virtualization/isolation/logical-isolation`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:isolation",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ISO-04",
+              "name": "Runsasanon-rootuser",
+              "shortDescription": {
+                "text": "Runs as a non-root user"
+              },
+              "fullDescription": {
+                "text": "Root inside a container is root on the shared kernel for anything that escapes the namespace."
+              },
+              "help": {
+                "text": "Root inside a container is root on the shared kernel for anything that escapes the namespace.\n\nRemediation: Set a numeric non-root `user:` (e.g. 10001) or a non-root USER in the image.",
+                "markdown": "Root inside a container is root on the shared kernel for anything that escapes the namespace.\n\n**Remediation:** Set a numeric non-root `user:` (e.g. 10001) or a non-root USER in the image.\n\nPaper taxonomy: `privacy/legal-issues/provider-privilege/privilege-escalation`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:isolation",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ISO-05",
+              "name": "Privateprocessandhostnamenamespaces",
+              "shortDescription": {
+                "text": "Private process and hostname namespaces"
+              },
+              "fullDescription": {
+                "text": "Sharing the host PID or UTS namespace lets a workload see and signal every process on the host."
+              },
+              "help": {
+                "text": "Sharing the host PID or UTS namespace lets a workload see and signal every process on the host.\n\nRemediation: Remove `pid: host` and `uts: host`.",
+                "markdown": "Sharing the host PID or UTS namespace lets a workload see and signal every process on the host.\n\n**Remediation:** Remove `pid: host` and `uts: host`.\n\nPaper taxonomy: `architecture/virtualization/isolation/logical-isolation`, `architecture/virtualization/vm-identification/multiple-processes`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "9.5",
+                "tags": [
+                  "security",
+                  "axis:isolation",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ISO-06",
+              "name": "CPU,memoryandprocesslimitsset",
+              "shortDescription": {
+                "text": "CPU, memory and process limits set"
+              },
+              "fullDescription": {
+                "text": "Without limits one tenant can exhaust CPU, memory or PIDs for everyone on the host (the noisy neighbour of experiment E1). Swap must be capped too, or memory limits leak into shared swap."
+              },
+              "help": {
+                "text": "Without limits one tenant can exhaust CPU, memory or PIDs for everyone on the host (the noisy neighbour of experiment E1). Swap must be capped too, or memory limits leak into shared swap.\n\nRemediation: Set `cpus`, `mem_limit` equal to `memswap_limit`, and `pids_limit`.",
+                "markdown": "Without limits one tenant can exhaust CPU, memory or PIDs for everyone on the host (the noisy neighbour of experiment E1). Swap must be capped too, or memory limits leak into shared swap.\n\n**Remediation:** Set `cpus`, `mem_limit` equal to `memswap_limit`, and `pids_limit`.\n\nPaper taxonomy: `architecture/virtualization/isolation/physical-isolation`, `architecture/network-security/firewalling/dos-prevention`, `compliance/service/sla/availability`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:isolation",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ISO-07",
+              "name": "DedicatedCPUsetspertenant",
+              "shortDescription": {
+                "text": "Dedicated CPU sets per tenant"
+              },
+              "fullDescription": {
+                "text": "The paper asks for 'adequate separation of dedicated resources'. Each tenant gets its own CPUs; no two tenants' CPU sets overlap."
+              },
+              "help": {
+                "text": "The paper asks for 'adequate separation of dedicated resources'. Each tenant gets its own CPUs; no two tenants' CPU sets overlap.\n\nRemediation: Give every tenant a `cpuset`; generate them with `lab.py cpus` so they never overlap.",
+                "markdown": "The paper asks for 'adequate separation of dedicated resources'. Each tenant gets its own CPUs; no two tenants' CPU sets overlap.\n\n**Remediation:** Give every tenant a `cpuset`; generate them with `lab.py cpus` so they never overlap.\n\nPaper taxonomy: `architecture/virtualization/isolation/physical-isolation`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:isolation",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "HV-01",
+              "name": "EngineAPInotexposedtoworkloads",
+              "shortDescription": {
+                "text": "Engine API not exposed to workloads"
+              },
+              "fullDescription": {
+                "text": "The container engine is this testbed's hypervisor. Whoever holds its socket controls every workload on the host."
+              },
+              "help": {
+                "text": "The container engine is this testbed's hypervisor. Whoever holds its socket controls every workload on the host.\n\nRemediation: Never mount docker/containerd sockets into workloads; give monitoring a read-only API proxy instead.",
+                "markdown": "The container engine is this testbed's hypervisor. Whoever holds its socket controls every workload on the host.\n\n**Remediation:** Never mount docker/containerd sockets into workloads; give monitoring a read-only API proxy instead.\n\nPaper taxonomy: `architecture/virtualization/hypervisor-vulnerabilities/virtualization`, `architecture/interfaces/administrative-interface/vm-management`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "9.5",
+                "tags": [
+                  "security",
+                  "axis:hypervisor-vulnerabilities",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "HV-02",
+              "name": "Engineandkernelatthepatchbaseline",
+              "shortDescription": {
+                "text": "Engine and kernel at the patch baseline"
+              },
+              "fullDescription": {
+                "text": "The shared kernel and engine are the 'hypervisor' every tenant depends on; they must be at or above the policy's minimum versions."
+              },
+              "help": {
+                "text": "The shared kernel and engine are the 'hypervisor' every tenant depends on; they must be at or above the policy's minimum versions.\n\nRemediation: Upgrade Docker Engine / the host kernel to the versions in policy.yaml.",
+                "markdown": "The shared kernel and engine are the 'hypervisor' every tenant depends on; they must be at or above the policy's minimum versions.\n\n**Remediation:** Upgrade Docker Engine / the host kernel to the versions in policy.yaml.\n\nPaper taxonomy: `architecture/virtualization/hypervisor-vulnerabilities/virtualization`, `architecture/virtualization/hypervisor-vulnerabilities/proprietary-solutions`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:hypervisor-vulnerabilities",
+                  "requirement:R3"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "HV-03",
+              "name": "CPUvulnerabilitymitigationsactive",
+              "shortDescription": {
+                "text": "CPU vulnerability mitigations active"
+              },
+              "fullDescription": {
+                "text": "The kernel reports, per known CPU flaw, whether it is mitigated. A 'Vulnerable' entry is a shared-hardware weakness every tenant inherits and none of them can fix."
+              },
+              "help": {
+                "text": "The kernel reports, per known CPU flaw, whether it is mitigated. A 'Vulnerable' entry is a shared-hardware weakness every tenant inherits and none of them can fix.\n\nRemediation: Update host microcode/firmware and the kernel; this is the provider's responsibility.",
+                "markdown": "The kernel reports, per known CPU flaw, whether it is mitigated. A 'Vulnerable' entry is a shared-hardware weakness every tenant inherits and none of them can fix.\n\n**Remediation:** Update host microcode/firmware and the kernel; this is the provider's responsibility.\n\nPaper taxonomy: `architecture/virtualization/hypervisor-vulnerabilities/virtualization`, `architecture/virtualization/cross-vm-attacks/cryptographic-key-stealing`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:hypervisor-vulnerabilities",
+                  "requirement:R3"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "HV-04",
+              "name": "User-namespaceisolationenabled",
+              "shortDescription": {
+                "text": "User-namespace isolation enabled"
+              },
+              "fullDescription": {
+                "text": "With user namespaces (userns-remap or rootless mode) root in a container maps to an unprivileged user on the host, so an escape lands without privileges."
+              },
+              "help": {
+                "text": "With user namespaces (userns-remap or rootless mode) root in a container maps to an unprivileged user on the host, so an escape lands without privileges.\n\nRemediation: Enable `userns-remap` in daemon.json or run the engine rootless.",
+                "markdown": "With user namespaces (userns-remap or rootless mode) root in a container maps to an unprivileged user on the host, so an escape lands without privileges.\n\n**Remediation:** Enable `userns-remap` in daemon.json or run the engine rootless.\n\nPaper taxonomy: `privacy/legal-issues/provider-privilege/privilege-escalation`, `architecture/virtualization/isolation/logical-isolation`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:hypervisor-vulnerabilities",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "HV-05",
+              "name": "Mandatoryaccesscontrolprofileapplied",
+              "shortDescription": {
+                "text": "Mandatory access control profile applied"
+              },
+              "fullDescription": {
+                "text": "AppArmor/SELinux confine what a process may touch even as root. Applies where the host supports it."
+              },
+              "help": {
+                "text": "AppArmor/SELinux confine what a process may touch even as root. Applies where the host supports it.\n\nRemediation: Keep the engine's default AppArmor profile (`docker-default`); never set `apparmor=unconfined`.",
+                "markdown": "AppArmor/SELinux confine what a process may touch even as root. Applies where the host supports it.\n\n**Remediation:** Keep the engine's default AppArmor profile (`docker-default`); never set `apparmor=unconfined`.\n\nPaper taxonomy: `architecture/virtualization/hypervisor-vulnerabilities/virtualization`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:hypervisor-vulnerabilities",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "HV-06",
+              "name": "Hostkernelhardeningsettings",
+              "shortDescription": {
+                "text": "Host kernel hardening settings"
+              },
+              "fullDescription": {
+                "text": "Kernel settings that hide kernel addresses and logs from unprivileged users and restrict eBPF and performance counters on the shared kernel."
+              },
+              "help": {
+                "text": "Kernel settings that hide kernel addresses and logs from unprivileged users and restrict eBPF and performance counters on the shared kernel.\n\nRemediation: Set the sysctls listed in policy.yaml (lab.py applies them when bringing up the hardened profile).",
+                "markdown": "Kernel settings that hide kernel addresses and logs from unprivileged users and restrict eBPF and performance counters on the shared kernel.\n\n**Remediation:** Set the sysctls listed in policy.yaml (lab.py applies them when bringing up the hardened profile).\n\nPaper taxonomy: `architecture/virtualization/hypervisor-vulnerabilities/virtualization`, `architecture/network-security/security-configuration/systems`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:hypervisor-vulnerabilities",
+                  "requirement:R3"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "DL-01",
+              "name": "Nosensitiveorwritablehostmounts",
+              "shortDescription": {
+                "text": "No sensitive or writable host mounts"
+              },
+              "fullDescription": {
+                "text": "Bind-mounting host paths into a tenant exposes host or other tenants' data and, if writable, lets the tenant alter it."
+              },
+              "help": {
+                "text": "Bind-mounting host paths into a tenant exposes host or other tenants' data and, if writable, lets the tenant alter it.\n\nRemediation: Use named volumes owned by the tenant; never bind host system paths.",
+                "markdown": "Bind-mounting host paths into a tenant exposes host or other tenants' data and, if writable, lets the tenant alter it.\n\n**Remediation:** Use named volumes owned by the tenant; never bind host system paths.\n\nPaper taxonomy: `architecture/virtualization/data-leakage/confidentiality`, `architecture/virtualization/data-leakage/integrity`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:data-leakage",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "DL-02",
+              "name": "Nostoragesharedbetweentenants",
+              "shortDescription": {
+                "text": "No storage shared between tenants"
+              },
+              "fullDescription": {
+                "text": "A volume mounted by two tenants is a direct data channel between them."
+              },
+              "help": {
+                "text": "A volume mounted by two tenants is a direct data channel between them.\n\nRemediation: Give each tenant its own volume, labelled with its tenant id.",
+                "markdown": "A volume mounted by two tenants is a direct data channel between them.\n\n**Remediation:** Give each tenant its own volume, labelled with its tenant id.\n\nPaper taxonomy: `architecture/virtualization/data-leakage/confidentiality`, `architecture/network-security/transfer-security/resource-sharing`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:data-leakage",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "DL-03",
+              "name": "NosharedIPCnamespace",
+              "shortDescription": {
+                "text": "No shared IPC namespace"
+              },
+              "fullDescription": {
+                "text": "Sharing the host's (or another tenant's) IPC namespace exposes shared memory segments and queues."
+              },
+              "help": {
+                "text": "Sharing the host's (or another tenant's) IPC namespace exposes shared memory segments and queues.\n\nRemediation: Remove `ipc: host`; never join another tenant's IPC namespace.",
+                "markdown": "Sharing the host's (or another tenant's) IPC namespace exposes shared memory segments and queues.\n\n**Remediation:** Remove `ipc: host`; never join another tenant's IPC namespace.\n\nPaper taxonomy: `architecture/virtualization/data-leakage/confidentiality`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:data-leakage",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "DL-04",
+              "name": "Read-onlyrootfilesystem",
+              "shortDescription": {
+                "text": "Read-only root filesystem"
+              },
+              "fullDescription": {
+                "text": "An immutable root filesystem stops a compromised workload from altering its own code or planting files; writable state lives only in declared volumes and tmpfs."
+              },
+              "help": {
+                "text": "An immutable root filesystem stops a compromised workload from altering its own code or planting files; writable state lives only in declared volumes and tmpfs.\n\nRemediation: Set `read_only: true` and mount a small tmpfs for /tmp.",
+                "markdown": "An immutable root filesystem stops a compromised workload from altering its own code or planting files; writable state lives only in declared volumes and tmpfs.\n\n**Remediation:** Set `read_only: true` and mount a small tmpfs for /tmp.\n\nPaper taxonomy: `architecture/virtualization/data-leakage/integrity`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:data-leakage",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "DL-05",
+              "name": "Nosecretsinenvironmentvariables",
+              "shortDescription": {
+                "text": "No secrets in environment variables"
+              },
+              "fullDescription": {
+                "text": "Environment variables leak through `inspect`, crash dumps and child processes. Only variable names are checked and reported, never their values."
+              },
+              "help": {
+                "text": "Environment variables leak through `inspect`, crash dumps and child processes. Only variable names are checked and reported, never their values.\n\nRemediation: Pass secrets as files (Compose secrets) and read them at runtime.",
+                "markdown": "Environment variables leak through `inspect`, crash dumps and child processes. Only variable names are checked and reported, never their values.\n\n**Remediation:** Pass secrets as files (Compose secrets) and read them at runtime.\n\nPaper taxonomy: `privacy/data-security/cryptography/sensitive-data`, `architecture/virtualization/data-leakage/confidentiality`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:data-leakage",
+                  "requirement:R4"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "XVM-01",
+              "name": "Nonetworksharedbytwotenants",
+              "shortDescription": {
+                "text": "No network shared by two tenants"
+              },
+              "fullDescription": {
+                "text": "Tenants on a common network can reach each other directly, so one compromised tenant can attack the others."
+              },
+              "help": {
+                "text": "Tenants on a common network can reach each other directly, so one compromised tenant can attack the others.\n\nRemediation: Put each tenant on its own network; route any necessary traffic through a provider gateway.",
+                "markdown": "Tenants on a common network can reach each other directly, so one compromised tenant can attack the others.\n\n**Remediation:** Put each tenant on its own network; route any necessary traffic through a provider gateway.\n\nPaper taxonomy: `architecture/network-security/firewalling/vm-isolation`, `architecture/virtualization/cross-vm-attacks/vm-placement-overlapping-attacks`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "9.5",
+                "tags": [
+                  "security",
+                  "axis:cross-vm-attacks",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "XVM-02",
+              "name": "Tenantnetworksareinternal",
+              "shortDescription": {
+                "text": "Tenant networks are internal"
+              },
+              "fullDescription": {
+                "text": "Tenant networks without egress cannot exfiltrate data or reach the default bridge where other workloads may live."
+              },
+              "help": {
+                "text": "Tenant networks without egress cannot exfiltrate data or reach the default bridge where other workloads may live.\n\nRemediation: Mark tenant networks `internal: true`; never attach tenants to the default `bridge`.",
+                "markdown": "Tenant networks without egress cannot exfiltrate data or reach the default bridge where other workloads may live.\n\n**Remediation:** Mark tenant networks `internal: true`; never attach tenants to the default `bridge`.\n\nPaper taxonomy: `architecture/network-security/firewalling/filtering`, `architecture/virtualization/data-leakage/confidentiality`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:cross-vm-attacks",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "XVM-03",
+              "name": "Nohostnetworknamespace",
+              "shortDescription": {
+                "text": "No host network namespace"
+              },
+              "fullDescription": {
+                "text": "With the host's network stack a workload can reach every service on the host and every tenant."
+              },
+              "help": {
+                "text": "With the host's network stack a workload can reach every service on the host and every tenant.\n\nRemediation: Remove `network_mode: host`.",
+                "markdown": "With the host's network stack a workload can reach every service on the host and every tenant.\n\n**Remediation:** Remove `network_mode: host`.\n\nPaper taxonomy: `architecture/network-security/firewalling/vm-isolation`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "9.5",
+                "tags": [
+                  "security",
+                  "axis:cross-vm-attacks",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "XVM-04",
+              "name": "Tenantspublishnohostports",
+              "shortDescription": {
+                "text": "Tenants publish no host ports"
+              },
+              "fullDescription": {
+                "text": "A published port is a path around network segmentation (other tenants can reach it via the host) and, on 0.0.0.0, exposes the tenant to the LAN."
+              },
+              "help": {
+                "text": "A published port is a path around network segmentation (other tenants can reach it via the host) and, on 0.0.0.0, exposes the tenant to the LAN.\n\nRemediation: Do not publish tenant ports; expose services through the provider's ingress.",
+                "markdown": "A published port is a path around network segmentation (other tenants can reach it via the host) and, on 0.0.0.0, exposes the tenant to the LAN.\n\n**Remediation:** Do not publish tenant ports; expose services through the provider's ingress.\n\nPaper taxonomy: `architecture/network-security/firewalling/filtering`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:cross-vm-attacks",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "XVM-05",
+              "name": "Nophysicalcoresharedbytwotenants",
+              "shortDescription": {
+                "text": "No physical core shared by two tenants"
+              },
+              "fullDescription": {
+                "text": "SMT (hyper-threading) siblings share a core's caches and execution units. Tenants that share a physical core are not separated in hardware, which is what cross-VM attacks rely on."
+              },
+              "help": {
+                "text": "SMT (hyper-threading) siblings share a core's caches and execution units. Tenants that share a physical core are not separated in hardware, which is what cross-VM attacks rely on.\n\nRemediation: Plan CPU sets on physical-core boundaries (lab.py cpus), or disable SMT for sensitive workloads.",
+                "markdown": "SMT (hyper-threading) siblings share a core's caches and execution units. Tenants that share a physical core are not separated in hardware, which is what cross-VM attacks rely on.\n\n**Remediation:** Plan CPU sets on physical-core boundaries (lab.py cpus), or disable SMT for sensitive workloads.\n\nPaper taxonomy: `architecture/virtualization/isolation/physical-isolation`, `architecture/virtualization/cross-vm-attacks/cryptographic-key-stealing`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:cross-vm-attacks",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "XVM-06",
+              "name": "Memorydeduplication(KSM)off",
+              "shortDescription": {
+                "text": "Memory deduplication (KSM) off"
+              },
+              "fullDescription": {
+                "text": "Kernel same-page merging makes identical memory pages of different tenants physically shared."
+              },
+              "help": {
+                "text": "Kernel same-page merging makes identical memory pages of different tenants physically shared.\n\nRemediation: Keep /sys/kernel/mm/ksm/run at 0 on multi-tenant hosts.",
+                "markdown": "Kernel same-page merging makes identical memory pages of different tenants physically shared.\n\n**Remediation:** Keep /sys/kernel/mm/ksm/run at 0 on multi-tenant hosts.\n\nPaper taxonomy: `architecture/virtualization/isolation/physical-isolation`, `architecture/virtualization/cross-vm-attacks/vm-placement-overlapping-attacks`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:cross-vm-attacks",
+                  "requirement:R2"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "XVM-07",
+              "name": "Cross-tenanttripwiresarmed",
+              "shortDescription": {
+                "text": "Cross-tenant tripwires armed"
+              },
+              "fullDescription": {
+                "text": "The paper asks solutions to 'examine any attempt of exploiting cross-VM and data leakage'. That needs live detection: the engine-event watcher running, the canary healthy, alert rules loaded."
+              },
+              "help": {
+                "text": "The paper asks solutions to 'examine any attempt of exploiting cross-VM and data leakage'. That needs live detection: the engine-event watcher running, the canary healthy, alert rules loaded.\n\nRemediation: Keep the auditor service, the canary and Prometheus rules running.",
+                "markdown": "The paper asks solutions to 'examine any attempt of exploiting cross-VM and data leakage'. That needs live detection: the engine-event watcher running, the canary healthy, alert rules loaded.\n\n**Remediation:** Keep the auditor service, the canary and Prometheus rules running.\n\nPaper taxonomy: `architecture/virtualization/cross-vm-attacks`, `compliance/service/audit/security-assessments`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:cross-vm-attacks",
+                  "requirement:R4"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ID-01",
+              "name": "Everyworkloadcarriesanidentity",
+              "shortDescription": {
+                "text": "Every workload carries an identity"
+              },
+              "fullDescription": {
+                "text": "The paper's first requirement: 'virtual machine identification'. Each workload declares its plane, tenant, owner and a unique workload id."
+              },
+              "help": {
+                "text": "The paper's first requirement: 'virtual machine identification'. Each workload declares its plane, tenant, owner and a unique workload id.\n\nRemediation: Add the io.isolab.* identity labels (see policy.yaml).",
+                "markdown": "The paper's first requirement: 'virtual machine identification'. Each workload declares its plane, tenant, owner and a unique workload id.\n\n**Remediation:** Add the io.isolab.* identity labels (see policy.yaml).\n\nPaper taxonomy: `architecture/virtualization/vm-identification/multiple-users`, `architecture/virtualization/vm-identification/multiple-processes`, `compliance/provider/data-control/configurations`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:vm-identification",
+                  "requirement:R1"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ID-02",
+              "name": "Nounattributedworkloadsonthehost",
+              "shortDescription": {
+                "text": "No unattributed workloads on the host"
+              },
+              "fullDescription": {
+                "text": "Anything running on the host without an identity is outside every control (CSA's 'unknown risk profile')."
+              },
+              "help": {
+                "text": "Anything running on the host without an identity is outside every control (CSA's 'unknown risk profile').\n\nRemediation: Label or remove the workload; list sanctioned exceptions in policy.yaml.",
+                "markdown": "Anything running on the host without an identity is outside every control (CSA's 'unknown risk profile').\n\n**Remediation:** Label or remove the workload; list sanctioned exceptions in policy.yaml.\n\nPaper taxonomy: `architecture/virtualization/vm-identification/multiple-resources`, `compliance/provider/security-control/loss-of-control-over-policies`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:vm-identification",
+                  "requirement:R1"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ID-03",
+              "name": "Identitymatchesnetworkandstorageplacement",
+              "shortDescription": {
+                "text": "Identity matches network and storage placement"
+              },
+              "fullDescription": {
+                "text": "A workload labelled as tenant X must only be attached to tenant X's networks and volumes."
+              },
+              "help": {
+                "text": "A workload labelled as tenant X must only be attached to tenant X's networks and volumes.\n\nRemediation: Label networks and volumes with their tenant and attach workloads only to their own.",
+                "markdown": "A workload labelled as tenant X must only be attached to tenant X's networks and volumes.\n\n**Remediation:** Label networks and volumes with their tenant and attach workloads only to their own.\n\nPaper taxonomy: `architecture/virtualization/vm-identification/multiple-resources`, `architecture/interfaces/authentication/multi-tenancy`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:vm-identification",
+                  "requirement:R1"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ID-04",
+              "name": "Imageprovenancerecorded",
+              "shortDescription": {
+                "text": "Image provenance recorded"
+              },
+              "fullDescription": {
+                "text": "Knowing exactly what runs: images are pinned by digest, or built from a digest-pinned base and labelled with their source revision."
+              },
+              "help": {
+                "text": "Knowing exactly what runs: images are pinned by digest, or built from a digest-pinned base and labelled with their source revision.\n\nRemediation: Pin `image:` by @sha256 digest; build from pinned bases with OCI revision/base labels.",
+                "markdown": "Knowing exactly what runs: images are pinned by digest, or built from a digest-pinned base and labelled with their source revision.\n\n**Remediation:** Pin `image:` by @sha256 digest; build from pinned bases with OCI revision/base labels.\n\nPaper taxonomy: `architecture/virtualization/vm-identification/multiple-resources`, `compliance/service/audit/transparency`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "security-severity": "5.0",
+                "tags": [
+                  "security",
+                  "axis:vm-identification",
+                  "requirement:R1"
+                ],
+                "precision": "high"
+              }
+            },
+            {
+              "id": "ID-05",
+              "name": "Everytenantcontinuouslyobserved",
+              "shortDescription": {
+                "text": "Every tenant continuously observed"
+              },
+              "fullDescription": {
+                "text": "The paper asks for 'constant observation of shared' resources: every tenant must have fresh usage and pressure samples."
+              },
+              "help": {
+                "text": "The paper asks for 'constant observation of shared' resources: every tenant must have fresh usage and pressure samples.\n\nRemediation: Keep the auditor running; make sure its cgroup mount is present so pressure (PSI) is readable.",
+                "markdown": "The paper asks for 'constant observation of shared' resources: every tenant must have fresh usage and pressure samples.\n\n**Remediation:** Keep the auditor running; make sure its cgroup mount is present so pressure (PSI) is readable.\n\nPaper taxonomy: `architecture/virtualization/vm-identification/multiple-processes`, `compliance/service/audit/transparency`"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "security-severity": "7.5",
+                "tags": [
+                  "security",
+                  "axis:vm-identification",
+                  "requirement:R1",
+                  "requirement:R3"
+                ],
+                "precision": "high"
+              }
+            }
+          ]
+        }
+      },
+      "automationDetails": {
+        "id": "isolab/hardened/"
+      },
+      "results": [
+        {
+          "ruleId": "HV-03",
+          "level": "error",
+          "message": {
+            "text": "[hardened] host: vulnerable: spec_rstack_overflow (Vulnerable: Safe RET, no microcode)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "testbed/policy.yaml",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "host",
+                  "kind": "host"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "isolabTarget/v1": "hardened:HV-03:host:host"
+          },
+          "properties": {
+            "axis": "hypervisor-vulnerabilities",
+            "tenant": null,
+            "severity": "high"
+          },
+          "suppressions": [
+            {
+              "kind": "external",
+              "status": "accepted",
+              "justification": "The WSL2 kernel reports spec_rstack_overflow as \"Vulnerable: Safe RET, no microcode\". The SRSO microcode fix is delivered through the physical host's firmware/Windows updates; the container host (a WSL2 VM) cannot load microcode itself. This is a provider-layer weakness outside the testbed's control - the paper's point about tenants depending on a hypervisor they cannot inspect or fix. (expires 2026-12-31, approved by project owner (pending review))"
+            }
+          ]
+        },
+        {
+          "ruleId": "HV-04",
+          "level": "error",
+          "message": {
+            "text": "[hardened] host: container root is host root (no userns)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "testbed/policy.yaml",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "host",
+                  "kind": "host"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "isolabTarget/v1": "hardened:HV-04:host:host"
+          },
+          "properties": {
+            "axis": "hypervisor-vulnerabilities",
+            "tenant": null,
+            "severity": "medium"
+          },
+          "suppressions": [
+            {
+              "kind": "external",
+              "status": "accepted",
+              "justification": "User-namespace remapping and rootless mode are not available in Docker Desktop without Enhanced Container Isolation (Business subscription). Compensating controls: every tenant runs as uid 10001 with all capabilities dropped, no-new-privileges and seccomp. (expires 2026-12-31, approved by project owner (pending review))"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "profile": "hardened",
+        "platform": "docker-desktop-wsl2",
+        "gatePassed": true
+      }
+    }
+  ]
+}

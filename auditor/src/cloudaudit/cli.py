@@ -4,6 +4,7 @@
     cloudaudit audit --snapshot FILE       audit a saved snapshot (tests, fixtures)
     cloudaudit schema --out DIR            write the JSON Schemas for the report contract
     cloudaudit catalogue --format md|json  print the check catalogue
+    cloudaudit validate DIR --schemas DIR  validate published results (needs the dev extras)
 """
 
 from __future__ import annotations
@@ -45,6 +46,27 @@ def write_schemas(out: Path) -> None:
         (out / name).write_text(json.dumps(doc, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def validate(results: Path, schemas: Path) -> int:
+    import jsonschema  # noqa: PLC0415 (dev extra; not in the runtime image)
+
+    audit_schema = json.loads((schemas / "audit-report.schema.json").read_text(encoding="utf-8"))
+    exp_schema = json.loads((schemas / "experiments.schema.json").read_text(encoding="utf-8"))
+    sarif_schema = json.loads((schemas / "vendor" / "sarif-2.1.0.json").read_text(encoding="utf-8"))
+    bad = 0
+    for f in sorted([*results.glob("*.json"), *results.glob("*.sarif")]):
+        if f.name == "manifest.json":
+            continue
+        doc = json.loads(f.read_text(encoding="utf-8"))
+        schema = sarif_schema if f.suffix == ".sarif" else audit_schema if f.name.startswith("audit") else exp_schema
+        try:
+            jsonschema.validate(doc, schema)
+            print(f"valid    {f.name}")
+        except jsonschema.ValidationError as exc:
+            bad += 1
+            print(f"INVALID  {f.name}: {exc.message[:300]} at {list(exc.absolute_path)[:8]}")
+    return 1 if bad else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="cloudaudit", description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -60,6 +82,9 @@ def main(argv: list[str] | None = None) -> int:
     sc.add_argument("--out", default="schemas")
     c = sub.add_parser("catalogue")
     c.add_argument("--format", choices=["md", "json"], default="md")
+    v = sub.add_parser("validate")
+    v.add_argument("results")
+    v.add_argument("--schemas", default="schemas")
     args = parser.parse_args(argv)
 
     if args.cmd == "serve":
@@ -80,6 +105,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "schema":
         write_schemas(Path(args.out))
         return 0
+    if args.cmd == "validate":
+        return validate(Path(args.results), Path(args.schemas))
     if args.cmd == "catalogue":
         if args.format == "md":
             sys.stdout.write(to_markdown() + "\n")

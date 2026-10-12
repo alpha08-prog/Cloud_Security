@@ -145,21 +145,23 @@ class E3Trigger(Model):
     id: str = Field(pattern=r"^T\d+$")
     description: str
     expected_rule: str
-    expected_tenant: str | None
+    expect: dict[str, Literal["detect", "silent"]] = Field(description="per profile")
+    expected_tenant: dict[str, str | None] = Field(description="per profile; null = unattributed workload")
     slo_ms: int
     requirements: list[Requirement]
-    profiles: list[ProfileName]
 
 
 class E3Outcome(Model):
     profile: ProfileName
     trigger_id: str
+    expected: Literal["detect", "silent"]
     detected: bool
     rule: str | None
     tenant: str | None
     latency_ms: float | None
     within_slo: bool
-    attribution_correct: bool
+    attribution_correct: bool | None
+    as_expected: bool
 
 
 class E3FalsePositive(Model):

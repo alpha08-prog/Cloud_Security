@@ -13,15 +13,14 @@ groups:
 
   - name: isolab-alerts
     rules:
-      # DET-08 mirror for the dashboard: a tenant waits for CPU while another burns > 1.5 cores.
+      # DET-08, evaluated by the auditor: a tenant exceeds its fair share of CPUs it shares
+      # with other active tenants. The auditor exports the live condition; this alert mirrors it.
       - alert: NoisyNeighbour
-        expr: |
-          isolab:tenant_cpu_pressure:ratio30s > 0.10
-          and on() (max(isolab:tenant_cpu_cores:rate30s) > 1.5)
+        expr: cloudaudit_noisy_neighbour_active == 1
         for: 30s
         labels: {severity: warning, requirement: R3}
         annotations:
-          summary: "Tenant {{ $labels.tenant }} is waiting for CPU {{ $value | humanizePercentage }} of the time"
+          summary: "Tenant {{ $labels.tenant }} is exceeding its fair share of shared CPUs"
       # DET-10: a tenant stopped being observed (R1/R3).
       - alert: TenantNotObserved
         expr: |
