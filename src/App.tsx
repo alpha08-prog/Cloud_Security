@@ -5,14 +5,17 @@ import { SectionFrame } from './components/SectionFrame'
 import { TabBar } from './components/TabBar'
 import { panelId, tabId } from './components/tabIds'
 import { useTheme } from './hooks/useTheme'
-import { DEFAULT_SECTION, SECTIONS, isSectionId, type SectionId } from './sections'
+import { DEFAULT_SECTION, LEGACY_HASHES, SECTIONS, isSectionId, type SectionId } from './sections'
 
-// The active tab lives in the URL hash (#data, #side-channel, …) so sections can
-// be deep-linked during a demo, the back button works, and static hosting needs
-// no rewrite rules.
+// The active tab lives in the URL hash (#results, #results/detection, …) so
+// sections and their views can be deep-linked during a demo, the back button
+// works, and static hosting needs no rewrite rules.
 function sectionFromHash(): SectionId {
-  const hash = window.location.hash.slice(1)
-  return isSectionId(hash) ? hash : DEFAULT_SECTION
+  const raw = window.location.hash.slice(1)
+  const legacy = LEGACY_HASHES[raw]
+  if (legacy) window.history.replaceState(null, '', `#${legacy}`)
+  const id = (legacy ?? raw).split('/')[0]
+  return isSectionId(id) ? id : DEFAULT_SECTION
 }
 
 export default function App() {

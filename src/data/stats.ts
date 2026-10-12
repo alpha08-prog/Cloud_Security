@@ -141,8 +141,9 @@ export const SUBCATEGORY_SHARES: readonly SubcategoryShare[] = (
 }))
 
 // ---------------------------------------------------------------------------
-// Virtualization radar — Figure 11. Approximate values read from the chart,
-// on its own scale of roughly 0–25.
+// Virtualization radar — Figure 11. Approximate values measured from the chart
+// (rendered at 900 dpi), on its own scale of 0–25. Listed in the figure's
+// clockwise axis order, starting at the top, so our radars match its shape.
 
 export interface VirtualizationIssue {
   issue: string
@@ -151,11 +152,11 @@ export interface VirtualizationIssue {
 }
 
 export const VIRTUALIZATION_RADAR: readonly VirtualizationIssue[] = [
-  { issue: 'Isolation', concern: 22, solution: 3 },
-  { issue: 'Cross-VM attacks', concern: 20, solution: 1 },
-  { issue: 'Hypervisor vulnerabilities', concern: 20, solution: 2 },
-  { issue: 'Data leakage', concern: 18, solution: 1 },
-  { issue: 'VM identification', concern: 15, solution: 1 },
+  { issue: 'Hypervisor vulnerabilities', concern: 21, solution: 8 },
+  { issue: 'Cross-VM attacks', concern: 21, solution: 1 },
+  { issue: 'Isolation', concern: 20, solution: 3 },
+  { issue: 'Data leakage', concern: 16, solution: 5 },
+  { issue: 'VM identification', concern: 15, solution: 2 },
 ]
 
 export const VIRTUALIZATION_RADAR_MAX = 25

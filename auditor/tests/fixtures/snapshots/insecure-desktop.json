@@ -1,0 +1,3514 @@
+{
+ "taken_at": "2026-10-12T15:59:44.335Z",
+ "profile": "insecure",
+ "platform": "docker-desktop-wsl2",
+ "ci": false,
+ "info": {
+  "Containers": 15,
+  "ContainersRunning": 8,
+  "ContainersPaused": 0,
+  "ContainersStopped": 7,
+  "Images": 21,
+  "Driver": "overlayfs",
+  "DriverStatus": [
+   [
+    "driver-type",
+    "io.containerd.snapshotter.v1"
+   ]
+  ],
+  "MemoryLimit": true,
+  "SwapLimit": true,
+  "CpuCfsPeriod": true,
+  "CpuCfsQuota": true,
+  "CPUShares": true,
+  "CPUSet": true,
+  "PidsLimit": true,
+  "IPv4Forwarding": true,
+  "Debug": false,
+  "NFd": 118,
+  "OomKillDisable": false,
+  "NGoroutines": 158,
+  "LoggingDriver": "json-file",
+  "CgroupDriver": "cgroupfs",
+  "CgroupVersion": "2",
+  "NEventsListener": 14,
+  "KernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+  "OperatingSystem": "Docker Desktop",
+  "OSVersion": "",
+  "OSType": "linux",
+  "Architecture": "x86_64",
+  "IndexServerAddress": "https://index.docker.io/v1/",
+  "NCPU": 12,
+  "MemTotal": 7976726528,
+  "GenericResources": null,
+  "HttpProxy": "http.docker.internal:3128",
+  "HttpsProxy": "http.docker.internal:3128",
+  "NoProxy": "hubproxy.docker.internal",
+  "Labels": [
+   "com.docker.desktop.address=npipe://\\\\.\\pipe\\docker_cli"
+  ],
+  "ExperimentalBuild": false,
+  "ServerVersion": "29.2.1",
+  "Runtimes": {
+   "io.containerd.runc.v2": {
+    "path": "runc",
+    "status": {
+     "org.opencontainers.runtime-spec.features": "{\"ociVersionMin\":\"1.0.0\",\"ociVersionMax\":\"1.2.1\",\"hooks\":[\"prestart\",\"createRuntime\",\"createContainer\",\"startContainer\",\"poststart\",\"poststop\"],\"mountOptions\":[\"async\",\"atime\",\"bind\",\"defaults\",\"dev\",\"diratime\",\"dirsync\",\"exec\",\"iversion\",\"lazytime\",\"loud\",\"mand\",\"noatime\",\"nodev\",\"nodiratime\",\"noexec\",\"noiversion\",\"nolazytime\",\"nomand\",\"norelatime\",\"nostrictatime\",\"nosuid\",\"nosymfollow\",\"private\",\"ratime\",\"rbind\",\"rdev\",\"rdiratime\",\"relatime\",\"remount\",\"rexec\",\"rnoatime\",\"rnodev\",\"rnodiratime\",\"rnoexec\",\"rnorelatime\",\"rnostrictatime\",\"rnosuid\",\"rnosymfollow\",\"ro\",\"rprivate\",\"rrelatime\",\"rro\",\"rrw\",\"rshared\",\"rslave\",\"rstrictatime\",\"rsuid\",\"rsymfollow\",\"runbindable\",\"rw\",\"shared\",\"silent\",\"slave\",\"strictatime\",\"suid\",\"symfollow\",\"sync\",\"tmpcopyup\",\"unbindable\"],\"linux\":{\"namespaces\":[\"cgroup\",\"ipc\",\"mount\",\"network\",\"pid\",\"time\",\"user\",\"uts\"],\"capabilities\":[\"CAP_CHOWN\",\"CAP_DAC_OVERRIDE\",\"CAP_DAC_READ_SEARCH\",\"CAP_FOWNER\",\"CAP_FSETID\",\"CAP_KILL\",\"CAP_SETGID\",\"CAP_SETUID\",\"CAP_SETPCAP\",\"CAP_LINUX_IMMUTABLE\",\"CAP_NET_BIND_SERVICE\",\"CAP_NET_BROADCAST\",\"CAP_NET_ADMIN\",\"CAP_NET_RAW\",\"CAP_IPC_LOCK\",\"CAP_IPC_OWNER\",\"CAP_SYS_MODULE\",\"CAP_SYS_RAWIO\",\"CAP_SYS_CHROOT\",\"CAP_SYS_PTRACE\",\"CAP_SYS_PACCT\",\"CAP_SYS_ADMIN\",\"CAP_SYS_BOOT\",\"CAP_SYS_NICE\",\"CAP_SYS_RESOURCE\",\"CAP_SYS_TIME\",\"CAP_SYS_TTY_CONFIG\",\"CAP_MKNOD\",\"CAP_LEASE\",\"CAP_AUDIT_WRITE\",\"CAP_AUDIT_CONTROL\",\"CAP_SETFCAP\",\"CAP_MAC_OVERRIDE\",\"CAP_MAC_ADMIN\",\"CAP_SYSLOG\",\"CAP_WAKE_ALARM\",\"CAP_BLOCK_SUSPEND\",\"CAP_AUDIT_READ\",\"CAP_PERFMON\",\"CAP_BPF\",\"CAP_CHECKPOINT_RESTORE\"],\"cgroup\":{\"v1\":true,\"v2\":true,\"systemd\":true,\"systemdUser\":true,\"rdma\":true},\"seccomp\":{\"enabled\":true,\"actions\":[\"SCMP_ACT_ALLOW\",\"SCMP_ACT_ERRNO\",\"SCMP_ACT_KILL\",\"SCMP_ACT_KILL_PROCESS\",\"SCMP_ACT_KILL_THREAD\",\"SCMP_ACT_LOG\",\"SCMP_ACT_NOTIFY\",\"SCMP_ACT_TRACE\",\"SCMP_ACT_TRAP\"],\"operators\":[\"SCMP_CMP_EQ\",\"SCMP_CMP_GE\",\"SCMP_CMP_GT\",\"SCMP_CMP_LE\",\"SCMP_CMP_LT\",\"SCMP_CMP_MASKED_EQ\",\"SCMP_CMP_NE\"],\"archs\":[\"SCMP_ARCH_AARCH64\",\"SCMP_ARCH_ARM\",\"SCMP_ARCH_MIPS\",\"SCMP_ARCH_MIPS64\",\"SCMP_ARCH_MIPS64N32\",\"SCMP_ARCH_MIPSEL\",\"SCMP_ARCH_MIPSEL64\",\"SCMP_ARCH_MIPSEL64N32\",\"SCMP_ARCH_PPC\",\"SCMP_ARCH_PPC64\",\"SCMP_ARCH_PPC64LE\",\"SCMP_ARCH_RISCV64\",\"SCMP_ARCH_S390\",\"SCMP_ARCH_S390X\",\"SCMP_ARCH_X32\",\"SCMP_ARCH_X86\",\"SCMP_ARCH_X86_64\"],\"knownFlags\":[\"SECCOMP_FILTER_FLAG_TSYNC\",\"SECCOMP_FILTER_FLAG_SPEC_ALLOW\",\"SECCOMP_FILTER_FLAG_LOG\"],\"supportedFlags\":[\"SECCOMP_FILTER_FLAG_TSYNC\",\"SECCOMP_FILTER_FLAG_SPEC_ALLOW\",\"SECCOMP_FILTER_FLAG_LOG\"]},\"apparmor\":{\"enabled\":true},\"selinux\":{\"enabled\":true},\"intelRdt\":{\"enabled\":true},\"mountExtensions\":{\"idmap\":{\"enabled\":true}}},\"annotations\":{\"io.github.seccomp.libseccomp.version\":\"2.5.4\",\"org.opencontainers.runc.checkpoint.enabled\":\"true\",\"org.opencontainers.runc.commit\":\"v1.3.4-0-gd6d73eb8\",\"org.opencontainers.runc.version\":\"1.3.4\\n\"},\"potentiallyUnsafeConfigAnnotations\":[\"bundle\",\"org.systemd.property.\",\"org.criu.config\"]}"
+    }
+   },
+   "nvidia": {
+    "path": "nvidia-container-runtime",
+    "status": {
+     "org.opencontainers.runtime-spec.features": "{\"ociVersionMin\":\"1.0.0\",\"ociVersionMax\":\"1.2.1\",\"hooks\":[\"prestart\",\"createRuntime\",\"createContainer\",\"startContainer\",\"poststart\",\"poststop\"],\"mountOptions\":[\"async\",\"atime\",\"bind\",\"defaults\",\"dev\",\"diratime\",\"dirsync\",\"exec\",\"iversion\",\"lazytime\",\"loud\",\"mand\",\"noatime\",\"nodev\",\"nodiratime\",\"noexec\",\"noiversion\",\"nolazytime\",\"nomand\",\"norelatime\",\"nostrictatime\",\"nosuid\",\"nosymfollow\",\"private\",\"ratime\",\"rbind\",\"rdev\",\"rdiratime\",\"relatime\",\"remount\",\"rexec\",\"rnoatime\",\"rnodev\",\"rnodiratime\",\"rnoexec\",\"rnorelatime\",\"rnostrictatime\",\"rnosuid\",\"rnosymfollow\",\"ro\",\"rprivate\",\"rrelatime\",\"rro\",\"rrw\",\"rshared\",\"rslave\",\"rstrictatime\",\"rsuid\",\"rsymfollow\",\"runbindable\",\"rw\",\"shared\",\"silent\",\"slave\",\"strictatime\",\"suid\",\"symfollow\",\"sync\",\"tmpcopyup\",\"unbindable\"],\"linux\":{\"namespaces\":[\"cgroup\",\"ipc\",\"mount\",\"network\",\"pid\",\"time\",\"user\",\"uts\"],\"capabilities\":[\"CAP_CHOWN\",\"CAP_DAC_OVERRIDE\",\"CAP_DAC_READ_SEARCH\",\"CAP_FOWNER\",\"CAP_FSETID\",\"CAP_KILL\",\"CAP_SETGID\",\"CAP_SETUID\",\"CAP_SETPCAP\",\"CAP_LINUX_IMMUTABLE\",\"CAP_NET_BIND_SERVICE\",\"CAP_NET_BROADCAST\",\"CAP_NET_ADMIN\",\"CAP_NET_RAW\",\"CAP_IPC_LOCK\",\"CAP_IPC_OWNER\",\"CAP_SYS_MODULE\",\"CAP_SYS_RAWIO\",\"CAP_SYS_CHROOT\",\"CAP_SYS_PTRACE\",\"CAP_SYS_PACCT\",\"CAP_SYS_ADMIN\",\"CAP_SYS_BOOT\",\"CAP_SYS_NICE\",\"CAP_SYS_RESOURCE\",\"CAP_SYS_TIME\",\"CAP_SYS_TTY_CONFIG\",\"CAP_MKNOD\",\"CAP_LEASE\",\"CAP_AUDIT_WRITE\",\"CAP_AUDIT_CONTROL\",\"CAP_SETFCAP\",\"CAP_MAC_OVERRIDE\",\"CAP_MAC_ADMIN\",\"CAP_SYSLOG\",\"CAP_WAKE_ALARM\",\"CAP_BLOCK_SUSPEND\",\"CAP_AUDIT_READ\",\"CAP_PERFMON\",\"CAP_BPF\",\"CAP_CHECKPOINT_RESTORE\"],\"cgroup\":{\"v1\":true,\"v2\":true,\"systemd\":true,\"systemdUser\":true,\"rdma\":true},\"seccomp\":{\"enabled\":true,\"actions\":[\"SCMP_ACT_ALLOW\",\"SCMP_ACT_ERRNO\",\"SCMP_ACT_KILL\",\"SCMP_ACT_KILL_PROCESS\",\"SCMP_ACT_KILL_THREAD\",\"SCMP_ACT_LOG\",\"SCMP_ACT_NOTIFY\",\"SCMP_ACT_TRACE\",\"SCMP_ACT_TRAP\"],\"operators\":[\"SCMP_CMP_EQ\",\"SCMP_CMP_GE\",\"SCMP_CMP_GT\",\"SCMP_CMP_LE\",\"SCMP_CMP_LT\",\"SCMP_CMP_MASKED_EQ\",\"SCMP_CMP_NE\"],\"archs\":[\"SCMP_ARCH_AARCH64\",\"SCMP_ARCH_ARM\",\"SCMP_ARCH_MIPS\",\"SCMP_ARCH_MIPS64\",\"SCMP_ARCH_MIPS64N32\",\"SCMP_ARCH_MIPSEL\",\"SCMP_ARCH_MIPSEL64\",\"SCMP_ARCH_MIPSEL64N32\",\"SCMP_ARCH_PPC\",\"SCMP_ARCH_PPC64\",\"SCMP_ARCH_PPC64LE\",\"SCMP_ARCH_RISCV64\",\"SCMP_ARCH_S390\",\"SCMP_ARCH_S390X\",\"SCMP_ARCH_X32\",\"SCMP_ARCH_X86\",\"SCMP_ARCH_X86_64\"],\"knownFlags\":[\"SECCOMP_FILTER_FLAG_TSYNC\",\"SECCOMP_FILTER_FLAG_SPEC_ALLOW\",\"SECCOMP_FILTER_FLAG_LOG\"],\"supportedFlags\":[\"SECCOMP_FILTER_FLAG_TSYNC\",\"SECCOMP_FILTER_FLAG_SPEC_ALLOW\",\"SECCOMP_FILTER_FLAG_LOG\"]},\"apparmor\":{\"enabled\":true},\"selinux\":{\"enabled\":true},\"intelRdt\":{\"enabled\":true},\"mountExtensions\":{\"idmap\":{\"enabled\":true}}},\"annotations\":{\"io.github.seccomp.libseccomp.version\":\"2.5.4\",\"org.opencontainers.runc.checkpoint.enabled\":\"true\",\"org.opencontainers.runc.commit\":\"v1.3.4-0-gd6d73eb8\",\"org.opencontainers.runc.version\":\"1.3.4\\n\"},\"potentiallyUnsafeConfigAnnotations\":[\"bundle\",\"org.systemd.property.\",\"org.criu.config\"]}"
+    }
+   },
+   "runc": {
+    "path": "runc",
+    "status": {
+     "org.opencontainers.runtime-spec.features": "{\"ociVersionMin\":\"1.0.0\",\"ociVersionMax\":\"1.2.1\",\"hooks\":[\"prestart\",\"createRuntime\",\"createContainer\",\"startContainer\",\"poststart\",\"poststop\"],\"mountOptions\":[\"async\",\"atime\",\"bind\",\"defaults\",\"dev\",\"diratime\",\"dirsync\",\"exec\",\"iversion\",\"lazytime\",\"loud\",\"mand\",\"noatime\",\"nodev\",\"nodiratime\",\"noexec\",\"noiversion\",\"nolazytime\",\"nomand\",\"norelatime\",\"nostrictatime\",\"nosuid\",\"nosymfollow\",\"private\",\"ratime\",\"rbind\",\"rdev\",\"rdiratime\",\"relatime\",\"remount\",\"rexec\",\"rnoatime\",\"rnodev\",\"rnodiratime\",\"rnoexec\",\"rnorelatime\",\"rnostrictatime\",\"rnosuid\",\"rnosymfollow\",\"ro\",\"rprivate\",\"rrelatime\",\"rro\",\"rrw\",\"rshared\",\"rslave\",\"rstrictatime\",\"rsuid\",\"rsymfollow\",\"runbindable\",\"rw\",\"shared\",\"silent\",\"slave\",\"strictatime\",\"suid\",\"symfollow\",\"sync\",\"tmpcopyup\",\"unbindable\"],\"linux\":{\"namespaces\":[\"cgroup\",\"ipc\",\"mount\",\"network\",\"pid\",\"time\",\"user\",\"uts\"],\"capabilities\":[\"CAP_CHOWN\",\"CAP_DAC_OVERRIDE\",\"CAP_DAC_READ_SEARCH\",\"CAP_FOWNER\",\"CAP_FSETID\",\"CAP_KILL\",\"CAP_SETGID\",\"CAP_SETUID\",\"CAP_SETPCAP\",\"CAP_LINUX_IMMUTABLE\",\"CAP_NET_BIND_SERVICE\",\"CAP_NET_BROADCAST\",\"CAP_NET_ADMIN\",\"CAP_NET_RAW\",\"CAP_IPC_LOCK\",\"CAP_IPC_OWNER\",\"CAP_SYS_MODULE\",\"CAP_SYS_RAWIO\",\"CAP_SYS_CHROOT\",\"CAP_SYS_PTRACE\",\"CAP_SYS_PACCT\",\"CAP_SYS_ADMIN\",\"CAP_SYS_BOOT\",\"CAP_SYS_NICE\",\"CAP_SYS_RESOURCE\",\"CAP_SYS_TIME\",\"CAP_SYS_TTY_CONFIG\",\"CAP_MKNOD\",\"CAP_LEASE\",\"CAP_AUDIT_WRITE\",\"CAP_AUDIT_CONTROL\",\"CAP_SETFCAP\",\"CAP_MAC_OVERRIDE\",\"CAP_MAC_ADMIN\",\"CAP_SYSLOG\",\"CAP_WAKE_ALARM\",\"CAP_BLOCK_SUSPEND\",\"CAP_AUDIT_READ\",\"CAP_PERFMON\",\"CAP_BPF\",\"CAP_CHECKPOINT_RESTORE\"],\"cgroup\":{\"v1\":true,\"v2\":true,\"systemd\":true,\"systemdUser\":true,\"rdma\":true},\"seccomp\":{\"enabled\":true,\"actions\":[\"SCMP_ACT_ALLOW\",\"SCMP_ACT_ERRNO\",\"SCMP_ACT_KILL\",\"SCMP_ACT_KILL_PROCESS\",\"SCMP_ACT_KILL_THREAD\",\"SCMP_ACT_LOG\",\"SCMP_ACT_NOTIFY\",\"SCMP_ACT_TRACE\",\"SCMP_ACT_TRAP\"],\"operators\":[\"SCMP_CMP_EQ\",\"SCMP_CMP_GE\",\"SCMP_CMP_GT\",\"SCMP_CMP_LE\",\"SCMP_CMP_LT\",\"SCMP_CMP_MASKED_EQ\",\"SCMP_CMP_NE\"],\"archs\":[\"SCMP_ARCH_AARCH64\",\"SCMP_ARCH_ARM\",\"SCMP_ARCH_MIPS\",\"SCMP_ARCH_MIPS64\",\"SCMP_ARCH_MIPS64N32\",\"SCMP_ARCH_MIPSEL\",\"SCMP_ARCH_MIPSEL64\",\"SCMP_ARCH_MIPSEL64N32\",\"SCMP_ARCH_PPC\",\"SCMP_ARCH_PPC64\",\"SCMP_ARCH_PPC64LE\",\"SCMP_ARCH_RISCV64\",\"SCMP_ARCH_S390\",\"SCMP_ARCH_S390X\",\"SCMP_ARCH_X32\",\"SCMP_ARCH_X86\",\"SCMP_ARCH_X86_64\"],\"knownFlags\":[\"SECCOMP_FILTER_FLAG_TSYNC\",\"SECCOMP_FILTER_FLAG_SPEC_ALLOW\",\"SECCOMP_FILTER_FLAG_LOG\"],\"supportedFlags\":[\"SECCOMP_FILTER_FLAG_TSYNC\",\"SECCOMP_FILTER_FLAG_SPEC_ALLOW\",\"SECCOMP_FILTER_FLAG_LOG\"]},\"apparmor\":{\"enabled\":true},\"selinux\":{\"enabled\":true},\"intelRdt\":{\"enabled\":true},\"mountExtensions\":{\"idmap\":{\"enabled\":true}}},\"annotations\":{\"io.github.seccomp.libseccomp.version\":\"2.5.4\",\"org.opencontainers.runc.checkpoint.enabled\":\"true\",\"org.opencontainers.runc.commit\":\"v1.3.4-0-gd6d73eb8\",\"org.opencontainers.runc.version\":\"1.3.4\\n\"},\"potentiallyUnsafeConfigAnnotations\":[\"bundle\",\"org.systemd.property.\",\"org.criu.config\"]}"
+    }
+   }
+  },
+  "DefaultRuntime": "runc",
+  "LiveRestoreEnabled": false,
+  "Isolation": "",
+  "InitBinary": "docker-init",
+  "ContainerdCommit": {
+   "ID": "dea7da592f5d1d2b7755e3a161be07f43fad8f75"
+  },
+  "RuncCommit": {
+   "ID": "v1.3.4-0-gd6d73eb8"
+  },
+  "InitCommit": {
+   "ID": "de40ad0"
+  },
+  "SecurityOptions": [
+   "name=seccomp,profile=builtin",
+   "name=cgroupns"
+  ],
+  "FirewallBackend": {
+   "Driver": "iptables"
+  },
+  "CDISpecDirs": [
+   "/etc/cdi",
+   "/var/run/cdi"
+  ],
+  "DiscoveredDevices": [
+   {
+    "Source": "cdi",
+    "ID": "docker.com/gpu=webgpu"
+   }
+  ],
+  "Containerd": {
+   "Address": "/run/containerd/containerd.sock",
+   "Namespaces": {
+    "Containers": "moby",
+    "Plugins": "plugins.moby"
+   }
+  },
+  "Warnings": null
+ },
+ "version": {
+  "Platform": {
+   "Name": "Docker Desktop 4.61.0 (219004)"
+  },
+  "Version": "29.2.1",
+  "ApiVersion": "1.53",
+  "MinAPIVersion": "1.44",
+  "Os": "linux",
+  "Arch": "amd64",
+  "Components": [
+   {
+    "Name": "Engine",
+    "Version": "29.2.1",
+    "Details": {
+     "ApiVersion": "1.53",
+     "Arch": "amd64",
+     "BuildTime": "2026-02-02T17:17:24.000000000+00:00",
+     "Experimental": "false",
+     "GitCommit": "6bc6209",
+     "GoVersion": "go1.25.6",
+     "KernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+     "MinAPIVersion": "1.44",
+     "Os": "linux"
+    }
+   },
+   {
+    "Name": "containerd",
+    "Version": "v2.2.1",
+    "Details": {
+     "GitCommit": "dea7da592f5d1d2b7755e3a161be07f43fad8f75"
+    }
+   },
+   {
+    "Name": "runc",
+    "Version": "1.3.4",
+    "Details": {
+     "GitCommit": "v1.3.4-0-gd6d73eb8"
+    }
+   },
+   {
+    "Name": "docker-init",
+    "Version": "0.19.0",
+    "Details": {
+     "GitCommit": "de40ad0"
+    }
+   }
+  ],
+  "GitCommit": "6bc6209",
+  "GoVersion": "go1.25.6",
+  "KernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+  "BuildTime": "2026-02-02T17:17:24.000000000+00:00"
+ },
+ "containers": [
+  {
+   "Id": "9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30",
+   "Created": "2026-10-12T15:59:22.868626501Z",
+   "Path": "python",
+   "Args": [
+    "-m",
+    "cloudaudit",
+    "serve"
+   ],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18460,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:23.910548554Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+     "Status": "healthy",
+     "FailingStreak": 0,
+     "Log": [
+      {
+       "Start": "2026-10-12T15:59:29.426556757Z",
+       "End": "2026-10-12T15:59:29.786967113Z",
+       "ExitCode": 0,
+       "Output": ""
+      },
+      {
+       "Start": "2026-10-12T15:59:34.787378613Z",
+       "End": "2026-10-12T15:59:35.110173771Z",
+       "ExitCode": 0,
+       "Output": ""
+      },
+      {
+       "Start": "2026-10-12T15:59:40.111443144Z",
+       "End": "2026-10-12T15:59:40.41991733Z",
+       "ExitCode": 0,
+       "Output": ""
+      }
+     ]
+    }
+   },
+   "Image": "sha256:73694c55c028323bc96ded596dbbf3598d4c7a22284777bffa2f0c44a62e31fd",
+   "ResolvConfPath": "/var/lib/docker/containers/9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30/hostname",
+   "HostsPath": "/var/lib/docker/containers/9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30/hosts",
+   "LogPath": "/var/lib/docker/containers/9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30/9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30-json.log",
+   "Name": "/isolab-auditor-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": [
+     "/sys/fs/cgroup:/host/cgroup:ro",
+     "<repo>\\testbed:/workspace/testbed:ro"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {
+      "max-file": "2",
+      "max-size": "5m"
+     }
+    },
+    "NetworkMode": "isolab_engine-net",
+    "PortBindings": {
+     "8088/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "8088"
+      }
+     ]
+    },
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+     "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+     "no-new-privileges:true"
+    ],
+    "Tmpfs": {
+     "/tmp": "size=32m"
+    },
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 268435456,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "0,1",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 536870912,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": 256,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "Mounts": [
+     {
+      "Type": "bind",
+      "Source": "<repo>\\testbed\\secrets\\canary_token",
+      "Target": "/run/secrets/canary_token",
+      "ReadOnly": true,
+      "BindOptions": {}
+     }
+    ],
+    "MaskedPaths": [
+     "/proc/acpi",
+     "/proc/asound",
+     "/proc/interrupts",
+     "/proc/kcore",
+     "/proc/keys",
+     "/proc/latency_stats",
+     "/proc/sched_debug",
+     "/proc/scsi",
+     "/proc/timer_list",
+     "/proc/timer_stats",
+     "/sys/devices/virtual/powercap",
+     "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+     "/proc/bus",
+     "/proc/fs",
+     "/proc/irq",
+     "/proc/sys",
+     "/proc/sysrq-trigger"
+    ]
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [
+    {
+     "Type": "bind",
+     "Source": "/sys/fs/cgroup",
+     "Destination": "/host/cgroup",
+     "Mode": "ro",
+     "RW": false,
+     "Propagation": "rprivate"
+    },
+    {
+     "Type": "bind",
+     "Source": "<repo>\\testbed",
+     "Destination": "/workspace/testbed",
+     "Mode": "ro",
+     "RW": false,
+     "Propagation": "rprivate"
+    },
+    {
+     "Type": "bind",
+     "Source": "<repo>\\testbed\\secrets\\canary_token",
+     "Destination": "/run/secrets/canary_token",
+     "Mode": "",
+     "RW": false,
+     "Propagation": "rprivate"
+    }
+   ],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "10001:10001",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "ExposedPorts": {
+     "8088/tcp": {}
+    },
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "ISOLAB_PROFILE=<redacted>",
+     "TESTBED_DIR=<redacted>",
+     "DOCKER_HOST=<redacted>",
+     "ISOLAB_CI=<redacted>",
+     "GIT_SHA=<redacted>",
+     "CANARY_TOKEN_FILE=<redacted>",
+     "PROMETHEUS_URL=<redacted>",
+     "ISOLAB_PLATFORM=<redacted>",
+     "CGROUP_ROOT=<redacted>",
+     "PATH=<redacted>",
+     "LANG=<redacted>",
+     "GPG_KEY=<redacted>",
+     "PYTHON_VERSION=<redacted>",
+     "PYTHON_SHA256=<redacted>",
+     "PYTHONDONTWRITEBYTECODE=<redacted>",
+     "PYTHONUNBUFFERED=<redacted>",
+     "PIP_NO_CACHE_DIR=<redacted>",
+     "PIP_DISABLE_PIP_VERSION_CHECK=<redacted>",
+     "PYTHONPATH=<redacted>"
+    ],
+    "Cmd": [
+     "serve"
+    ],
+    "Healthcheck": {
+     "Test": [
+      "CMD",
+      "python",
+      "-c",
+      "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8088/healthz', timeout=2)"
+     ],
+     "Interval": 5000000000,
+     "Timeout": 3000000000,
+     "Retries": 12
+    },
+    "Image": "isolab/auditor:local",
+    "Volumes": null,
+    "WorkingDir": "",
+    "Entrypoint": [
+     "python",
+     "-m",
+     "cloudaudit"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "4c5900f3924549d5ba519f3c3453ebc5e7478fc72c1b14e78c3c6614ce018532",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "socket-proxy:service_started:false",
+     "com.docker.compose.image": "sha256:73694c55c028323bc96ded596dbbf3598d4c7a22284777bffa2f0c44a62e31fd",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "auditor",
+     "com.docker.compose.version": "5.0.2",
+     "io.isolab.owner": "platform-team",
+     "io.isolab.plane": "provider",
+     "io.isolab.workload-id": "provider-auditor",
+     "org.opencontainers.image.base.name": "python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab cloudaudit"
+    },
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "eb8ed8a8ab6769cf8ddc306bf49defbda28752c3c13a5fa0f30cd46b00cea51b",
+    "SandboxKey": "/var/run/docker/netns/eb8ed8a8ab67",
+    "Ports": {
+     "8088/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "8088"
+      }
+     ]
+    },
+    "Networks": {
+     "isolab_engine-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-auditor-1",
+       "auditor"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0e7bbfdf6b47c951c6a8ab7af8e50530de97607ef1226eba34d97e25f73fc4db",
+      "EndpointID": "69e1bcc157976d9c846247d1e0e648e12eb3210ecf6f0e111d40220c66fed72f",
+      "Gateway": "",
+      "IPAddress": "172.20.0.3",
+      "MacAddress": "f6:23:d4:fc:e2:1c",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-auditor-1",
+       "auditor",
+       "9f395091f4ef"
+      ]
+     },
+     "isolab_ops-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-auditor-1",
+       "auditor"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "67e907108954e2196267ba75e1a772c4707944c4c18c18f9feff502bff148c58",
+      "EndpointID": "279b2acd8e74411648afaf73fc0e0071d4b8d427f8314beca11758153c0e71d0",
+      "Gateway": "172.22.0.1",
+      "IPAddress": "172.22.0.6",
+      "MacAddress": "66:dc:92:b1:fb:a6",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-auditor-1",
+       "auditor",
+       "9f395091f4ef"
+      ]
+     },
+     "isolab_provider-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-auditor-1",
+       "auditor"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+      "EndpointID": "c70f73c22998b503754521b7b316ea5e38f28546235aa512b76dfb21d617bbd9",
+      "Gateway": "",
+      "IPAddress": "172.21.0.7",
+      "MacAddress": "ea:71:5a:49:2f:72",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-auditor-1",
+       "auditor",
+       "9f395091f4ef"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:fd76242cda8185f652cfe488f9a2625199cf699eea52043d2195430da885c724",
+    "size": 1627,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  },
+  {
+   "Id": "bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7",
+   "Created": "2026-10-12T15:59:22.767731196Z",
+   "Path": "/run.sh",
+   "Args": [],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18520,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:24.0726861Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+     "Status": "healthy",
+     "FailingStreak": 0,
+     "Log": [
+      {
+       "Start": "2026-10-12T15:59:29.476062619Z",
+       "End": "2026-10-12T15:59:29.530914031Z",
+       "ExitCode": 0,
+       "Output": ""
+      },
+      {
+       "Start": "2026-10-12T15:59:34.530893829Z",
+       "End": "2026-10-12T15:59:34.595645252Z",
+       "ExitCode": 0,
+       "Output": ""
+      },
+      {
+       "Start": "2026-10-12T15:59:39.596373795Z",
+       "End": "2026-10-12T15:59:39.679819776Z",
+       "ExitCode": 0,
+       "Output": ""
+      }
+     ]
+    }
+   },
+   "Image": "sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d",
+   "ResolvConfPath": "/var/lib/docker/containers/bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7/hostname",
+   "HostsPath": "/var/lib/docker/containers/bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7/hosts",
+   "LogPath": "/var/lib/docker/containers/bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7/bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7-json.log",
+   "Name": "/isolab-grafana-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": [
+     "<repo>\\monitor\\grafana\\provisioning:/etc/grafana/provisioning:ro",
+     "<repo>\\monitor\\grafana\\dashboards:/etc/grafana/dashboards:ro",
+     "isolab_grafana-data:/var/lib/grafana:rw"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {
+      "max-file": "2",
+      "max-size": "5m"
+     }
+    },
+    "NetworkMode": "isolab_ops-net",
+    "PortBindings": {
+     "3000/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "3000"
+      }
+     ]
+    },
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+     "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+     "no-new-privileges:true"
+    ],
+    "Tmpfs": {
+     "/tmp": "size=32m"
+    },
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 268435456,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "0,1",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 536870912,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": 256,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "Mounts": [
+     {
+      "Type": "bind",
+      "Source": "<repo>\\testbed\\secrets\\grafana_admin",
+      "Target": "/run/secrets/grafana_admin",
+      "ReadOnly": true,
+      "BindOptions": {}
+     }
+    ],
+    "MaskedPaths": [
+     "/proc/acpi",
+     "/proc/asound",
+     "/proc/interrupts",
+     "/proc/kcore",
+     "/proc/keys",
+     "/proc/latency_stats",
+     "/proc/sched_debug",
+     "/proc/scsi",
+     "/proc/timer_list",
+     "/proc/timer_stats",
+     "/sys/devices/virtual/powercap",
+     "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+     "/proc/bus",
+     "/proc/fs",
+     "/proc/irq",
+     "/proc/sys",
+     "/proc/sysrq-trigger"
+    ]
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [
+    {
+     "Type": "bind",
+     "Source": "<repo>\\monitor\\grafana\\provisioning",
+     "Destination": "/etc/grafana/provisioning",
+     "Mode": "ro",
+     "RW": false,
+     "Propagation": "rprivate"
+    },
+    {
+     "Type": "bind",
+     "Source": "<repo>\\monitor\\grafana\\dashboards",
+     "Destination": "/etc/grafana/dashboards",
+     "Mode": "ro",
+     "RW": false,
+     "Propagation": "rprivate"
+    },
+    {
+     "Type": "volume",
+     "Name": "isolab_grafana-data",
+     "Source": "/var/lib/docker/volumes/isolab_grafana-data/_data",
+     "Destination": "/var/lib/grafana",
+     "Driver": "local",
+     "Mode": "rw",
+     "RW": true,
+     "Propagation": ""
+    },
+    {
+     "Type": "bind",
+     "Source": "<repo>\\testbed\\secrets\\grafana_admin",
+     "Destination": "/run/secrets/grafana_admin",
+     "Mode": "",
+     "RW": false,
+     "Propagation": "rprivate"
+    }
+   ],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "472",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "ExposedPorts": {
+     "3000/tcp": {}
+    },
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "GF_ANALYTICS_CHECK_FOR_UPDATES=<redacted>",
+     "GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=<redacted>",
+     "GF_AUTH_ANONYMOUS_ORG_ROLE=<redacted>",
+     "GF_NEWS_NEWS_FEED_ENABLED=<redacted>",
+     "GF_SECURITY_ADMIN_PASSWORD__FILE=<redacted>",
+     "GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES=<redacted>",
+     "GF_AUTH_ANONYMOUS_ENABLED=<redacted>",
+     "GF_ANALYTICS_REPORTING_ENABLED=<redacted>",
+     "PATH=<redacted>",
+     "GF_PATHS_CONFIG=<redacted>",
+     "GF_PATHS_DATA=<redacted>",
+     "GF_PATHS_HOME=<redacted>",
+     "GF_PATHS_LOGS=<redacted>",
+     "GF_PATHS_PLUGINS=<redacted>",
+     "GF_PATHS_PROVISIONING=<redacted>"
+    ],
+    "Cmd": null,
+    "Healthcheck": {
+     "Test": [
+      "CMD",
+      "wget",
+      "-q",
+      "-O",
+      "/dev/null",
+      "http://127.0.0.1:3000/api/health"
+     ],
+     "Interval": 5000000000,
+     "Timeout": 3000000000,
+     "Retries": 24
+    },
+    "Image": "grafana/grafana:12.1.1@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d",
+    "Volumes": null,
+    "WorkingDir": "/usr/share/grafana",
+    "Entrypoint": [
+     "/run.sh"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "b6ddadf64787aef274cd0f31918443ba230ec45b78121fc58877a9f8a39bdd11",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "prometheus:service_started:false",
+     "com.docker.compose.image": "sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "grafana",
+     "com.docker.compose.version": "5.0.2",
+     "io.isolab.owner": "platform-team",
+     "io.isolab.plane": "provider",
+     "io.isolab.workload-id": "provider-grafana",
+     "maintainer": "Grafana Labs <hello@grafana.com>",
+     "org.opencontainers.image.source": "https://github.com/grafana/grafana"
+    },
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "65d6b8f1eca3b229f254408f2cc00a6cb75661ebc417331425e606bb952603f6",
+    "SandboxKey": "/var/run/docker/netns/65d6b8f1eca3",
+    "Ports": {
+     "3000/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "3000"
+      }
+     ]
+    },
+    "Networks": {
+     "isolab_ops-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-grafana-1",
+       "grafana"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "67e907108954e2196267ba75e1a772c4707944c4c18c18f9feff502bff148c58",
+      "EndpointID": "9b32703d5ebf19e286783c7f1d8af1f3f8a974d98bc747a875397cb47b397b4d",
+      "Gateway": "172.22.0.1",
+      "IPAddress": "172.22.0.7",
+      "MacAddress": "4a:d9:6c:3d:fc:a4",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-grafana-1",
+       "grafana",
+       "bbd6bf630fc9"
+      ]
+     },
+     "isolab_provider-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-grafana-1",
+       "grafana"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+      "EndpointID": "e7a4bc66987a0fda0cd5d51edad6c337acc9592de49448d65b049dd97fff9c15",
+      "Gateway": "",
+      "IPAddress": "172.21.0.8",
+      "MacAddress": "4e:8f:50:c0:af:75",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-grafana-1",
+       "grafana",
+       "bbd6bf630fc9"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+    "digest": "sha256:5749a0e982878aedaa2d320ed14d3bdce7a040a938f482258670009d419a597f",
+    "size": 2417,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  },
+  {
+   "Id": "5efc215e6636cc22f9f43f35511a0b279a987a2e8e608ecd53602d469388a62f",
+   "Created": "2026-10-12T15:59:22.63309384Z",
+   "Path": "python",
+   "Args": [
+    "-u",
+    "/opt/app/canary.py"
+   ],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18286,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:23.181154675Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+     "Status": "healthy",
+     "FailingStreak": 0,
+     "Log": [
+      {
+       "Start": "2026-10-12T15:59:33.886213735Z",
+       "End": "2026-10-12T15:59:34.56844233Z",
+       "ExitCode": 0,
+       "Output": ""
+      }
+     ]
+    }
+   },
+   "Image": "sha256:174163bc8dc3540cd93a897c5bdc523ba54dcc34f5db208b5f26fd3a9b6d4321",
+   "ResolvConfPath": "/var/lib/docker/containers/5efc215e6636cc22f9f43f35511a0b279a987a2e8e608ecd53602d469388a62f/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/5efc215e6636cc22f9f43f35511a0b279a987a2e8e608ecd53602d469388a62f/hostname",
+   "HostsPath": "/var/lib/docker/containers/5efc215e6636cc22f9f43f35511a0b279a987a2e8e608ecd53602d469388a62f/hosts",
+   "LogPath": "/var/lib/docker/containers/5efc215e6636cc22f9f43f35511a0b279a987a2e8e608ecd53602d469388a62f/5efc215e6636cc22f9f43f35511a0b279a987a2e8e608ecd53602d469388a62f-json.log",
+   "Name": "/isolab-canary-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {
+      "max-file": "2",
+      "max-size": "5m"
+     }
+    },
+    "NetworkMode": "isolab_provider-net",
+    "PortBindings": {},
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+     "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+     "no-new-privileges:true"
+    ],
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 67108864,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "0,1",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 134217728,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": 256,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "Mounts": [
+     {
+      "Type": "bind",
+      "Source": "<repo>\\testbed\\secrets\\canary_token",
+      "Target": "/run/secrets/canary_token",
+      "ReadOnly": true,
+      "BindOptions": {}
+     }
+    ],
+    "MaskedPaths": [
+     "/proc/acpi",
+     "/proc/asound",
+     "/proc/interrupts",
+     "/proc/kcore",
+     "/proc/keys",
+     "/proc/latency_stats",
+     "/proc/sched_debug",
+     "/proc/scsi",
+     "/proc/timer_list",
+     "/proc/timer_stats",
+     "/sys/devices/virtual/powercap",
+     "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+     "/proc/bus",
+     "/proc/fs",
+     "/proc/irq",
+     "/proc/sys",
+     "/proc/sysrq-trigger"
+    ]
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [
+    {
+     "Type": "bind",
+     "Source": "<repo>\\testbed\\secrets\\canary_token",
+     "Destination": "/run/secrets/canary_token",
+     "Mode": "",
+     "RW": false,
+     "Propagation": "rprivate"
+    }
+   ],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "10001:10001",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "ExposedPorts": {
+     "8080/tcp": {}
+    },
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "AUDITOR_HOOK_URL=<redacted>",
+     "CANARY_TOKEN_FILE=<redacted>",
+     "PATH=<redacted>",
+     "LANG=<redacted>",
+     "GPG_KEY=<redacted>",
+     "PYTHON_VERSION=<redacted>",
+     "PYTHON_SHA256=<redacted>"
+    ],
+    "Cmd": null,
+    "Healthcheck": {
+     "Test": [
+      "CMD",
+      "python",
+      "-c",
+      "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/__health', timeout=2)"
+     ],
+     "Interval": 10000000000,
+     "Timeout": 3000000000,
+     "Retries": 6
+    },
+    "Image": "isolab/canary:local",
+    "Volumes": null,
+    "WorkingDir": "/",
+    "Entrypoint": [
+     "python",
+     "-u",
+     "/opt/app/canary.py"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "77c6b793742ead7467624a65932c2f76010757e6df85643e42c04c9f2cd85247",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "",
+     "com.docker.compose.image": "sha256:174163bc8dc3540cd93a897c5bdc523ba54dcc34f5db208b5f26fd3a9b6d4321",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "canary",
+     "com.docker.compose.version": "5.0.2",
+     "io.isolab.owner": "platform-team",
+     "io.isolab.plane": "provider",
+     "io.isolab.workload-id": "provider-canary",
+     "org.opencontainers.image.base.name": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab canary"
+    },
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "107bbccb4f2e6043ffb14f582f9cb08427e069533ec0527ac7b8fcfa6ba9ad61",
+    "SandboxKey": "/var/run/docker/netns/107bbccb4f2e",
+    "Ports": {
+     "8080/tcp": null
+    },
+    "Networks": {
+     "isolab_provider-net": {
+      "IPAMConfig": {},
+      "Links": null,
+      "Aliases": [
+       "isolab-canary-1",
+       "canary",
+       "metadata"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+      "EndpointID": "6d60109d80a857312807bff66ef267e7c0328acf8d9fb728c0e30a826b97c1b3",
+      "Gateway": "",
+      "IPAddress": "172.21.0.3",
+      "MacAddress": "3a:d2:d4:e2:30:8d",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-canary-1",
+       "canary",
+       "metadata",
+       "5efc215e6636"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:5668d9b839ea8824a3eb250048645c8d14a4adaea0440916e49db3ef1c3cd8d8",
+    "size": 1430,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  },
+  {
+   "Id": "b14b757e7cd8d641a9a0caaf9b547325e964b009a937ca6b2c88472788b2acfc",
+   "Created": "2026-10-12T15:59:22.627449035Z",
+   "Path": "docker-entrypoint.sh",
+   "Args": [
+    "haproxy",
+    "-f",
+    "/tmp/haproxy.cfg"
+   ],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18261,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:23.189516362Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+   },
+   "Image": "sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e",
+   "ResolvConfPath": "/var/lib/docker/containers/b14b757e7cd8d641a9a0caaf9b547325e964b009a937ca6b2c88472788b2acfc/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/b14b757e7cd8d641a9a0caaf9b547325e964b009a937ca6b2c88472788b2acfc/hostname",
+   "HostsPath": "/var/lib/docker/containers/b14b757e7cd8d641a9a0caaf9b547325e964b009a937ca6b2c88472788b2acfc/hosts",
+   "LogPath": "/var/lib/docker/containers/b14b757e7cd8d641a9a0caaf9b547325e964b009a937ca6b2c88472788b2acfc/b14b757e7cd8d641a9a0caaf9b547325e964b009a937ca6b2c88472788b2acfc-json.log",
+   "Name": "/isolab-socket-proxy-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": [
+     "/var/run/docker.sock:/var/run/docker.sock:ro"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {
+      "max-file": "2",
+      "max-size": "5m"
+     }
+    },
+    "NetworkMode": "isolab_engine-net",
+    "PortBindings": {},
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+     "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+     "no-new-privileges:true"
+    ],
+    "Tmpfs": {
+     "/run": "size=8m",
+     "/tmp": "size=8m",
+     "/var/lib/haproxy": "size=8m"
+    },
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 67108864,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "0,1",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 134217728,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": 256,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+     "/proc/acpi",
+     "/proc/asound",
+     "/proc/interrupts",
+     "/proc/kcore",
+     "/proc/keys",
+     "/proc/latency_stats",
+     "/proc/sched_debug",
+     "/proc/scsi",
+     "/proc/timer_list",
+     "/proc/timer_stats",
+     "/sys/devices/virtual/powercap",
+     "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+     "/proc/bus",
+     "/proc/fs",
+     "/proc/irq",
+     "/proc/sys",
+     "/proc/sysrq-trigger"
+    ]
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [
+    {
+     "Type": "bind",
+     "Source": "/var/run/docker.sock",
+     "Destination": "/var/run/docker.sock",
+     "Mode": "ro",
+     "RW": false,
+     "Propagation": "rprivate"
+    }
+   ],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "root",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "ExposedPorts": {
+     "2375/tcp": {}
+    },
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "PING=<redacted>",
+     "VOLUMES=<redacted>",
+     "INFO=<redacted>",
+     "IMAGES=<redacted>",
+     "CONTAINERS=<redacted>",
+     "POST=<redacted>",
+     "NETWORKS=<redacted>",
+     "VERSION=<redacted>",
+     "EVENTS=<redacted>",
+     "PATH=<redacted>",
+     "HAPROXY_VERSION=<redacted>",
+     "HAPROXY_URL=<redacted>",
+     "HAPROXY_SHA256=<redacted>",
+     "ALLOW_RESTARTS=<redacted>",
+     "ALLOW_STOP=<redacted>",
+     "ALLOW_START=<redacted>",
+     "AUTH=<redacted>",
+     "BUILD=<redacted>",
+     "COMMIT=<redacted>",
+     "CONFIGS=<redacted>",
+     "DISABLE_IPV6=<redacted>",
+     "DISTRIBUTION=<redacted>",
+     "EXEC=<redacted>",
+     "GRPC=<redacted>",
+     "LOG_LEVEL=<redacted>",
+     "NODES=<redacted>",
+     "PLUGINS=<redacted>",
+     "SECRETS=<redacted>",
+     "SERVICES=<redacted>",
+     "SESSION=<redacted>",
+     "SOCKET_PATH=<redacted>",
+     "SWARM=<redacted>",
+     "SYSTEM=<redacted>",
+     "TASKS=<redacted>"
+    ],
+    "Cmd": [
+     "haproxy",
+     "-f",
+     "/tmp/haproxy.cfg"
+    ],
+    "Image": "tecnativa/docker-socket-proxy:v0.4.1@sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e",
+    "Volumes": null,
+    "WorkingDir": "/var/lib/haproxy",
+    "Entrypoint": [
+     "docker-entrypoint.sh"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "1708c42177bc2a331e1239b2bdf412ed77db17ffea5a6754f4f40fcb54426b26",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "",
+     "com.docker.compose.image": "sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "socket-proxy",
+     "com.docker.compose.version": "5.0.2",
+     "io.isolab.owner": "platform-team",
+     "io.isolab.plane": "provider",
+     "io.isolab.workload-id": "provider-socket-proxy",
+     "org.opencontainers.image.created": "2025-09-05T05:39:58.668Z",
+     "org.opencontainers.image.description": "Proxy over your Docker socket to restrict which requests it accepts",
+     "org.opencontainers.image.licenses": "Apache-2.0",
+     "org.opencontainers.image.revision": "a6fbf3835b0554c12be4bccdea4299e14ecb05e8",
+     "org.opencontainers.image.source": "https://github.com/Tecnativa/docker-socket-proxy",
+     "org.opencontainers.image.title": "docker-socket-proxy",
+     "org.opencontainers.image.url": "https://github.com/Tecnativa/docker-socket-proxy",
+     "org.opencontainers.image.version": "v0.4.1"
+    },
+    "StopSignal": "SIGUSR1",
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "3330063a6fc11916d124764a10b9c17f261a1765fdbbefd94d4a22cec9d543b1",
+    "SandboxKey": "/var/run/docker/netns/3330063a6fc1",
+    "Ports": {
+     "2375/tcp": null
+    },
+    "Networks": {
+     "isolab_engine-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-socket-proxy-1",
+       "socket-proxy"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0e7bbfdf6b47c951c6a8ab7af8e50530de97607ef1226eba34d97e25f73fc4db",
+      "EndpointID": "9cea9d9b3a9cf2fdd313efffefd1834d67c9b4b7159170c11c6d83022bfb8f2d",
+      "Gateway": "",
+      "IPAddress": "172.20.0.2",
+      "MacAddress": "4e:7d:de:f2:9b:15",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-socket-proxy-1",
+       "socket-proxy",
+       "b14b757e7cd8"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:1c211b210cf155392544face6e2c2ebfe626f97f5f1e4eea94ed2ebe2be7bc55",
+    "size": 1805,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  },
+  {
+   "Id": "bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b",
+   "Created": "2026-10-12T15:59:22.617042434Z",
+   "Path": "python",
+   "Args": [
+    "-u",
+    "/opt/app/payments_api.py"
+   ],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18288,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:23.189742773Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+     "Status": "healthy",
+     "FailingStreak": 0,
+     "Log": [
+      {
+       "Start": "2026-10-12T15:59:34.009461231Z",
+       "End": "2026-10-12T15:59:34.326376133Z",
+       "ExitCode": 0,
+       "Output": ""
+      }
+     ]
+    }
+   },
+   "Image": "sha256:59fa2906c05a67e1d5f4f272ea08e255f76aad95b2e0c631f9cfc7f42e3c1191",
+   "ResolvConfPath": "/var/lib/docker/containers/bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b/hostname",
+   "HostsPath": "/var/lib/docker/containers/bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b/hosts",
+   "LogPath": "/var/lib/docker/containers/bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b/bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b-json.log",
+   "Name": "/isolab-tenant-a-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": [
+     "isolab_appdata:/data:rw"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {}
+    },
+    "NetworkMode": "isolab_ops-net",
+    "PortBindings": {
+     "8080/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "18080"
+      }
+     ]
+    },
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": null,
+    "CapDrop": null,
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": null,
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 0,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 0,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": null,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+     "/proc/acpi",
+     "/proc/asound",
+     "/proc/interrupts",
+     "/proc/kcore",
+     "/proc/keys",
+     "/proc/latency_stats",
+     "/proc/sched_debug",
+     "/proc/scsi",
+     "/proc/timer_list",
+     "/proc/timer_stats",
+     "/sys/devices/virtual/powercap",
+     "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+     "/proc/bus",
+     "/proc/fs",
+     "/proc/irq",
+     "/proc/sys",
+     "/proc/sysrq-trigger"
+    ]
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [
+    {
+     "Type": "volume",
+     "Name": "isolab_appdata",
+     "Source": "/var/lib/docker/volumes/isolab_appdata/_data",
+     "Destination": "/data",
+     "Driver": "local",
+     "Mode": "rw",
+     "RW": true,
+     "Propagation": ""
+    }
+   ],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "0",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "ExposedPorts": {
+     "8080/tcp": {}
+    },
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "WORK_ITERATIONS=<redacted>",
+     "PATH=<redacted>",
+     "LANG=<redacted>",
+     "GPG_KEY=<redacted>",
+     "PYTHON_VERSION=<redacted>",
+     "PYTHON_SHA256=<redacted>"
+    ],
+    "Cmd": null,
+    "Healthcheck": {
+     "Test": [
+      "CMD",
+      "python",
+      "-c",
+      "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=2)"
+     ],
+     "Interval": 10000000000,
+     "Timeout": 3000000000,
+     "Retries": 6
+    },
+    "Image": "isolab/payments-api:local",
+    "Volumes": null,
+    "WorkingDir": "/",
+    "Entrypoint": [
+     "python",
+     "-u",
+     "/opt/app/payments_api.py"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "8a82aca998842639f4b699c5310ee0f83ff87677f61c8b07696078d6dd7581f9",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "",
+     "com.docker.compose.image": "sha256:59fa2906c05a67e1d5f4f272ea08e255f76aad95b2e0c631f9cfc7f42e3c1191",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "tenant-a",
+     "com.docker.compose.version": "5.0.2",
+     "io.isolab.owner": "payments-team",
+     "io.isolab.plane": "tenant",
+     "io.isolab.tenant": "a",
+     "io.isolab.workload-id": "a-payments-api",
+     "org.opencontainers.image.base.name": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab payments-api"
+    },
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "06a7fc68adc0d791a7b08f89a0cb644c78b22c37e58caa94cfcfef9278c4ed59",
+    "SandboxKey": "/var/run/docker/netns/06a7fc68adc0",
+    "Ports": {
+     "8080/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "18080"
+      }
+     ]
+    },
+    "Networks": {
+     "isolab_ops-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-tenant-a-1",
+       "tenant-a"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "67e907108954e2196267ba75e1a772c4707944c4c18c18f9feff502bff148c58",
+      "EndpointID": "38f3bbb2833aceac41973b27fe5bee55ead269fdc7a70708843a9e79f9b86bb7",
+      "Gateway": "172.22.0.1",
+      "IPAddress": "172.22.0.4",
+      "MacAddress": "ca:80:88:35:ac:c3",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-tenant-a-1",
+       "tenant-a",
+       "bb92fa6cd480"
+      ]
+     },
+     "isolab_provider-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-tenant-a-1",
+       "tenant-a"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+      "EndpointID": "37b5b8a087a33200c98013ec14f6688128ba9dcf59a3a8fff35e247a0b52d694",
+      "Gateway": "",
+      "IPAddress": "172.21.0.6",
+      "MacAddress": "6e:f7:f5:d0:f9:db",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-tenant-a-1",
+       "tenant-a",
+       "bb92fa6cd480"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:32d4aad322431797225d7879aaebaa49036498f302332edd7c9fa90d83a18fb8",
+    "size": 1619,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  },
+  {
+   "Id": "66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4",
+   "Created": "2026-10-12T15:59:22.592953966Z",
+   "Path": "/bin/prometheus",
+   "Args": [
+    "--config.file=/etc/prometheus/prometheus.yml",
+    "--storage.tsdb.path=/prometheus",
+    "--storage.tsdb.retention.time=12h"
+   ],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18256,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:23.178798708Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+     "Status": "healthy",
+     "FailingStreak": 0,
+     "Log": [
+      {
+       "Start": "2026-10-12T15:59:28.971665634Z",
+       "End": "2026-10-12T15:59:29.044269186Z",
+       "ExitCode": 0,
+       "Output": ""
+      },
+      {
+       "Start": "2026-10-12T15:59:34.043480347Z",
+       "End": "2026-10-12T15:59:34.120567679Z",
+       "ExitCode": 0,
+       "Output": ""
+      },
+      {
+       "Start": "2026-10-12T15:59:39.121381493Z",
+       "End": "2026-10-12T15:59:39.206773299Z",
+       "ExitCode": 0,
+       "Output": ""
+      }
+     ]
+    }
+   },
+   "Image": "sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996",
+   "ResolvConfPath": "/var/lib/docker/containers/66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4/hostname",
+   "HostsPath": "/var/lib/docker/containers/66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4/hosts",
+   "LogPath": "/var/lib/docker/containers/66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4/66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4-json.log",
+   "Name": "/isolab-prometheus-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": [
+     "<repo>\\monitor\\prometheus:/etc/prometheus:ro",
+     "isolab_prometheus-data:/prometheus:rw"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {
+      "max-file": "2",
+      "max-size": "5m"
+     }
+    },
+    "NetworkMode": "isolab_ops-net",
+    "PortBindings": {
+     "9090/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "9090"
+      }
+     ]
+    },
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+     "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+     "no-new-privileges:true"
+    ],
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 536870912,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "0,1",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 1073741824,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": 256,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+     "/proc/acpi",
+     "/proc/asound",
+     "/proc/interrupts",
+     "/proc/kcore",
+     "/proc/keys",
+     "/proc/latency_stats",
+     "/proc/sched_debug",
+     "/proc/scsi",
+     "/proc/timer_list",
+     "/proc/timer_stats",
+     "/sys/devices/virtual/powercap",
+     "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+     "/proc/bus",
+     "/proc/fs",
+     "/proc/irq",
+     "/proc/sys",
+     "/proc/sysrq-trigger"
+    ]
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [
+    {
+     "Type": "bind",
+     "Source": "<repo>\\monitor\\prometheus",
+     "Destination": "/etc/prometheus",
+     "Mode": "ro",
+     "RW": false,
+     "Propagation": "rprivate"
+    },
+    {
+     "Type": "volume",
+     "Name": "isolab_prometheus-data",
+     "Source": "/var/lib/docker/volumes/isolab_prometheus-data/_data",
+     "Destination": "/prometheus",
+     "Driver": "local",
+     "Mode": "rw",
+     "RW": true,
+     "Propagation": ""
+    }
+   ],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "nobody",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "ExposedPorts": {
+     "9090/tcp": {}
+    },
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "PATH=<redacted>"
+    ],
+    "Cmd": [
+     "--config.file=/etc/prometheus/prometheus.yml",
+     "--storage.tsdb.path=/prometheus",
+     "--storage.tsdb.retention.time=12h"
+    ],
+    "Healthcheck": {
+     "Test": [
+      "CMD",
+      "wget",
+      "-q",
+      "-O",
+      "/dev/null",
+      "http://127.0.0.1:9090/-/ready"
+     ],
+     "Interval": 5000000000,
+     "Timeout": 3000000000,
+     "Retries": 12
+    },
+    "Image": "prom/prometheus:v3.5.0@sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996",
+    "Volumes": {
+     "/prometheus": {}
+    },
+    "WorkingDir": "/prometheus",
+    "Entrypoint": [
+     "/bin/prometheus"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "20450446ff86f31fd3dcd64e25600c78815d3acf44532fbb2d0eaa3d9f09a412",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "",
+     "com.docker.compose.image": "sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "prometheus",
+     "com.docker.compose.version": "5.0.2",
+     "io.isolab.owner": "platform-team",
+     "io.isolab.plane": "provider",
+     "io.isolab.workload-id": "provider-prometheus",
+     "maintainer": "The Prometheus Authors <prometheus-developers@googlegroups.com>",
+     "org.opencontainers.image.source": "https://github.com/prometheus/prometheus"
+    },
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "d3a8a921443955c53b88d3f511e779a9403b852f49243cd267743a1c6ab6beda",
+    "SandboxKey": "/var/run/docker/netns/d3a8a9214439",
+    "Ports": {
+     "9090/tcp": [
+      {
+       "HostIp": "127.0.0.1",
+       "HostPort": "9090"
+      }
+     ]
+    },
+    "Networks": {
+     "isolab_ops-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-prometheus-1",
+       "prometheus"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "67e907108954e2196267ba75e1a772c4707944c4c18c18f9feff502bff148c58",
+      "EndpointID": "3afa255bfa3d24057abe368cf25df826f37ebb08a5b3a5a7483e5b1a5ec17053",
+      "Gateway": "172.22.0.1",
+      "IPAddress": "172.22.0.5",
+      "MacAddress": "d2:30:98:e6:37:64",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-prometheus-1",
+       "prometheus",
+       "66e73ba47838"
+      ]
+     },
+     "isolab_provider-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-prometheus-1",
+       "prometheus"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+      "EndpointID": "34882be278fe1180e9392edc40b87aa9a5c17a23135aa9e434d66f73d40930e7",
+      "Gateway": "",
+      "IPAddress": "172.21.0.5",
+      "MacAddress": "86:1e:6f:ac:7b:25",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-prometheus-1",
+       "prometheus",
+       "66e73ba47838"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+    "digest": "sha256:8672a850efe2f9874702406c8318704edb363587f8c2ca88586b4c8fdb5cea24",
+    "size": 2407,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  },
+  {
+   "Id": "6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883",
+   "Created": "2026-10-12T15:59:22.574176426Z",
+   "Path": "python",
+   "Args": [
+    "-u",
+    "/opt/app/idle.py",
+    "legacy-app"
+   ],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18259,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:23.182814609Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+   },
+   "Image": "sha256:531045c76b1aeece14bfffe454a3ff0f7c90944e68e6cdd850c8d0bfda068673",
+   "ResolvConfPath": "/var/lib/docker/containers/6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883/hostname",
+   "HostsPath": "/var/lib/docker/containers/6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883/hosts",
+   "LogPath": "/var/lib/docker/containers/6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883/6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883-json.log",
+   "Name": "/isolab-tenant-c-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": [
+     "/etc:/host-etc:ro",
+     "isolab_appdata:/data:rw",
+     "/run/host-services/docker.proxy.sock:/var/run/docker.sock:rw"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {}
+    },
+    "NetworkMode": "isolab_ops-net",
+    "PortBindings": {},
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": null,
+    "CapDrop": null,
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "host",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "host",
+    "Privileged": true,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": [
+     "seccomp=unconfined",
+     "apparmor=unconfined",
+     "label=disable"
+    ],
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 0,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 0,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": null,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": null,
+    "ReadonlyPaths": null
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [
+    {
+     "Type": "volume",
+     "Name": "isolab_appdata",
+     "Source": "/var/lib/docker/volumes/isolab_appdata/_data",
+     "Destination": "/data",
+     "Driver": "local",
+     "Mode": "rw",
+     "RW": true,
+     "Propagation": ""
+    },
+    {
+     "Type": "bind",
+     "Source": "/run/host-services/docker.proxy.sock",
+     "Destination": "/var/run/docker.sock",
+     "Mode": "rw",
+     "RW": true,
+     "Propagation": "rprivate"
+    },
+    {
+     "Type": "bind",
+     "Source": "/etc",
+     "Destination": "/host-etc",
+     "Mode": "ro",
+     "RW": false,
+     "Propagation": "rprivate"
+    }
+   ],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "0",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "LEGACY_DB_PASSWORD=<redacted>",
+     "PATH=<redacted>",
+     "LANG=<redacted>",
+     "GPG_KEY=<redacted>",
+     "PYTHON_VERSION=<redacted>",
+     "PYTHON_SHA256=<redacted>"
+    ],
+    "Cmd": null,
+    "Image": "isolab/legacy-app:insecure",
+    "Volumes": null,
+    "WorkingDir": "/",
+    "Entrypoint": [
+     "python",
+     "-u",
+     "/opt/app/idle.py",
+     "legacy-app"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "67803f890749edf2d49988b846f9389173ff49b02fb41f28c08ad8501318a52c",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "",
+     "com.docker.compose.image": "sha256:531045c76b1aeece14bfffe454a3ff0f7c90944e68e6cdd850c8d0bfda068673",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "tenant-c",
+     "com.docker.compose.version": "5.0.2",
+     "org.opencontainers.image.title": "isolab legacy-app"
+    },
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "2055f2beed784008042ea34a5fa238875a10ae5948f6bb536796ff0c6b337051",
+    "SandboxKey": "/var/run/docker/netns/2055f2beed78",
+    "Ports": {},
+    "Networks": {
+     "isolab_ops-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-tenant-c-1",
+       "tenant-c"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "67e907108954e2196267ba75e1a772c4707944c4c18c18f9feff502bff148c58",
+      "EndpointID": "6dc47d89aa413dba3ee0bcb46d6db73267981bb67c18c9bea0509bee7a0bee33",
+      "Gateway": "172.22.0.1",
+      "IPAddress": "172.22.0.3",
+      "MacAddress": "52:31:c9:dc:17:db",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-tenant-c-1",
+       "tenant-c",
+       "6fd25fe95b17"
+      ]
+     },
+     "isolab_provider-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-tenant-c-1",
+       "tenant-c"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+      "EndpointID": "c9c86e6011e913c353dcb466cf9ccb4a1ab9e5928600e18c6e9d806abfa40331",
+      "Gateway": "",
+      "IPAddress": "172.21.0.4",
+      "MacAddress": "2a:a5:97:85:e8:78",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-tenant-c-1",
+       "tenant-c",
+       "6fd25fe95b17"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:43aff0bc5cb05e15ba8c8f78badab436c3b3eccdf173352561b633a777aefbbe",
+    "size": 1618,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  },
+  {
+   "Id": "8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2",
+   "Created": "2026-10-12T15:59:22.573567797Z",
+   "Path": "python",
+   "Args": [
+    "-u",
+    "/opt/app/idle.py",
+    "batch-analytics"
+   ],
+   "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 18110,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-12T15:59:23.091311259Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+   },
+   "Image": "sha256:bff95c21bae30fcd3ddf404d2c1f0cfe1e38314ab5704f29e29c30bbedd73945",
+   "ResolvConfPath": "/var/lib/docker/containers/8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2/resolv.conf",
+   "HostnamePath": "/var/lib/docker/containers/8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2/hostname",
+   "HostsPath": "/var/lib/docker/containers/8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2/hosts",
+   "LogPath": "/var/lib/docker/containers/8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2/8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2-json.log",
+   "Name": "/isolab-tenant-b-1",
+   "RestartCount": 0,
+   "Driver": "overlayfs",
+   "Platform": "linux",
+   "MountLabel": "",
+   "ProcessLabel": "",
+   "AppArmorProfile": "",
+   "ExecIDs": null,
+   "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+     "Type": "json-file",
+     "Config": {}
+    },
+    "NetworkMode": "isolab_ops-net",
+    "PortBindings": {},
+    "RestartPolicy": {
+     "Name": "no",
+     "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+     0,
+     0
+    ],
+    "CapAdd": [
+     "CAP_NET_ADMIN",
+     "CAP_SYS_PTRACE"
+    ],
+    "CapDrop": null,
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": null,
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 0,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 0,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": null,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+     "/proc/acpi",
+     "/proc/asound",
+     "/proc/interrupts",
+     "/proc/kcore",
+     "/proc/keys",
+     "/proc/latency_stats",
+     "/proc/sched_debug",
+     "/proc/scsi",
+     "/proc/timer_list",
+     "/proc/timer_stats",
+     "/sys/devices/virtual/powercap",
+     "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+     "/proc/bus",
+     "/proc/fs",
+     "/proc/irq",
+     "/proc/sys",
+     "/proc/sysrq-trigger"
+    ]
+   },
+   "Storage": {
+    "RootFS": {
+     "Snapshot": {
+      "Name": "overlayfs"
+     }
+    }
+   },
+   "Mounts": [],
+   "Config": {
+    "Hostname": "<redacted>",
+    "Domainname": "",
+    "User": "10001:10001",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+     "PATH=<redacted>",
+     "LANG=<redacted>",
+     "GPG_KEY=<redacted>",
+     "PYTHON_VERSION=<redacted>",
+     "PYTHON_SHA256=<redacted>"
+    ],
+    "Cmd": null,
+    "Image": "isolab/batch-analytics:local",
+    "Volumes": null,
+    "WorkingDir": "/",
+    "Entrypoint": [
+     "python",
+     "-u",
+     "/opt/app/idle.py",
+     "batch-analytics"
+    ],
+    "Labels": {
+     "com.docker.compose.config-hash": "e50cf7f0a6bf5ed437f8b2ef978d2d7ea49987422ba982c1c432c2ab9ac8217c",
+     "com.docker.compose.container-number": "1",
+     "com.docker.compose.depends_on": "",
+     "com.docker.compose.image": "sha256:bff95c21bae30fcd3ddf404d2c1f0cfe1e38314ab5704f29e29c30bbedd73945",
+     "com.docker.compose.oneoff": "False",
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.project.config_files": "<repo>\\testbed\\compose.yaml,<repo>\\testbed\\compose.insecure.yaml",
+     "com.docker.compose.project.environment_file": "<repo>\\testbed\\cpus.env",
+     "com.docker.compose.project.working_dir": "<repo>\\testbed",
+     "com.docker.compose.service": "tenant-b",
+     "com.docker.compose.version": "5.0.2",
+     "io.isolab.owner": "analytics-team",
+     "io.isolab.plane": "tenant",
+     "io.isolab.tenant": "b",
+     "io.isolab.workload-id": "b-batch-analytics",
+     "org.opencontainers.image.base.name": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab batch-analytics"
+    },
+    "StopTimeout": 1
+   },
+   "NetworkSettings": {
+    "SandboxID": "8f8af5eeac177180f3732d58c46506c00bd2e2599dc77b6517f9278be119ecb0",
+    "SandboxKey": "/var/run/docker/netns/8f8af5eeac17",
+    "Ports": {},
+    "Networks": {
+     "isolab_ops-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-tenant-b-1",
+       "tenant-b"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "67e907108954e2196267ba75e1a772c4707944c4c18c18f9feff502bff148c58",
+      "EndpointID": "5f3a980e1f7a24cd96c80df57f6a589ac8b631e2d771ffe5b3f6537ad1d04e9e",
+      "Gateway": "172.22.0.1",
+      "IPAddress": "172.22.0.2",
+      "MacAddress": "72:56:32:09:23:7d",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-tenant-b-1",
+       "tenant-b",
+       "8ff0c3144b36"
+      ]
+     },
+     "isolab_provider-net": {
+      "IPAMConfig": null,
+      "Links": null,
+      "Aliases": [
+       "isolab-tenant-b-1",
+       "tenant-b"
+      ],
+      "DriverOpts": null,
+      "GwPriority": 0,
+      "NetworkID": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+      "EndpointID": "6a0f404f4ac078ad8eb4a75b6e5fd905daf0b001ffbe3af34a3df3e5bdd3888c",
+      "Gateway": "",
+      "IPAddress": "172.21.0.2",
+      "MacAddress": "aa:a2:25:91:22:27",
+      "IPPrefixLen": 16,
+      "IPv6Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "DNSNames": [
+       "isolab-tenant-b-1",
+       "tenant-b",
+       "8ff0c3144b36"
+      ]
+     }
+    }
+   },
+   "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:3155de2099e4ba59da2374be7a9d1537850f0141f17fcfd67a554a21880e327b",
+    "size": 1622,
+    "platform": {
+     "architecture": "amd64",
+     "os": "linux"
+    }
+   }
+  }
+ ],
+ "networks": [
+  {
+   "Name": "attack_path_analyzer_attack-net",
+   "Id": "162fca25cb5b910106594695bed5762807176c61d120120dbc22b72dab70955b",
+   "Created": "2026-04-30T13:30:52.055536951Z",
+   "Scope": "local",
+   "Driver": "bridge",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": [
+     {
+      "Subnet": "172.19.0.0/16",
+      "Gateway": "172.19.0.1"
+     }
+    ]
+   },
+   "Internal": false,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {
+    "com.docker.network.enable_ipv4": "true",
+    "com.docker.network.enable_ipv6": "false"
+   },
+   "Labels": {
+    "com.docker.compose.config-hash": "07cde74374207c490b680385f915ea72cb0604f27f1632d97d4942e2fa4219d0",
+    "com.docker.compose.network": "attack-net",
+    "com.docker.compose.project": "attack_path_analyzer",
+    "com.docker.compose.version": "5.0.2"
+   },
+   "Containers": {},
+   "Status": {
+    "IPAM": {
+     "Subnets": {
+      "172.19.0.0/16": {
+       "IPsInUse": 3,
+       "DynamicIPsAvailable": 65533
+      }
+     }
+    }
+   }
+  },
+  {
+   "Name": "none",
+   "Id": "33abdcbeb6598bd52376b34d11b6205b8999b01459427d2833fe5bcc7b0c1564",
+   "Created": "2026-01-18T14:57:40.406553696Z",
+   "Scope": "local",
+   "Driver": "null",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": null
+   },
+   "Internal": false,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {},
+   "Labels": {},
+   "Containers": {},
+   "Status": {
+    "IPAM": {}
+   }
+  },
+  {
+   "Name": "isolab_provider-net",
+   "Id": "0a6c4c97ac91d23b6df614b9c049c2eaa2d4f10b88aa2bb7e93f3c8605c8681e",
+   "Created": "2026-10-12T15:59:22.412174925Z",
+   "Scope": "local",
+   "Driver": "bridge",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": [
+     {
+      "Subnet": "172.21.0.0/16",
+      "Gateway": "172.21.0.1"
+     }
+    ]
+   },
+   "Internal": true,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {
+    "com.docker.network.enable_ipv4": "true",
+    "com.docker.network.enable_ipv6": "false"
+   },
+   "Labels": {
+    "com.docker.compose.config-hash": "d1b5f1124d92620372aa21d816b1cad30f9cfc05f3b5fb36dee1a610f6939e47",
+    "com.docker.compose.network": "provider-net",
+    "com.docker.compose.project": "isolab",
+    "com.docker.compose.version": "5.0.2",
+    "io.isolab.plane": "provider"
+   },
+   "Containers": {
+    "5efc215e6636cc22f9f43f35511a0b279a987a2e8e608ecd53602d469388a62f": {
+     "Name": "isolab-canary-1",
+     "EndpointID": "6d60109d80a857312807bff66ef267e7c0328acf8d9fb728c0e30a826b97c1b3",
+     "MacAddress": "3a:d2:d4:e2:30:8d",
+     "IPv4Address": "172.21.0.3/16",
+     "IPv6Address": ""
+    },
+    "66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4": {
+     "Name": "isolab-prometheus-1",
+     "EndpointID": "34882be278fe1180e9392edc40b87aa9a5c17a23135aa9e434d66f73d40930e7",
+     "MacAddress": "86:1e:6f:ac:7b:25",
+     "IPv4Address": "172.21.0.5/16",
+     "IPv6Address": ""
+    },
+    "6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883": {
+     "Name": "isolab-tenant-c-1",
+     "EndpointID": "c9c86e6011e913c353dcb466cf9ccb4a1ab9e5928600e18c6e9d806abfa40331",
+     "MacAddress": "2a:a5:97:85:e8:78",
+     "IPv4Address": "172.21.0.4/16",
+     "IPv6Address": ""
+    },
+    "8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2": {
+     "Name": "isolab-tenant-b-1",
+     "EndpointID": "6a0f404f4ac078ad8eb4a75b6e5fd905daf0b001ffbe3af34a3df3e5bdd3888c",
+     "MacAddress": "aa:a2:25:91:22:27",
+     "IPv4Address": "172.21.0.2/16",
+     "IPv6Address": ""
+    },
+    "9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30": {
+     "Name": "isolab-auditor-1",
+     "EndpointID": "c70f73c22998b503754521b7b316ea5e38f28546235aa512b76dfb21d617bbd9",
+     "MacAddress": "ea:71:5a:49:2f:72",
+     "IPv4Address": "172.21.0.7/16",
+     "IPv6Address": ""
+    },
+    "bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b": {
+     "Name": "isolab-tenant-a-1",
+     "EndpointID": "37b5b8a087a33200c98013ec14f6688128ba9dcf59a3a8fff35e247a0b52d694",
+     "MacAddress": "6e:f7:f5:d0:f9:db",
+     "IPv4Address": "172.21.0.6/16",
+     "IPv6Address": ""
+    },
+    "bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7": {
+     "Name": "isolab-grafana-1",
+     "EndpointID": "e7a4bc66987a0fda0cd5d51edad6c337acc9592de49448d65b049dd97fff9c15",
+     "MacAddress": "4e:8f:50:c0:af:75",
+     "IPv4Address": "172.21.0.8/16",
+     "IPv6Address": ""
+    }
+   },
+   "Status": {
+    "IPAM": {
+     "Subnets": {
+      "172.21.0.0/16": {
+       "IPsInUse": 10,
+       "DynamicIPsAvailable": 65526
+      }
+     }
+    }
+   }
+  },
+  {
+   "Name": "minikube",
+   "Id": "4d9d27a5bab80c9296a209c403915888de8c5cbf4c0871a7aa5458385c825213",
+   "Created": "2026-04-01T17:15:57.677574902Z",
+   "Scope": "local",
+   "Driver": "bridge",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": {},
+    "Config": [
+     {
+      "Subnet": "192.168.49.0/24",
+      "Gateway": "192.168.49.1"
+     }
+    ]
+   },
+   "Internal": false,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {
+    "--icc": "",
+    "--ip-masq": "",
+    "com.docker.network.driver.mtu": "1500",
+    "com.docker.network.enable_ipv4": "true",
+    "com.docker.network.enable_ipv6": "false"
+   },
+   "Labels": {
+    "created_by.minikube.sigs.k8s.io": "true",
+    "name.minikube.sigs.k8s.io": "minikube"
+   },
+   "Containers": {},
+   "Status": {
+    "IPAM": {
+     "Subnets": {
+      "192.168.49.0/24": {
+       "IPsInUse": 3,
+       "DynamicIPsAvailable": 253
+      }
+     }
+    }
+   }
+  },
+  {
+   "Name": "bridge",
+   "Id": "2ed337114163d34b6e30a2a4dac4e1d05515ddc2846693b84bb4ab429c048be9",
+   "Created": "2026-10-12T15:21:33.904124611Z",
+   "Scope": "local",
+   "Driver": "bridge",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": [
+     {
+      "Subnet": "172.17.0.0/16",
+      "Gateway": "172.17.0.1"
+     }
+    ]
+   },
+   "Internal": false,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {
+    "com.docker.network.bridge.default_bridge": "true",
+    "com.docker.network.bridge.enable_icc": "true",
+    "com.docker.network.bridge.enable_ip_masquerade": "true",
+    "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+    "com.docker.network.bridge.name": "docker0",
+    "com.docker.network.driver.mtu": "1500"
+   },
+   "Labels": {},
+   "Containers": {},
+   "Status": {
+    "IPAM": {
+     "Subnets": {
+      "172.17.0.0/16": {
+       "IPsInUse": 3,
+       "DynamicIPsAvailable": 65533
+      }
+     }
+    }
+   }
+  },
+  {
+   "Name": "dating_default",
+   "Id": "a13ec82275c25107549d79bc646cc66268f78006617c70a768282cc2f995f1e2",
+   "Created": "2026-04-17T17:21:40.014006213Z",
+   "Scope": "local",
+   "Driver": "bridge",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": [
+     {
+      "Subnet": "172.18.0.0/16",
+      "Gateway": "172.18.0.1"
+     }
+    ]
+   },
+   "Internal": false,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {
+    "com.docker.network.enable_ipv4": "true",
+    "com.docker.network.enable_ipv6": "false"
+   },
+   "Labels": {
+    "com.docker.compose.config-hash": "6d0dc6b4a47709cf9322db604d85c016a585d7c2e9d68945a5201610dd5f4d8d",
+    "com.docker.compose.network": "default",
+    "com.docker.compose.project": "dating",
+    "com.docker.compose.version": "5.0.2"
+   },
+   "Containers": {},
+   "Status": {
+    "IPAM": {
+     "Subnets": {
+      "172.18.0.0/16": {
+       "IPsInUse": 3,
+       "DynamicIPsAvailable": 65533
+      }
+     }
+    }
+   }
+  },
+  {
+   "Name": "host",
+   "Id": "cb5836f3c0371bf113156d55d68a631eaff9c572bf7b2f1e7915ba82f6e5f63e",
+   "Created": "2026-01-18T14:57:40.413501489Z",
+   "Scope": "local",
+   "Driver": "host",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": null
+   },
+   "Internal": false,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {},
+   "Labels": {},
+   "Containers": {},
+   "Status": {
+    "IPAM": {}
+   }
+  },
+  {
+   "Name": "isolab_engine-net",
+   "Id": "0e7bbfdf6b47c951c6a8ab7af8e50530de97607ef1226eba34d97e25f73fc4db",
+   "Created": "2026-10-12T15:59:22.368212464Z",
+   "Scope": "local",
+   "Driver": "bridge",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": [
+     {
+      "Subnet": "172.20.0.0/16",
+      "Gateway": "172.20.0.1"
+     }
+    ]
+   },
+   "Internal": true,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {
+    "com.docker.network.enable_ipv4": "true",
+    "com.docker.network.enable_ipv6": "false"
+   },
+   "Labels": {
+    "com.docker.compose.config-hash": "a51614f6ff20b903739267ff2f67aa1a0819f9f9fa8119733452ebdc5ab9d220",
+    "com.docker.compose.network": "engine-net",
+    "com.docker.compose.project": "isolab",
+    "com.docker.compose.version": "5.0.2",
+    "io.isolab.plane": "provider"
+   },
+   "Containers": {
+    "9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30": {
+     "Name": "isolab-auditor-1",
+     "EndpointID": "69e1bcc157976d9c846247d1e0e648e12eb3210ecf6f0e111d40220c66fed72f",
+     "MacAddress": "f6:23:d4:fc:e2:1c",
+     "IPv4Address": "172.20.0.3/16",
+     "IPv6Address": ""
+    },
+    "b14b757e7cd8d641a9a0caaf9b547325e964b009a937ca6b2c88472788b2acfc": {
+     "Name": "isolab-socket-proxy-1",
+     "EndpointID": "9cea9d9b3a9cf2fdd313efffefd1834d67c9b4b7159170c11c6d83022bfb8f2d",
+     "MacAddress": "4e:7d:de:f2:9b:15",
+     "IPv4Address": "172.20.0.2/16",
+     "IPv6Address": ""
+    }
+   },
+   "Status": {
+    "IPAM": {
+     "Subnets": {
+      "172.20.0.0/16": {
+       "IPsInUse": 5,
+       "DynamicIPsAvailable": 65531
+      }
+     }
+    }
+   }
+  },
+  {
+   "Name": "isolab_ops-net",
+   "Id": "67e907108954e2196267ba75e1a772c4707944c4c18c18f9feff502bff148c58",
+   "Created": "2026-10-12T15:59:22.453619057Z",
+   "Scope": "local",
+   "Driver": "bridge",
+   "EnableIPv4": true,
+   "EnableIPv6": false,
+   "IPAM": {
+    "Driver": "default",
+    "Options": null,
+    "Config": [
+     {
+      "Subnet": "172.22.0.0/16",
+      "Gateway": "172.22.0.1"
+     }
+    ]
+   },
+   "Internal": false,
+   "Attachable": false,
+   "Ingress": false,
+   "ConfigFrom": {
+    "Network": ""
+   },
+   "ConfigOnly": false,
+   "Options": {
+    "com.docker.network.enable_ipv4": "true",
+    "com.docker.network.enable_ipv6": "false"
+   },
+   "Labels": {
+    "com.docker.compose.config-hash": "7aa9388a05658677c001a8404c2f3b871c34a1d1512e81acca93084817d33a20",
+    "com.docker.compose.network": "ops-net",
+    "com.docker.compose.project": "isolab",
+    "com.docker.compose.version": "5.0.2",
+    "io.isolab.plane": "provider"
+   },
+   "Containers": {
+    "66e73ba478389e63ad94767ef2dce6df0f867d27723980cde0c6fd3db9775cc4": {
+     "Name": "isolab-prometheus-1",
+     "EndpointID": "3afa255bfa3d24057abe368cf25df826f37ebb08a5b3a5a7483e5b1a5ec17053",
+     "MacAddress": "d2:30:98:e6:37:64",
+     "IPv4Address": "172.22.0.5/16",
+     "IPv6Address": ""
+    },
+    "6fd25fe95b1764a42c0a5255d02ea75c6ceed909bf6828a00115619e9c930883": {
+     "Name": "isolab-tenant-c-1",
+     "EndpointID": "6dc47d89aa413dba3ee0bcb46d6db73267981bb67c18c9bea0509bee7a0bee33",
+     "MacAddress": "52:31:c9:dc:17:db",
+     "IPv4Address": "172.22.0.3/16",
+     "IPv6Address": ""
+    },
+    "8ff0c3144b36341261629896dd58733608bda41621b6d5a64f7f310e39a6a0e2": {
+     "Name": "isolab-tenant-b-1",
+     "EndpointID": "5f3a980e1f7a24cd96c80df57f6a589ac8b631e2d771ffe5b3f6537ad1d04e9e",
+     "MacAddress": "72:56:32:09:23:7d",
+     "IPv4Address": "172.22.0.2/16",
+     "IPv6Address": ""
+    },
+    "9f395091f4ef878108b334b40a39513a1b854a48948148feb8147d554a83cb30": {
+     "Name": "isolab-auditor-1",
+     "EndpointID": "279b2acd8e74411648afaf73fc0e0071d4b8d427f8314beca11758153c0e71d0",
+     "MacAddress": "66:dc:92:b1:fb:a6",
+     "IPv4Address": "172.22.0.6/16",
+     "IPv6Address": ""
+    },
+    "bb92fa6cd48036349c9b458f5c6cdcc21ac271cd5c7fdbea9ed3d469cd96a85b": {
+     "Name": "isolab-tenant-a-1",
+     "EndpointID": "38f3bbb2833aceac41973b27fe5bee55ead269fdc7a70708843a9e79f9b86bb7",
+     "MacAddress": "ca:80:88:35:ac:c3",
+     "IPv4Address": "172.22.0.4/16",
+     "IPv6Address": ""
+    },
+    "bbd6bf630fc9ad36b533b0d4a1851a594787d3684e4561d41b3dfada3b3c8cb7": {
+     "Name": "isolab-grafana-1",
+     "EndpointID": "9b32703d5ebf19e286783c7f1d8af1f3f8a974d98bc747a875397cb47b397b4d",
+     "MacAddress": "4a:d9:6c:3d:fc:a4",
+     "IPv4Address": "172.22.0.7/16",
+     "IPv6Address": ""
+    }
+   },
+   "Status": {
+    "IPAM": {
+     "Subnets": {
+      "172.22.0.0/16": {
+       "IPsInUse": 9,
+       "DynamicIPsAvailable": 65527
+      }
+     }
+    }
+   }
+  }
+ ],
+ "volumes": [
+  {
+   "CreatedAt": "2026-02-11T15:12:02Z",
+   "Driver": "local",
+   "Labels": null,
+   "Mountpoint": "/var/lib/docker/volumes/jenkins_home/_data",
+   "Name": "jenkins_home",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-04-01T17:15:57Z",
+   "Driver": "local",
+   "Labels": {
+    "created_by.minikube.sigs.k8s.io": "true",
+    "name.minikube.sigs.k8s.io": "minikube"
+   },
+   "Mountpoint": "/var/lib/docker/volumes/minikube/_data",
+   "Name": "minikube",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-01-22T05:51:01Z",
+   "Driver": "local",
+   "Labels": null,
+   "Mountpoint": "/var/lib/docker/volumes/my_volume/_data",
+   "Name": "my_volume",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-03-02T15:52:19Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.compose.config-hash": "f5fdb13027a333154a62307bb8be75399c4aa754586f6bfb2c0c1f3d7545cd47",
+    "com.docker.compose.project": "opsflow-pipeline",
+    "com.docker.compose.version": "5.0.2",
+    "com.docker.compose.volume": "postgres_data"
+   },
+   "Mountpoint": "/var/lib/docker/volumes/opsflow-pipeline_postgres_data/_data",
+   "Name": "opsflow-pipeline_postgres_data",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-10-12T15:59:22Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.compose.config-hash": "8808781c30b09a76d68c96cac8ddea18d26e9f71f2c57a5e2cc09dc21e81064d",
+    "com.docker.compose.project": "isolab",
+    "com.docker.compose.version": "5.0.2",
+    "com.docker.compose.volume": "grafana-data",
+    "io.isolab.plane": "provider"
+   },
+   "Mountpoint": "/var/lib/docker/volumes/isolab_grafana-data/_data",
+   "Name": "isolab_grafana-data",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-04-17T17:21:40Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.compose.config-hash": "67042ed7cea96c3290f4d28ce73c0b0b2a4f85cf36f66aa6e494c1fae765ca48",
+    "com.docker.compose.project": "dating",
+    "com.docker.compose.version": "5.0.2",
+    "com.docker.compose.volume": "mongo_data"
+   },
+   "Mountpoint": "/var/lib/docker/volumes/dating_mongo_data/_data",
+   "Name": "dating_mongo_data",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-04-17T17:21:40Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.compose.config-hash": "8a333cd1377096168bd1a8a52338f91320efda88a92daa53aac54e37185d3d14",
+    "com.docker.compose.project": "dating",
+    "com.docker.compose.version": "5.0.2",
+    "com.docker.compose.volume": "redis_data"
+   },
+   "Mountpoint": "/var/lib/docker/volumes/dating_redis_data/_data",
+   "Name": "dating_redis_data",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-10-12T15:59:22Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.compose.config-hash": "af614afa2879ca062a109f433b4bed2d9e540295604682dabab948feafefe00b",
+    "com.docker.compose.project": "isolab",
+    "com.docker.compose.version": "5.0.2",
+    "com.docker.compose.volume": "prometheus-data",
+    "io.isolab.plane": "provider"
+   },
+   "Mountpoint": "/var/lib/docker/volumes/isolab_prometheus-data/_data",
+   "Name": "isolab_prometheus-data",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-10-12T15:59:22Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.compose.config-hash": "2f46aa00467c24efbdd20b4b005d937f58c283c5b4658887e6931b7d486f800e",
+    "com.docker.compose.project": "isolab",
+    "com.docker.compose.version": "5.0.2",
+    "com.docker.compose.volume": "appdata"
+   },
+   "Mountpoint": "/var/lib/docker/volumes/isolab_appdata/_data",
+   "Name": "isolab_appdata",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-04-17T17:21:40Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.volume.anonymous": ""
+   },
+   "Mountpoint": "/var/lib/docker/volumes/56c0172f595479be7601d09866a67102660ee549ea1503ec8e3ff5d7fd0b753c/_data",
+   "Name": "56c0172f595479be7601d09866a67102660ee549ea1503ec8e3ff5d7fd0b753c",
+   "Options": null,
+   "Scope": "local"
+  },
+  {
+   "CreatedAt": "2026-05-16T09:47:43Z",
+   "Driver": "local",
+   "Labels": {
+    "com.docker.volume.anonymous": ""
+   },
+   "Mountpoint": "/var/lib/docker/volumes/c7b7906e68cad10f159529d3294aacf98b2261d476852b1919673b2640b51c65/_data",
+   "Name": "c7b7906e68cad10f159529d3294aacf98b2261d476852b1919673b2640b51c65",
+   "Options": null,
+   "Scope": "local"
+  }
+ ],
+ "images": {
+  "sha256:73694c55c028323bc96ded596dbbf3598d4c7a22284777bffa2f0c44a62e31fd": {
+   "RepoTags": [
+    "isolab/auditor:local"
+   ],
+   "RepoDigests": [
+    "isolab/auditor@sha256:73694c55c028323bc96ded596dbbf3598d4c7a22284777bffa2f0c44a62e31fd"
+   ],
+   "Config": {
+    "User": "10001:10001",
+    "Labels": {
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.service": "auditor",
+     "com.docker.compose.version": "5.0.2",
+     "org.opencontainers.image.base.name": "python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab cloudaudit"
+    }
+   }
+  },
+  "sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d": {
+   "RepoTags": [
+    "grafana/grafana@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d"
+   ],
+   "RepoDigests": [
+    "grafana/grafana@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d"
+   ],
+   "Config": {
+    "User": "472",
+    "Labels": {
+     "maintainer": "Grafana Labs <hello@grafana.com>",
+     "org.opencontainers.image.source": "https://github.com/grafana/grafana"
+    }
+   }
+  },
+  "sha256:174163bc8dc3540cd93a897c5bdc523ba54dcc34f5db208b5f26fd3a9b6d4321": {
+   "RepoTags": [
+    "isolab/canary:local"
+   ],
+   "RepoDigests": [
+    "isolab/canary@sha256:174163bc8dc3540cd93a897c5bdc523ba54dcc34f5db208b5f26fd3a9b6d4321"
+   ],
+   "Config": {
+    "User": "10001:10001",
+    "Labels": {
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.service": "canary",
+     "com.docker.compose.version": "5.0.2",
+     "org.opencontainers.image.base.name": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab canary"
+    }
+   }
+  },
+  "sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e": {
+   "RepoTags": [
+    "tecnativa/docker-socket-proxy@sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e"
+   ],
+   "RepoDigests": [
+    "tecnativa/docker-socket-proxy@sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e"
+   ],
+   "Config": {
+    "User": "root",
+    "Labels": {
+     "org.opencontainers.image.created": "2025-09-05T05:39:58.668Z",
+     "org.opencontainers.image.description": "Proxy over your Docker socket to restrict which requests it accepts",
+     "org.opencontainers.image.licenses": "Apache-2.0",
+     "org.opencontainers.image.revision": "a6fbf3835b0554c12be4bccdea4299e14ecb05e8",
+     "org.opencontainers.image.source": "https://github.com/Tecnativa/docker-socket-proxy",
+     "org.opencontainers.image.title": "docker-socket-proxy",
+     "org.opencontainers.image.url": "https://github.com/Tecnativa/docker-socket-proxy",
+     "org.opencontainers.image.version": "v0.4.1"
+    }
+   }
+  },
+  "sha256:59fa2906c05a67e1d5f4f272ea08e255f76aad95b2e0c631f9cfc7f42e3c1191": {
+   "RepoTags": [
+    "isolab/payments-api:local"
+   ],
+   "RepoDigests": [
+    "isolab/payments-api@sha256:59fa2906c05a67e1d5f4f272ea08e255f76aad95b2e0c631f9cfc7f42e3c1191"
+   ],
+   "Config": {
+    "User": "10001:10001",
+    "Labels": {
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.service": "tenant-a",
+     "com.docker.compose.version": "5.0.2",
+     "org.opencontainers.image.base.name": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab payments-api"
+    }
+   }
+  },
+  "sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996": {
+   "RepoTags": [
+    "prom/prometheus@sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996"
+   ],
+   "RepoDigests": [
+    "prom/prometheus@sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996"
+   ],
+   "Config": {
+    "User": "nobody",
+    "Labels": {
+     "maintainer": "The Prometheus Authors <prometheus-developers@googlegroups.com>",
+     "org.opencontainers.image.source": "https://github.com/prometheus/prometheus"
+    }
+   }
+  },
+  "sha256:531045c76b1aeece14bfffe454a3ff0f7c90944e68e6cdd850c8d0bfda068673": {
+   "RepoTags": [
+    "isolab/legacy-app:insecure"
+   ],
+   "RepoDigests": [
+    "isolab/legacy-app@sha256:531045c76b1aeece14bfffe454a3ff0f7c90944e68e6cdd850c8d0bfda068673"
+   ],
+   "Config": {
+    "User": "10001:10001",
+    "Labels": {
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.service": "tenant-c",
+     "com.docker.compose.version": "5.0.2",
+     "org.opencontainers.image.title": "isolab legacy-app"
+    }
+   }
+  },
+  "sha256:bff95c21bae30fcd3ddf404d2c1f0cfe1e38314ab5704f29e29c30bbedd73945": {
+   "RepoTags": [
+    "isolab/batch-analytics:local"
+   ],
+   "RepoDigests": [
+    "isolab/batch-analytics@sha256:bff95c21bae30fcd3ddf404d2c1f0cfe1e38314ab5704f29e29c30bbedd73945"
+   ],
+   "Config": {
+    "User": "10001:10001",
+    "Labels": {
+     "com.docker.compose.project": "isolab",
+     "com.docker.compose.service": "tenant-b",
+     "com.docker.compose.version": "5.0.2",
+     "org.opencontainers.image.base.name": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+     "org.opencontainers.image.revision": "731052610d51",
+     "org.opencontainers.image.source": "https://github.com/alpha08-prog/Cloud_Security",
+     "org.opencontainers.image.title": "isolab batch-analytics"
+    }
+   }
+  }
+ },
+ "host": {
+  "smt_control": "on",
+  "smt_active": true,
+  "cores": [
+   [
+    0,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    6,
+    7
+   ],
+   [
+    8,
+    9
+   ],
+   [
+    10,
+    11
+   ]
+  ],
+  "vulnerabilities": {
+   "gather_data_sampling": "Not affected",
+   "itlb_multihit": "Not affected",
+   "l1tf": "Not affected",
+   "mds": "Not affected",
+   "meltdown": "Not affected",
+   "mmio_stale_data": "Not affected",
+   "reg_file_data_sampling": "Not affected",
+   "retbleed": "Not affected",
+   "spec_rstack_overflow": "Vulnerable: Safe RET, no microcode",
+   "spec_store_bypass": "Mitigation: Speculative Store Bypass disabled via prctl",
+   "spectre_v1": "Mitigation: usercopy/swapgs barriers and __user pointer sanitization",
+   "spectre_v2": "Mitigation: Retpolines; IBPB: conditional; IBRS_FW; STIBP: always-on; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected",
+   "srbds": "Not affected",
+   "tsx_async_abort": "Not affected"
+  },
+  "ksm_run": 0,
+  "sysctls": {
+   "kernel.unprivileged_bpf_disabled": 2,
+   "kernel.kptr_restrict": 1,
+   "kernel.dmesg_restrict": 1,
+   "kernel.perf_event_paranoid": 2
+  },
+  "psi_host": true,
+  "cgroup_mount": true
+ },
+ "self_state": {
+  "watcher_heartbeat_age_s": 1.9577124118804932,
+  "canary_healthy": true,
+  "rules_loaded": true,
+  "observed": {
+   "auditor": {
+    "last_sample_age_s": 2.933537006378174,
+    "psi": true
+   },
+   "grafana": {
+    "last_sample_age_s": 2.9260356426239014,
+    "psi": true
+   },
+   "canary": {
+    "last_sample_age_s": 2.9184045791625977,
+    "psi": true
+   },
+   "socket-proxy": {
+    "last_sample_age_s": 2.9112682342529297,
+    "psi": true
+   },
+   "tenant-a": {
+    "last_sample_age_s": 2.9040067195892334,
+    "psi": true
+   },
+   "prometheus": {
+    "last_sample_age_s": 2.896392822265625,
+    "psi": true
+   },
+   "tenant-c": {
+    "last_sample_age_s": 2.8887224197387695,
+    "psi": true
+   },
+   "tenant-b": {
+    "last_sample_age_s": 2.8811001777648926,
+    "psi": true
+   }
+  }
+ }
+}

@@ -1,0 +1,60 @@
+# Accepted, time-boxed exceptions. A waived check earns NO coverage credit (it still
+# counts against the score) but does not fail the gate. An expired waiver fails the gate.
+#
+# Every entry needs a reason a reviewer can check and an expiry date. Review these
+# before each demo and update approvedBy once you have actually reviewed them.
+
+- checkId: HV-03
+  platform: docker-desktop-wsl2
+  covers: [spec_rstack_overflow]   # any other vulnerable CPU flaw fails the gate again
+  reason: >-
+    The WSL2 kernel reports spec_rstack_overflow as "Vulnerable: Safe RET, no microcode".
+    The SRSO microcode fix is delivered through the physical host's firmware/Windows updates;
+    the container host (a WSL2 VM) cannot load microcode itself. This is a provider-layer
+    weakness outside the testbed's control - the paper's point about tenants depending on a
+    hypervisor they cannot inspect or fix.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)
+
+- checkId: HV-04
+  platform: docker-desktop-wsl2
+  reason: >-
+    User-namespace remapping and rootless mode are not available in Docker Desktop without
+    Enhanced Container Isolation (Business subscription). Compensating controls: every tenant
+    runs as uid 10001 with all capabilities dropped, no-new-privileges and seccomp.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)
+
+# ---- GitHub-hosted ubuntu-24.04 runners (CI) -------------------------------------------
+
+- checkId: HV-03
+  platform: github-ubuntu
+  covers: [spec_rstack_overflow, spec_store_bypass, tsa]
+  reason: >-
+    Observed on the first CI run (2026-10-12): the hosted runner is an Azure VM whose kernel
+    reports spec_rstack_overflow and tsa as "Vulnerable: ... no microcode" and spec_store_bypass
+    as "Vulnerable". Microcode and the speculative-store-bypass control are provided by the
+    cloud provider's hypervisor host; a CI job cannot load microcode or change the VM's CPU
+    feature exposure. Same provider-layer limit as on Docker Desktop. Scoped to these three
+    flaws: any newly reported one is not covered and fails the gate.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)
+
+- checkId: XVM-05
+  platform: github-ubuntu
+  reason: >-
+    Hosted runners have 4 vCPUs (2 cores x 2 SMT threads). After the provider plane and the
+    load generator take one core, tenant-a and tenant-b can only be separated onto the two
+    threads of the remaining core; the placement planner records this in PLACEMENT_NOTES.
+    On a host with >= 6 cores (the laptop run) XVM-05 passes without a waiver.
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)
+
+- checkId: HV-04
+  platform: github-ubuntu
+  reason: >-
+    The hosted runner's Docker daemon is not configured with userns-remap and the workflow
+    cannot reconfigure it without restarting the daemon mid-job. Compensating controls as on
+    Docker Desktop (uid 10001, no capabilities, no-new-privileges, seccomp, AppArmor).
+  expires: 2026-12-31
+  approvedBy: project owner (pending review)

@@ -1,0 +1,77 @@
+# IsoLab audit policy: what "good" means for the static checks (auditor/src/cloudaudit/checks).
+# Changing this file changes every report's policySha256, so results stay traceable to it.
+version: 1
+
+# R1 - identification. Labels every workload of a plane must carry.
+requiredLabels:
+  tenant: [io.isolab.plane, io.isolab.tenant, io.isolab.owner, io.isolab.workload-id]
+  provider: [io.isolab.plane, io.isolab.owner, io.isolab.workload-id]
+  operator: [io.isolab.plane, io.isolab.workload-id]
+
+# ISO-02 - capabilities a tenant may add back after dropping ALL. None.
+capabilityAllowlist: []
+
+# DL-01 - host paths no tenant may bind-mount (the path itself, anything under it,
+# or any parent of it). /run/desktop/mnt/host is where Docker Desktop exposes the
+# Windows drives inside its VM.
+sensitivePaths:
+  - /etc
+  - /proc
+  - /sys
+  - /dev
+  - /root
+  - /home
+  - /boot
+  - /usr
+  - /var/lib/docker
+  - /var/run/docker.sock
+  - /run/docker.sock
+  - /run/host-services        # Docker Desktop's host sockets (docker.sock is remapped here)
+  - /run/desktop/mnt/host
+
+# HV-01 - engine sockets that hand over control of the host's containers.
+engineSockets: [docker.sock, containerd.sock, podman.sock, crio.sock, dockershim.sock]
+
+# DL-05 - environment variable NAMES that look like secrets (values are never read into reports).
+secretEnvPattern: "(PASS(WORD)?|SECRET|TOKEN|API_?KEY|PRIVATE_?KEY|CREDENTIAL)"
+
+# HV-02 - patch baseline for the shared "hypervisor" (engine + kernel).
+minVersions:
+  dockerServer: "27.0.0"
+  kernel: "6.1"
+
+# HV-06 - minimum values for host kernel hardening settings.
+sysctls:
+  kernel.unprivileged_bpf_disabled: 1
+  kernel.kptr_restrict: 1
+  kernel.dmesg_restrict: 1
+  kernel.perf_event_paranoid: 2
+
+# Documented exceptions for the provider plane. They are reported as `skip` for that
+# workload (not as a pass) with the reason below.
+providerExceptions:
+  - service: socket-proxy
+    checks: [HV-01, ISO-04]
+    reason: >-
+      The proxy is the single holder of the engine socket by design. It runs as root only to
+      open the root-owned socket, exposes a read-only API subset (POST disabled) and sits on an
+      internal network shared with nothing but the auditor.
+  - service: auditor
+    checks: [HV-01]
+    reason: >-
+      DOCKER_HOST points at the read-only socket proxy (tcp://socket-proxy:2375), not at the
+      engine socket; the proxy rejects every write (POST) request, so the auditor can observe the
+      engine but not control it.
+
+# ID-02 - services allowed to run unlabelled on the host (e.g. Docker Desktop extensions).
+ignoreServices: []
+
+# ID-05 / XVM-07 - freshness of the live observation.
+observation:
+  statsIntervalSeconds: 5
+  staleAfterSeconds: 15
+  heartbeatStaleSeconds: 30
+
+# Gate: any non-waived failure at or above this severity fails `lab.py gate`.
+gate:
+  failOn: high

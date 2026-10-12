@@ -10,9 +10,14 @@ export function Footer() {
             About
           </h2>
           <p>
-            Cloud Security Threat Lab is a college project for a Cloud SRE &amp; Security course. It
-            turns a published survey of cloud-security concerns and solutions into something you
-            can explore.
+            IsoLab is a college project for a Cloud SRE &amp; Security course. It takes the one gap a
+            published survey of cloud security found (virtualization isolation) and builds and
+            measures the solution the paper’s future-work section describes: a multi-tenant testbed,
+            an auditor, live observation and detection.
+          </p>
+          <p>
+            Nothing here attacks anything: all validation is configuration auditing, load testing of
+            the victim’s own latency, read-only reachability probes and benign detection triggers.
           </p>
         </section>
 
@@ -33,6 +38,10 @@ export function Footer() {
             <li>
               The defense matrix lists current best practice mapped to the paper’s categories; the
               controls themselves are not from the paper.
+            </li>
+            <li>
+              The R1–R4 requirements quote the paper (p.16); their interpretation, the system and all
+              measurements are this project’s own. Containers stand in for VMs (see Requirements).
             </li>
           </ul>
         </section>

@@ -1,0 +1,511 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "e1",
+  "generatedAt": "2026-10-12T18:03:15.675Z",
+  "variant": "full",
+  "environment": {
+    "platform": "docker-desktop-wsl2",
+    "dockerServerVersion": "29.2.1",
+    "kernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+    "logicalCpus": 12,
+    "physicalCores": 6,
+    "gitSha": "dffa2c70c553",
+    "placement": {
+      "CPUSET_PROVIDER": "0,1",
+      "CPUSET_LOADGEN": "2,3",
+      "CPUSET_TENANT_A": "4,5",
+      "CPUSET_TENANT_B": "6,7,8,9",
+      "CPUSET_TENANT_C": "10,11",
+      "PLACEMENT_NOTES": "each tenant on dedicated physical cores"
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "Insecure: interference factor (p99 noisy / p99 baseline) >= 2",
+      "verdict": "supported",
+      "detail": "IF = 3.799"
+    },
+    {
+      "id": "H2",
+      "statement": "Hardened: interference factor <= 1.25 and p99 under noise <= 25 ms",
+      "verdict": "supported",
+      "detail": "IF = 1.223, p99 under noise = 5.617 ms"
+    },
+    {
+      "id": "H3",
+      "statement": "Optional SMT-shared arm: higher server time than hardened",
+      "verdict": "inconclusive",
+      "detail": "optional arm not run (Hyper-V vCPU mapping makes it indicative only)"
+    },
+    {
+      "id": "H4",
+      "statement": "DET-08 fires under noise in insecure and stays silent in hardened",
+      "verdict": "supported",
+      "detail": "E1 DET-08 detections: {'insecure': 3, 'hardened': 0}; E3 T7 detected: {'insecure': True, 'hardened': False}"
+    }
+  ],
+  "config": {
+    "ratePerSecond": 50,
+    "warmupSeconds": 15,
+    "measureSeconds": 90,
+    "repetitions": 3,
+    "stressWorkers": 12,
+    "workIterations": 2500,
+    "sloP99Ms": 25.0
+  },
+  "runs": [
+    {
+      "profile": "insecure",
+      "arm": "baseline",
+      "repetition": 1,
+      "startedAt": "2026-10-12T17:48:29Z",
+      "latencyMs": {
+        "avg": 2.690262168851361,
+        "min": 2.197052,
+        "med": 2.610833,
+        "p90": 2.95861,
+        "p95": 3.219043,
+        "p99": 4.334104,
+        "max": 8.075996
+      },
+      "serverWorkMs": {
+        "avg": 1.910794934459008,
+        "min": 1.653,
+        "med": 1.841,
+        "p90": 2.149,
+        "p95": 2.297,
+        "p99": 3.105,
+        "max": 6.206
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.06,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "insecure",
+      "arm": "noisy",
+      "repetition": 1,
+      "startedAt": "2026-10-12T17:50:51Z",
+      "latencyMs": {
+        "avg": 5.936041998666664,
+        "min": 3.529814,
+        "med": 4.648270999999999,
+        "p90": 9.393150099999998,
+        "p95": 10.633103650000004,
+        "p99": 16.22948917000001,
+        "max": 47.696067
+      },
+      "serverWorkMs": {
+        "avg": 3.7732593333333346,
+        "min": 2.81,
+        "med": 3.334,
+        "p90": 4.544,
+        "p95": 5.978350000000005,
+        "p99": 10.576690000000037,
+        "max": 17.207
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4500,
+      "noisyCoresUsed": 11.182,
+      "victimCpuPressurePct": 1.23,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "insecure",
+      "arm": "noisy",
+      "repetition": 2,
+      "startedAt": "2026-10-12T17:53:19Z",
+      "latencyMs": {
+        "avg": 5.9812398298156,
+        "min": 3.271004,
+        "med": 4.654793,
+        "p90": 9.000803,
+        "p95": 10.645683,
+        "p99": 16.663264,
+        "max": 49.753055
+      },
+      "serverWorkMs": {
+        "avg": 4.033187069540096,
+        "min": 2.79,
+        "med": 3.379,
+        "p90": 5.947,
+        "p95": 7.591,
+        "p99": 11.52,
+        "max": 33.632
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 11.19,
+      "victimCpuPressurePct": 1.19,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "insecure",
+      "arm": "baseline",
+      "repetition": 2,
+      "startedAt": "2026-10-12T17:55:48Z",
+      "latencyMs": {
+        "avg": 2.8644563839146837,
+        "min": 2.299092,
+        "med": 2.818599,
+        "p90": 3.087935,
+        "p95": 3.303839,
+        "p99": 4.492203,
+        "max": 7.908445
+      },
+      "serverWorkMs": {
+        "avg": 2.0583661408575935,
+        "min": 1.704,
+        "med": 2.057,
+        "p90": 2.26,
+        "p95": 2.386,
+        "p99": 3.249,
+        "max": 6.269
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.06,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "insecure",
+      "arm": "baseline",
+      "repetition": 3,
+      "startedAt": "2026-10-12T17:58:10Z",
+      "latencyMs": {
+        "avg": 2.844386280826482,
+        "min": 1.254327,
+        "med": 2.802287,
+        "p90": 3.054456,
+        "p95": 3.257555,
+        "p99": 4.319599,
+        "max": 13.258208
+      },
+      "serverWorkMs": {
+        "avg": 2.0408491446345223,
+        "min": 1.672,
+        "med": 2.041,
+        "p90": 2.24,
+        "p95": 2.364,
+        "p99": 3.131,
+        "max": 8.884
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.06,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "insecure",
+      "arm": "noisy",
+      "repetition": 3,
+      "startedAt": "2026-10-12T18:00:32Z",
+      "latencyMs": {
+        "avg": 5.972854922906022,
+        "min": 3.7005,
+        "med": 4.670504,
+        "p90": 8.994686,
+        "p95": 10.926219,
+        "p99": 16.462774,
+        "max": 68.817994
+      },
+      "serverWorkMs": {
+        "avg": 3.971300377693854,
+        "min": 2.826,
+        "med": 3.348,
+        "p90": 5.612,
+        "p95": 7.524,
+        "p99": 11.398,
+        "max": 28.958
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 11.186,
+      "victimCpuPressurePct": 1.27,
+      "throttledSeconds": {
+        "a": 0.0,
+        "b": 0.0,
+        "?": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "baseline",
+      "repetition": 1,
+      "startedAt": "2026-10-12T17:29:40Z",
+      "latencyMs": {
+        "avg": 2.6957786558542525,
+        "min": 2.132711,
+        "med": 2.603932,
+        "p90": 2.933344,
+        "p95": 3.211357,
+        "p99": 4.628077,
+        "max": 11.242452
+      },
+      "serverWorkMs": {
+        "avg": 1.9170886469673452,
+        "min": 1.65,
+        "med": 1.834,
+        "p90": 2.145,
+        "p95": 2.278,
+        "p99": 3.266,
+        "max": 7.67
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.6,
+      "throttledSeconds": {
+        "b": 0.0,
+        "c": 0.0,
+        "a": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "noisy",
+      "repetition": 1,
+      "startedAt": "2026-10-12T17:32:02Z",
+      "latencyMs": {
+        "avg": 2.980256502666676,
+        "min": 2.19417,
+        "med": 2.675291,
+        "p90": 3.9572608,
+        "p95": 4.1161648,
+        "p99": 5.904184190000017,
+        "max": 22.484227
+      },
+      "serverWorkMs": {
+        "avg": 2.1021495555555614,
+        "min": 1.669,
+        "med": 1.843,
+        "p90": 3.031,
+        "p95": 3.0970500000000003,
+        "p99": 3.630090000000002,
+        "max": 13.831
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4500,
+      "noisyCoresUsed": 3.0,
+      "victimCpuPressurePct": 0.99,
+      "throttledSeconds": {
+        "b": 89.858,
+        "c": 0.0,
+        "a": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "noisy",
+      "repetition": 2,
+      "startedAt": "2026-10-12T17:34:28Z",
+      "latencyMs": {
+        "avg": 3.0973233428888896,
+        "min": 2.261371,
+        "med": 2.735276,
+        "p90": 4.0354871999999995,
+        "p95": 4.2174455,
+        "p99": 5.616545400000002,
+        "max": 24.115852
+      },
+      "serverWorkMs": {
+        "avg": 2.182883111111116,
+        "min": 1.697,
+        "med": 1.869,
+        "p90": 3.044,
+        "p95": 3.12705,
+        "p99": 3.5350500000000014,
+        "max": 10.804
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4500,
+      "noisyCoresUsed": 3.0,
+      "victimCpuPressurePct": 1.02,
+      "throttledSeconds": {
+        "b": 89.891,
+        "c": 0.0,
+        "a": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "baseline",
+      "repetition": 2,
+      "startedAt": "2026-10-12T17:36:54Z",
+      "latencyMs": {
+        "avg": 2.840292513663634,
+        "min": 1.667293,
+        "med": 2.78071,
+        "p90": 3.049756,
+        "p95": 3.274835,
+        "p99": 4.59419,
+        "max": 14.52319
+      },
+      "serverWorkMs": {
+        "avg": 2.0604685625416534,
+        "min": 1.683,
+        "med": 2.041,
+        "p90": 2.248,
+        "p95": 2.406,
+        "p99": 3.291,
+        "max": 13.032
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.59,
+      "throttledSeconds": {
+        "b": 0.0,
+        "c": 0.0,
+        "a": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "baseline",
+      "repetition": 3,
+      "startedAt": "2026-10-12T17:39:16Z",
+      "latencyMs": {
+        "avg": 2.8385784021328604,
+        "min": 2.245126,
+        "med": 2.783222,
+        "p90": 3.037614,
+        "p95": 3.267388,
+        "p99": 4.534986,
+        "max": 10.543422
+      },
+      "serverWorkMs": {
+        "avg": 2.0394656742946022,
+        "min": 1.654,
+        "med": 2.031,
+        "p90": 2.227,
+        "p95": 2.377,
+        "p99": 3.231,
+        "max": 9.071
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4501,
+      "noisyCoresUsed": 0.0,
+      "victimCpuPressurePct": 0.51,
+      "throttledSeconds": {
+        "b": 0.0,
+        "c": 0.0,
+        "a": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    },
+    {
+      "profile": "hardened",
+      "arm": "noisy",
+      "repetition": 3,
+      "startedAt": "2026-10-12T17:41:38Z",
+      "latencyMs": {
+        "avg": 2.9717848466666608,
+        "min": 1.007713,
+        "med": 2.6901824999999997,
+        "p90": 3.9828033,
+        "p95": 4.1444118,
+        "p99": 5.105245950000002,
+        "max": 26.358056
+      },
+      "serverWorkMs": {
+        "avg": 2.0972122222222187,
+        "min": 1.679,
+        "med": 1.851,
+        "p90": 3.038,
+        "p95": 3.102,
+        "p99": 3.4670300000000007,
+        "max": 13.864
+      },
+      "failedRate": 0,
+      "droppedIterations": 0,
+      "iterations": 4500,
+      "noisyCoresUsed": 3.0,
+      "victimCpuPressurePct": 0.83,
+      "throttledSeconds": {
+        "b": 89.865,
+        "c": 0.0,
+        "a": 0.0
+      },
+      "valid": true,
+      "invalidReason": null
+    }
+  ],
+  "summary": [
+    {
+      "profile": "insecure",
+      "baselineP99Ms": 4.334,
+      "noisyP99Ms": 16.463,
+      "interferenceFactor": 3.799,
+      "sloMetUnderNoise": true,
+      "validRuns": 6,
+      "totalRuns": 6
+    },
+    {
+      "profile": "hardened",
+      "baselineP99Ms": 4.594,
+      "noisyP99Ms": 5.617,
+      "interferenceFactor": 1.223,
+      "sloMetUnderNoise": true,
+      "validRuns": 6,
+      "totalRuns": 6
+    }
+  ]
+}

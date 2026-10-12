@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-10-12T18:03:15.675Z",
+  "platform": "docker-desktop-wsl2",
+  "gitSha": "dffa2c70c553",
+  "files": [
+    "audit-hardened.json",
+    "audit-hardened.sarif",
+    "audit-insecure.json",
+    "audit-insecure.sarif",
+    "e1.json",
+    "e2.json",
+    "e3.json"
+  ]
+}

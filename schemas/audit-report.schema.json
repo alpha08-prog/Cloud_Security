@@ -1,0 +1,767 @@
+{
+  "$defs": {
+    "CheckResult": {
+      "additionalProperties": false,
+      "properties": {
+        "checkId": {
+          "title": "Checkid",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "warn",
+            "fail",
+            "error",
+            "skip"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "targets": {
+          "items": {
+            "$ref": "#/$defs/Target"
+          },
+          "title": "Targets",
+          "type": "array"
+        },
+        "waived": {
+          "default": false,
+          "title": "Waived",
+          "type": "boolean"
+        },
+        "waiver": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Waiver"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "checkId",
+        "status",
+        "message",
+        "targets"
+      ],
+      "title": "CheckResult",
+      "type": "object"
+    },
+    "CheckSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "enum": [
+            "hypervisor-vulnerabilities",
+            "cross-vm-attacks",
+            "isolation",
+            "data-leakage",
+            "vm-identification"
+          ],
+          "title": "Axis",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "frameworks": {
+          "$ref": "#/$defs/Frameworks"
+        },
+        "id": {
+          "pattern": "^(ISO|HV|DL|XVM|ID)-\\d{2}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "platformNotes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Platformnotes"
+        },
+        "remediation": {
+          "title": "Remediation",
+          "type": "string"
+        },
+        "requirements": {
+          "items": {
+            "enum": [
+              "R1",
+              "R2",
+              "R3",
+              "R4"
+            ],
+            "type": "string"
+          },
+          "title": "Requirements",
+          "type": "array"
+        },
+        "scope": {
+          "enum": [
+            "container",
+            "network",
+            "volume",
+            "fleet",
+            "host",
+            "self"
+          ],
+          "title": "Scope",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "taxonomy": {
+          "description": "Node ids from the paper's taxonomy (Figures 2-4)",
+          "items": {
+            "type": "string"
+          },
+          "title": "Taxonomy",
+          "type": "array"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "axis",
+        "requirements",
+        "severity",
+        "scope",
+        "taxonomy",
+        "frameworks",
+        "remediation"
+      ],
+      "title": "CheckSpec",
+      "type": "object"
+    },
+    "Environment": {
+      "additionalProperties": false,
+      "properties": {
+        "apiVersion": {
+          "title": "Apiversion",
+          "type": "string"
+        },
+        "cgroupDriver": {
+          "title": "Cgroupdriver",
+          "type": "string"
+        },
+        "cgroupVersion": {
+          "title": "Cgroupversion",
+          "type": "string"
+        },
+        "ci": {
+          "title": "Ci",
+          "type": "boolean"
+        },
+        "dockerServerVersion": {
+          "title": "Dockerserverversion",
+          "type": "string"
+        },
+        "kernelVersion": {
+          "title": "Kernelversion",
+          "type": "string"
+        },
+        "logicalCpus": {
+          "title": "Logicalcpus",
+          "type": "integer"
+        },
+        "operatingSystem": {
+          "title": "Operatingsystem",
+          "type": "string"
+        },
+        "physicalCores": {
+          "title": "Physicalcores",
+          "type": "integer"
+        },
+        "platform": {
+          "enum": [
+            "docker-desktop-wsl2",
+            "docker-desktop",
+            "github-ubuntu",
+            "linux",
+            "fixture"
+          ],
+          "title": "Platform",
+          "type": "string"
+        },
+        "securityOptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Securityoptions",
+          "type": "array"
+        },
+        "smtActive": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Smtactive"
+        },
+        "smtControl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Smtcontrol"
+        }
+      },
+      "required": [
+        "platform",
+        "dockerServerVersion",
+        "apiVersion",
+        "operatingSystem",
+        "kernelVersion",
+        "cgroupVersion",
+        "cgroupDriver",
+        "logicalCpus",
+        "physicalCores",
+        "smtControl",
+        "smtActive",
+        "securityOptions",
+        "ci"
+      ],
+      "title": "Environment",
+      "type": "object"
+    },
+    "Frameworks": {
+      "additionalProperties": false,
+      "properties": {
+        "csaDomains": {
+          "description": "CSA Guidance domains as listed in the paper (p.12)",
+          "items": {
+            "enum": [
+              "governance-and-risk-management",
+              "legal-issues",
+              "compliance-and-audit",
+              "information-management-and-data-security",
+              "portability-and-interoperability",
+              "traditional-security-business-continuity-and-disaster-recovery",
+              "data-center-operations",
+              "incident-response-notification-and-remediation",
+              "application-security",
+              "encryption-and-key-management",
+              "identity-and-access-management",
+              "virtualization",
+              "security-as-a-service"
+            ],
+            "type": "string"
+          },
+          "title": "Csadomains",
+          "type": "array"
+        },
+        "csaTopThreats": {
+          "description": "CSA Top Threats, 1-7 in the paper's order (p.12-13)",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Csatopthreats",
+          "type": "array"
+        },
+        "enisa": {
+          "items": {
+            "enum": [
+              "policy-organizational",
+              "technical",
+              "legal",
+              "not-cloud-specific"
+            ],
+            "type": "string"
+          },
+          "title": "Enisa",
+          "type": "array"
+        },
+        "nist": {
+          "items": {
+            "enum": [
+              "cloud-provider",
+              "consumer",
+              "carrier",
+              "broker",
+              "auditor"
+            ],
+            "type": "string"
+          },
+          "title": "Nist",
+          "type": "array"
+        }
+      },
+      "required": [
+        "csaTopThreats",
+        "csaDomains",
+        "enisa",
+        "nist"
+      ],
+      "title": "Frameworks",
+      "type": "object"
+    },
+    "Gate": {
+      "additionalProperties": false,
+      "properties": {
+        "blocking": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Blocking",
+          "type": "array"
+        },
+        "expiredWaivers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Expiredwaivers",
+          "type": "array"
+        },
+        "failOn": {
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Failon",
+          "type": "string"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "waived": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Waived",
+          "type": "array"
+        }
+      },
+      "required": [
+        "failOn",
+        "passed",
+        "blocking",
+        "waived",
+        "expiredWaivers"
+      ],
+      "title": "Gate",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "title": "File",
+          "type": "string"
+        },
+        "line": {
+          "title": "Line",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "file",
+        "line"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "Score": {
+      "additionalProperties": false,
+      "properties": {
+        "earned": {
+          "title": "Earned",
+          "type": "number"
+        },
+        "evaluated": {
+          "title": "Evaluated",
+          "type": "integer"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "possible": {
+          "title": "Possible",
+          "type": "number"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "earned / possible, or null if nothing was evaluated",
+          "title": "Score"
+        },
+        "skipped": {
+          "title": "Skipped",
+          "type": "integer"
+        },
+        "total": {
+          "title": "Total",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "key",
+        "score",
+        "earned",
+        "possible",
+        "evaluated",
+        "skipped",
+        "total"
+      ],
+      "title": "Score",
+      "type": "object"
+    },
+    "Scores": {
+      "additionalProperties": false,
+      "properties": {
+        "byAxis": {
+          "items": {
+            "$ref": "#/$defs/Score"
+          },
+          "title": "Byaxis",
+          "type": "array"
+        },
+        "byRequirement": {
+          "items": {
+            "$ref": "#/$defs/Score"
+          },
+          "title": "Byrequirement",
+          "type": "array"
+        },
+        "overall": {
+          "$ref": "#/$defs/Score"
+        },
+        "unweightedByAxis": {
+          "items": {
+            "$ref": "#/$defs/Score"
+          },
+          "title": "Unweightedbyaxis",
+          "type": "array"
+        }
+      },
+      "required": [
+        "byAxis",
+        "byRequirement",
+        "overall",
+        "unweightedByAxis"
+      ],
+      "title": "Scores",
+      "type": "object"
+    },
+    "Target": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Evidence",
+          "type": "object"
+        },
+        "kind": {
+          "enum": [
+            "container",
+            "network",
+            "volume",
+            "host",
+            "auditor",
+            "fleet"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Location"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "ref": {
+          "description": "Service, network or volume name. Never a container ID or hostname.",
+          "title": "Ref",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "warn",
+            "fail",
+            "error",
+            "skip"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tenant"
+        },
+        "workloadId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Workloadid"
+        }
+      },
+      "required": [
+        "kind",
+        "ref",
+        "status",
+        "message"
+      ],
+      "title": "Target",
+      "type": "object"
+    },
+    "Tool": {
+      "additionalProperties": false,
+      "properties": {
+        "gitSha": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Gitsha"
+        },
+        "name": {
+          "const": "cloudaudit",
+          "default": "cloudaudit",
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "gitSha"
+      ],
+      "title": "Tool",
+      "type": "object"
+    },
+    "Waiver": {
+      "additionalProperties": false,
+      "properties": {
+        "approvedBy": {
+          "title": "Approvedby",
+          "type": "string"
+        },
+        "checkId": {
+          "title": "Checkid",
+          "type": "string"
+        },
+        "covers": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "If set, the waiver applies only while every item the check reports as failing (e.g. each vulnerable CPU flaw) is in this list; anything new fails the gate again",
+          "title": "Covers"
+        },
+        "expires": {
+          "format": "date",
+          "title": "Expires",
+          "type": "string"
+        },
+        "platform": {
+          "description": "Platform the waiver applies to, or '*'",
+          "title": "Platform",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target"
+        }
+      },
+      "required": [
+        "checkId",
+        "platform",
+        "reason",
+        "expires",
+        "approvedBy"
+      ],
+      "title": "Waiver",
+      "type": "object"
+    }
+  },
+  "$id": "isolab/audit-report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "catalogue": {
+      "items": {
+        "$ref": "#/$defs/CheckSpec"
+      },
+      "title": "Catalogue",
+      "type": "array"
+    },
+    "environment": {
+      "$ref": "#/$defs/Environment"
+    },
+    "gate": {
+      "$ref": "#/$defs/Gate"
+    },
+    "generatedAt": {
+      "title": "Generatedat",
+      "type": "string"
+    },
+    "kind": {
+      "const": "audit",
+      "default": "audit",
+      "title": "Kind",
+      "type": "string"
+    },
+    "policySha256": {
+      "title": "Policysha256",
+      "type": "string"
+    },
+    "profile": {
+      "enum": [
+        "insecure",
+        "hardened",
+        "fixture"
+      ],
+      "title": "Profile",
+      "type": "string"
+    },
+    "results": {
+      "items": {
+        "$ref": "#/$defs/CheckResult"
+      },
+      "title": "Results",
+      "type": "array"
+    },
+    "schemaVersion": {
+      "default": "1.0.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "scores": {
+      "$ref": "#/$defs/Scores"
+    },
+    "tool": {
+      "$ref": "#/$defs/Tool"
+    }
+  },
+  "required": [
+    "generatedAt",
+    "profile",
+    "tool",
+    "environment",
+    "policySha256",
+    "catalogue",
+    "results",
+    "scores",
+    "gate"
+  ],
+  "title": "AuditReport",
+  "type": "object"
+}

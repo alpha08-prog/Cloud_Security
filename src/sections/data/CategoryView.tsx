@@ -61,8 +61,8 @@ export function CategoryView() {
                 ? 'The largest deficit of the seven categories'
                 : `Largest deficit: ${worst.label}`}
               <br />
-              <a className="link-cta" href="#side-channel">
-                Why it matters: cross-VM side channels →
+              <a className="link-cta" href="#requirements">
+                What the paper asks for, and what we built →
               </a>
             </>
           }

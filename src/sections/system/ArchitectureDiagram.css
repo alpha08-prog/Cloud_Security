@@ -1,0 +1,51 @@
+.arch-diagram {
+  max-width: 800px;
+}
+
+.ar-tenant {
+  fill: var(--surface-2);
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.ar-engine {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.ar-provider {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+.ar-chip {
+  fill: var(--surface);
+  stroke: var(--border-strong);
+  stroke-width: 1.25;
+}
+
+.ar-decoy {
+  fill: var(--highlight-soft);
+  stroke: var(--highlight);
+  stroke-width: 1.25;
+  stroke-dasharray: 5 3;
+}
+
+.ar-hardware {
+  fill: var(--surface);
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.ar-badge {
+  fill: var(--accent);
+}
+
+.diagram .ar-badge-text {
+  fill: var(--accent-contrast);
+  font-size: 11px;
+  font-weight: 700;
+}

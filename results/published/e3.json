@@ -1,0 +1,388 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "e3",
+  "generatedAt": "2026-10-12T18:03:15.673Z",
+  "variant": "full",
+  "environment": {
+    "platform": "docker-desktop-wsl2",
+    "dockerServerVersion": "29.2.1",
+    "kernelVersion": "6.6.87.2-microsoft-standard-WSL2",
+    "logicalCpus": 12,
+    "physicalCores": 6,
+    "gitSha": "dffa2c70c553",
+    "placement": {
+      "CPUSET_PROVIDER": "0,1",
+      "CPUSET_LOADGEN": "2,3",
+      "CPUSET_TENANT_A": "4,5",
+      "CPUSET_TENANT_B": "6,7,8,9",
+      "CPUSET_TENANT_C": "10,11",
+      "PLACEMENT_NOTES": "each tenant on dedicated physical cores"
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "H7",
+      "statement": "100% detection within SLO, correct attribution, 0 false positives",
+      "verdict": "supported",
+      "detail": "insecure: 8/8 detected, 0 false positives, median 177.9 ms, attribution 1.0; hardened: 7/7 detected, 0 false positives, median 95.4 ms, attribution 1.0"
+    }
+  ],
+  "quietWindowSeconds": 120,
+  "triggers": [
+    {
+      "id": "T1",
+      "description": "`docker exec` into tenant-a",
+      "expectedRule": "DET-01",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "detect"
+      },
+      "expectedTenant": {
+        "insecure": "a",
+        "hardened": "a"
+      },
+      "sloMs": 5000,
+      "requirements": [
+        "R4"
+      ]
+    },
+    {
+      "id": "T2",
+      "description": "Short-lived privileged container (tenant b)",
+      "expectedRule": "DET-02",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "detect"
+      },
+      "expectedTenant": {
+        "insecure": "b",
+        "hardened": "b"
+      },
+      "sloMs": 5000,
+      "requirements": [
+        "R2",
+        "R4"
+      ]
+    },
+    {
+      "id": "T3",
+      "description": "Short-lived container with the engine socket mounted (tenant c)",
+      "expectedRule": "DET-03",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "detect"
+      },
+      "expectedTenant": {
+        "insecure": "c",
+        "hardened": "c"
+      },
+      "sloMs": 5000,
+      "requirements": [
+        "R4"
+      ]
+    },
+    {
+      "id": "T4",
+      "description": "Container with no identity labels",
+      "expectedRule": "DET-05",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "detect"
+      },
+      "expectedTenant": {
+        "insecure": null,
+        "hardened": null
+      },
+      "sloMs": 5000,
+      "requirements": [
+        "R1"
+      ]
+    },
+    {
+      "id": "T5",
+      "description": "tenant-c attached to a network owned by tenant a",
+      "expectedRule": "DET-06",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "detect"
+      },
+      "expectedTenant": {
+        "insecure": null,
+        "hardened": "c"
+      },
+      "sloMs": 5000,
+      "requirements": [
+        "R4"
+      ]
+    },
+    {
+      "id": "T6",
+      "description": "tenant-c contacts the decoy metadata service",
+      "expectedRule": "DET-07",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "detect"
+      },
+      "expectedTenant": {
+        "insecure": null,
+        "hardened": "c"
+      },
+      "sloMs": 5000,
+      "requirements": [
+        "R4",
+        "R1"
+      ]
+    },
+    {
+      "id": "T7",
+      "description": "Noisy job in tenant b while tenant-a serves traffic",
+      "expectedRule": "DET-08",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "silent"
+      },
+      "expectedTenant": {
+        "insecure": "b",
+        "hardened": null
+      },
+      "sloMs": 90000,
+      "requirements": [
+        "R3"
+      ]
+    },
+    {
+      "id": "T8",
+      "description": "Short-lived container joining the host PID namespace (tenant c)",
+      "expectedRule": "DET-04",
+      "expect": {
+        "insecure": "detect",
+        "hardened": "detect"
+      },
+      "expectedTenant": {
+        "insecure": "c",
+        "hardened": "c"
+      },
+      "sloMs": 5000,
+      "requirements": [
+        "R4"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "profile": "insecure",
+      "triggerId": "T1",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-01",
+      "tenant": "a",
+      "latencyMs": 1.6,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "triggerId": "T2",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-02",
+      "tenant": "b",
+      "latencyMs": 191.0,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "triggerId": "T3",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-03",
+      "tenant": "c",
+      "latencyMs": 185.1,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "triggerId": "T4",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-05",
+      "tenant": null,
+      "latencyMs": 170.8,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "triggerId": "T5",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-06",
+      "tenant": null,
+      "latencyMs": 117.3,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "triggerId": "T6",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-07",
+      "tenant": null,
+      "latencyMs": 59.2,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "triggerId": "T7",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-08",
+      "tenant": "b",
+      "latencyMs": 43752.4,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "insecure",
+      "triggerId": "T8",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-04",
+      "tenant": "c",
+      "latencyMs": 194.1,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T1",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-01",
+      "tenant": "a",
+      "latencyMs": 1.3,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T2",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-02",
+      "tenant": "b",
+      "latencyMs": 181.7,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T3",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-03",
+      "tenant": "c",
+      "latencyMs": 216.6,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T4",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-05",
+      "tenant": null,
+      "latencyMs": 21.7,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T5",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-06",
+      "tenant": "c",
+      "latencyMs": 95.4,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T6",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-07",
+      "tenant": "c",
+      "latencyMs": 67.9,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T7",
+      "expected": "silent",
+      "detected": false,
+      "rule": null,
+      "tenant": null,
+      "latencyMs": null,
+      "withinSlo": true,
+      "attributionCorrect": null,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T8",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-04",
+      "tenant": "c",
+      "latencyMs": 174.1,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    }
+  ],
+  "falsePositives": [],
+  "summary": [
+    {
+      "profile": "insecure",
+      "detectionRate": 1.0,
+      "detected": 8,
+      "expected": 8,
+      "falsePositives": 0,
+      "medianLatencyMs": 177.9,
+      "maxLatencyMs": 43752.4,
+      "attributionAccuracy": 1.0
+    },
+    {
+      "profile": "hardened",
+      "detectionRate": 1.0,
+      "detected": 7,
+      "expected": 7,
+      "falsePositives": 0,
+      "medianLatencyMs": 95.4,
+      "maxLatencyMs": 216.6,
+      "attributionAccuracy": 1.0
+    }
+  ]
+}

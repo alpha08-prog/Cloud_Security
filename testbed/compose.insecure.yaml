@@ -1,0 +1,57 @@
+# INSECURE profile: a deliberately weak baseline, typical of a quick lift-and-shift.
+# Do not run it on a shared machine. Read testbed/README.md first.
+#
+# What is wrong here, mapped to the paper's virtualization sub-issues (Fig 11):
+#   isolation          - no resource limits; tenant-c privileged with host PID/IPC namespaces
+#   hypervisor         - tenant-c holds the engine socket (full control of the host's containers)
+#   data leakage       - tenant-a and tenant-c share a volume; host /etc visible; secret in env
+#   cross-VM           - every tenant on one flat network with the provider plane; host port published
+#   VM identification  - tenant-c carries no identity labels and is built from a floating tag
+
+services:
+  tenant-a:
+    user: "0"
+    networks: [provider-net, ops-net]
+    ports: ["127.0.0.1:18080:8080"]
+    volumes: [appdata:/data]
+    labels:
+      io.isolab.plane: tenant
+      io.isolab.tenant: a
+      io.isolab.owner: payments-team
+      io.isolab.workload-id: a-payments-api
+
+  tenant-b:
+    cap_add: [SYS_PTRACE, NET_ADMIN]
+    networks: [provider-net, ops-net]
+    labels: &b-labels
+      io.isolab.plane: tenant
+      io.isolab.tenant: b
+      io.isolab.owner: analytics-team
+      io.isolab.workload-id: b-batch-analytics
+
+  tenant-b-job:
+    networks: [provider-net, ops-net]
+    labels:
+      <<: *b-labels
+      io.isolab.workload-id: b-batch-job
+
+  tenant-c:
+    build:
+      args:
+        BASE_IMAGE: python:3.12-alpine   # floating tag: no provenance
+    image: isolab/legacy-app:insecure
+    user: "0"
+    privileged: true
+    pid: host
+    ipc: host
+    security_opt: ["seccomp=unconfined", "apparmor=unconfined"]
+    environment:
+      LEGACY_DB_PASSWORD: not-a-real-secret   # a secret-looking variable (value is a dummy)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc:/host-etc:ro
+      - appdata:/data
+    networks: [provider-net, ops-net]
+
+volumes:
+  appdata: {}

@@ -1,0 +1,4 @@
+-c requirements.lock
+pytest==8.4.1
+jsonschema==4.25.0
+ruff==0.12.7

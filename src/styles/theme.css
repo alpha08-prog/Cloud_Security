@@ -28,6 +28,10 @@
   /* Categorical slots 1–2 (dataviz reference palette), validated on --surface. */
   --series-1: #2a78d6;
   --series-2: #eb6834;
+  /* Slots 7 and 3, for the two IsoLab profiles (validated as a pair on #ffffff;
+     aqua is under 3:1, so charts using it carry direct labels and a table view). */
+  --series-insecure: #6250d6;
+  --series-hardened: #1baf7a;
   --chart-grid: #eceef1;
   --chart-axis: #c5cad2;
   --chart-muted: #b3b9c3;
@@ -57,6 +61,8 @@
 
   --series-1: #3987e5;
   --series-2: #d95926;
+  --series-insecure: #9085e9;
+  --series-hardened: #199e70;
   --chart-grid: #232933;
   --chart-axis: #3a424e;
   --chart-muted: #4b5462;
@@ -81,6 +87,12 @@
   /* Series roles mapped onto the categorical slots. */
   --series-concern: var(--series-1);
   --series-solution: var(--series-2);
+
+  /* Status (reserved: never a series colour). Always shown with an icon and a label. */
+  --status-pass: #0ca30c;
+  --status-warn: #fab219;
+  --status-fail: #d03b3b;
+  --status-skip: var(--text-muted);
 
   --radius: 10px;
   --radius-sm: 6px;

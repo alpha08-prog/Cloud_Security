@@ -1,0 +1,177 @@
+{
+  "uid": "isolab-overview",
+  "title": "IsoLab — tenant isolation (Gonzalez et al. 2012, p.16 R1–R4)",
+  "description": "Live view of the IsoLab testbed: audit coverage per Figure 11 axis, per-tenant shared-resource observation (R3) and isolation detections (R4).",
+  "tags": ["isolab", "isolation", "multi-tenant"],
+  "timezone": "browser",
+  "editable": false,
+  "graphTooltip": 1,
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "version": 1,
+  "time": {"from": "now-15m", "to": "now"},
+  "timepicker": {"refresh_intervals": ["5s", "10s", "30s", "1m"]},
+  "templating": {"list": []},
+  "annotations": {"list": []},
+  "links": [],
+  "panels": [
+    {
+      "id": 1, "type": "stat", "title": "Profile",
+      "gridPos": {"h": 4, "w": 4, "x": 0, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "cloudaudit_info", "legendFormat": "{{profile}} · {{platform}}", "instant": true}],
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "name", "colorMode": "none", "graphMode": "none"}
+    },
+    {
+      "id": 2, "type": "stat", "title": "Policy gate",
+      "description": "Fails if any non-waived check at or above the policy's severity threshold fails.",
+      "gridPos": {"h": 4, "w": 4, "x": 4, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "cloudaudit_gate_passed", "instant": true}],
+      "fieldConfig": {"defaults": {
+        "mappings": [{"type": "value", "options": {"0": {"text": "FAILING", "color": "red"}, "1": {"text": "PASSING", "color": "green"}}}],
+        "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]}
+      }, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "colorMode": "background", "graphMode": "none"}
+    },
+    {
+      "id": 3, "type": "stat", "title": "Overall coverage",
+      "description": "Severity-weighted share of applicable checks that pass (waived checks earn nothing).",
+      "gridPos": {"h": 4, "w": 4, "x": 8, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "cloudaudit_overall_coverage_ratio", "instant": true}],
+      "fieldConfig": {"defaults": {"unit": "percentunit", "min": 0, "max": 1, "decimals": 0,
+        "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "orange", "value": 0.5}, {"color": "green", "value": 0.85}]}}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "colorMode": "value", "graphMode": "none"}
+    },
+    {
+      "id": 4, "type": "stat", "title": "Detections (15 min)",
+      "gridPos": {"h": 4, "w": 4, "x": 12, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "sum(increase(cloudaudit_detections_total[15m])) or vector(0)", "instant": true}],
+      "fieldConfig": {"defaults": {"decimals": 0, "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "orange", "value": 1}]}}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "colorMode": "value", "graphMode": "none"}
+    },
+    {
+      "id": 5, "type": "stat", "title": "Event watcher (R4)",
+      "gridPos": {"h": 4, "w": 4, "x": 16, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "cloudaudit_events_watcher_up", "instant": true}],
+      "fieldConfig": {"defaults": {
+        "mappings": [{"type": "value", "options": {"0": {"text": "DOWN", "color": "red"}, "1": {"text": "LIVE", "color": "green"}}}],
+        "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]}}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "colorMode": "background", "graphMode": "none"}
+    },
+    {
+      "id": 6, "type": "stat", "title": "Noisy neighbour (DET-08)",
+      "gridPos": {"h": 4, "w": 4, "x": 20, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "max(cloudaudit_noisy_neighbour_active) or vector(0)", "instant": true}],
+      "fieldConfig": {"defaults": {
+        "mappings": [{"type": "value", "options": {"0": {"text": "none", "color": "green"}, "1": {"text": "ACTIVE", "color": "orange"}}}],
+        "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "orange", "value": 1}]}}, "overrides": []},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "colorMode": "background", "graphMode": "none"}
+    },
+    {
+      "id": 7, "type": "bargauge", "title": "Coverage per virtualization sub-issue (Figure 11 axes)",
+      "description": "Severity-weighted pass rate of the checks on each of the paper's five virtualization sub-issues.",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "cloudaudit_axis_coverage_ratio", "legendFormat": "{{axis}}", "instant": true}],
+      "fieldConfig": {"defaults": {"unit": "percentunit", "min": 0, "max": 1, "decimals": 0,
+        "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "orange", "value": 0.5}, {"color": "green", "value": 0.85}]}}, "overrides": []},
+      "options": {"orientation": "horizontal", "displayMode": "gradient", "showUnfilled": true, "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}
+    },
+    {
+      "id": 8, "type": "bargauge", "title": "Coverage per requirement (paper p.16)",
+      "description": "R1 identification · R2 separation of dedicated resources · R3 observation of shared resources · R4 examining cross-VM/leakage attempts.",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 4},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "cloudaudit_requirement_coverage_ratio", "legendFormat": "{{requirement}}", "instant": true}],
+      "fieldConfig": {"defaults": {"unit": "percentunit", "min": 0, "max": 1, "decimals": 0,
+        "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "orange", "value": 0.5}, {"color": "green", "value": 0.85}]}}, "overrides": []},
+      "options": {"orientation": "horizontal", "displayMode": "gradient", "showUnfilled": true, "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}
+    },
+    {
+      "id": 9, "type": "timeseries", "title": "CPU cores used per tenant (R3)",
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 12},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "sum by (tenant) (rate(cloudaudit_tenant_cpu_seconds_total{plane=\"tenant\"}[15s]))", "legendFormat": "tenant {{tenant}}"}],
+      "fieldConfig": {"defaults": {"unit": "short", "decimals": 2, "min": 0, "custom": {"lineWidth": 2, "fillOpacity": 10}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}}
+    },
+    {
+      "id": 10, "type": "timeseries", "title": "CPU pressure per workload (PSI 'some', R3)",
+      "description": "Share of time at least one of the workload's runnable tasks waited for CPU.",
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 12},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "rate(cloudaudit_tenant_pressure_waiting_seconds_total{plane=\"tenant\",resource=\"cpu\"}[15s])", "legendFormat": "{{service}}"}],
+      "fieldConfig": {"defaults": {"unit": "percentunit", "min": 0, "custom": {"lineWidth": 2, "fillOpacity": 10}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}}
+    },
+    {
+      "id": 11, "type": "timeseries", "title": "CPU throttled by quota (R2 enforcing)",
+      "description": "Time per second each tenant was held back by its CPU quota: the hardened profile containing a noisy job.",
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 12},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "sum by (tenant) (rate(cloudaudit_tenant_cpu_throttled_seconds_total{plane=\"tenant\"}[15s]))", "legendFormat": "tenant {{tenant}}"}],
+      "fieldConfig": {"defaults": {"unit": "short", "decimals": 2, "min": 0, "custom": {"lineWidth": 2, "fillOpacity": 10}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}}
+    },
+    {
+      "id": 12, "type": "timeseries", "title": "Memory per workload vs limit",
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 20},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"refId": "A", "expr": "cloudaudit_tenant_memory_bytes{plane=\"tenant\"}", "legendFormat": "{{service}}"},
+        {"refId": "B", "expr": "cloudaudit_tenant_memory_limit_bytes{plane=\"tenant\"}", "legendFormat": "{{service}} limit"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "bytes", "min": 0, "custom": {"lineWidth": 2}}, "overrides": [
+        {"matcher": {"id": "byRegexp", "options": ".*limit"}, "properties": [{"id": "custom.lineStyle", "value": {"fill": "dash", "dash": [6, 4]}}]}
+      ]},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}}
+    },
+    {
+      "id": 13, "type": "timeseries", "title": "Detections by rule (R4)",
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 20},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "sum by (rule) (increase(cloudaudit_detections_total[1m]))", "legendFormat": "{{rule}}"}],
+      "fieldConfig": {"defaults": {"unit": "short", "decimals": 0, "min": 0, "custom": {"drawStyle": "bars", "fillOpacity": 60}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}}
+    },
+    {
+      "id": 14, "type": "timeseries", "title": "Network traffic per tenant",
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 20},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"refId": "A", "expr": "sum by (tenant) (rate(cloudaudit_tenant_network_receive_bytes_total{plane=\"tenant\"}[30s]))", "legendFormat": "tenant {{tenant}} rx"},
+        {"refId": "B", "expr": "sum by (tenant) (rate(cloudaudit_tenant_network_transmit_bytes_total{plane=\"tenant\"}[30s]))", "legendFormat": "tenant {{tenant}} tx"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "Bps", "min": 0, "custom": {"lineWidth": 2}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "multi"}}
+    },
+    {
+      "id": 15, "type": "table", "title": "Check results (30 static checks)",
+      "gridPos": {"h": 12, "w": 24, "x": 0, "y": 28},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "cloudaudit_check_status", "format": "table", "instant": true}],
+      "transformations": [
+        {"id": "organize", "options": {
+          "excludeByName": {"Time": true, "Value": true, "__name__": true, "instance": true, "job": true},
+          "indexByName": {"check_id": 0, "axis": 1, "severity": 2, "status": 3, "waived": 4},
+          "renameByName": {"check_id": "Check", "axis": "Figure 11 axis", "severity": "Severity", "status": "Status", "waived": "Waived"}
+        }},
+        {"id": "sortBy", "options": {"sort": [{"field": "Check"}]}}
+      ],
+      "fieldConfig": {"defaults": {}, "overrides": [
+        {"matcher": {"id": "byName", "options": "Status"}, "properties": [
+          {"id": "custom.cellOptions", "value": {"type": "color-background"}},
+          {"id": "mappings", "value": [{"type": "value", "options": {
+            "pass": {"color": "green", "text": "pass"}, "fail": {"color": "red", "text": "fail"},
+            "warn": {"color": "orange", "text": "warn"}, "skip": {"color": "text", "text": "skip"}, "error": {"color": "purple", "text": "error"}}}]}
+        ]}
+      ]},
+      "options": {"showHeader": true, "cellHeight": "sm"}
+    }
+  ]
+}

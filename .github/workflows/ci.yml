@@ -1,0 +1,147 @@
+# IsoLab CI/CD: test everything, run the testbed in both profiles on a fresh runner,
+# gate on the hardened profile, publish SARIF to code scanning, deploy the site.
+# A failing hardened gate blocks the deploy: the site can't claim results the code
+# no longer produces.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    name: Web app (lint, contract tests)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+
+  python-unit:
+    name: Auditor and orchestrator (ruff, pytest, schema drift)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install hash-pinned dependencies
+        run: pip install --require-hashes --no-deps -r auditor/requirements.lock -r auditor/requirements-dev.lock
+      - name: Lint
+        working-directory: auditor
+        run: ruff check --no-cache src tests ../experiments
+      - name: Test (includes committed-schema and docs/checks.md drift checks)
+        working-directory: auditor
+        run: python -m pytest -q -p no:cacheprovider tests ../experiments/tests
+
+  testbed:
+    name: Testbed (${{ matrix.profile }})
+    needs: python-unit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [insecure, hardened]
+    env:
+      RUNS: results/runs/github-ubuntu
+    steps:
+      - uses: actions/checkout@v7
+      - name: Host check
+        run: python3 scripts/lab.py doctor || true   # informative; the steps below fail on real problems
+      - name: Bring up the ${{ matrix.profile }} profile
+        run: python3 scripts/lab.py up ${{ matrix.profile }}
+      - name: Audit (30 checks -> JSON + SARIF)
+        run: python3 scripts/lab.py audit ${{ matrix.profile }}
+      - name: E3 detection validation (smoke)
+        run: python3 scripts/lab.py e3 ${{ matrix.profile }} --variant ci
+      - name: E2 segmentation matrix
+        run: python3 scripts/lab.py e2 ${{ matrix.profile }} --variant ci
+      - name: E1 noisy neighbour (smoke; informative, never gated on latency)
+        run: python3 scripts/lab.py e1 ${{ matrix.profile }} --variant ci
+        continue-on-error: true
+      - name: Gate (hardened) / negative control (insecure)
+        run: python3 scripts/lab.py gate ${{ matrix.profile }}
+      - name: Upload SARIF to code scanning
+        if: always() && matrix.profile == 'hardened' && github.event_name == 'push'
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: ${{ env.RUNS }}/hardened/audit.sarif
+          category: isolab-testbed-hardened
+      - name: Keep the run as an artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: results-${{ matrix.profile }}
+          path: ${{ env.RUNS }}/${{ matrix.profile }}
+          if-no-files-found: warn
+      - name: Service logs (on failure)
+        if: failure()
+        run: python3 scripts/lab.py logs --tail 120
+      - name: Tear down
+        if: always()
+        run: python3 scripts/lab.py down
+
+  build:
+    name: Build site
+    needs: [web, testbed]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Collect this run's CI results
+        uses: actions/download-artifact@v8
+        with:
+          pattern: results-*
+          path: results/ci
+      - run: npm ci
+      - run: npm run build
+      - name: Ship raw results with the site (/results/published, /results/ci)
+        run: |
+          mkdir -p dist/results
+          cp -r results/published dist/results/
+          [ -d results/ci ] && cp -r results/ci dist/results/ || true
+      - uses: actions/configure-pages@v6
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - uses: actions/upload-pages-artifact@v5
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

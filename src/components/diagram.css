@@ -1,0 +1,116 @@
+/* Inline SVG diagrams (HostDiagram, ArchitectureDiagram), themed via tokens. */
+
+.diagram {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+}
+
+.diagram text {
+  fill: var(--text);
+  font-size: 14px;
+}
+
+.diagram .dg-title {
+  font-weight: 600;
+}
+
+.diagram .dg-role {
+  fill: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.diagram .dg-sub {
+  fill: var(--text-muted);
+  font-size: 13px;
+}
+
+.diagram .dg-sub--strong {
+  fill: var(--text);
+}
+
+.diagram .dg-caption {
+  fill: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dg-host {
+  fill: var(--surface);
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.dg-vm {
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.dg-vm--a,
+.dg-vm--b {
+  fill: var(--surface-2);
+}
+
+.dg-hypervisor {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.dg-hardware {
+  fill: var(--surface);
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.dg-chip {
+  fill: var(--surface-2);
+  stroke: var(--border);
+}
+
+.dg-chip--cache {
+  fill: var(--highlight-soft);
+  stroke: var(--highlight);
+}
+
+.dg-boundary {
+  fill: none;
+  stroke: var(--highlight);
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+
+.dg-legend-bg {
+  fill: var(--surface);
+}
+
+.diagram .dg-boundary-label {
+  fill: var(--highlight);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dg-divider {
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.diagram .dg-divider-label {
+  fill: var(--text-muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.dg-link {
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+}
+
+.dg-arrowhead {
+  fill: var(--text-muted);
+}

@@ -25,4 +25,20 @@ dist-ssr
 /docs/*
 !/docs/paper-content.md
 !/docs/screenshots/
+!/docs/architecture.md
+!/docs/checks.md
+!/docs/experiments.md
+!/docs/viva-notes.md
 CLAUDE.md
+
+# IsoLab
+results/runs/
+results/ci/
+testbed/cpus.env
+testbed/secrets/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
