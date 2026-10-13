@@ -314,3 +314,18 @@ All entries before the freeze come from the dev sets only; the test sample had n
 - **Freeze — 2026-10-13T18:57Z.** `lexicon.py` sha256 `4dc7168d…`, `classify.py` sha256
   `1329f6f2…` (full hashes and the hashes of the dev inputs in `replication/freeze.json`). From here
   on the rules are fixed; any change is a deviation and is reported as one.
+
+### Deviations (after the freeze)
+
+- **D1 — 2026-10-14, CVE supplement only (§6).** The pre-registered spot check found that 10 of 20
+  sampled "virtualization layer" CVEs were ordinary Linux-kernel bugs: since 2024 the kernel CNA's
+  descriptions embed syzkaller/KASAN crash dumps whose "Hardware name: QEMU Standard PC" line names
+  the VM the fuzzer ran on, not the affected component. Change, in `experiments/replication/cve.py`
+  (the frozen `lexicon.py`/`classify.py` are untouched): for descriptions that start "In the Linux
+  kernel, the following vulnerability has been resolved", the text from the first crash-dump line
+  (`BUG:`, `Hardware name:`, `Call Trace:`, timestamps, …) onward is removed before classification.
+  Effect: virtualization-layer CVEs 3,533 → 2,783 and data-leakage 402 → 351 (2008–2026); the other
+  axes are unchanged. Because D1 only removes tags, the spot-sample items it keeps are a random
+  sample of what it tags; both precisions are reported (layer 0.50 → 0.91, data leakage 0.65 → 0.72,
+  isolation 0.90, cross-VM 0.80). D1 was designed after reading that sample, so its precision is
+  somewhat optimistic. The literature replication is not affected.
