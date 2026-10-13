@@ -5,12 +5,16 @@ import Ajv2020 from 'ajv/dist/2020'
 import { describe, expect, it } from 'vitest'
 import auditSchema from '../../schemas/audit-report.schema.json'
 import experimentsSchema from '../../schemas/experiments.schema.json'
+import { periods } from '../lib/replicationRows'
 import { coverage, pairsFor } from '../lib/scoring'
+import replicationFixture from '../test/fixtures/replication.synthetic.json'
 import { AXES } from './axes'
 import { VIRTUALIZATION_DEFENSE_NOTES } from './defenseNotes'
 import { FRAMEWORKS } from './frameworks'
 import { REQUIREMENTS } from './requirements'
-import { AUDITS, CATALOGUE, CHECK_BY_ID, E1, E2, E3, PROFILES } from './results'
+import type { ReplicationResult } from './resultTypes'
+import { AUDITS, CATALOGUE, CHECK_BY_ID, E1, E2, E3, PROFILES, REPLICATION } from './results'
+import { CATEGORY_SHARES } from './stats'
 import { TAXONOMY_FIGURES, indexFigure } from './taxonomy'
 
 const ajv = new Ajv2020({ strict: false, allErrors: true })
@@ -135,5 +139,65 @@ describe('published results support what the app claims', () => {
 
   it('E1: every run on display is valid', () => {
     for (const r of E1.runs) expect(r.valid, `${r.profile} ${r.arm} ${r.repetition}`).toBe(true)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Replication (docs/replication.md). The synthetic fixture keeps the contract tested before
+// real results exist; the same invariants then run on results/published/replication.json.
+
+const replicationDocs: [string, ReplicationResult][] = [
+  ['synthetic fixture', replicationFixture as unknown as ReplicationResult],
+  ...(REPLICATION ? ([['published replication.json', REPLICATION]] as [string, ReplicationResult][]) : []),
+]
+
+describe.each(replicationDocs)('replication: %s', (_name, doc) => {
+  it('matches the experiments schema', () => {
+    const ok = validateExperiment(doc)
+    expect(validateExperiment.errors ?? [], JSON.stringify(validateExperiment.errors?.slice(0, 3))).toEqual([])
+    expect(ok).toBe(true)
+  })
+
+  it('shares sum to 100 per period, and gap = solution - concern', () => {
+    for (const p of periods(doc)) {
+      const rows = doc.categories.filter((r) => r.era === p)
+      expect(rows.length, p).toBe(7)
+      expect(rows.reduce((s, r) => s + (r.concernPct ?? 0), 0), p).toBeCloseTo(100, 0)
+      expect(rows.reduce((s, r) => s + (r.solutionPct ?? 0), 0), p).toBeCloseTo(100, 0)
+      for (const r of rows) expect(r.gapPts!, `${p} ${r.category}`).toBeCloseTo(r.solutionPct! - r.concernPct!, 1)
+    }
+  })
+
+  it('every interval contains its point estimate', () => {
+    for (const r of doc.categories) {
+      if (r.gapCi && r.gapPts !== null) {
+        expect(r.gapCi[0], `${r.era} ${r.category}`).toBeLessThanOrEqual(r.gapPts + 1e-6)
+        expect(r.gapCi[1], `${r.era} ${r.category}`).toBeGreaterThanOrEqual(r.gapPts - 1e-6)
+      }
+    }
+  })
+
+  it('the 2012 rows are the survey figures used everywhere else on the site', () => {
+    for (const s of CATEGORY_SHARES) {
+      const r = doc.categories.find((x) => x.era === '2012' && x.category === s.category)!
+      expect([r.concernPct, r.solutionPct], s.category).toEqual([s.concern, s.solution])
+    }
+  })
+
+  it('verdicts follow the pre-registered rules', () => {
+    const last = doc.protocol.eras[doc.protocol.eras.length - 1].id
+    const g = doc.categories.find((r) => r.era === last && r.category === 'virtualization')!
+    const hr = Object.fromEntries(doc.hypotheses.map((h) => [h.id, h.verdict]))
+    expect(Object.keys(hr)).toEqual(['HR1', 'HR2', 'HR3', 'HR4', 'HR5'])
+    const [lo, hi] = g.gapCi!
+    expect(hr.HR1).toBe(hi < 0 ? 'supported' : lo >= 0 ? 'not-supported' : 'inconclusive')
+    expect(hr.HR2).toBe(lo > -9 ? 'supported' : hi < -9 ? 'not-supported' : 'inconclusive')
+    expect(hr.HR5).toBe(doc.validityGateMet ? 'supported' : 'not-supported')
+  })
+
+  it('CVE counts never exceed the year totals', () => {
+    for (const y of doc.cve.years) {
+      for (const [axis, n] of Object.entries(y.counts)) expect(n, `${y.year} ${axis}`).toBeLessThanOrEqual(y.total)
+    }
   })
 })

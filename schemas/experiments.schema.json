@@ -1461,7 +1461,7 @@
           "title": "Partial",
           "type": "boolean"
         },
-        "per10K": {
+        "per10k": {
           "additionalProperties": {
             "anyOf": [
               {
@@ -1472,6 +1472,7 @@
               }
             ]
           },
+          "description": "CVEs per 10,000 published that year",
           "title": "Per10K",
           "type": "object"
         },
@@ -1489,7 +1490,7 @@
         "total",
         "partial",
         "counts",
-        "per10K"
+        "per10k"
       ],
       "title": "RepCveYear",
       "type": "object"

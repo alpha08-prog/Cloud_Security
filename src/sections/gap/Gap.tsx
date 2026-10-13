@@ -3,6 +3,7 @@ import { ChartCard, SeriesLegend } from '../../components/charts/ChartCard'
 import { GapChart } from '../../components/charts/GapChart'
 import { PairedRadarChart } from '../../components/charts/PairedRadarChart'
 import { REQUIREMENTS } from '../../data/requirements'
+import { REPLICATION } from '../../data/results'
 import { VIRTUALIZATION_RADAR_MAX, getShare } from '../../data/stats'
 import { UNDER_SOLVED } from '../../data/taxonomy'
 import { useChartColors } from '../../hooks/useChartColors'
@@ -13,6 +14,17 @@ import './Gap.css'
 
 const gap = getShare(UNDER_SOLVED)
 const ratio = Math.round(gap.concern / gap.solution)
+
+/** The latest era's virtualization gap from the replication, when it is published. */
+function replicationGap() {
+  if (!REPLICATION) return null
+  const eras = REPLICATION.protocol.eras
+  const last = eras[eras.length - 1]
+  const row = REPLICATION.categories.find((r) => r.era === last.id && r.category === UNDER_SOLVED)
+  return row && row.gapPts !== null ? { era: last.label, gap: row.gapPts, ci: row.gapCi } : null
+}
+const still = replicationGap()
+const oneDecimal = (v: number) => `${v >= 0.05 ? '+' : v <= -0.05 ? '−' : ''}${Math.abs(v).toFixed(1)}`
 
 export function Gap() {
   const c = useChartColors()
@@ -76,6 +88,31 @@ export function Gap() {
           <PairedRadarChart rows={VIRTUALIZATION_ROWS} max={VIRTUALIZATION_RADAR_MAX} tickCount={6} unit="" />
         </ChartCard>
       </div>
+
+      <aside className="card gap__still" aria-labelledby="still-heading">
+        <p className="eyebrow">Replication · 2013–2026</p>
+        <h3 id="still-heading">Is the gap still there?</h3>
+        {still ? (
+          <p>
+            Re-running the survey’s own counting method on abstracts from {still.era}: virtualization gap{' '}
+            <strong className="num">{oneDecimal(still.gap)} pts</strong>
+            {still.ci && (
+              <>
+                {' '}
+                (95% CI {oneDecimal(still.ci[0])} to {oneDecimal(still.ci[1])})
+              </>
+            )}
+            , against {formatGap(gap.gap)} in 2012.{' '}
+            {!REPLICATION?.validityGateMet && 'The classifier missed its validity gate, so read this as indicative. '}
+            <a href="#results/replication">Method, intervals and verdicts →</a>
+          </p>
+        ) : (
+          <p>
+            The same counting method is being re-run on 7,290 abstracts from 2013–2026 under a pre-registered
+            protocol; results publish after blind validation. <a href="#results/replication">Protocol and status →</a>
+          </p>
+        )}
+      </aside>
 
       <section className="card gap__brief" aria-labelledby="brief-heading">
         <p className="eyebrow">The paper’s brief · p.16</p>

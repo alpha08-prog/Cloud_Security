@@ -1,0 +1,3502 @@
+{
+ "kind": "replication",
+ "schemaVersion": "1.0.0",
+ "generatedAt": "2026-01-01T00:00:00.000Z",
+ "protocol": {
+  "document": "docs/replication.md",
+  "query": "cloud AND (security OR privacy) NOT (\"point cloud\" OR \"point clouds\" OR \"cloud cover\" OR \"cloud seeding\" OR \"cloud droplet\" OR \"cloud microphysics\" OR \"molecular cloud\" OR \"electron cloud\" OR \"word cloud\" OR \"tag cloud\" OR \"cloud forest\" OR \"food security\" OR \"energy security\" OR \"water security\" OR \"social security\" OR \"job security\")",
+  "eras": [
+   {
+    "id": "2013-2017",
+    "label": "2013\u20132017",
+    "seed": 2013,
+    "firstYear": 2013,
+    "lastYear": 2017,
+    "partial": false
+   },
+   {
+    "id": "2018-2022",
+    "label": "2018\u20132022",
+    "seed": 2018,
+    "firstYear": 2018,
+    "lastYear": 2022,
+    "partial": false
+   },
+   {
+    "id": "2023-2026",
+    "label": "2023\u20132026",
+    "seed": 2023,
+    "firstYear": 2023,
+    "lastYear": 2026,
+    "partial": true
+   }
+  ],
+  "samplePerEra": 2500,
+  "frozenAt": "2026-10-13T18:57:52.312Z",
+  "rulesSha256": {
+   "lexicon.py": "4dc7168d34878724ba653ac6540b591ca1080172555eb897bb86bfca0bb903ad",
+   "classify.py": "1329f6f2dbc0badc3f03b4c77b0d1257a186d4a9f3be4ce7db5b6c2fa72be5c3"
+  },
+  "corpusSha256": {
+   "2013-2017": "3d016e87394977db2e03c4832ccad35c90ffb6aa20344080308fa2635d7a91ef",
+   "2018-2022": "04e81b6eeb32ca5b3158266c86d98ddb239f0d35150b85d10985c86399d6bda8",
+   "2023-2026": "334c744b465fc73ce6de922867ecf0e52bebad81bb63f8175da1d06feefb1760"
+  },
+  "nvdSha256": "618df3404b9f0879e38d6e3af07905c83135a816f3aff21e3227d42ca24a7e02",
+  "bootstrapB": 300,
+  "bootstrapSeed": 7,
+  "unit": "one concern entry per (abstract, Figure-5 sub-category); a solution-type abstract also adds one solution entry per sub-category in its solution window; share = entries / all entries of that kind, gap = solution share - concern share (percentage points)",
+  "solutionRule": "rule B (scoped): sub-categories hit in the title or from the first contribution sentence on; if none, every hit. Figure-11 sub-issues share the same window",
+  "deviations": [
+   "D1 (CVE supplement only): Linux-kernel crash dumps are removed from CVE descriptions before classification; the literature replication is unaffected"
+  ]
+ },
+ "hypotheses": [
+  {
+   "id": "HR1",
+   "statement": "The virtualization gap persists: G_v(2023-2026) < 0",
+   "verdict": "inconclusive",
+   "detail": "G_v = -2.0 pts, 95% CI [-4.5, 0.6]"
+  },
+  {
+   "id": "HR2",
+   "statement": "The gap is narrower than in 2012: G_v(2023-2026) > -9",
+   "verdict": "supported",
+   "detail": "G_v = -2.0 pts, 95% CI [-4.5, 0.6]. Method bridge: G_v(2013-2017) = +0.0 pts, more than 5 pts from -9, so the 2012 comparison is dominated by method differences."
+  },
+  {
+   "id": "HR3",
+   "statement": "Virtualization is still the most negative category in 2023-2026",
+   "verdict": "inconclusive",
+   "detail": "most negative in 15.7% of bootstrap replicates"
+  },
+  {
+   "id": "HR4",
+   "statement": "Isolation + cross-VM are the least answered sub-issues (pooled solution/concern ratio below the other three)",
+   "verdict": "inconclusive",
+   "detail": "ratio 0.383 vs 0.258, difference +0.125, 95% CI [-0.008, 0.250] (2012: 0.10 vs 0.29)"
+  },
+  {
+   "id": "HR5",
+   "statement": "Validity gate: the classifier agrees with the blind human labels",
+   "verdict": "supported",
+   "detail": "macro f1 1.00 (>= 0.7), virtualization f1 1.00 (>= 0.7), mean kappa 1.00 (>= 0.6), type kappa 1.00 (>= 0.6)"
+  }
+ ],
+ "validityGateMet": true,
+ "flow": [
+  {
+   "era": "2013-2017",
+   "population": 4000,
+   "sampled": 400,
+   "unique": 400,
+   "excluded": {},
+   "analysed": 400,
+   "inScope": 289
+  },
+  {
+   "era": "2018-2022",
+   "population": 4000,
+   "sampled": 400,
+   "unique": 400,
+   "excluded": {},
+   "analysed": 400,
+   "inScope": 286
+  },
+  {
+   "era": "2023-2026",
+   "population": 4000,
+   "sampled": 400,
+   "unique": 400,
+   "excluded": {},
+   "analysed": 400,
+   "inScope": 273
+  }
+ ],
+ "categories": [
+  {
+   "era": "2012",
+   "category": "legal-issues",
+   "concernPct": 24.0,
+   "solutionPct": 27.0,
+   "gapPts": 3.0,
+   "concernCi": null,
+   "solutionCi": null,
+   "gapCi": null,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "category": "compliance",
+   "concernPct": 22.0,
+   "solutionPct": 29.0,
+   "gapPts": 7.0,
+   "concernCi": null,
+   "solutionCi": null,
+   "gapCi": null,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "category": "governance",
+   "concernPct": 17.0,
+   "solutionPct": 14.0,
+   "gapPts": -3.0,
+   "concernCi": null,
+   "solutionCi": null,
+   "gapCi": null,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "category": "virtualization",
+   "concernPct": 12.0,
+   "solutionPct": 3.0,
+   "gapPts": -9.0,
+   "concernCi": null,
+   "solutionCi": null,
+   "gapCi": null,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "category": "data-security",
+   "concernPct": 10.0,
+   "solutionPct": 9.0,
+   "gapPts": -1.0,
+   "concernCi": null,
+   "solutionCi": null,
+   "gapCi": null,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "category": "interfaces",
+   "concernPct": 8.0,
+   "solutionPct": 10.0,
+   "gapPts": 2.0,
+   "concernCi": null,
+   "solutionCi": null,
+   "gapCi": null,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "category": "network-security",
+   "concernPct": 7.0,
+   "solutionPct": 8.0,
+   "gapPts": 1.0,
+   "concernCi": null,
+   "solutionCi": null,
+   "gapCi": null,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2013-2017",
+   "category": "legal-issues",
+   "concernPct": 20.13,
+   "solutionPct": 22.54,
+   "gapPts": 2.4,
+   "concernCi": [
+    17.39,
+    23.17
+   ],
+   "solutionCi": [
+    18.42,
+    27.79
+   ],
+   "gapCi": [
+    -1.34,
+    6.24
+   ],
+   "concernEntries": 122,
+   "solutionEntries": 48
+  },
+  {
+   "era": "2013-2017",
+   "category": "compliance",
+   "concernPct": 16.34,
+   "solutionPct": 17.84,
+   "gapPts": 1.5,
+   "concernCi": [
+    13.18,
+    18.87
+   ],
+   "solutionCi": [
+    13.38,
+    22.76
+   ],
+   "gapCi": [
+    -2.03,
+    5.25
+   ],
+   "concernEntries": 99,
+   "solutionEntries": 38
+  },
+  {
+   "era": "2013-2017",
+   "category": "governance",
+   "concernPct": 13.04,
+   "solutionPct": 12.68,
+   "gapPts": -0.36,
+   "concernCi": [
+    10.29,
+    15.52
+   ],
+   "solutionCi": [
+    7.57,
+    16.95
+   ],
+   "gapCi": [
+    -4.18,
+    3.61
+   ],
+   "concernEntries": 79,
+   "solutionEntries": 27
+  },
+  {
+   "era": "2013-2017",
+   "category": "virtualization",
+   "concernPct": 8.42,
+   "solutionPct": 8.45,
+   "gapPts": 0.03,
+   "concernCi": [
+    5.83,
+    10.84
+   ],
+   "solutionCi": [
+    5.03,
+    12.34
+   ],
+   "gapCi": [
+    -3.26,
+    3.33
+   ],
+   "concernEntries": 51,
+   "solutionEntries": 18
+  },
+  {
+   "era": "2013-2017",
+   "category": "data-security",
+   "concernPct": 12.05,
+   "solutionPct": 12.68,
+   "gapPts": 0.63,
+   "concernCi": [
+    9.66,
+    14.53
+   ],
+   "solutionCi": [
+    8.27,
+    17.34
+   ],
+   "gapCi": [
+    -2.97,
+    4.25
+   ],
+   "concernEntries": 73,
+   "solutionEntries": 27
+  },
+  {
+   "era": "2013-2017",
+   "category": "interfaces",
+   "concernPct": 16.67,
+   "solutionPct": 14.08,
+   "gapPts": -2.58,
+   "concernCi": [
+    14.09,
+    19.52
+   ],
+   "solutionCi": [
+    10.17,
+    18.27
+   ],
+   "gapCi": [
+    -6.2,
+    1.31
+   ],
+   "concernEntries": 101,
+   "solutionEntries": 30
+  },
+  {
+   "era": "2013-2017",
+   "category": "network-security",
+   "concernPct": 13.37,
+   "solutionPct": 11.74,
+   "gapPts": -1.63,
+   "concernCi": [
+    10.93,
+    16.07
+   ],
+   "solutionCi": [
+    7.76,
+    16.58
+   ],
+   "gapCi": [
+    -5.25,
+    1.94
+   ],
+   "concernEntries": 81,
+   "solutionEntries": 25
+  },
+  {
+   "era": "2018-2022",
+   "category": "legal-issues",
+   "concernPct": 17.41,
+   "solutionPct": 19.62,
+   "gapPts": 2.21,
+   "concernCi": [
+    14.73,
+    20.14
+   ],
+   "solutionCi": [
+    14.87,
+    24.71
+   ],
+   "gapCi": [
+    -1.79,
+    6.48
+   ],
+   "concernEntries": 109,
+   "solutionEntries": 41
+  },
+  {
+   "era": "2018-2022",
+   "category": "compliance",
+   "concernPct": 15.18,
+   "solutionPct": 15.31,
+   "gapPts": 0.14,
+   "concernCi": [
+    12.29,
+    18.11
+   ],
+   "solutionCi": [
+    10.72,
+    20.77
+   ],
+   "gapCi": [
+    -3.41,
+    4.54
+   ],
+   "concernEntries": 95,
+   "solutionEntries": 32
+  },
+  {
+   "era": "2018-2022",
+   "category": "governance",
+   "concernPct": 11.82,
+   "solutionPct": 12.92,
+   "gapPts": 1.1,
+   "concernCi": [
+    9.84,
+    14.27
+   ],
+   "solutionCi": [
+    8.37,
+    16.99
+   ],
+   "gapCi": [
+    -2.51,
+    4.41
+   ],
+   "concernEntries": 74,
+   "solutionEntries": 27
+  },
+  {
+   "era": "2018-2022",
+   "category": "virtualization",
+   "concernPct": 10.22,
+   "solutionPct": 9.09,
+   "gapPts": -1.13,
+   "concernCi": [
+    7.87,
+    12.76
+   ],
+   "solutionCi": [
+    5.42,
+    13.32
+   ],
+   "gapCi": [
+    -4.36,
+    2.17
+   ],
+   "concernEntries": 64,
+   "solutionEntries": 19
+  },
+  {
+   "era": "2018-2022",
+   "category": "data-security",
+   "concernPct": 14.54,
+   "solutionPct": 14.35,
+   "gapPts": -0.18,
+   "concernCi": [
+    11.61,
+    17.51
+   ],
+   "solutionCi": [
+    10.23,
+    19.34
+   ],
+   "gapCi": [
+    -3.84,
+    3.74
+   ],
+   "concernEntries": 91,
+   "solutionEntries": 30
+  },
+  {
+   "era": "2018-2022",
+   "category": "interfaces",
+   "concernPct": 17.25,
+   "solutionPct": 19.14,
+   "gapPts": 1.89,
+   "concernCi": [
+    14.41,
+    19.9
+   ],
+   "solutionCi": [
+    13.9,
+    23.99
+   ],
+   "gapCi": [
+    -2.7,
+    5.85
+   ],
+   "concernEntries": 108,
+   "solutionEntries": 40
+  },
+  {
+   "era": "2018-2022",
+   "category": "network-security",
+   "concernPct": 13.58,
+   "solutionPct": 9.57,
+   "gapPts": -4.01,
+   "concernCi": [
+    11.03,
+    15.79
+   ],
+   "solutionCi": [
+    5.77,
+    13.91
+   ],
+   "gapCi": [
+    -7.13,
+    -0.55
+   ],
+   "concernEntries": 85,
+   "solutionEntries": 20
+  },
+  {
+   "era": "2023-2026",
+   "category": "legal-issues",
+   "concernPct": 19.77,
+   "solutionPct": 22.49,
+   "gapPts": 2.72,
+   "concernCi": [
+    16.55,
+    22.88
+   ],
+   "solutionCi": [
+    16.7,
+    28.26
+   ],
+   "gapCi": [
+    -1.85,
+    7.58
+   ],
+   "concernEntries": 118,
+   "solutionEntries": 47
+  },
+  {
+   "era": "2023-2026",
+   "category": "compliance",
+   "concernPct": 15.08,
+   "solutionPct": 12.44,
+   "gapPts": -2.64,
+   "concernCi": [
+    12.24,
+    18.09
+   ],
+   "solutionCi": [
+    8.51,
+    17.23
+   ],
+   "gapCi": [
+    -6.39,
+    1.47
+   ],
+   "concernEntries": 90,
+   "solutionEntries": 26
+  },
+  {
+   "era": "2023-2026",
+   "category": "governance",
+   "concernPct": 12.9,
+   "solutionPct": 11.48,
+   "gapPts": -1.41,
+   "concernCi": [
+    10.74,
+    15.71
+   ],
+   "solutionCi": [
+    7.49,
+    16.14
+   ],
+   "gapCi": [
+    -4.71,
+    1.88
+   ],
+   "concernEntries": 77,
+   "solutionEntries": 24
+  },
+  {
+   "era": "2023-2026",
+   "category": "virtualization",
+   "concernPct": 8.21,
+   "solutionPct": 6.22,
+   "gapPts": -1.99,
+   "concernCi": [
+    6.02,
+    10.3
+   ],
+   "solutionCi": [
+    3.16,
+    9.35
+   ],
+   "gapCi": [
+    -4.52,
+    0.64
+   ],
+   "concernEntries": 49,
+   "solutionEntries": 13
+  },
+  {
+   "era": "2023-2026",
+   "category": "data-security",
+   "concernPct": 15.41,
+   "solutionPct": 13.4,
+   "gapPts": -2.01,
+   "concernCi": [
+    12.59,
+    18.07
+   ],
+   "solutionCi": [
+    8.42,
+    18.44
+   ],
+   "gapCi": [
+    -5.43,
+    1.96
+   ],
+   "concernEntries": 92,
+   "solutionEntries": 28
+  },
+  {
+   "era": "2023-2026",
+   "category": "interfaces",
+   "concernPct": 17.42,
+   "solutionPct": 23.44,
+   "gapPts": 6.02,
+   "concernCi": [
+    14.64,
+    19.99
+   ],
+   "solutionCi": [
+    18.18,
+    29.17
+   ],
+   "gapCi": [
+    1.9,
+    10.63
+   ],
+   "concernEntries": 104,
+   "solutionEntries": 49
+  },
+  {
+   "era": "2023-2026",
+   "category": "network-security",
+   "concernPct": 11.22,
+   "solutionPct": 10.53,
+   "gapPts": -0.7,
+   "concernCi": [
+    8.86,
+    13.72
+   ],
+   "solutionCi": [
+    6.41,
+    14.54
+   ],
+   "gapCi": [
+    -4.47,
+    2.07
+   ],
+   "concernEntries": 67,
+   "solutionEntries": 22
+  },
+  {
+   "era": "pooled",
+   "category": "legal-issues",
+   "concernPct": 19.08,
+   "solutionPct": 21.55,
+   "gapPts": 2.47,
+   "concernCi": [
+    17.53,
+    20.75
+   ],
+   "solutionCi": [
+    18.72,
+    24.26
+   ],
+   "gapCi": [
+    0.06,
+    4.88
+   ],
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "category": "compliance",
+   "concernPct": 15.53,
+   "solutionPct": 15.21,
+   "gapPts": -0.31,
+   "concernCi": [
+    13.82,
+    17.37
+   ],
+   "solutionCi": [
+    12.79,
+    17.81
+   ],
+   "gapCi": [
+    -2.58,
+    1.8
+   ],
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "category": "governance",
+   "concernPct": 12.58,
+   "solutionPct": 12.36,
+   "gapPts": -0.21,
+   "concernCi": [
+    11.22,
+    13.86
+   ],
+   "solutionCi": [
+    9.78,
+    14.69
+   ],
+   "gapCi": [
+    -2.18,
+    1.89
+   ],
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "category": "virtualization",
+   "concernPct": 8.97,
+   "solutionPct": 7.92,
+   "gapPts": -1.04,
+   "concernCi": [
+    7.75,
+    10.15
+   ],
+   "solutionCi": [
+    6.0,
+    9.99
+   ],
+   "gapCi": [
+    -2.76,
+    0.74
+   ],
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "category": "data-security",
+   "concernPct": 14.0,
+   "solutionPct": 13.47,
+   "gapPts": -0.53,
+   "concernCi": [
+    12.34,
+    15.52
+   ],
+   "solutionCi": [
+    10.79,
+    16.29
+   ],
+   "gapCi": [
+    -2.68,
+    1.63
+   ],
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "category": "interfaces",
+   "concernPct": 17.11,
+   "solutionPct": 18.86,
+   "gapPts": 1.75,
+   "concernCi": [
+    15.58,
+    18.8
+   ],
+   "solutionCi": [
+    16.1,
+    21.78
+   ],
+   "gapCi": [
+    -0.48,
+    4.33
+   ],
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "category": "network-security",
+   "concernPct": 12.74,
+   "solutionPct": 10.62,
+   "gapPts": -2.12,
+   "concernCi": [
+    11.28,
+    14.08
+   ],
+   "solutionCi": [
+    8.31,
+    12.89
+   ],
+   "gapCi": [
+    -4.03,
+    -0.23
+   ],
+   "concernEntries": null,
+   "solutionEntries": null
+  }
+ ],
+ "subcategories": [
+  {
+   "era": "2013-2017",
+   "subcategory": "Transfer security",
+   "category": "network-security",
+   "concernPct": 4.46,
+   "solutionPct": 3.29,
+   "concernEntries": 27,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Firewalling",
+   "category": "network-security",
+   "concernPct": 4.29,
+   "solutionPct": 4.69,
+   "concernEntries": 26,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Security configuration",
+   "category": "network-security",
+   "concernPct": 4.62,
+   "solutionPct": 3.76,
+   "concernEntries": 28,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "API",
+   "category": "interfaces",
+   "concernPct": 4.79,
+   "solutionPct": 2.82,
+   "concernEntries": 29,
+   "solutionEntries": 6
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Administrative interface",
+   "category": "interfaces",
+   "concernPct": 3.63,
+   "solutionPct": 3.29,
+   "concernEntries": 22,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "User interface",
+   "category": "interfaces",
+   "concernPct": 4.13,
+   "solutionPct": 3.76,
+   "concernEntries": 25,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Authentication",
+   "category": "interfaces",
+   "concernPct": 4.13,
+   "solutionPct": 4.23,
+   "concernEntries": 25,
+   "solutionEntries": 9
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Cryptography",
+   "category": "data-security",
+   "concernPct": 4.13,
+   "solutionPct": 5.16,
+   "concernEntries": 25,
+   "solutionEntries": 11
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Redundancy",
+   "category": "data-security",
+   "concernPct": 3.96,
+   "solutionPct": 3.76,
+   "concernEntries": 24,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Disposal",
+   "category": "data-security",
+   "concernPct": 3.96,
+   "solutionPct": 3.76,
+   "concernEntries": 24,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Isolation",
+   "category": "virtualization",
+   "concernPct": 6.27,
+   "solutionPct": 6.57,
+   "concernEntries": 38,
+   "solutionEntries": 14
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Hypervisor vulnerabilities",
+   "category": "virtualization",
+   "concernPct": 2.15,
+   "solutionPct": 1.88,
+   "concernEntries": 13,
+   "solutionEntries": 4
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Data control",
+   "category": "governance",
+   "concernPct": 5.61,
+   "solutionPct": 5.16,
+   "concernEntries": 34,
+   "solutionEntries": 11
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Security control",
+   "category": "governance",
+   "concernPct": 4.46,
+   "solutionPct": 3.76,
+   "concernEntries": 27,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Lock-in",
+   "category": "governance",
+   "concernPct": 2.97,
+   "solutionPct": 3.76,
+   "concernEntries": 18,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "SLA",
+   "category": "compliance",
+   "concernPct": 3.47,
+   "solutionPct": 4.23,
+   "concernEntries": 21,
+   "solutionEntries": 9
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Loss of service",
+   "category": "compliance",
+   "concernPct": 5.12,
+   "solutionPct": 4.69,
+   "concernEntries": 31,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Audit",
+   "category": "compliance",
+   "concernPct": 4.62,
+   "solutionPct": 5.63,
+   "concernEntries": 28,
+   "solutionEntries": 12
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Service conformity",
+   "category": "compliance",
+   "concernPct": 3.14,
+   "solutionPct": 3.29,
+   "concernEntries": 19,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Data location",
+   "category": "legal-issues",
+   "concernPct": 4.46,
+   "solutionPct": 4.69,
+   "concernEntries": 27,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "e-Discovery",
+   "category": "legal-issues",
+   "concernPct": 5.12,
+   "solutionPct": 7.04,
+   "concernEntries": 31,
+   "solutionEntries": 15
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Provider privilege",
+   "category": "legal-issues",
+   "concernPct": 6.44,
+   "solutionPct": 6.1,
+   "concernEntries": 39,
+   "solutionEntries": 13
+  },
+  {
+   "era": "2013-2017",
+   "subcategory": "Legislation",
+   "category": "legal-issues",
+   "concernPct": 4.13,
+   "solutionPct": 4.69,
+   "concernEntries": 25,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Transfer security",
+   "category": "network-security",
+   "concernPct": 5.11,
+   "solutionPct": 3.83,
+   "concernEntries": 32,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Firewalling",
+   "category": "network-security",
+   "concernPct": 4.15,
+   "solutionPct": 1.91,
+   "concernEntries": 26,
+   "solutionEntries": 4
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Security configuration",
+   "category": "network-security",
+   "concernPct": 4.31,
+   "solutionPct": 3.83,
+   "concernEntries": 27,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "API",
+   "category": "interfaces",
+   "concernPct": 4.31,
+   "solutionPct": 3.83,
+   "concernEntries": 27,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Administrative interface",
+   "category": "interfaces",
+   "concernPct": 4.95,
+   "solutionPct": 5.74,
+   "concernEntries": 31,
+   "solutionEntries": 12
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "User interface",
+   "category": "interfaces",
+   "concernPct": 3.99,
+   "solutionPct": 2.87,
+   "concernEntries": 25,
+   "solutionEntries": 6
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Authentication",
+   "category": "interfaces",
+   "concernPct": 3.99,
+   "solutionPct": 6.7,
+   "concernEntries": 25,
+   "solutionEntries": 14
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Cryptography",
+   "category": "data-security",
+   "concernPct": 4.95,
+   "solutionPct": 4.78,
+   "concernEntries": 31,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Redundancy",
+   "category": "data-security",
+   "concernPct": 5.11,
+   "solutionPct": 4.31,
+   "concernEntries": 32,
+   "solutionEntries": 9
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Disposal",
+   "category": "data-security",
+   "concernPct": 4.47,
+   "solutionPct": 5.26,
+   "concernEntries": 28,
+   "solutionEntries": 11
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Isolation",
+   "category": "virtualization",
+   "concernPct": 7.19,
+   "solutionPct": 7.66,
+   "concernEntries": 45,
+   "solutionEntries": 16
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Hypervisor vulnerabilities",
+   "category": "virtualization",
+   "concernPct": 3.04,
+   "solutionPct": 1.44,
+   "concernEntries": 19,
+   "solutionEntries": 3
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Data control",
+   "category": "governance",
+   "concernPct": 3.67,
+   "solutionPct": 5.74,
+   "concernEntries": 23,
+   "solutionEntries": 12
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Security control",
+   "category": "governance",
+   "concernPct": 4.47,
+   "solutionPct": 5.26,
+   "concernEntries": 28,
+   "solutionEntries": 11
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Lock-in",
+   "category": "governance",
+   "concernPct": 3.67,
+   "solutionPct": 1.91,
+   "concernEntries": 23,
+   "solutionEntries": 4
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "SLA",
+   "category": "compliance",
+   "concernPct": 4.31,
+   "solutionPct": 3.83,
+   "concernEntries": 27,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Loss of service",
+   "category": "compliance",
+   "concernPct": 3.51,
+   "solutionPct": 2.87,
+   "concernEntries": 22,
+   "solutionEntries": 6
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Audit",
+   "category": "compliance",
+   "concernPct": 2.4,
+   "solutionPct": 1.44,
+   "concernEntries": 15,
+   "solutionEntries": 3
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Service conformity",
+   "category": "compliance",
+   "concernPct": 4.95,
+   "solutionPct": 7.18,
+   "concernEntries": 31,
+   "solutionEntries": 15
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Data location",
+   "category": "legal-issues",
+   "concernPct": 4.95,
+   "solutionPct": 5.74,
+   "concernEntries": 31,
+   "solutionEntries": 12
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "e-Discovery",
+   "category": "legal-issues",
+   "concernPct": 3.83,
+   "solutionPct": 4.78,
+   "concernEntries": 24,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Provider privilege",
+   "category": "legal-issues",
+   "concernPct": 4.63,
+   "solutionPct": 6.22,
+   "concernEntries": 29,
+   "solutionEntries": 13
+  },
+  {
+   "era": "2018-2022",
+   "subcategory": "Legislation",
+   "category": "legal-issues",
+   "concernPct": 3.99,
+   "solutionPct": 2.87,
+   "concernEntries": 25,
+   "solutionEntries": 6
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Transfer security",
+   "category": "network-security",
+   "concernPct": 3.18,
+   "solutionPct": 3.35,
+   "concernEntries": 19,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Firewalling",
+   "category": "network-security",
+   "concernPct": 4.52,
+   "solutionPct": 3.35,
+   "concernEntries": 27,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Security configuration",
+   "category": "network-security",
+   "concernPct": 3.52,
+   "solutionPct": 3.83,
+   "concernEntries": 21,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "API",
+   "category": "interfaces",
+   "concernPct": 3.52,
+   "solutionPct": 3.35,
+   "concernEntries": 21,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Administrative interface",
+   "category": "interfaces",
+   "concernPct": 4.19,
+   "solutionPct": 7.18,
+   "concernEntries": 25,
+   "solutionEntries": 15
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "User interface",
+   "category": "interfaces",
+   "concernPct": 4.52,
+   "solutionPct": 8.13,
+   "concernEntries": 27,
+   "solutionEntries": 17
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Authentication",
+   "category": "interfaces",
+   "concernPct": 5.19,
+   "solutionPct": 4.78,
+   "concernEntries": 31,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Cryptography",
+   "category": "data-security",
+   "concernPct": 5.19,
+   "solutionPct": 5.26,
+   "concernEntries": 31,
+   "solutionEntries": 11
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Redundancy",
+   "category": "data-security",
+   "concernPct": 4.52,
+   "solutionPct": 2.87,
+   "concernEntries": 27,
+   "solutionEntries": 6
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Disposal",
+   "category": "data-security",
+   "concernPct": 5.7,
+   "solutionPct": 5.26,
+   "concernEntries": 34,
+   "solutionEntries": 11
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Isolation",
+   "category": "virtualization",
+   "concernPct": 6.2,
+   "solutionPct": 4.31,
+   "concernEntries": 37,
+   "solutionEntries": 9
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Hypervisor vulnerabilities",
+   "category": "virtualization",
+   "concernPct": 2.01,
+   "solutionPct": 1.91,
+   "concernEntries": 12,
+   "solutionEntries": 4
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Data control",
+   "category": "governance",
+   "concernPct": 4.19,
+   "solutionPct": 3.35,
+   "concernEntries": 25,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Security control",
+   "category": "governance",
+   "concernPct": 4.19,
+   "solutionPct": 4.78,
+   "concernEntries": 25,
+   "solutionEntries": 10
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Lock-in",
+   "category": "governance",
+   "concernPct": 4.52,
+   "solutionPct": 3.35,
+   "concernEntries": 27,
+   "solutionEntries": 7
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "SLA",
+   "category": "compliance",
+   "concernPct": 4.36,
+   "solutionPct": 3.83,
+   "concernEntries": 26,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Loss of service",
+   "category": "compliance",
+   "concernPct": 3.52,
+   "solutionPct": 2.87,
+   "concernEntries": 21,
+   "solutionEntries": 6
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Audit",
+   "category": "compliance",
+   "concernPct": 4.19,
+   "solutionPct": 1.91,
+   "concernEntries": 25,
+   "solutionEntries": 4
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Service conformity",
+   "category": "compliance",
+   "concernPct": 3.02,
+   "solutionPct": 3.83,
+   "concernEntries": 18,
+   "solutionEntries": 8
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Data location",
+   "category": "legal-issues",
+   "concernPct": 4.52,
+   "solutionPct": 5.74,
+   "concernEntries": 27,
+   "solutionEntries": 12
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "e-Discovery",
+   "category": "legal-issues",
+   "concernPct": 4.86,
+   "solutionPct": 5.74,
+   "concernEntries": 29,
+   "solutionEntries": 12
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Provider privilege",
+   "category": "legal-issues",
+   "concernPct": 5.36,
+   "solutionPct": 6.22,
+   "concernEntries": 32,
+   "solutionEntries": 13
+  },
+  {
+   "era": "2023-2026",
+   "subcategory": "Legislation",
+   "category": "legal-issues",
+   "concernPct": 5.03,
+   "solutionPct": 4.78,
+   "concernEntries": 30,
+   "solutionEntries": 10
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Transfer security",
+   "category": "network-security",
+   "concernPct": 4.26,
+   "solutionPct": 3.49,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Firewalling",
+   "category": "network-security",
+   "concernPct": 4.32,
+   "solutionPct": 3.33,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Security configuration",
+   "category": "network-security",
+   "concernPct": 4.16,
+   "solutionPct": 3.8,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "API",
+   "category": "interfaces",
+   "concernPct": 4.21,
+   "solutionPct": 3.33,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Administrative interface",
+   "category": "interfaces",
+   "concernPct": 4.26,
+   "solutionPct": 5.39,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "User interface",
+   "category": "interfaces",
+   "concernPct": 4.21,
+   "solutionPct": 4.91,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Authentication",
+   "category": "interfaces",
+   "concernPct": 4.43,
+   "solutionPct": 5.23,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Cryptography",
+   "category": "data-security",
+   "concernPct": 4.76,
+   "solutionPct": 5.07,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Redundancy",
+   "category": "data-security",
+   "concernPct": 4.54,
+   "solutionPct": 3.65,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Disposal",
+   "category": "data-security",
+   "concernPct": 4.7,
+   "solutionPct": 4.75,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Isolation",
+   "category": "virtualization",
+   "concernPct": 6.56,
+   "solutionPct": 6.18,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Hypervisor vulnerabilities",
+   "category": "virtualization",
+   "concernPct": 2.41,
+   "solutionPct": 1.74,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Data control",
+   "category": "governance",
+   "concernPct": 4.48,
+   "solutionPct": 4.75,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Security control",
+   "category": "governance",
+   "concernPct": 4.37,
+   "solutionPct": 4.6,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Lock-in",
+   "category": "governance",
+   "concernPct": 3.72,
+   "solutionPct": 3.01,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "SLA",
+   "category": "compliance",
+   "concernPct": 4.05,
+   "solutionPct": 3.96,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Loss of service",
+   "category": "compliance",
+   "concernPct": 4.05,
+   "solutionPct": 3.49,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Audit",
+   "category": "compliance",
+   "concernPct": 3.72,
+   "solutionPct": 3.01,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Service conformity",
+   "category": "compliance",
+   "concernPct": 3.72,
+   "solutionPct": 4.75,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Data location",
+   "category": "legal-issues",
+   "concernPct": 4.65,
+   "solutionPct": 5.39,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "e-Discovery",
+   "category": "legal-issues",
+   "concernPct": 4.59,
+   "solutionPct": 5.86,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Provider privilege",
+   "category": "legal-issues",
+   "concernPct": 5.47,
+   "solutionPct": 6.18,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "pooled",
+   "subcategory": "Legislation",
+   "category": "legal-issues",
+   "concernPct": 4.37,
+   "solutionPct": 4.12,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Legislation",
+   "category": "legal-issues",
+   "concernPct": 10.0,
+   "solutionPct": 12.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Service conformity",
+   "category": "compliance",
+   "concernPct": 9.0,
+   "solutionPct": 12.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Data control",
+   "category": "governance",
+   "concernPct": 9.0,
+   "solutionPct": 8.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Isolation",
+   "category": "virtualization",
+   "concernPct": 7.0,
+   "solutionPct": 1.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Audit",
+   "category": "compliance",
+   "concernPct": 6.0,
+   "solutionPct": 8.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Provider privilege",
+   "category": "legal-issues",
+   "concernPct": 6.0,
+   "solutionPct": 7.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Cryptography",
+   "category": "data-security",
+   "concernPct": 6.0,
+   "solutionPct": 4.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Security control",
+   "category": "governance",
+   "concernPct": 5.0,
+   "solutionPct": 3.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Transfer security",
+   "category": "network-security",
+   "concernPct": 5.0,
+   "solutionPct": 5.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "SLA",
+   "category": "compliance",
+   "concernPct": 5.0,
+   "solutionPct": 7.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Data location",
+   "category": "legal-issues",
+   "concernPct": 5.0,
+   "solutionPct": 4.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Hypervisor vulnerabilities",
+   "category": "virtualization",
+   "concernPct": 5.0,
+   "solutionPct": 2.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "e-Discovery",
+   "category": "legal-issues",
+   "concernPct": 4.0,
+   "solutionPct": 4.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Lock-in",
+   "category": "governance",
+   "concernPct": 3.0,
+   "solutionPct": 3.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Authentication",
+   "category": "interfaces",
+   "concernPct": 3.0,
+   "solutionPct": 3.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Redundancy",
+   "category": "data-security",
+   "concernPct": 2.0,
+   "solutionPct": 3.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Disposal",
+   "category": "data-security",
+   "concernPct": 2.0,
+   "solutionPct": 2.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "User interface",
+   "category": "interfaces",
+   "concernPct": 2.0,
+   "solutionPct": 3.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Administrative interface",
+   "category": "interfaces",
+   "concernPct": 2.0,
+   "solutionPct": 2.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "API",
+   "category": "interfaces",
+   "concernPct": 2.0,
+   "solutionPct": 2.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Firewalling",
+   "category": "network-security",
+   "concernPct": 2.0,
+   "solutionPct": 2.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Security configuration",
+   "category": "network-security",
+   "concernPct": 1.0,
+   "solutionPct": 1.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  },
+  {
+   "era": "2012",
+   "subcategory": "Loss of service",
+   "category": "compliance",
+   "concernPct": 1.0,
+   "solutionPct": 1.0,
+   "concernEntries": null,
+   "solutionEntries": null
+  }
+ ],
+ "axes": [
+  {
+   "era": "2012",
+   "axis": "hypervisor-vulnerabilities",
+   "concernEntries": 21,
+   "solutionEntries": 8,
+   "ratio": 0.381,
+   "ratioCi": null
+  },
+  {
+   "era": "2012",
+   "axis": "cross-vm-attacks",
+   "concernEntries": 21,
+   "solutionEntries": 1,
+   "ratio": 0.048,
+   "ratioCi": null
+  },
+  {
+   "era": "2012",
+   "axis": "isolation",
+   "concernEntries": 20,
+   "solutionEntries": 3,
+   "ratio": 0.15,
+   "ratioCi": null
+  },
+  {
+   "era": "2012",
+   "axis": "data-leakage",
+   "concernEntries": 16,
+   "solutionEntries": 5,
+   "ratio": 0.312,
+   "ratioCi": null
+  },
+  {
+   "era": "2012",
+   "axis": "vm-identification",
+   "concernEntries": 15,
+   "solutionEntries": 2,
+   "ratio": 0.133,
+   "ratioCi": null
+  },
+  {
+   "era": "2013-2017",
+   "axis": "hypervisor-vulnerabilities",
+   "concernEntries": 13,
+   "solutionEntries": 4,
+   "ratio": 0.308,
+   "ratioCi": [
+    0.067,
+    0.567
+   ]
+  },
+  {
+   "era": "2013-2017",
+   "axis": "cross-vm-attacks",
+   "concernEntries": 8,
+   "solutionEntries": 4,
+   "ratio": 0.5,
+   "ratioCi": [
+    0.211,
+    0.833
+   ]
+  },
+  {
+   "era": "2013-2017",
+   "axis": "isolation",
+   "concernEntries": 14,
+   "solutionEntries": 4,
+   "ratio": 0.286,
+   "ratioCi": [
+    0.069,
+    0.571
+   ]
+  },
+  {
+   "era": "2013-2017",
+   "axis": "data-leakage",
+   "concernEntries": 19,
+   "solutionEntries": 8,
+   "ratio": 0.421,
+   "ratioCi": [
+    0.171,
+    0.694
+   ]
+  },
+  {
+   "era": "2013-2017",
+   "axis": "vm-identification",
+   "concernEntries": 15,
+   "solutionEntries": 6,
+   "ratio": 0.4,
+   "ratioCi": [
+    0.171,
+    0.624
+   ]
+  },
+  {
+   "era": "2018-2022",
+   "axis": "hypervisor-vulnerabilities",
+   "concernEntries": 19,
+   "solutionEntries": 3,
+   "ratio": 0.158,
+   "ratioCi": [
+    0.0,
+    0.351
+   ]
+  },
+  {
+   "era": "2018-2022",
+   "axis": "cross-vm-attacks",
+   "concernEntries": 15,
+   "solutionEntries": 8,
+   "ratio": 0.533,
+   "ratioCi": [
+    0.273,
+    0.786
+   ]
+  },
+  {
+   "era": "2018-2022",
+   "axis": "isolation",
+   "concernEntries": 13,
+   "solutionEntries": 6,
+   "ratio": 0.462,
+   "ratioCi": [
+    0.143,
+    0.739
+   ]
+  },
+  {
+   "era": "2018-2022",
+   "axis": "data-leakage",
+   "concernEntries": 16,
+   "solutionEntries": 3,
+   "ratio": 0.188,
+   "ratioCi": [
+    0.0,
+    0.4
+   ]
+  },
+  {
+   "era": "2018-2022",
+   "axis": "vm-identification",
+   "concernEntries": 13,
+   "solutionEntries": 3,
+   "ratio": 0.231,
+   "ratioCi": [
+    0.0,
+    0.5
+   ]
+  },
+  {
+   "era": "2023-2026",
+   "axis": "hypervisor-vulnerabilities",
+   "concernEntries": 12,
+   "solutionEntries": 4,
+   "ratio": 0.333,
+   "ratioCi": [
+    0.095,
+    0.608
+   ]
+  },
+  {
+   "era": "2023-2026",
+   "axis": "cross-vm-attacks",
+   "concernEntries": 15,
+   "solutionEntries": 6,
+   "ratio": 0.4,
+   "ratioCi": [
+    0.156,
+    0.64
+   ]
+  },
+  {
+   "era": "2023-2026",
+   "axis": "isolation",
+   "concernEntries": 16,
+   "solutionEntries": 3,
+   "ratio": 0.188,
+   "ratioCi": [
+    0.0,
+    0.458
+   ]
+  },
+  {
+   "era": "2023-2026",
+   "axis": "data-leakage",
+   "concernEntries": 9,
+   "solutionEntries": 1,
+   "ratio": 0.111,
+   "ratioCi": [
+    0.0,
+    0.4
+   ]
+  },
+  {
+   "era": "2023-2026",
+   "axis": "vm-identification",
+   "concernEntries": 8,
+   "solutionEntries": 0,
+   "ratio": 0.0,
+   "ratioCi": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "era": "pooled",
+   "axis": "hypervisor-vulnerabilities",
+   "concernEntries": null,
+   "solutionEntries": null,
+   "ratio": 0.25,
+   "ratioCi": [
+    0.141,
+    0.37
+   ]
+  },
+  {
+   "era": "pooled",
+   "axis": "cross-vm-attacks",
+   "concernEntries": null,
+   "solutionEntries": null,
+   "ratio": 0.474,
+   "ratioCi": [
+    0.312,
+    0.627
+   ]
+  },
+  {
+   "era": "pooled",
+   "axis": "isolation",
+   "concernEntries": null,
+   "solutionEntries": null,
+   "ratio": 0.302,
+   "ratioCi": [
+    0.163,
+    0.431
+   ]
+  },
+  {
+   "era": "pooled",
+   "axis": "data-leakage",
+   "concernEntries": null,
+   "solutionEntries": null,
+   "ratio": 0.273,
+   "ratioCi": [
+    0.143,
+    0.416
+   ]
+  },
+  {
+   "era": "pooled",
+   "axis": "vm-identification",
+   "concernEntries": null,
+   "solutionEntries": null,
+   "ratio": 0.25,
+   "ratioCi": [
+    0.125,
+    0.397
+   ]
+  }
+ ],
+ "robustness": [
+  {
+   "id": "main",
+   "label": "Rule B (scoped solutions), per (abstract, sub-category)",
+   "era": "2013-2017",
+   "gapPts": 0.03,
+   "gapCi": [
+    -3.26,
+    3.33
+   ]
+  },
+  {
+   "id": "RB1",
+   "label": "per (abstract, category) instead of per sub-category",
+   "era": "2013-2017",
+   "gapPts": 0.72,
+   "gapCi": [
+    -2.13,
+    3.7
+   ]
+  },
+  {
+   "id": "RB2",
+   "label": "rule A: a solution abstract answers every concern it raises",
+   "era": "2013-2017",
+   "gapPts": 0.12,
+   "gapCi": [
+    -2.65,
+    2.34
+   ]
+  },
+  {
+   "id": "RB3",
+   "label": "classic virtualization only (no container, serverless or TEE sentences)",
+   "era": "2013-2017",
+   "gapPts": 1.14,
+   "gapCi": [
+    -1.66,
+    4.17
+   ]
+  },
+  {
+   "id": "RB4",
+   "label": "peer-reviewed types only (article, conference paper, review)",
+   "era": "2013-2017",
+   "gapPts": -0.06,
+   "gapCi": [
+    -4.54,
+    4.05
+   ]
+  },
+  {
+   "id": "main",
+   "label": "Rule B (scoped solutions), per (abstract, sub-category)",
+   "era": "2018-2022",
+   "gapPts": -1.13,
+   "gapCi": [
+    -4.36,
+    2.17
+   ]
+  },
+  {
+   "id": "RB1",
+   "label": "per (abstract, category) instead of per sub-category",
+   "era": "2018-2022",
+   "gapPts": 0.11,
+   "gapCi": [
+    -2.75,
+    3.09
+   ]
+  },
+  {
+   "id": "RB2",
+   "label": "rule A: a solution abstract answers every concern it raises",
+   "era": "2018-2022",
+   "gapPts": -0.73,
+   "gapCi": [
+    -3.5,
+    2.09
+   ]
+  },
+  {
+   "id": "RB3",
+   "label": "classic virtualization only (no container, serverless or TEE sentences)",
+   "era": "2018-2022",
+   "gapPts": 0.33,
+   "gapCi": [
+    -2.44,
+    3.4
+   ]
+  },
+  {
+   "id": "RB4",
+   "label": "peer-reviewed types only (article, conference paper, review)",
+   "era": "2018-2022",
+   "gapPts": -2.05,
+   "gapCi": [
+    -6.83,
+    3.08
+   ]
+  },
+  {
+   "id": "main",
+   "label": "Rule B (scoped solutions), per (abstract, sub-category)",
+   "era": "2023-2026",
+   "gapPts": -1.99,
+   "gapCi": [
+    -4.52,
+    0.64
+   ]
+  },
+  {
+   "id": "RB1",
+   "label": "per (abstract, category) instead of per sub-category",
+   "era": "2023-2026",
+   "gapPts": -1.28,
+   "gapCi": [
+    -3.91,
+    1.4
+   ]
+  },
+  {
+   "id": "RB2",
+   "label": "rule A: a solution abstract answers every concern it raises",
+   "era": "2023-2026",
+   "gapPts": 0.21,
+   "gapCi": [
+    -2.38,
+    2.5
+   ]
+  },
+  {
+   "id": "RB3",
+   "label": "classic virtualization only (no container, serverless or TEE sentences)",
+   "era": "2023-2026",
+   "gapPts": -1.06,
+   "gapCi": [
+    -3.46,
+    1.41
+   ]
+  },
+  {
+   "id": "RB4",
+   "label": "peer-reviewed types only (article, conference paper, review)",
+   "era": "2023-2026",
+   "gapPts": -2.62,
+   "gapCi": [
+    -6.57,
+    1.43
+   ]
+  },
+  {
+   "id": "main",
+   "label": "Rule B (scoped solutions), per (abstract, sub-category)",
+   "era": "pooled",
+   "gapPts": -1.04,
+   "gapCi": [
+    -2.76,
+    0.74
+   ]
+  },
+  {
+   "id": "RB1",
+   "label": "per (abstract, category) instead of per sub-category",
+   "era": "pooled",
+   "gapPts": -0.15,
+   "gapCi": [
+    -1.64,
+    1.4
+   ]
+  },
+  {
+   "id": "RB2",
+   "label": "rule A: a solution abstract answers every concern it raises",
+   "era": "pooled",
+   "gapPts": -0.17,
+   "gapCi": [
+    -1.62,
+    1.28
+   ]
+  },
+  {
+   "id": "RB3",
+   "label": "classic virtualization only (no container, serverless or TEE sentences)",
+   "era": "pooled",
+   "gapPts": 0.13,
+   "gapCi": [
+    -1.3,
+    1.67
+   ]
+  },
+  {
+   "id": "RB4",
+   "label": "peer-reviewed types only (article, conference paper, review)",
+   "era": "pooled",
+   "gapPts": -1.6,
+   "gapCi": [
+    -4.2,
+    0.84
+   ]
+  }
+ ],
+ "validation": {
+  "n": 24,
+  "screens": 26,
+  "repeats": 2,
+  "unsure": 0,
+  "completedAt": null,
+  "weighted": {
+   "gate": {
+    "tp": 610.0,
+    "fp": 0.0,
+    "fn": 0.0,
+    "tn": 130.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "kappa": 1.0
+   },
+   "concern": {
+    "legal-issues": {
+     "tp": 252.5,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 487.5,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "compliance": {
+     "tp": 97.5,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 642.5,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "governance": {
+     "tp": 122.5,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 617.5,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "virtualization": {
+     "tp": 55.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 685.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "data-security": {
+     "tp": 125.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 615.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "interfaces": {
+     "tp": 245.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 495.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "network-security": {
+     "tp": 177.5,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 562.5,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    }
+   },
+   "solution": {
+    "legal-issues": {
+     "tp": 10.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 730.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "compliance": {
+     "tp": 55.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 685.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "governance": {
+     "tp": 5.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 735.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "virtualization": {
+     "tp": 5.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 735.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "data-security": {
+     "tp": 37.5,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 702.5,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "interfaces": {
+     "tp": 47.5,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 692.5,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "network-security": {
+     "tp": 10.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 730.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    }
+   },
+   "axes": {
+    "hypervisor-vulnerabilities": {
+     "tp": 0.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 740.0,
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "kappa": null
+    },
+    "cross-vm-attacks": {
+     "tp": 5.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 735.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "isolation": {
+     "tp": 0.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 740.0,
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "kappa": null
+    },
+    "data-leakage": {
+     "tp": 50.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 690.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "vm-identification": {
+     "tp": 5.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 735.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    }
+   },
+   "macroF1": {
+    "concern": 1.0,
+    "solution": 1.0
+   },
+   "microF1": {
+    "concern": 1.0,
+    "solution": 1.0
+   },
+   "meanKappa": 1.0,
+   "typeKappa": 1.0,
+   "typeConfusion": {
+    "solution->solution": 117.5,
+    "concern->concern": 492.5
+   },
+   "offTopic": 130.0,
+   "validityGate": {
+    "met": true,
+    "checks": {
+     "macro_f1": {
+      "value": 1.0,
+      "threshold": 0.7,
+      "met": true
+     },
+     "virtualization_f1": {
+      "value": 1.0,
+      "threshold": 0.7,
+      "met": true
+     },
+     "mean_kappa": {
+      "value": 1.0,
+      "threshold": 0.6,
+      "met": true
+     },
+     "type_kappa": {
+      "value": 1.0,
+      "threshold": 0.6,
+      "met": true
+     }
+    }
+   },
+   "n": 24,
+   "ci": {
+    "macroF1": [
+     1.0,
+     1.0
+    ],
+    "virtualizationF1": [
+     1.0,
+     1.0
+    ],
+    "meanKappa": [
+     1.0,
+     1.0
+    ],
+    "typeKappa": [
+     1.0,
+     1.0
+    ]
+   }
+  },
+  "unweighted": {
+   "gate": {
+    "tp": 20.0,
+    "fp": 0.0,
+    "fn": 0.0,
+    "tn": 4.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "kappa": 1.0
+   },
+   "concern": {
+    "legal-issues": {
+     "tp": 8.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 16.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "compliance": {
+     "tp": 4.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 20.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "governance": {
+     "tp": 5.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 19.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "virtualization": {
+     "tp": 2.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 22.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "data-security": {
+     "tp": 3.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 21.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "interfaces": {
+     "tp": 9.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 15.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "network-security": {
+     "tp": 7.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 17.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    }
+   },
+   "solution": {
+    "legal-issues": {
+     "tp": 2.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 22.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "compliance": {
+     "tp": 2.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 22.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "governance": {
+     "tp": 1.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 23.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "virtualization": {
+     "tp": 1.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 23.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "data-security": {
+     "tp": 1.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 23.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "interfaces": {
+     "tp": 3.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 21.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "network-security": {
+     "tp": 2.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 22.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    }
+   },
+   "axes": {
+    "hypervisor-vulnerabilities": {
+     "tp": 0.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 24.0,
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "kappa": null
+    },
+    "cross-vm-attacks": {
+     "tp": 1.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 23.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "isolation": {
+     "tp": 0.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 24.0,
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "kappa": null
+    },
+    "data-leakage": {
+     "tp": 1.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 23.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    },
+    "vm-identification": {
+     "tp": 1.0,
+     "fp": 0.0,
+     "fn": 0.0,
+     "tn": 23.0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "kappa": 1.0
+    }
+   },
+   "macroF1": {
+    "concern": 1.0,
+    "solution": 1.0
+   },
+   "microF1": {
+    "concern": 1.0,
+    "solution": 1.0
+   },
+   "meanKappa": 1.0,
+   "typeKappa": 1.0,
+   "typeConfusion": {
+    "solution->solution": 8.0,
+    "concern->concern": 12.0
+   },
+   "offTopic": 4.0,
+   "validityGate": {
+    "met": true,
+    "checks": {
+     "macro_f1": {
+      "value": 1.0,
+      "threshold": 0.7,
+      "met": true
+     },
+     "virtualization_f1": {
+      "value": 1.0,
+      "threshold": 0.7,
+      "met": true
+     },
+     "mean_kappa": {
+      "value": 1.0,
+      "threshold": 0.6,
+      "met": true
+     },
+     "type_kappa": {
+      "value": 1.0,
+      "threshold": 0.6,
+      "met": true
+     }
+    }
+   },
+   "n": 24
+  },
+  "selfAgreement": {
+   "pairs": 2,
+   "onTopicAgreement": 1.0,
+   "categoryKappa": 1.0,
+   "typeKappa": 1.0
+  },
+  "dev": {
+   "dev": {
+    "gate": {
+     "tp": 0.0,
+     "fp": 4.0,
+     "fn": 0.0,
+     "tn": 1.0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": 0.0,
+     "kappa": 0.0
+    },
+    "concern": {
+     "legal-issues": {
+      "tp": 0.0,
+      "fp": 2.0,
+      "fn": 0.0,
+      "tn": 3.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "compliance": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "governance": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "virtualization": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "data-security": {
+      "tp": 0.0,
+      "fp": 0.0,
+      "fn": 0.0,
+      "tn": 5.0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "kappa": null
+     },
+     "interfaces": {
+      "tp": 0.0,
+      "fp": 3.0,
+      "fn": 0.0,
+      "tn": 2.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "network-security": {
+      "tp": 0.0,
+      "fp": 2.0,
+      "fn": 0.0,
+      "tn": 3.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     }
+    },
+    "solution": {
+     "legal-issues": {
+      "tp": 0.0,
+      "fp": 2.0,
+      "fn": 0.0,
+      "tn": 3.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "compliance": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "governance": {
+      "tp": 0.0,
+      "fp": 0.0,
+      "fn": 0.0,
+      "tn": 5.0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "kappa": null
+     },
+     "virtualization": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "data-security": {
+      "tp": 0.0,
+      "fp": 0.0,
+      "fn": 0.0,
+      "tn": 5.0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "kappa": null
+     },
+     "interfaces": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "network-security": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     }
+    },
+    "axes": {
+     "hypervisor-vulnerabilities": {
+      "tp": 0.0,
+      "fp": 0.0,
+      "fn": 0.0,
+      "tn": 5.0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "kappa": null
+     },
+     "cross-vm-attacks": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     },
+     "isolation": {
+      "tp": 0.0,
+      "fp": 0.0,
+      "fn": 0.0,
+      "tn": 5.0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "kappa": null
+     },
+     "data-leakage": {
+      "tp": 0.0,
+      "fp": 0.0,
+      "fn": 0.0,
+      "tn": 5.0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "kappa": null
+     },
+     "vm-identification": {
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0,
+      "tn": 4.0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "kappa": 0.0
+     }
+    },
+    "macroF1": {
+     "concern": 0.0,
+     "solution": 0.0
+    },
+    "microF1": {
+     "concern": 0.0,
+     "solution": 0.0
+    },
+    "meanKappa": 0.0,
+    "typeKappa": null,
+    "typeConfusion": {},
+    "offTopic": 5.0,
+    "validityGate": {
+     "met": false,
+     "checks": {
+      "macro_f1": {
+       "value": 0.0,
+       "threshold": 0.7,
+       "met": false
+      },
+      "virtualization_f1": {
+       "value": 0.0,
+       "threshold": 0.7,
+       "met": false
+      },
+      "mean_kappa": {
+       "value": 0.0,
+       "threshold": 0.6,
+       "met": false
+      },
+      "type_kappa": {
+       "value": null,
+       "threshold": 0.6,
+       "met": false
+      }
+     }
+    },
+    "n": 5
+   }
+  }
+ },
+ "publishers": [
+  {
+   "publisher": "IEEE",
+   "works": 432
+  },
+  {
+   "publisher": "Springer",
+   "works": 416
+  }
+ ],
+ "cve": {
+  "source": "NVD CVE API 2.0 (public domain)",
+  "retrievedAt": "2026-10-13T18:31:33.046Z",
+  "sha256": "618df3404b9f0879e38d6e3af07905c83135a816f3aff21e3227d42ca24a7e02",
+  "candidates": 5436,
+  "axes": [
+   "virtualization-layer",
+   "isolation",
+   "cross-vm-attacks",
+   "data-leakage"
+  ],
+  "notMeasured": [
+   "vm-identification"
+  ],
+  "deviations": [
+   "D1: kernel crash dumps removed before classification"
+  ],
+  "years": [
+   {
+    "year": 2008,
+    "total": 5632,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 27,
+     "isolation": 7,
+     "cross-vm-attacks": 0,
+     "data-leakage": 0,
+     "any": 29
+    },
+    "per10k": {
+     "virtualization-layer": 47.94,
+     "isolation": 12.43,
+     "cross-vm-attacks": 0.0,
+     "data-leakage": 0.0,
+     "any": 51.49
+    }
+   },
+   {
+    "year": 2009,
+    "total": 5732,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 30,
+     "isolation": 7,
+     "cross-vm-attacks": 0,
+     "data-leakage": 0,
+     "any": 30
+    },
+    "per10k": {
+     "virtualization-layer": 52.34,
+     "isolation": 12.21,
+     "cross-vm-attacks": 0.0,
+     "data-leakage": 0.0,
+     "any": 52.34
+    }
+   },
+   {
+    "year": 2010,
+    "total": 4639,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 27,
+     "isolation": 12,
+     "cross-vm-attacks": 0,
+     "data-leakage": 5,
+     "any": 32
+    },
+    "per10k": {
+     "virtualization-layer": 58.2,
+     "isolation": 25.87,
+     "cross-vm-attacks": 0.0,
+     "data-leakage": 10.78,
+     "any": 68.98
+    }
+   },
+   {
+    "year": 2011,
+    "total": 4150,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 19,
+     "isolation": 7,
+     "cross-vm-attacks": 0,
+     "data-leakage": 1,
+     "any": 20
+    },
+    "per10k": {
+     "virtualization-layer": 45.78,
+     "isolation": 16.87,
+     "cross-vm-attacks": 0.0,
+     "data-leakage": 2.41,
+     "any": 48.19
+    }
+   },
+   {
+    "year": 2012,
+    "total": 5288,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 59,
+     "isolation": 9,
+     "cross-vm-attacks": 0,
+     "data-leakage": 4,
+     "any": 59
+    },
+    "per10k": {
+     "virtualization-layer": 111.57,
+     "isolation": 17.02,
+     "cross-vm-attacks": 0.0,
+     "data-leakage": 7.56,
+     "any": 111.57
+    }
+   },
+   {
+    "year": 2013,
+    "total": 5187,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 90,
+     "isolation": 12,
+     "cross-vm-attacks": 2,
+     "data-leakage": 9,
+     "any": 93
+    },
+    "per10k": {
+     "virtualization-layer": 173.51,
+     "isolation": 23.13,
+     "cross-vm-attacks": 3.86,
+     "data-leakage": 17.35,
+     "any": 179.29
+    }
+   },
+   {
+    "year": 2014,
+    "total": 7928,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 116,
+     "isolation": 12,
+     "cross-vm-attacks": 1,
+     "data-leakage": 7,
+     "any": 123
+    },
+    "per10k": {
+     "virtualization-layer": 146.32,
+     "isolation": 15.14,
+     "cross-vm-attacks": 1.26,
+     "data-leakage": 8.83,
+     "any": 155.15
+    }
+   },
+   {
+    "year": 2015,
+    "total": 6494,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 84,
+     "isolation": 20,
+     "cross-vm-attacks": 0,
+     "data-leakage": 8,
+     "any": 84
+    },
+    "per10k": {
+     "virtualization-layer": 129.35,
+     "isolation": 30.8,
+     "cross-vm-attacks": 0.0,
+     "data-leakage": 12.32,
+     "any": 129.35
+    }
+   },
+   {
+    "year": 2016,
+    "total": 6449,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 149,
+     "isolation": 25,
+     "cross-vm-attacks": 2,
+     "data-leakage": 25,
+     "any": 155
+    },
+    "per10k": {
+     "virtualization-layer": 231.04,
+     "isolation": 38.77,
+     "cross-vm-attacks": 3.1,
+     "data-leakage": 38.77,
+     "any": 240.35
+    }
+   },
+   {
+    "year": 2017,
+    "total": 14642,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 222,
+     "isolation": 39,
+     "cross-vm-attacks": 2,
+     "data-leakage": 35,
+     "any": 225
+    },
+    "per10k": {
+     "virtualization-layer": 151.62,
+     "isolation": 26.64,
+     "cross-vm-attacks": 1.37,
+     "data-leakage": 23.9,
+     "any": 153.67
+    }
+   },
+   {
+    "year": 2018,
+    "total": 16510,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 139,
+     "isolation": 19,
+     "cross-vm-attacks": 14,
+     "data-leakage": 16,
+     "any": 154
+    },
+    "per10k": {
+     "virtualization-layer": 84.19,
+     "isolation": 11.51,
+     "cross-vm-attacks": 8.48,
+     "data-leakage": 9.69,
+     "any": 93.28
+    }
+   },
+   {
+    "year": 2019,
+    "total": 17305,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 176,
+     "isolation": 15,
+     "cross-vm-attacks": 2,
+     "data-leakage": 20,
+     "any": 179
+    },
+    "per10k": {
+     "virtualization-layer": 101.7,
+     "isolation": 8.67,
+     "cross-vm-attacks": 1.16,
+     "data-leakage": 11.56,
+     "any": 103.44
+    }
+   },
+   {
+    "year": 2020,
+    "total": 18322,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 257,
+     "isolation": 13,
+     "cross-vm-attacks": 10,
+     "data-leakage": 30,
+     "any": 263
+    },
+    "per10k": {
+     "virtualization-layer": 140.27,
+     "isolation": 7.1,
+     "cross-vm-attacks": 5.46,
+     "data-leakage": 16.37,
+     "any": 143.54
+    }
+   },
+   {
+    "year": 2021,
+    "total": 20149,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 195,
+     "isolation": 7,
+     "cross-vm-attacks": 8,
+     "data-leakage": 35,
+     "any": 205
+    },
+    "per10k": {
+     "virtualization-layer": 96.78,
+     "isolation": 3.47,
+     "cross-vm-attacks": 3.97,
+     "data-leakage": 17.37,
+     "any": 101.74
+    }
+   },
+   {
+    "year": 2022,
+    "total": 25073,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 150,
+     "isolation": 10,
+     "cross-vm-attacks": 5,
+     "data-leakage": 25,
+     "any": 161
+    },
+    "per10k": {
+     "virtualization-layer": 59.83,
+     "isolation": 3.99,
+     "cross-vm-attacks": 1.99,
+     "data-leakage": 9.97,
+     "any": 64.21
+    }
+   },
+   {
+    "year": 2023,
+    "total": 28816,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 91,
+     "isolation": 11,
+     "cross-vm-attacks": 4,
+     "data-leakage": 19,
+     "any": 102
+    },
+    "per10k": {
+     "virtualization-layer": 31.58,
+     "isolation": 3.82,
+     "cross-vm-attacks": 1.39,
+     "data-leakage": 6.59,
+     "any": 35.4
+    }
+   },
+   {
+    "year": 2024,
+    "total": 39953,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 225,
+     "isolation": 14,
+     "cross-vm-attacks": 3,
+     "data-leakage": 32,
+     "any": 235
+    },
+    "per10k": {
+     "virtualization-layer": 56.32,
+     "isolation": 3.5,
+     "cross-vm-attacks": 0.75,
+     "data-leakage": 8.01,
+     "any": 58.82
+    }
+   },
+   {
+    "year": 2025,
+    "total": 48152,
+    "partial": false,
+    "counts": {
+     "virtualization-layer": 215,
+     "isolation": 14,
+     "cross-vm-attacks": 3,
+     "data-leakage": 24,
+     "any": 220
+    },
+    "per10k": {
+     "virtualization-layer": 44.65,
+     "isolation": 2.91,
+     "cross-vm-attacks": 0.62,
+     "data-leakage": 4.98,
+     "any": 45.69
+    }
+   },
+   {
+    "year": 2026,
+    "total": 78215,
+    "partial": true,
+    "counts": {
+     "virtualization-layer": 494,
+     "isolation": 32,
+     "cross-vm-attacks": 16,
+     "data-leakage": 56,
+     "any": 522
+    },
+    "per10k": {
+     "virtualization-layer": 63.16,
+     "isolation": 4.09,
+     "cross-vm-attacks": 2.05,
+     "data-leakage": 7.16,
+     "any": 66.74
+    }
+   }
+  ],
+  "spotCheck": {
+   "virtualization-layer": {
+    "n": 20,
+    "correct": 10,
+    "precision": 0.5,
+    "nWithD1": 11,
+    "correctWithD1": 10,
+    "precisionWithD1": 0.91
+   },
+   "isolation": {
+    "n": 20,
+    "correct": 18,
+    "precision": 0.9,
+    "nWithD1": 20,
+    "correctWithD1": 18,
+    "precisionWithD1": 0.9
+   },
+   "cross-vm-attacks": {
+    "n": 20,
+    "correct": 16,
+    "precision": 0.8,
+    "nWithD1": 20,
+    "correctWithD1": 16,
+    "precisionWithD1": 0.8
+   },
+   "data-leakage": {
+    "n": 20,
+    "correct": 13,
+    "precision": 0.65,
+    "nWithD1": 18,
+    "correctWithD1": 13,
+    "precisionWithD1": 0.72
+   }
+  }
+ },
+ "limitations": [
+  "SYNTHETIC FIXTURE for UI and contract tests: random data, not a result.",
+  "Titles and abstracts only, not full texts as in the 2012 survey.",
+  "An academic corpus (OpenAlex); the survey mixed academic and industry sources. OpenAlex lacks most Elsevier abstracts, so the publisher mix is skewed.",
+  "Keyword rules, not manual reading: recall differs by category (technical vocabulary is found more reliably than diffuse legal language); per-category precision and recall are reported.",
+  "One annotator, who is also an author; mitigated by blinding, frozen guidelines and hidden repeats.",
+  "Figures 5, 7 and 11 of the survey are read from the charts (approximate); Figures 6 and 8 are exact.",
+  "Virtualization counts are small, so its intervals are wide; HR4 is tested on pooled data for that reason."
+ ]
+}

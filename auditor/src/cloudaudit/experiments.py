@@ -341,7 +341,7 @@ class RepCveYear(Model):
     total: int
     partial: bool
     counts: dict[str, int]
-    per10k: dict[str, float | None]
+    per10k: dict[str, float | None] = Field(alias="per10k", description="CVEs per 10,000 published that year")
 
 
 class RepCveSpot(Model):

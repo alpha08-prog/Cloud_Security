@@ -2,6 +2,7 @@
 // pydantic models in auditor/src/cloudaudit (generated into schemas/*.schema.json);
 // results.test.ts validates every published file against those schemas, so these
 // types and the data cannot drift apart unnoticed.
+import type { CategoryId } from './taxonomy'
 
 export type Axis =
   | 'hypervisor-vulnerabilities'
@@ -219,4 +220,177 @@ export interface Manifest {
   platform: string
   gitSha: string
   files: string[]
+  replicationGeneratedAt?: string
+}
+
+// ---------------------------------------------------------------------------
+// Replication of the survey's counting method (docs/replication.md).
+
+/** 95% interval [low, high]. */
+export type Interval = [number, number]
+/** "2012" (the survey's Figures 6/8), an era id such as "2013-2017", or "pooled". */
+export type Period = string
+
+export interface RepEra {
+  id: string
+  label: string
+  seed: number
+  firstYear: number
+  lastYear: number
+  partial: boolean
+}
+
+export interface RepCategory {
+  era: Period
+  category: CategoryId
+  concernPct: number | null
+  solutionPct: number | null
+  gapPts: number | null
+  concernCi: Interval | null
+  solutionCi: Interval | null
+  gapCi: Interval | null
+  concernEntries: number | null
+  solutionEntries: number | null
+}
+
+export interface RepSubcategory {
+  era: Period
+  subcategory: string
+  category: CategoryId
+  concernPct: number | null
+  solutionPct: number | null
+  concernEntries: number | null
+  solutionEntries: number | null
+}
+
+export interface RepAxis {
+  era: Period
+  axis: Axis
+  concernEntries: number | null
+  solutionEntries: number | null
+  ratio: number | null
+  ratioCi: Interval | null
+}
+
+export interface RepRobustness {
+  id: 'main' | 'RB1' | 'RB2' | 'RB3' | 'RB4'
+  label: string
+  era: Period
+  gapPts: number | null
+  gapCi: Interval | null
+}
+
+export interface RepScores {
+  tp: number
+  fp: number
+  fn: number
+  tn: number
+  precision: number | null
+  recall: number | null
+  f1: number | null
+  kappa: number | null
+}
+
+export interface RepGate {
+  met: boolean
+  checks: Record<string, { value: number | null; threshold: number; met: boolean }>
+}
+
+export interface RepAgreement {
+  n: number
+  gate: RepScores
+  concern: Record<CategoryId, RepScores>
+  solution: Record<CategoryId, RepScores>
+  axes: Record<Axis, RepScores>
+  macroF1: { concern: number | null; solution: number | null }
+  microF1: { concern: number | null; solution: number | null }
+  meanKappa: number | null
+  typeKappa: number | null
+  typeConfusion: Record<string, number>
+  offTopic: number
+  validityGate: RepGate
+  ci?: Record<string, Interval | null> | null
+}
+
+export interface RepCveYear {
+  year: number
+  total: number
+  partial: boolean
+  counts: Record<string, number>
+  per10k: Record<string, number | null>
+}
+
+export interface ReplicationResult {
+  schemaVersion: string
+  kind: 'replication'
+  generatedAt: string
+  protocol: {
+    document: string
+    query: string
+    eras: RepEra[]
+    samplePerEra: number
+    frozenAt: string
+    rulesSha256: Record<string, string>
+    corpusSha256: Record<string, string>
+    nvdSha256: string
+    bootstrapB: number
+    bootstrapSeed: number
+    unit: string
+    solutionRule: string
+    deviations: string[]
+  }
+  hypotheses: Hypothesis[]
+  validityGateMet: boolean
+  flow: {
+    era: string
+    population: number
+    sampled: number
+    unique: number
+    excluded: Record<string, number>
+    analysed: number
+    inScope: number
+  }[]
+  categories: RepCategory[]
+  subcategories: RepSubcategory[]
+  axes: RepAxis[]
+  robustness: RepRobustness[]
+  validation: {
+    n: number
+    screens: number
+    repeats: number
+    unsure: number
+    completedAt: string | null
+    weighted: RepAgreement
+    unweighted: RepAgreement
+    selfAgreement: {
+      pairs: number
+      onTopicAgreement: number | null
+      categoryKappa: number | null
+      typeKappa: number | null
+    }
+    dev: Record<string, RepAgreement>
+  }
+  publishers: { publisher: string; works: number }[]
+  cve: {
+    source: string
+    retrievedAt: string
+    sha256: string
+    candidates: number
+    axes: string[]
+    notMeasured: string[]
+    deviations: string[]
+    years: RepCveYear[]
+    spotCheck: Record<
+      string,
+      {
+        n: number
+        correct: number
+        precision: number | null
+        nWithD1: number
+        correctWithD1: number
+        precisionWithD1: number | null
+      }
+    > | null
+  }
+  limitations: string[]
 }

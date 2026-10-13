@@ -3,6 +3,7 @@ verdict rules and the published contract. No real corpus result is computed here
 
 from __future__ import annotations
 
+import json
 import random
 import sys
 from pathlib import Path
@@ -183,3 +184,5 @@ def test_full_document_fits_the_contract(doc):
     built = publish.build(flows_doc=a["flow"], analysis_doc=a, validation=v, dev=dev, cve_doc=cve_doc)
     model = exp.ReplicationResult.model_validate(built)
     assert [h.id for h in model.hypotheses] == ["HR1", "HR2", "HR3", "HR4", "HR5"]
+    # Every key the publisher writes is the schema's alias (the model also accepts field names).
+    assert model.model_dump(mode="json", by_alias=True, exclude_unset=True) == json.loads(json.dumps(built))
