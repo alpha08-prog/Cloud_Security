@@ -87,6 +87,33 @@ Use these for the main dashboard. `gap = solution − concern` (negative = under
 **Story:** virtualization is the only large deficit. Everything institutional
 (legal/compliance/governance) is well covered; the deep technical problem is not.
 
+### Which category each sub-category belongs to (paper text, pp.2–4)
+
+The section "Cloud computing security" lists the seven categories, each with lettered
+sub-categories. This list is the membership used to group Figure 5/7 slices into Figure 6/8
+categories:
+
+| Category | Sub-categories as listed (pp.2–4) |
+|---|---|
+| 1. Network security | (a) Transfer security · (b) Firewalling · (c) Security configuration |
+| 2. Interfaces | (a) API · (b) Administrative interface · (c) User interface · (d) Authentication |
+| 3. Data security | (a) Cryptography · (b) Redundancy · (c) Disposal |
+| 4. Virtualization | (a) Isolation · (b) Hypervisor vulnerabilities · (c) Data leakage · (d) VM identification · (e) Cross-VM attacks |
+| 5. Governance | (a) Data control · (b) Security control · (c) Lock-in |
+| 6. Compliance | (a) Service Level Agreements (SLA) · (b) Loss of service · (c) Audit · (d) Service conformity |
+| 7. Legal issues | (a) Data location · (b) E-discovery · (c) Provider privilege · (d) legislation |
+
+Two consequences for the counts:
+
+- **Legislation** (Legal issues) and **Service conformity** (Compliance) appear in Figure 5 but
+  not in the taxonomy trees (Figures 2–4); the list above places them.
+- **Figure 5 lists only two virtualization slices**, Isolation (7%) and Hypervisor
+  vulnerabilities (5%). They sum to Figure 6's 12%, and their Figure 7 solutions (1% + 2%) sum
+  to Figure 8's 3%. So Data leakage, VM identification and Cross-VM attacks were counted inside
+  those two rows in the pies. Only Figure 11 breaks them out.
+- **Grouping check.** With this membership, every category's Figure 5 (and Figure 7) sum is
+  within ±1 point of Figure 6 (and Figure 8). The differences are rounding in the chart readings.
+
 ### Sub-categories (Figures 5 & 7) — read from charts, treat as approximate
 
 Concerns (Fig 5), %: Legislation 10 · Service conformity 9 · Data control 9 ·

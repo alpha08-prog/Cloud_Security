@@ -29,11 +29,13 @@ dist-ssr
 !/docs/checks.md
 !/docs/experiments.md
 !/docs/viva-notes.md
+!/docs/replication.md
 CLAUDE.md
 
 # IsoLab
 results/runs/
 results/ci/
+replication/cache/
 testbed/cpus.env
 testbed/secrets/
 __pycache__/
