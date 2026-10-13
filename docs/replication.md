@@ -75,7 +75,13 @@ Both are hashed into `replication/freeze.json` (sha256 of the LF-normalised file
 
 **Virtualization context.** Terms marked "virtualization context" count only if a context term
 is in the same sentence: VM, virtual machine, hypervisor, guest, host OS/kernel, tenant,
-container, Docker, Kubernetes, pod, co-resident, shared hardware, serverless.
+container, Docker, Kubernetes, co-resident, co-located, shared hardware, serverless, enclave/TEE.
+Generic side channels count as cross-VM only in such a sentence.
+
+**Threat context.** A hypervisor, VMM, container runtime or product name (Xen, KVM, QEMU, ESXi, …)
+counts as a *hypervisor vulnerability* only if a threat word (vulnerability, attack, exploit,
+flaw, compromise, hijack, malicious, escape, untrusted, TCB, risk, …) is in the same sentence;
+naming the platform a system runs on is not a concern about it.
 
 **Scope.** Containers, serverless and trusted execution environments count as virtualization.
 Justification: the CSA guidance quoted by the paper (p.12) names multi-tenancy, not
@@ -85,17 +91,24 @@ virtualization, as the essential characteristic. RB3 reruns the analysis without
 1. a cloud term (cloud, IaaS, PaaS, SaaS, multi-cloud, edge-cloud, fog, data centre, virtual
    machine, container) in the title, or at least 2 in the abstract;
 2. a security/privacy/compliance term in the title, or at least 2 in the abstract;
-3. at least one sub-category hit.
+3. at least one sentence (the title counts) that contains both a cloud term and a security term;
+4. at least one sub-category hit.
 
 **Type.**
 - **Survey** (counts as concern-only): a survey cue (survey, review, systematic literature/mapping,
   state of the art, overview, open issues/challenges, research directions, tutorial, SoK,
   taxonomy) in the title or the first two sentences.
-- **Solution:** at least one *contribution sentence*. That means a subject cue (we, our, this
-  paper/work/article/study, the proposed, is/are proposed/presented/designed/developed/
-  introduced) plus an artifact noun (scheme, framework, protocol, mechanism, system, approach,
-  architecture, model, method, technique, algorithm, tool, solution, prototype, countermeasure,
-  defence, mitigation, platform, construction, policy, middleware) in the same sentence.
+- **Solution:** at least one *contribution sentence*. That means either
+  - a subject cue (we, our, this paper/work/article/study, the proposed) plus a proposing verb
+    (propose, present, introduce, develop, design, build, implement, construct, …; whole words)
+    plus an artifact noun (scheme, framework, protocol, mechanism, system, approach, architecture,
+    model, method, technique, algorithm, tool, solution, prototype, countermeasure, defence,
+    mitigation, platform, construction, policy, middleware, process, structure, …) in the same
+    sentence; or
+  - a present-tense passive ("X is proposed / presented / developed", "has been developed").
+
+  Before the test, other people's work and claims are masked: "proposed by", "was/were/recently
+  proposed", "et al. proposed", "show/suggest that", "existing scheme/method", "need for/to …".
   A sentence presenting an attack or exploit is not a contribution unless it also has a defensive
   cue (defen*, mitigat*, countermeasure*, detect*, prevent*, protect*, thwart*, resist*).
 - **Concern-only** otherwise. This covers measurement, attack and position papers.
@@ -103,8 +116,9 @@ virtualization, as the essential characteristic. RB3 reruns the analysis without
 **Counting (rule B, "scoped").**
 - Each unique (abstract, Fig-5 sub-category) hit is one **concern entry**.
 - A solution-type abstract also gets one **solution entry** per sub-category hit in its title or
-  from its first contribution sentence onward. If that finds nothing, fall back to title hits;
-  if still nothing, use all hits.
+  from its first contribution sentence onward (the *solution window*). If no Fig-5 sub-category
+  is hit inside the window, the window becomes the whole abstract. The Fig-11 sub-issues use the
+  same window, so a sub-issue named only in the problem statement is never a solution on its own.
 - **Virtualization fold.** The five Fig-11 sub-issues are tagged separately and folded into the
   Fig-5 rows as the paper did (`paper-content.md` §5):
   - hypervisor vulnerabilities → *Hypervisor vulnerabilities*;
@@ -116,7 +130,7 @@ virtualization, as the essential characteristic. RB3 reruns the analysis without
 
 ## 4. Validation (blind human labels)
 
-**Sample.** Drawn after the freeze, from analysed works outside the dev set, with seed 11.
+**Sample.** Drawn after the freeze, from analysed works outside both dev sets, with seed 11.
 100 items, stratified per era by classifier output:
 
 | Stratum | 2013–17 | 2018–22 | 2023–26 |
@@ -228,7 +242,11 @@ computed by `rep publish`.
 reported as CVEs per 10,000 published CVEs, 2008–2026 (2026 partial).
 
 **Axes,** classified from the English description; a virtualization context is required, and
-"JVM", "memory leak" and "guest user/account/network" are masked:
+"JVM", "memory leak" and "guest user/account/network" are masked. The context is
+virtualization-specific (hypervisor, virtual machine, VM, guest, a hypervisor or container-runtime
+product, container escape/isolation/runtime, enclave/SGX/TDX/SEV); plain "host", "container" and
+"tenant" do not count, because they match application CVEs (web hosts, servlet containers,
+multi-tenant SaaS authorisation bugs):
 
 | Axis | Matches |
 |---|---|
@@ -259,4 +277,37 @@ paper report all of it, including the limitations in §1.
 
 ## Changelog
 
-- *(empty: protocol as first written, 2026-10-13)*
+All entries before the freeze come from the dev sets only; the test sample had not been drawn.
+
+- **2026-10-14 — virtualization dev supplement (§3, §4).** The random dev set (150) held only 3
+  virtualization abstracts, too few to check the rules every hypothesis depends on. Added a
+  supplement of 30 works the pre-freeze classifier tagged as virtualization (10 per era, seed
+  `devvirt-7-<era>`, dev items excluded), labelled by the implementer blind to the per-item
+  output. Stored as `replication/samples/dev-virt.json` and `replication/labels/dev-virt.json`;
+  excluded from the test draw. Because it is selected on classifier output, only its
+  precision-type readings are reported.
+- **2026-10-14 — dev tuning of the rules (§3).** Changes made after reading the dev
+  disagreements, before the freeze:
+  - Relevance gate: added condition 3 (one sentence names both a cloud and a security term).
+    On dev it removed 6 off-topic works and lost 1 on-topic one.
+  - Type: present-tense passive contributions; whole-word proposing verbs ("implementation" is
+    not "implement", "provider" is not "provide"); others' work and claims masked; "process" and
+    "structure" added as artifacts; "vulnerability" removed from the attack cues (risk-analysis
+    tools are defensive); survey title cues "an introduction", "introduction to", "current/key
+    challenges", "a primer" added; "state of the art" dropped from the survey lead cues.
+  - Sentence splitting also splits "end.Next" (abstracts that lost the space after a full stop).
+  - Solution window decided once and shared by the Fig-11 sub-issues (see Counting).
+  - Hypervisor sub-issue needs a threat word (see Threat context); generic side channels need a
+    virtualization context; "pod" dropped from the virtualization context (scheme names such as
+    POD matched it); co-location added; "VM hopping", "malicious tenant/VM", "co-tenant" added to
+    cross-VM.
+  - Terms removed as generic on dev: data owner (Data control), transparency (Audit), high
+    availability and resilience (Loss of service), bare "governance" and "security requirement"
+    (Security control).
+  - Terms added: untrusted/malicious/dishonest server or provider (Provider privilege); "no/limited
+    control over" (Data control); security risk, threat model/assessment, cloud/IT governance
+    (Security control); threat detection (Firewalling).
+  - CVE supplement (§6): the virtualization context dropped plain "host", "container", "Docker"
+    and "tenant" after a look at random candidate hits (application CVEs matched them).
+  - Dev metrics after tuning (optimistic, tuning sets): random dev macro-F1 0.74, mean κ 0.69,
+    type κ 0.63; virtualization supplement category precision 0.96.

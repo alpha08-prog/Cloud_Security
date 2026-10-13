@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
 
 from isolab import audit, compose, cpus, devtools, e1, e2, e3, publish, testbed, util  # noqa: E402
+from replication import cli as replication_cli  # noqa: E402
 
 
 def cmd_doctor(args) -> int:
@@ -205,6 +206,8 @@ def main() -> int:
         fn=cmd_test)
     sub.add_parser("contract", help="regenerate schemas/*.schema.json and docs/checks.md").set_defaults(
         fn=cmd_contract)
+
+    replication_cli.register(sub)
 
     p = sub.add_parser("logs", help="show service logs")
     p.add_argument("services", nargs="*")

@@ -1,0 +1,40 @@
+{
+  "source": "OpenAlex works API (CC0)",
+  "search": "cloud AND (security OR privacy) NOT (\"point cloud\" OR \"point clouds\" OR \"cloud cover\" OR \"cloud seeding\" OR \"cloud droplet\" OR \"cloud microphysics\" OR \"molecular cloud\" OR \"electron cloud\" OR \"word cloud\" OR \"tag cloud\" OR \"cloud forest\" OR \"food security\" OR \"energy security\" OR \"water security\" OR \"social security\" OR \"job security\")",
+  "types": [
+    "article",
+    "conference-paper",
+    "review",
+    "book-chapter",
+    "preprint",
+    "report"
+  ],
+  "samplePerEra": 2500,
+  "retrievedAt": "2026-10-13T18:17:04.991Z",
+  "eras": {
+    "2013-2017": {
+      "seed": 2013,
+      "population": 17399,
+      "records": 2500,
+      "uniqueIds": 2500,
+      "sha256": "3d016e87394977db2e03c4832ccad35c90ffb6aa20344080308fa2635d7a91ef",
+      "exampleUrl": "https://api.openalex.org/works?filter=title_and_abstract.search%3Acloud+AND+%28security+OR+privacy%29+NOT+%28%22point+cloud%22+OR+%22point+clouds%22+OR+%22cloud+cover%22+OR+%22cloud+seeding%22+OR+%22cloud+droplet%22+OR+%22cloud+microphysics%22+OR+%22molecular+cloud%22+OR+%22electron+cloud%22+OR+%22word+cloud%22+OR+%22tag+cloud%22+OR+%22cloud+forest%22+OR+%22food+security%22+OR+%22energy+security%22+OR+%22water+security%22+OR+%22social+security%22+OR+%22job+security%22%29%2Cpublication_year%3A2013-2017%2Chas_abstract%3Atrue%2Clanguage%3Aen%2Ctype%3Aarticle%7Cconference-paper%7Creview%7Cbook-chapter%7Cpreprint%7Creport%2Cis_retracted%3Afalse%2Cis_paratext%3Afalse&sample=2500&seed=2013&per-page=200&page=1"
+    },
+    "2018-2022": {
+      "seed": 2018,
+      "population": 25193,
+      "records": 2500,
+      "uniqueIds": 2500,
+      "sha256": "04e81b6eeb32ca5b3158266c86d98ddb239f0d35150b85d10985c86399d6bda8",
+      "exampleUrl": "https://api.openalex.org/works?filter=title_and_abstract.search%3Acloud+AND+%28security+OR+privacy%29+NOT+%28%22point+cloud%22+OR+%22point+clouds%22+OR+%22cloud+cover%22+OR+%22cloud+seeding%22+OR+%22cloud+droplet%22+OR+%22cloud+microphysics%22+OR+%22molecular+cloud%22+OR+%22electron+cloud%22+OR+%22word+cloud%22+OR+%22tag+cloud%22+OR+%22cloud+forest%22+OR+%22food+security%22+OR+%22energy+security%22+OR+%22water+security%22+OR+%22social+security%22+OR+%22job+security%22%29%2Cpublication_year%3A2018-2022%2Chas_abstract%3Atrue%2Clanguage%3Aen%2Ctype%3Aarticle%7Cconference-paper%7Creview%7Cbook-chapter%7Cpreprint%7Creport%2Cis_retracted%3Afalse%2Cis_paratext%3Afalse&sample=2500&seed=2018&per-page=200&page=1"
+    },
+    "2023-2026": {
+      "seed": 2023,
+      "population": 29988,
+      "records": 2500,
+      "uniqueIds": 2500,
+      "sha256": "334c744b465fc73ce6de922867ecf0e52bebad81bb63f8175da1d06feefb1760",
+      "exampleUrl": "https://api.openalex.org/works?filter=title_and_abstract.search%3Acloud+AND+%28security+OR+privacy%29+NOT+%28%22point+cloud%22+OR+%22point+clouds%22+OR+%22cloud+cover%22+OR+%22cloud+seeding%22+OR+%22cloud+droplet%22+OR+%22cloud+microphysics%22+OR+%22molecular+cloud%22+OR+%22electron+cloud%22+OR+%22word+cloud%22+OR+%22tag+cloud%22+OR+%22cloud+forest%22+OR+%22food+security%22+OR+%22energy+security%22+OR+%22water+security%22+OR+%22social+security%22+OR+%22job+security%22%29%2Cpublication_year%3A2023-2026%2Chas_abstract%3Atrue%2Clanguage%3Aen%2Ctype%3Aarticle%7Cconference-paper%7Creview%7Cbook-chapter%7Cpreprint%7Creport%2Cis_retracted%3Afalse%2Cis_paratext%3Afalse&sample=2500&seed=2023&per-page=200&page=1"
+    }
+  }
+}
