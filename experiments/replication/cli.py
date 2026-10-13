@@ -121,6 +121,93 @@ def _annotate(args) -> int:
     return 0
 
 
+def _complete_test() -> tuple[dict, dict]:
+    """The test sample and its labels; refuses while any screen is unlabelled, so the annotator
+    never sees corpus results before finishing (docs/replication.md §4)."""
+    from . import samples
+    test = samples.load("test")
+    labels = _labels("test")
+    if test is None:
+        raise util.CommandError("no test sample yet: `rep sample` after `rep freeze`")
+    done = sum(1 for s in test["screens"] if labels and s["screen"] in labels["labels"])
+    if done < len(test["screens"]):
+        raise util.CommandError(f"test labels incomplete ({done}/{len(test['screens'])}): finish `rep annotate` first")
+    return test, labels
+
+
+def _validation(results: dict) -> dict:
+    from . import validate
+    test, labels = _complete_test()
+    return validate.validate_test_sample(test, labels, results)
+
+
+def _print_gate(v: dict) -> None:
+    g = v["weighted"]["validityGate"]
+    for name, c in g["checks"].items():
+        value = "n/a" if c["value"] is None else f"{c['value']:.2f}"
+        (util.ok if c["met"] else util.fail)(f"{name}: {value} (threshold {c['threshold']})")
+    sa = v["selfAgreement"]
+    util.info(f"self-agreement on {sa['pairs']} repeats: category kappa {sa['categoryKappa']}, "
+              f"type kappa {sa['typeKappa']}; {v['unsure']} answers marked unsure")
+
+
+def _validate(args) -> int:
+    from . import freeze
+    freeze.check()
+    _complete_test()
+    _, _, results = _classified()
+    v = _validation(results)
+    util.write_json(config.RUNS / "validation.json", v)
+    _print_gate(v)
+    return 0
+
+
+def _analyze(args) -> int:
+    from . import analysis, cve, freeze, validate
+    freeze.check()
+    _complete_test()
+    works, flows, results = _classified()
+    v = _validation(results)
+    dev = {name: validate.compare(_labels(name)["items"], results) for name in ("dev", "dev-virt")}
+    a = analysis.analyse(works, flows, results)
+    c = cve.analyse()
+    util.write_json(config.RUNS / "analysis.json", {"validation": v, "dev": dev, "analysis": a, "cve": c})
+    _print_gate(v)
+    for h in analysis.hypotheses(a["stats"], v["weighted"]["validityGate"], list(config.ERAS)):
+        mark = {"supported": util.ok, "not-supported": util.fail}.get(h["verdict"], util.warn)
+        mark(f"{h['id']} {h['verdict']}: {h['statement']} ({h['detail']})")
+    util.info(f"wrote {(config.RUNS / 'analysis.json').relative_to(util.REPO).as_posix()}; `rep publish` next")
+    return 0
+
+
+def _cve_analyze(args) -> int:
+    from . import cve
+    c = cve.analyse()
+    util.write_json(config.RUNS / "cve.json", c)
+    for a, p in (c["spotCheck"] or {}).items():
+        util.info(f"{a}: spot-check precision {p['precision']} (with D1 {p['precisionWithD1']}, n={p['nWithD1']})")
+    last = c["years"][-1]
+    util.ok(f"{c['candidates']} candidates; {last['year']} (partial): {last['counts']['any']} of {last['total']} CVEs")
+    return 0
+
+
+def _publish(args) -> int:
+    from isolab import devtools
+
+    from . import publish
+    path = config.RUNS / "analysis.json"
+    if not path.exists():
+        raise util.CommandError("run `rep analyze` first")
+    run = util.read_json(path)
+    doc = publish.build(flows_doc=run["analysis"]["flow"], analysis_doc=run["analysis"], validation=run["validation"],
+                        dev=run["dev"], cve_doc=run["cve"])
+    publish.write(doc)
+    if devtools.validate(util.PUBLISHED) != 0:
+        raise util.CommandError("replication.json does not match schemas/experiments.schema.json")
+    util.ok("published results/published/replication.json")
+    return 0
+
+
 def register(sub: argparse._SubParsersAction) -> None:
     rep = sub.add_parser("rep", help="replication of the survey's counting method (docs/replication.md)")
     rsub = rep.add_subparsers(dest="rep_cmd", required=True)
@@ -137,6 +224,12 @@ def register(sub: argparse._SubParsersAction) -> None:
     rsub.add_parser("dev", help="classifier vs the dev labels (tuning sets)").set_defaults(fn=_dev)
     rsub.add_parser("freeze", help="hash the classifier rules into replication/freeze.json").set_defaults(fn=_freeze)
     rsub.add_parser("sample", help="draw the validation sample (after the freeze)").set_defaults(fn=_sample)
+
+    rsub.add_parser("validate", help="classifier vs the blind test labels").set_defaults(fn=_validate)
+    rsub.add_parser("analyze", help="shares, intervals, robustness and HR1-HR5 (needs complete labels)"
+                    ).set_defaults(fn=_analyze)
+    rsub.add_parser("cve-analyze", help="the descriptive CVE series").set_defaults(fn=_cve_analyze)
+    rsub.add_parser("publish", help="write and validate results/published/replication.json").set_defaults(fn=_publish)
 
     p = rsub.add_parser("annotate", help="open the blind labelling form (127.0.0.1 only)")
     p.add_argument("--port", type=int, default=8765)

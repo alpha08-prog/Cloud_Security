@@ -115,6 +115,10 @@ def e3_doc(runs: dict[str, dict]) -> dict:
             "falsePositives": fps, "summary": summary}
 
 
+OWNED = {f"audit-{p}.{ext}" for p in ("insecure", "hardened") for ext in ("json", "sarif")} | {
+    "e1.json", "e2.json", "e3.json"}
+
+
 def publish(run_root: Path | None = None, dest: Path | None = None) -> Path:
     run_root = run_root or util.RUNS / util.detect_platform()
     dest = dest or util.PUBLISHED
@@ -137,8 +141,13 @@ def publish(run_root: Path | None = None, dest: Path | None = None) -> Path:
     if runs["e1"]:
         util.write_json(dest / "e1.json", e1_doc(runs["e1"], runs["e3"]))
         written.append("e1.json")
+    # Keep entries other publishers own (e.g. replication.json from `rep publish`).
+    previous = util.read_json(dest / "manifest.json") if (dest / "manifest.json").exists() else {}
+    kept = {f for f in previous.get("files", []) if f not in OWNED and (dest / f).exists()}
+    extra = {k: v for k, v in previous.items() if k not in ("generatedAt", "platform", "gitSha", "files")}
     util.write_json(dest / "manifest.json", {"generatedAt": util.utc_now(), "platform": run_root.name,
-                                             "gitSha": util.git_sha(), "files": sorted(written)})
+                                             "gitSha": util.git_sha(), "files": sorted({*written, *kept}),
+                                             **extra})
     rc = devtools.validate(dest)
     if rc != 0:
         raise util.CommandError("published results do not match schemas/*.schema.json")

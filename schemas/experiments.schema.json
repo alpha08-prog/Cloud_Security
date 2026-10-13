@@ -881,7 +881,7 @@
           "type": "string"
         },
         "id": {
-          "pattern": "^H\\d+$",
+          "pattern": "^HR?\\d+$",
           "title": "Id",
           "type": "string"
         },
@@ -952,6 +952,1229 @@
       "title": "Percentiles",
       "type": "object"
     },
+    "RepAgreement": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RepScores"
+          },
+          "title": "Axes",
+          "type": "object"
+        },
+        "ci": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "description": "95% CI [low, high]",
+                    "items": {
+                      "type": "number"
+                    },
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ci"
+        },
+        "concern": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RepScores"
+          },
+          "title": "Concern",
+          "type": "object"
+        },
+        "gate": {
+          "$ref": "#/$defs/RepScores",
+          "description": "relevance gate vs the on-topic flag"
+        },
+        "macroF1": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Macrof1",
+          "type": "object"
+        },
+        "meanKappa": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Meankappa"
+        },
+        "microF1": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Microf1",
+          "type": "object"
+        },
+        "n": {
+          "title": "N",
+          "type": "integer"
+        },
+        "offTopic": {
+          "title": "Offtopic",
+          "type": "number"
+        },
+        "solution": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RepScores"
+          },
+          "title": "Solution",
+          "type": "object"
+        },
+        "typeConfusion": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Typeconfusion",
+          "type": "object"
+        },
+        "typeKappa": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Typekappa"
+        },
+        "validityGate": {
+          "$ref": "#/$defs/RepGate"
+        }
+      },
+      "required": [
+        "n",
+        "gate",
+        "concern",
+        "solution",
+        "axes",
+        "macroF1",
+        "microF1",
+        "meanKappa",
+        "typeKappa",
+        "typeConfusion",
+        "offTopic",
+        "validityGate"
+      ],
+      "title": "RepAgreement",
+      "type": "object"
+    },
+    "RepAxis": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "enum": [
+            "hypervisor-vulnerabilities",
+            "cross-vm-attacks",
+            "isolation",
+            "data-leakage",
+            "vm-identification"
+          ],
+          "title": "Axis",
+          "type": "string"
+        },
+        "concernEntries": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Concernentries"
+        },
+        "era": {
+          "title": "Era",
+          "type": "string"
+        },
+        "ratio": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "solution entries / concern entries",
+          "title": "Ratio"
+        },
+        "ratioCi": {
+          "anyOf": [
+            {
+              "description": "95% CI [low, high]",
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Ratioci"
+        },
+        "solutionEntries": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Solutionentries"
+        }
+      },
+      "required": [
+        "era",
+        "axis",
+        "concernEntries",
+        "solutionEntries",
+        "ratio",
+        "ratioCi"
+      ],
+      "title": "RepAxis",
+      "type": "object"
+    },
+    "RepCategory": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "legal-issues",
+            "compliance",
+            "governance",
+            "virtualization",
+            "data-security",
+            "interfaces",
+            "network-security"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "concernCi": {
+          "anyOf": [
+            {
+              "description": "95% CI [low, high]",
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Concernci"
+        },
+        "concernEntries": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Concernentries"
+        },
+        "concernPct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Concernpct"
+        },
+        "era": {
+          "description": "\"2012\" (Figures 6/8), an era id, or \"pooled\"",
+          "title": "Era",
+          "type": "string"
+        },
+        "gapCi": {
+          "anyOf": [
+            {
+              "description": "95% CI [low, high]",
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Gapci"
+        },
+        "gapPts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Gappts"
+        },
+        "solutionCi": {
+          "anyOf": [
+            {
+              "description": "95% CI [low, high]",
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Solutionci"
+        },
+        "solutionEntries": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Solutionentries"
+        },
+        "solutionPct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Solutionpct"
+        }
+      },
+      "required": [
+        "era",
+        "category",
+        "concernPct",
+        "solutionPct",
+        "gapPts",
+        "concernCi",
+        "solutionCi",
+        "gapCi",
+        "concernEntries",
+        "solutionEntries"
+      ],
+      "title": "RepCategory",
+      "type": "object"
+    },
+    "RepCve": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Axes",
+          "type": "array"
+        },
+        "candidates": {
+          "title": "Candidates",
+          "type": "integer"
+        },
+        "deviations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Deviations",
+          "type": "array"
+        },
+        "notMeasured": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notmeasured",
+          "type": "array"
+        },
+        "retrievedAt": {
+          "title": "Retrievedat",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "spotCheck": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "$ref": "#/$defs/RepCveSpot"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Spotcheck"
+        },
+        "years": {
+          "items": {
+            "$ref": "#/$defs/RepCveYear"
+          },
+          "title": "Years",
+          "type": "array"
+        }
+      },
+      "required": [
+        "source",
+        "retrievedAt",
+        "sha256",
+        "candidates",
+        "axes",
+        "notMeasured",
+        "deviations",
+        "years",
+        "spotCheck"
+      ],
+      "title": "RepCve",
+      "type": "object"
+    },
+    "RepCveSpot": {
+      "additionalProperties": false,
+      "properties": {
+        "correct": {
+          "title": "Correct",
+          "type": "integer"
+        },
+        "correctWithD1": {
+          "title": "Correctwithd1",
+          "type": "integer"
+        },
+        "n": {
+          "title": "N",
+          "type": "integer"
+        },
+        "nWithD1": {
+          "title": "Nwithd1",
+          "type": "integer"
+        },
+        "precision": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Precision"
+        },
+        "precisionWithD1": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Precisionwithd1"
+        }
+      },
+      "required": [
+        "n",
+        "correct",
+        "precision",
+        "nWithD1",
+        "correctWithD1",
+        "precisionWithD1"
+      ],
+      "title": "RepCveSpot",
+      "type": "object"
+    },
+    "RepCveYear": {
+      "additionalProperties": false,
+      "properties": {
+        "counts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Counts",
+          "type": "object"
+        },
+        "partial": {
+          "title": "Partial",
+          "type": "boolean"
+        },
+        "per10K": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Per10K",
+          "type": "object"
+        },
+        "total": {
+          "title": "Total",
+          "type": "integer"
+        },
+        "year": {
+          "title": "Year",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "year",
+        "total",
+        "partial",
+        "counts",
+        "per10K"
+      ],
+      "title": "RepCveYear",
+      "type": "object"
+    },
+    "RepEra": {
+      "additionalProperties": false,
+      "properties": {
+        "firstYear": {
+          "title": "Firstyear",
+          "type": "integer"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "lastYear": {
+          "title": "Lastyear",
+          "type": "integer"
+        },
+        "partial": {
+          "title": "Partial",
+          "type": "boolean"
+        },
+        "seed": {
+          "title": "Seed",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "seed",
+        "firstYear",
+        "lastYear",
+        "partial"
+      ],
+      "title": "RepEra",
+      "type": "object"
+    },
+    "RepFlow": {
+      "additionalProperties": false,
+      "properties": {
+        "analysed": {
+          "title": "Analysed",
+          "type": "integer"
+        },
+        "era": {
+          "title": "Era",
+          "type": "string"
+        },
+        "excluded": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Excluded",
+          "type": "object"
+        },
+        "inScope": {
+          "title": "Inscope",
+          "type": "integer"
+        },
+        "population": {
+          "title": "Population",
+          "type": "integer"
+        },
+        "sampled": {
+          "title": "Sampled",
+          "type": "integer"
+        },
+        "unique": {
+          "title": "Unique",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "era",
+        "population",
+        "sampled",
+        "unique",
+        "excluded",
+        "analysed",
+        "inScope"
+      ],
+      "title": "RepFlow",
+      "type": "object"
+    },
+    "RepGate": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RepGateCheck"
+          },
+          "title": "Checks",
+          "type": "object"
+        },
+        "met": {
+          "title": "Met",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "met",
+        "checks"
+      ],
+      "title": "RepGate",
+      "type": "object"
+    },
+    "RepGateCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "met": {
+          "title": "Met",
+          "type": "boolean"
+        },
+        "threshold": {
+          "title": "Threshold",
+          "type": "number"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value",
+        "threshold",
+        "met"
+      ],
+      "title": "RepGateCheck",
+      "type": "object"
+    },
+    "RepProtocol": {
+      "additionalProperties": false,
+      "properties": {
+        "bootstrapB": {
+          "title": "Bootstrapb",
+          "type": "integer"
+        },
+        "bootstrapSeed": {
+          "title": "Bootstrapseed",
+          "type": "integer"
+        },
+        "corpusSha256": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Corpussha256",
+          "type": "object"
+        },
+        "deviations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Deviations",
+          "type": "array"
+        },
+        "document": {
+          "title": "Document",
+          "type": "string"
+        },
+        "eras": {
+          "items": {
+            "$ref": "#/$defs/RepEra"
+          },
+          "title": "Eras",
+          "type": "array"
+        },
+        "frozenAt": {
+          "title": "Frozenat",
+          "type": "string"
+        },
+        "nvdSha256": {
+          "title": "Nvdsha256",
+          "type": "string"
+        },
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "rulesSha256": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Rulessha256",
+          "type": "object"
+        },
+        "samplePerEra": {
+          "title": "Sampleperera",
+          "type": "integer"
+        },
+        "solutionRule": {
+          "title": "Solutionrule",
+          "type": "string"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document",
+        "query",
+        "eras",
+        "samplePerEra",
+        "frozenAt",
+        "rulesSha256",
+        "corpusSha256",
+        "nvdSha256",
+        "bootstrapB",
+        "bootstrapSeed",
+        "unit",
+        "solutionRule",
+        "deviations"
+      ],
+      "title": "RepProtocol",
+      "type": "object"
+    },
+    "RepPublisher": {
+      "additionalProperties": false,
+      "properties": {
+        "publisher": {
+          "title": "Publisher",
+          "type": "string"
+        },
+        "works": {
+          "title": "Works",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "publisher",
+        "works"
+      ],
+      "title": "RepPublisher",
+      "type": "object"
+    },
+    "RepRobustness": {
+      "additionalProperties": false,
+      "properties": {
+        "era": {
+          "title": "Era",
+          "type": "string"
+        },
+        "gapCi": {
+          "anyOf": [
+            {
+              "description": "95% CI [low, high]",
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Gapci"
+        },
+        "gapPts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Gappts"
+        },
+        "id": {
+          "enum": [
+            "main",
+            "RB1",
+            "RB2",
+            "RB3",
+            "RB4"
+          ],
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "era",
+        "gapPts",
+        "gapCi"
+      ],
+      "title": "RepRobustness",
+      "type": "object"
+    },
+    "RepScores": {
+      "additionalProperties": false,
+      "properties": {
+        "f1": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "F1"
+        },
+        "fn": {
+          "title": "Fn",
+          "type": "number"
+        },
+        "fp": {
+          "title": "Fp",
+          "type": "number"
+        },
+        "kappa": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Kappa"
+        },
+        "precision": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Precision"
+        },
+        "recall": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Recall"
+        },
+        "tn": {
+          "title": "Tn",
+          "type": "number"
+        },
+        "tp": {
+          "title": "Tp",
+          "type": "number"
+        }
+      },
+      "required": [
+        "tp",
+        "fp",
+        "fn",
+        "tn",
+        "precision",
+        "recall",
+        "f1",
+        "kappa"
+      ],
+      "title": "RepScores",
+      "type": "object"
+    },
+    "RepSelfAgreement": {
+      "additionalProperties": false,
+      "properties": {
+        "categoryKappa": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Categorykappa"
+        },
+        "onTopicAgreement": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Ontopicagreement"
+        },
+        "pairs": {
+          "title": "Pairs",
+          "type": "integer"
+        },
+        "typeKappa": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Typekappa"
+        }
+      },
+      "required": [
+        "pairs",
+        "onTopicAgreement",
+        "categoryKappa",
+        "typeKappa"
+      ],
+      "title": "RepSelfAgreement",
+      "type": "object"
+    },
+    "RepSubcategory": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "legal-issues",
+            "compliance",
+            "governance",
+            "virtualization",
+            "data-security",
+            "interfaces",
+            "network-security"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "concernEntries": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Concernentries"
+        },
+        "concernPct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Concernpct"
+        },
+        "era": {
+          "title": "Era",
+          "type": "string"
+        },
+        "solutionEntries": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Solutionentries"
+        },
+        "solutionPct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Solutionpct"
+        },
+        "subcategory": {
+          "title": "Subcategory",
+          "type": "string"
+        }
+      },
+      "required": [
+        "era",
+        "subcategory",
+        "category",
+        "concernPct",
+        "solutionPct",
+        "concernEntries",
+        "solutionEntries"
+      ],
+      "title": "RepSubcategory",
+      "type": "object"
+    },
+    "RepValidation": {
+      "additionalProperties": false,
+      "properties": {
+        "completedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Completedat"
+        },
+        "dev": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RepAgreement"
+          },
+          "description": "tuning sets (optimistic)",
+          "title": "Dev",
+          "type": "object"
+        },
+        "n": {
+          "title": "N",
+          "type": "integer"
+        },
+        "repeats": {
+          "title": "Repeats",
+          "type": "integer"
+        },
+        "screens": {
+          "title": "Screens",
+          "type": "integer"
+        },
+        "selfAgreement": {
+          "$ref": "#/$defs/RepSelfAgreement"
+        },
+        "unsure": {
+          "title": "Unsure",
+          "type": "integer"
+        },
+        "unweighted": {
+          "$ref": "#/$defs/RepAgreement"
+        },
+        "weighted": {
+          "$ref": "#/$defs/RepAgreement"
+        }
+      },
+      "required": [
+        "n",
+        "screens",
+        "repeats",
+        "unsure",
+        "completedAt",
+        "weighted",
+        "unweighted",
+        "selfAgreement",
+        "dev"
+      ],
+      "title": "RepValidation",
+      "type": "object"
+    },
+    "ReplicationResult": {
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "items": {
+            "$ref": "#/$defs/RepAxis"
+          },
+          "title": "Axes",
+          "type": "array"
+        },
+        "categories": {
+          "items": {
+            "$ref": "#/$defs/RepCategory"
+          },
+          "title": "Categories",
+          "type": "array"
+        },
+        "cve": {
+          "$ref": "#/$defs/RepCve"
+        },
+        "flow": {
+          "items": {
+            "$ref": "#/$defs/RepFlow"
+          },
+          "title": "Flow",
+          "type": "array"
+        },
+        "generatedAt": {
+          "title": "Generatedat",
+          "type": "string"
+        },
+        "hypotheses": {
+          "items": {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          "title": "Hypotheses",
+          "type": "array"
+        },
+        "kind": {
+          "const": "replication",
+          "default": "replication",
+          "title": "Kind",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "protocol": {
+          "$ref": "#/$defs/RepProtocol"
+        },
+        "publishers": {
+          "items": {
+            "$ref": "#/$defs/RepPublisher"
+          },
+          "title": "Publishers",
+          "type": "array"
+        },
+        "robustness": {
+          "items": {
+            "$ref": "#/$defs/RepRobustness"
+          },
+          "title": "Robustness",
+          "type": "array"
+        },
+        "schemaVersion": {
+          "default": "1.0.0",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "subcategories": {
+          "items": {
+            "$ref": "#/$defs/RepSubcategory"
+          },
+          "title": "Subcategories",
+          "type": "array"
+        },
+        "validation": {
+          "$ref": "#/$defs/RepValidation"
+        },
+        "validityGateMet": {
+          "title": "Validitygatemet",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "generatedAt",
+        "protocol",
+        "hypotheses",
+        "validityGateMet",
+        "flow",
+        "categories",
+        "subcategories",
+        "axes",
+        "robustness",
+        "validation",
+        "publishers",
+        "cve",
+        "limitations"
+      ],
+      "title": "ReplicationResult",
+      "type": "object"
+    },
     "RunEnvironment": {
       "additionalProperties": false,
       "properties": {
@@ -1013,7 +2236,8 @@
     "mapping": {
       "e1": "#/$defs/E1Result",
       "e2": "#/$defs/E2Result",
-      "e3": "#/$defs/E3Result"
+      "e3": "#/$defs/E3Result",
+      "replication": "#/$defs/ReplicationResult"
     },
     "propertyName": "kind"
   },
@@ -1026,6 +2250,9 @@
     },
     {
       "$ref": "#/$defs/E3Result"
+    },
+    {
+      "$ref": "#/$defs/ReplicationResult"
     }
   ]
 }
