@@ -311,3 +311,6 @@ All entries before the freeze come from the dev sets only; the test sample had n
     and "tenant" after a look at random candidate hits (application CVEs matched them).
   - Dev metrics after tuning (optimistic, tuning sets): random dev macro-F1 0.74, mean κ 0.69,
     type κ 0.63; virtualization supplement category precision 0.96.
+- **Freeze — 2026-10-13T18:57Z.** `lexicon.py` sha256 `4dc7168d…`, `classify.py` sha256
+  `1329f6f2…` (full hashes and the hashes of the dev inputs in `replication/freeze.json`). From here
+  on the rules are fixed; any change is a deviation and is reported as one.

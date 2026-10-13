@@ -1,0 +1,15 @@
+{
+  "frozenAt": "2026-10-13T18:57:52.312Z",
+  "files": {
+    "lexicon.py": "4dc7168d34878724ba653ac6540b591ca1080172555eb897bb86bfca0bb903ad",
+    "classify.py": "1329f6f2dbc0badc3f03b4c77b0d1257a186d4a9f3be4ce7db5b6c2fa72be5c3"
+  },
+  "inputs": {
+    "replication/corpus/manifest.json": "9f3e122cef9464325924420501c0655462951833f58412898689caf5d39c0136",
+    "replication/nvd/manifest.json": "3253ca8562878615b54ff0d20bb7a7783b770ea46becd5aea8515c5e18550af4",
+    "replication/samples/dev.json": "2a08cdb7c4984b2b14c1e1155ffda237d210a835e7de9978a3a801f0b88fb8e1",
+    "replication/samples/dev-virt.json": "fc20a1b7f7637865a38dcd0e20fe53e8d3e9da131fac11f4071a9e1445377fc6",
+    "replication/labels/dev.json": "c6dd0f44ff628d3aac779cfc7703c8b7c5eec9b03500e12bd4be4a5a29e575ff",
+    "replication/labels/dev-virt.json": "f104f0c140a8282d7ee7fb017d5d46d33e0d2aa2a016bd172da915ad5d5894e3"
+  }
+}
