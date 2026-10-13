@@ -13,7 +13,9 @@ The paper's future-work section (p.16) says what the missing solution should do:
 > dedicated resources** [R2] combined with a **constant observation of shared ones** [R3], and
 > **examine any attempt of exploiting cross-VM and data leakage** [R4]."
 
-IsoLab builds that solution on a small multi-tenant cloud and measures it.
+IsoLab builds that solution on a small multi-tenant cloud and measures it. A second study
+re-applies the survey's own counting method to 2013–2026 literature, to test whether the gap
+it is built on still exists.
 
 ![The Results tab: Figure 11 revisited](docs/screenshots/results.png)
 
@@ -25,6 +27,7 @@ IsoLab builds that solution on a small multi-tenant cloud and measures it.
 | `auditor/` | **cloudaudit** (Python, FastAPI, pydantic). It has: <ul><li>**30 checks**, each mapped to a Figure 11 axis, to R1–R4, to the paper's taxonomy nodes, and to CSA / ENISA / NIST</li><li>severity-weighted coverage scores, time-boxed waivers and a policy gate</li><li>JSON, SARIF and a console report</li><li>a per-tenant **cgroup v2 + pressure-stall (PSI)** exporter</li><li>**live detections** from the engine event stream</li><li>a **canary** decoy</li></ul> It only talks to the engine through a read-only socket proxy. |
 | `monitor/` | Prometheus rules and a provisioned Grafana dashboard: the live view during a demo. |
 | `scripts/lab.py` + `experiments/` | A standard-library orchestrator for the whole lab, and three pre-registered experiments: **E1** noisy neighbour (SLO under CPU contention), **E2** segmentation and escape-surface matrix, **E3** detection validation. |
+| `experiments/replication/` + `replication/` | **The replication.** About 7,300 OpenAlex abstracts from 2013–2026 (seeded samples, committed snapshots) are counted the way the survey counted its references: concern and solution entries per Figure-5 sub-category. A keyword classifier tuned on dev sets is frozen by hash, then checked against 100 blind human labels. Results include per-era shares with cluster-bootstrap intervals, robustness variants, pre-registered hypotheses HR1–HR5, and an NVD CVE trend. |
 | `src/` | The site, one tab per step: **The gap → Requirements → The system → Results**, plus the paper in an appendix. It imports the published results at build time. |
 | `.github/workflows/ci.yml` | Lint and contract tests, then both profiles run on a fresh runner with their gates (the hardened gate blocks the deploy). Uploads SARIF to code scanning and deploys to Pages. |
 
@@ -46,6 +49,11 @@ Published run: full variant: E1 at 50 req/s, 15 s warm-up + 90 s measured, 3 int
 Hypotheses and pass criteria were written down before any run (`docs/experiments.md`); verdicts
 are computed by `lab.py publish`.
 
+**Replication (2013–2026).** Protocol, hypotheses HR1–HR5 and changelog: `docs/replication.md`.
+Status: snapshots, frozen classifier and validation sample are committed; results are published
+(Results → Replication) once the blind labels are complete. Dev-set agreement (tuning sets,
+optimistic): macro-F1 0.74, mean κ 0.69, type κ 0.63.
+
 ## Run it
 
 You need Docker Desktop (or Docker Engine with cgroup v2), Python 3.10 or newer (standard
@@ -60,6 +68,11 @@ python scripts/lab.py demo canary         # one benign trigger, live (also: exec
 python scripts/lab.py run-all             # both profiles: audit, E3, E2, E1, gates (~45 min)
 python scripts/lab.py publish             # merge, test hypotheses, validate -> results/published
 python scripts/lab.py down
+
+python scripts/lab.py rep status          # replication: snapshot hashes, freeze, labelling progress
+python scripts/lab.py rep annotate        # the blind labelling form (127.0.0.1 only, resumable)
+python scripts/lab.py rep analyze         # validity, shares, intervals, HR1-HR5 (needs every label)
+python scripts/lab.py rep publish         # -> results/published/replication.json, schema-checked
 
 python scripts/lab.py test                # ruff + pytest (auditor, orchestrator), in a container
 npm install && npm test && npm run dev    # the site, at http://localhost:5173/
@@ -79,6 +92,11 @@ npm install && npm test && npm run dev    # the site, at http://localhost:5173/
 - **Waivers are visible.** Two host-level issues on Docker Desktop (CPU microcode, user
   namespaces) are waived with a reason and an expiry. They earn no coverage credit, and a waiver can be scoped
   (`covers`) to the exact CPU flaws observed, so a newly reported flaw fails the gate again.
+- **The replication is frozen before it is checked.** The classifier's two files are hashed
+  before the validation sample is drawn, and any later edit aborts the analysis. The annotator
+  sees only titles and abstracts, in shuffled order, with hidden repeats. `rep analyze` refuses
+  to run until every screen is labelled. Post-freeze changes are logged as deviations (D1 so
+  far, CVE supplement only).
 - **Defensive only.** Configuration auditing, load testing of the victim's own latency,
   read-only reachability probes and benign detection triggers. There is no attack code, no
   side-channel measurement and no secret recovery (see `CLAUDE.md` and `testbed/README.md`).
@@ -89,6 +107,8 @@ npm install && npm test && npm run dev    # the site, at http://localhost:5173/
 - `docs/architecture.md`: components, the requirement mapping, the data contract, design
   decisions.
 - `docs/experiments.md`: E1–E3 protocol, hypotheses and changelog.
+- `docs/replication.md`: the replication's pre-registered protocol, annotation guidelines,
+  hypotheses HR1–HR5, changelog and deviations.
 - `docs/checks.md`: the generated check catalogue.
 - `docs/viva-notes.md`: the demo script and expected questions.
 
@@ -100,6 +120,10 @@ npm install && npm test && npm run dev    # the site, at http://localhost:5173/
   microcode is out of reach.
 - **Different units.** The paper's Figure 11 counts citations; IsoLab's radar is check coverage.
   The site never plots them on one scale.
+- **The replication reads abstracts, not papers.** It uses keyword rules validated against one
+  annotator (also an author), and an academic corpus where the survey mixed academic and
+  industry sources. Figures 5, 7 and 11 are read from charts, so they are approximate. All of
+  this is reported alongside the numbers.
 - **CI E1 is a smoke test.** Two-core runners can't separate tenants onto physical cores
   (waived there), so CI latency numbers are informative only.
 

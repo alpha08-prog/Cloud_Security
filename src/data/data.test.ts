@@ -87,6 +87,18 @@ describe('sub-categories (Figures 5 & 7, approximate)', () => {
     )
     expect(unplaced.sort()).toEqual(['Legislation', 'Service conformity'])
   })
+
+  it('sums per category to Figures 6 & 8 within ±1 once the two are placed by the paper text (pp.2–4)', () => {
+    // The replication relies on this mapping (docs/paper-content.md §5, experiments/replication/taxonomy.py).
+    const placed: Record<string, CategoryId> = { Legislation: 'legal-issues', 'Service conformity': 'compliance' }
+    for (const share of CATEGORY_SHARES) {
+      const rows = SUBCATEGORY_SHARES.filter(
+        (s) => (categoryOfSubcategory(s.name) ?? placed[s.name]) === share.category,
+      )
+      expect(Math.abs(sum(rows.map((r) => r.concern)) - share.concern), share.category).toBeLessThanOrEqual(1)
+      expect(Math.abs(sum(rows.map((r) => r.solution)) - share.solution), share.category).toBeLessThanOrEqual(1)
+    }
+  })
 })
 
 describe('virtualization radar (Figure 11, approximate)', () => {

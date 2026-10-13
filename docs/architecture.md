@@ -77,3 +77,39 @@ with a "different units" caption, never on one shared scale.
   attributed, and it lowers the score instead of hiding.
 - **Every timing is on the VM's own clock.** Detection latency is engine event time to
   detection time, so clock skew between Windows and the VM cannot distort it.
+
+## The replication pipeline
+
+A second, independent study re-applies the survey's own method to newer literature
+(`docs/replication.md`). It shares the result contract and the site, nothing else.
+
+```
+rep fetch / cve-fetch   OpenAlex seeded samples, NVD candidates + quarterly totals
+        │               -> replication/{corpus,nvd}/*.jsonl.gz (sha256 over the uncompressed bytes)
+corpus.py               rebuild abstracts, filter (50-600 words, stubs), dedupe -> flow table
+classify.py + lexicon.py  relevance gate, type (survey / solution / concern), 23 Fig-5 sub-categories,
+        │               5 Fig-11 sub-issues folded into Fig 5's two virtualization rows, solution window
+rep freeze              sha256 of lexicon.py + classify.py -> replication/freeze.json (every later step checks it)
+rep sample              100 stratified items + 10 hidden repeats, drawn after the freeze
+rep annotate            ThreadingHTTPServer on 127.0.0.1: token + Host check, one screen at a time,
+        │               atomic save -> replication/labels/test.json
+validate.py             design-weighted P/R/F1/kappa vs the labels, stratified bootstrap, HR5 gate
+analysis.py             per-era and pooled shares, cluster bootstrap over abstracts (one resample
+        │               drives the main rule and RB1-RB4), Fig 5/7/11 analogues, HR1-HR4
+cve.py                  CVE axes per year per 10k published CVEs (+ deviation D1)
+rep publish             -> results/published/replication.json, validated against experiments.schema.json
+```
+
+Design decisions:
+- **Counting unit as in the paper.** One entry per (abstract, sub-category), shares of all
+  entries, gap = solution share − concern share. The fold of Figure 11 into Figure 5
+  (Isolation 7 + Hypervisor 5 = 12) is reproduced, not reinvented.
+- **Rules, not a model.** Every decision traces to a term in `lexicon.py` and a line in
+  `classify.py`, so a reviewer can audit and re-run it, and the freeze hash means exactly
+  those rules produced the numbers.
+- **Precision is bought with context.** Hypervisor mentions count only next to a threat word,
+  generic side channels only next to a VM word, and a relevance gate needs a sentence that
+  names both the cloud and security.
+- **Validated where it matters.** The validation sample over-weights virtualization
+  (stratum A) because every hypothesis depends on it. Inverse-probability weights restore
+  corpus-level estimates.

@@ -186,3 +186,31 @@ def test_full_document_fits_the_contract(doc):
     assert [h.id for h in model.hypotheses] == ["HR1", "HR2", "HR3", "HR4", "HR5"]
     # Every key the publisher writes is the schema's alias (the model also accepts field names).
     assert model.model_dump(mode="json", by_alias=True, exclude_unset=True) == json.loads(json.dumps(built))
+
+
+PUBLISHED = Path(__file__).resolve().parents[2] / "results" / "published" / "replication.json"
+
+
+@pytest.mark.skipif(not PUBLISHED.exists(), reason="the replication is not published yet")
+def test_committed_snapshot_reproduces_the_published_counts():
+    from collections import Counter
+
+    from replication import classify, corpus, freeze
+    doc = json.loads(PUBLISHED.read_text(encoding="utf-8"))
+    assert doc["protocol"]["rulesSha256"] == freeze.hashes()
+    works, flows = corpus.load_all()
+    results = {w.id: classify.classify(w.id, w.title, w.abstract) for w in works}
+    for f in flows:
+        row = next(r for r in doc["flow"] if r["era"] == f.era)
+        assert (row["analysed"], row["inScope"]) == (f.analysed, sum(
+            1 for w in works if w.era == f.era and results[w.id].in_scope))
+        concern: Counter = Counter()
+        solution: Counter = Counter()
+        for w in works:
+            r = results[w.id]
+            if w.era == f.era and r.in_scope:
+                concern.update(taxonomy.category_of(s) for s in r.concern)
+                solution.update(taxonomy.category_of(s) for s in r.solution)
+        for cat in taxonomy.CATEGORIES:
+            pub = next(r for r in doc["categories"] if r["era"] == f.era and r["category"] == cat)
+            assert (pub["concernEntries"], pub["solutionEntries"]) == (concern[cat], solution[cat]), (f.era, cat)

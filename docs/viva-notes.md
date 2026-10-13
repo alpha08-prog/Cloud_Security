@@ -33,7 +33,44 @@ Open the site (`npm run preview`, or GitHub Pages) and Grafana at http://127.0.0
    p99 ×3 insecure vs ×1.1 hardened. Segmentation: 12/12 paths open vs 0/12. Detection: every
    trigger caught, 0 false positives. Hypotheses: pre-registered, verdicts computed.
 
+6. **Replication** (45 s, Results → Replication · 2013–26). "Did I check the gap still exists?
+   Yes, with the paper's own method." Show the gap-over-time chart (2012 −9 against three eras
+   with intervals), then the validity card: the classifier was frozen by hash and checked
+   against blind labels before any result was computed.
+
 ## Questions to expect
+
+**"The paper is a survey. What does 'implementing' it mean?"**
+Two things. Its method is a counting procedure: concern and solution entries per
+sub-category, shares, a gap. I re-ran that procedure on 2013–2026 abstracts (the replication).
+Its conclusion is a design brief (p.16, R1–R4), and IsoLab implements and measures that brief.
+
+**"How do you know the keyword classifier counts correctly?"**
+It was tuned only on dev sets (150 random + 30 virtualization abstracts), then frozen: the
+sha256 of both rule files is committed before the validation sample was drawn, and every later
+step refuses to run if they change. 100 abstracts, stratified by classifier output and weighted
+back to the corpus, were labelled blind: titles and abstracts only, shuffled, with 10 hidden
+repeats for self-agreement. The pre-registered validity gate (HR5) is macro-F1 ≥ 0.70,
+virtualization F1 ≥ 0.70, mean κ ≥ 0.60 and type κ ≥ 0.60. If it fails, HR1–HR4 are still
+published but flagged.
+
+**"Why not use an LLM or a trained model to classify?"**
+Transparency and reproducibility. Every count traces to a term and a rule, the frozen hash
+pins exactly what produced the numbers, and anyone can re-run it offline from the committed
+snapshot (a test does exactly that). The cost is lower recall on diffuse legal language, which
+the per-category precision/recall table reports openly.
+
+**"Is your 2023–26 number comparable to the paper's −9?"**
+Same unit and metric, but a different source (abstracts, not full texts; academic only). That
+is why HR2 carries a method bridge: the 2013–17 era, closest to the paper, is reported next to
+it. If it differs from −9 by more than 5 points, the verdict text says the comparison is
+dominated by method differences.
+
+**"What changed after the freeze?"**
+One logged deviation, D1, in the CVE supplement only. Linux-kernel CVE texts embed fuzzer crash
+dumps naming QEMU, which made ordinary kernel bugs look like hypervisor bugs (the spot check
+found 10/20). The dumps are stripped; both precisions are reported. The literature classifier
+is untouched.
 
 **"Containers aren't VMs. Does this answer the paper?"**
 The paper's own source, the CSA guidance (p.12), says multi-tenancy, not virtualization, is
