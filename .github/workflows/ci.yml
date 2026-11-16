@@ -47,6 +47,10 @@ jobs:
       - name: Test (includes committed-schema and docs/checks.md drift checks)
         working-directory: auditor
         run: python -m pytest -q -p no:cacheprovider tests ../experiments/tests
+      - name: Research defense crosswalk and E4/E5 challenges
+        env:
+          PYTHONPATH: auditor/src
+        run: python -m cloudaudit research --repo .
 
   testbed:
     name: Testbed (${{ matrix.profile }})
@@ -70,6 +74,9 @@ jobs:
         run: python3 scripts/lab.py up ${{ matrix.profile }}
       - name: Audit (30 checks -> JSON + SARIF)
         run: python3 scripts/lab.py audit ${{ matrix.profile }}
+      - name: Startup integrity container checks
+        if: matrix.profile == 'hardened'
+        run: python3 scripts/lab.py integrity
       - name: E3 detection validation (smoke)
         run: python3 scripts/lab.py e3 ${{ matrix.profile }} --variant ci
       - name: E2 segmentation matrix
@@ -120,6 +127,7 @@ jobs:
         run: |
           mkdir -p dist/results
           cp -r results/published dist/results/
+          cp -r results/research dist/results/
           [ -d results/ci ] && cp -r results/ci dist/results/ || true
       - uses: actions/configure-pages@v6
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

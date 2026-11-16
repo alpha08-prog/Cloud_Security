@@ -123,6 +123,15 @@ def cmd_contract(args) -> int:
     return devtools.contract()
 
 
+def cmd_research(args) -> int:
+    return devtools._run("python -m cloudaudit research --repo /repo", writable=True)
+
+
+def cmd_integrity(args) -> int:
+    return util.run([sys.executable, str(util.REPO / "scripts/integrity_container_demo.py")],
+                    check=False, capture=False, timeout=300).returncode
+
+
 def cmd_snapshot(args) -> int:
     audit.snapshot(compose.current_profile() or "hardened")
     return 0
@@ -206,6 +215,10 @@ def main() -> int:
         fn=cmd_test)
     sub.add_parser("contract", help="regenerate schemas/*.schema.json and docs/checks.md").set_defaults(
         fn=cmd_contract)
+    sub.add_parser("research", help="ACM defense mapping and E4 snapshot faults (no live attacks)").set_defaults(
+        fn=cmd_research)
+    sub.add_parser("integrity", help="verify clean and altered files in the three built tenant images").set_defaults(
+        fn=cmd_integrity)
 
     replication_cli.register(sub)
 

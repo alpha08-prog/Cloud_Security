@@ -44,6 +44,8 @@ def audit(profile: str, out: Path | None = None) -> dict:
 def gate(profile: str, out: Path | None = None) -> bool:
     """Hardened: the policy gate must pass, and the E2/E3 gates if those ran.
     Insecure: a negative control - known-bad settings must be caught on every axis."""
+    from . import e2, e3
+
     d = run_dir(profile, out)
     report = util.read_json(d / "audit.json")
     ok = True
@@ -57,13 +59,14 @@ def gate(profile: str, out: Path | None = None) -> bool:
             ok = False
         if (d / "e2.json").exists():
             s = next(x for x in util.read_json(d / "e2.json")["summary"] if x["profile"] == profile)
-            passed = s["openPaths"] == 0 and s["controlsPassed"] == s["controls"]
+            passed = e2.isolation_passed(profile, util.read_json(d / "e2.json")["results"])
             (util.ok if passed else util.fail)(
                 f"E2: {s['openPaths']} open paths, controls {s['controlsPassed']}/{s['controls']}")
             ok &= passed
         if (d / "e3.json").exists():
             s = next(x for x in util.read_json(d / "e3.json")["summary"] if x["profile"] == profile)
-            passed = s["detected"] == s["expected"] and s["falsePositives"] == 0
+            evidence = util.read_json(d / "e3.json")
+            passed = e3.detection_passed(profile, evidence["results"], evidence["falsePositives"])
             (util.ok if passed else util.fail)(
                 f"E3: detected {s['detected']}/{s['expected']}, false positives {s['falsePositives']}")
             ok &= passed

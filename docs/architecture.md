@@ -113,3 +113,17 @@ Design decisions:
 - **Validated where it matters.** The validation sample over-weights virtualization
   (stratum A) because every hypothesis depends on it. Inverse-probability weights restore
   corpus-level estimates.
+# November 2026 research extension
+
+The current research entry point is [the two-paper implementation and demo](research/DEMO.md).
+The original R1–R4 architecture above retains its Gonzalez 2012 provenance. A new hardened
+startup launcher verifies SHA-256 allowlists for the interpreter, application, probe and launcher;
+the batch image also verifies stress-ng. The image builder creates manifests before dropping
+to user 10001. The hardened Compose overlay enables enforcement for all tenants and the noisy
+batch job. Invalid startup files cause exit 78. This implements a selected startup aspect of
+ACM 2025 mitigation M2, with a trusted builder/manifest/engine and no continuous attestation.
+
+`cloudaudit research` runs E4 snapshot faults and E5 isolated subprocess challenges. The
+`lab.py research` wrapper uses the dev container, while `lab.py integrity` checks clean and
+altered-file cases in the three built tenant images. Generated research evidence is separate
+from the historical E1–E3 publisher contract. The frontend's Research tab uses this evidence.

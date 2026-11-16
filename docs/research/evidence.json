@@ -1,0 +1,98 @@
+{
+  "basis": "Reanalysis of committed 2026-10-12 measurements; not a fresh live run",
+  "sha256": {
+    "audit-hardened.json": "36e7b0eaaebd40ab6699d3a2142b494199c4c5a8837d87241f3ffc222b312e90",
+    "audit-hardened.sarif": "b16dafe4c251e1433cf35bb25038659c892eb4cb568e29af4974aec0710390db",
+    "audit-insecure.json": "754d58d0d383850beffc6cad799b5fed46559cbce0b1b10e9f26535b42edc320",
+    "audit-insecure.sarif": "8a3486134d904b228216ae8b5e647c6a463b0cea6de45083613c23b58d78cd15",
+    "e1.json": "2773784ada58279f65718daaf194fe5fbf426e9f7717654dfa8a613afe34734f",
+    "e2.json": "3478cbf96f2cc1b0c677276effcad31116cdbb14cff44b17facbdfca388e5cd1",
+    "e3.json": "941e0f3c96a46041a49fa44dc8523da3ea479a37a58d013a7d55d434e4be0dee",
+    "manifest.json": "c12634fb31b300699ddd7cdf92b47c02df66435cd28b97b10b6deb7fbbc2e9fe"
+  },
+  "profiles": {
+    "insecure": {
+      "coverage": 0.1951219512195122,
+      "earned": 16,
+      "possible": 82,
+      "checkStatuses": {
+        "fail": 23,
+        "pass": 6,
+        "skip": 1
+      },
+      "p99MediansMs": {
+        "baseline": 4.334104,
+        "noisy": 16.462774
+      },
+      "p99RangesMs": {
+        "baseline": [
+          4.319599,
+          4.492203
+        ],
+        "noisy": [
+          16.22948917000001,
+          16.663264
+        ]
+      },
+      "ifFromUnroundedMedians": 3.798426156825032,
+      "totalMeasuredIterations": 27005,
+      "detectionWilson95": [
+        0.6756,
+        1.0
+      ],
+      "e3": {
+        "profile": "insecure",
+        "detectionRate": 1.0,
+        "detected": 8,
+        "expected": 8,
+        "falsePositives": 0,
+        "medianLatencyMs": 177.9,
+        "maxLatencyMs": 43752.4,
+        "attributionAccuracy": 1.0
+      }
+    },
+    "hardened": {
+      "coverage": 0.9390243902439024,
+      "earned": 77,
+      "possible": 82,
+      "checkStatuses": {
+        "pass": 27,
+        "fail": 2,
+        "skip": 1
+      },
+      "p99MediansMs": {
+        "baseline": 4.59419,
+        "noisy": 5.616545400000002
+      },
+      "p99RangesMs": {
+        "baseline": [
+          4.534986,
+          4.628077
+        ],
+        "noisy": [
+          5.105245950000002,
+          5.904184190000017
+        ]
+      },
+      "ifFromUnroundedMedians": 1.2225322418097646,
+      "totalMeasuredIterations": 27003,
+      "detectionWilson95": [
+        0.6457,
+        1.0
+      ],
+      "e3": {
+        "profile": "hardened",
+        "detectionRate": 1.0,
+        "detected": 7,
+        "expected": 7,
+        "falsePositives": 0,
+        "medianLatencyMs": 95.4,
+        "maxLatencyMs": 216.6,
+        "attributionAccuracy": 1.0
+      }
+    }
+  },
+  "noisyP99ReductionPct": 65.88335963307276,
+  "zeroEventPoissonUpper95PerMinute": 1.4978661367769954,
+  "intervalCaveat": "Wilson intervals assume independent Bernoulli trials; triggers differ by design."
+}

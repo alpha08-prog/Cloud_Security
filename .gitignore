@@ -44,3 +44,11 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+.research-deps/
+tmp/
+!/docs/project-audit.md
+!/docs/research/
+docs/research/*.aux
+docs/research/*.out
+docs/research/*.synctex.gz
+docs/research/*.xdv

@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-11-11T15:25:00.271321+00:00",
+  "kind": "live-container-startup-check",
+  "cases": [
+    {
+      "image": "isolab/payments-api:local",
+      "imageId": "sha256:f6e26da3eba4625fed02c6b2a28fd1b215c6b38035bb09ae27d82241dc703e01",
+      "tampered": false,
+      "exitCode": 0,
+      "passed": true,
+      "output": "{\"control\": \"ACM-M2-startup\", \"allowed\": true}"
+    },
+    {
+      "image": "isolab/payments-api:local",
+      "imageId": "sha256:f6e26da3eba4625fed02c6b2a28fd1b215c6b38035bb09ae27d82241dc703e01",
+      "tampered": true,
+      "exitCode": 78,
+      "passed": true,
+      "output": "{\"control\": \"ACM-M2-startup\", \"allowed\": false, \"errors\": [\"integrity mismatch: /opt/app/payments_api.py\"]}"
+    },
+    {
+      "image": "isolab/batch-analytics:local",
+      "imageId": "sha256:ffe8d3b406130fef05dc1b804e211699fe613091212a5e5914ddc27b6fe0b228",
+      "tampered": false,
+      "exitCode": 0,
+      "passed": true,
+      "output": "{\"control\": \"ACM-M2-startup\", \"allowed\": true}"
+    },
+    {
+      "image": "isolab/batch-analytics:local",
+      "imageId": "sha256:ffe8d3b406130fef05dc1b804e211699fe613091212a5e5914ddc27b6fe0b228",
+      "tampered": true,
+      "exitCode": 78,
+      "passed": true,
+      "output": "{\"control\": \"ACM-M2-startup\", \"allowed\": false, \"errors\": [\"integrity mismatch: /opt/app/idle.py\"]}"
+    },
+    {
+      "image": "isolab/legacy-app:hardened",
+      "imageId": "sha256:b616f857e43f7b131bed9a15240ba3aaece53eaca4a0fa47065a27ccf57204ee",
+      "tampered": false,
+      "exitCode": 0,
+      "passed": true,
+      "output": "{\"control\": \"ACM-M2-startup\", \"allowed\": true}"
+    },
+    {
+      "image": "isolab/legacy-app:hardened",
+      "imageId": "sha256:b616f857e43f7b131bed9a15240ba3aaece53eaca4a0fa47065a27ccf57204ee",
+      "tampered": true,
+      "exitCode": 78,
+      "passed": true,
+      "output": "{\"control\": \"ACM-M2-startup\", \"allowed\": false, \"errors\": [\"integrity mismatch: /opt/app/idle.py\"]}"
+    }
+  ],
+  "passed": true
+}

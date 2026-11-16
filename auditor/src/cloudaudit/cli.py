@@ -85,8 +85,16 @@ def main(argv: list[str] | None = None) -> int:
     v = sub.add_parser("validate")
     v.add_argument("results")
     v.add_argument("--schemas", default="schemas")
+    r = sub.add_parser("research", help="survey crosswalk and E4 saved-snapshot configuration fault study")
+    r.add_argument("--repo", type=Path, default=Path.cwd())
+    r.add_argument("--out", type=Path)
+    r.add_argument("--snapshot", type=Path)
     args = parser.parse_args(argv)
 
+    if args.cmd == "research":
+        from .research import write_study  # noqa: PLC0415
+
+        return write_study(args.repo, args.out or args.repo / "results/research/study.json", args.snapshot)
     if args.cmd == "serve":
         from .service.app import run  # noqa: PLC0415
 

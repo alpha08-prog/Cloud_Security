@@ -10,10 +10,9 @@ export function Footer() {
             About
           </h2>
           <p>
-            IsoLab is a college project for a Cloud SRE &amp; Security course. It takes the one gap a
-            published survey of cloud security found (virtualization isolation) and builds and
-            measures the solution the paper’s future-work section describes: a multi-tenant testbed,
-            an auditor, live observation and detection.
+            IsoLab evaluates container defenses and tenant reliability for a Cloud SRE &amp; Security
+            course. The 2024 multi-tenant monitoring study motivates resource observation; the 2025
+            ACM survey informs selected defenses, startup integrity checks and fault challenges.
           </p>
           <p>
             Nothing here attacks anything: all validation is configuration auditing, load testing of
@@ -25,6 +24,11 @@ export function Footer() {
           <h2 id="sources-heading" className="site-footer__heading">
             Sources
           </h2>
+          <p>
+            <a href="https://doi.org/10.1016/j.jnca.2024.103839">Horchulhack et al. (2024)</a>
+            {' · '}<a href="https://doi.org/10.1145/3715001">Jarkas et al. (2025)</a>
+            {' · '}Historical background below:
+          </p>
           <p className="site-footer__citation">
             {formatAuthors(PAPER.authors)} ({PAPER.year}). <cite>{PAPER.title}</cite>.{' '}
             <i>{PAPER.journal}</i>, {PAPER.volume}({PAPER.number}). {PAPER.license}.

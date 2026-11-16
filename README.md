@@ -3,6 +3,29 @@
 [![CI](https://github.com/alpha08-prog/Cloud_Security/actions/workflows/ci.yml/badge.svg)](https://github.com/alpha08-prog/Cloud_Security/actions/workflows/ci.yml)
 **Live site: https://alpha08-prog.github.io/Cloud_Security/**
 
+## Current research basis (2024–2025)
+
+IsoLab now combines provider-side interference observation motivated by
+[Horchulhack et al. (2024)](https://doi.org/10.1016/j.jnca.2024.103839) with selected defenses from
+[Jarkas et al., ACM Computing Surveys (2025)](https://doi.org/10.1145/3715001).
+The new implementation adds SHA-256 startup integrity and executable/entry-script allowlisting
+for hardened tenant workloads (a selected aspect of ACM M2), a six-theme executable defense
+crosswalk, ten independent configuration-fault challenges (E4), and five startup challenges (E5).
+It does not reproduce the 2024 neural classifiers or validate the whole ACM exploit taxonomy.
+
+```powershell
+python scripts/lab.py up hardened
+python scripts/lab.py research   # saved-snapshot E4 + isolated-subprocess E5; writes results/research/study.json
+python scripts/lab.py integrity  # clean/altered files in three built images; six container checks
+npm.cmd run dev
+```
+
+Open the Research tab. See [the revised demo and protocol](docs/research/DEMO.md) and
+[the IEEE manuscript](docs/research/IsoLab_Research_Paper.pdf).
+E1–E3 published measurements retain their October provenance; the new control was added in November.
+
+## Historical motivation
+
 **Gonzalez et al. (2012)**, *A quantitative analysis of current security concerns and solutions
 for cloud computing* (Journal of Cloud Computing 1:11), counted 200+ references and found one
 area where solutions lag concerns: **virtualization**, with 12% of concern citations but 3% of
@@ -13,11 +36,11 @@ The paper's future-work section (p.16) says what the missing solution should do:
 > dedicated resources** [R2] combined with a **constant observation of shared ones** [R3], and
 > **examine any attempt of exploiting cross-VM and data leakage** [R4]."
 
-IsoLab builds that solution on a small multi-tenant cloud and measures it. A second study
-re-applies the survey's own counting method to 2013–2026 literature, to test whether the gap
-it is built on still exists.
+IsoLab originally adapted those requirements to containers. R1–R4 and the five-axis grouping
+retain that historical attribution. A separate literature-counting extension remains unfinished:
+blind human annotation is incomplete, so its trend claims are excluded from the main paper.
 
-![The Results tab: Figure 11 revisited](docs/screenshots/results.png)
+![Project overview](docs/screenshots/overview.png)
 
 ## What's in it
 
@@ -27,7 +50,7 @@ it is built on still exists.
 | `auditor/` | **cloudaudit** (Python, FastAPI, pydantic). It has: <ul><li>**30 checks**, each mapped to a Figure 11 axis, to R1–R4, to the paper's taxonomy nodes, and to CSA / ENISA / NIST</li><li>severity-weighted coverage scores, time-boxed waivers and a policy gate</li><li>JSON, SARIF and a console report</li><li>a per-tenant **cgroup v2 + pressure-stall (PSI)** exporter</li><li>**live detections** from the engine event stream</li><li>a **canary** decoy</li></ul> It only talks to the engine through a read-only socket proxy. |
 | `monitor/` | Prometheus rules and a provisioned Grafana dashboard: the live view during a demo. |
 | `scripts/lab.py` + `experiments/` | A standard-library orchestrator for the whole lab, and three pre-registered experiments: **E1** noisy neighbour (SLO under CPU contention), **E2** segmentation and escape-surface matrix, **E3** detection validation. |
-| `experiments/replication/` + `replication/` | **The replication.** About 7,300 OpenAlex abstracts from 2013–2026 (seeded samples, committed snapshots) are counted the way the survey counted its references: concern and solution entries per Figure-5 sub-category. A keyword classifier tuned on dev sets is frozen by hash, then checked against 100 blind human labels. Results include per-era shares with cluster-bootstrap intervals, robustness variants, pre-registered hypotheses HR1–HR5, and an NVD CVE trend. |
+| `experiments/replication/` + `replication/` | **Unfinished optional extension.** Frozen classifier and literature corpus; blind human annotation is incomplete. No validated literature-trend result is claimed in the main paper. |
 | `src/` | The site, one tab per step: **The gap → Requirements → The system → Results**, plus the paper in an appendix. It imports the published results at build time. |
 | `.github/workflows/ci.yml` | Lint and contract tests, then both profiles run on a fresh runner with their gates (the hardened gate blocks the deploy). Uploads SARIF to code scanning and deploys to Pages. |
 
@@ -102,6 +125,10 @@ npm install && npm test && npm run dev    # the site, at http://localhost:5173/
   side-channel measurement and no secret recovery (see `CLAUDE.md` and `testbed/README.md`).
 
 ## Docs
+
+- [Project completion audit](docs/project-audit.md): rubric mapping, verified checks, fixes and remaining submission tasks.
+- [IEEE research paper PDF](docs/research/IsoLab_Research_Paper.pdf), [editable IEEEtran LaTeX manuscript](docs/research/IsoLab_IEEE.tex), and [recomputed historical evidence](docs/research/evidence.json). Authors: Atharva Agrawal and Niti Priya. The revised paper reports historical E1–E3, new E4–E5, and selected defenses from the two recent papers. It excludes the unfinished blind literature extension.
+- `scripts/research_evidence.py` recomputes manuscript statistics from committed results; `scripts/build_research_paper.py` generates vector figures with ReportLab and compiles the official IEEEtran conference manuscript using Tectonic or pdflatex. These do not overwrite historical measurements.
 
 - `docs/paper-content.md`: everything taken from the paper (figures, quotes, the p.16 brief).
 - `docs/architecture.md`: components, the requirement mapping, the data contract, design

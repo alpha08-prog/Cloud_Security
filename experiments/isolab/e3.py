@@ -169,6 +169,19 @@ def run(profile: str, variant: str = "full", out: Path | None = None) -> dict:
     return doc
 
 
+def detection_passed(profile: str, results: list[dict], false_positives: list[dict]) -> bool:
+    """Validate complete trigger evidence, including attribution and expected silence."""
+    rows = [r for r in results if r["profile"] == profile]
+    expected = {t["id"]: t["expect"][profile] for t in catalogue()}
+    if len(rows) != len(expected) or {r["triggerId"] for r in rows} != set(expected):
+        return False
+    if any(fp["profile"] == profile for fp in false_positives):
+        return False
+    return all(r["expected"] == expected[r["triggerId"]] and r["withinSlo"] and
+               (r["detected"] and r["attributionCorrect"] if expected[r["triggerId"]] == "detect"
+                else not r["detected"]) for r in rows)
+
+
 def summary_for(profile: str, results: list[dict], false_positives: list[dict]) -> dict:
     rs = [r for r in results if r["profile"] == profile and r["expected"] == "detect"]
     latencies = [r["latencyMs"] for r in rs if r["latencyMs"] is not None]

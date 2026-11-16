@@ -1,0 +1,819 @@
+IsoLab: Executable Container Defenses and
+Multi-Tenant Reliability Evaluation
+Atharva Agrawal
+Indian Institute of Information Technology Dharwad
+Dharwad, India
+23bds010@iiitdwd.ac.in
+Niti Priya
+Indian Institute of Information Technology Dharwad
+Dharwad, India
+23bcs087@iiitdwd.ac.in
+Abstract—Multi-tenant containers combine shared-resource
+interference with security exposure. IsoLab connects selected
+defenses from a 2025 container-security survey to executable
+checks and startup integrity enforcement, alongside provider-
+side interference observation motivated by a 2024 multi-tenant
+monitoring study. It integrates thirty conﬁguration checks, re-
+source controls, event detection, and a metadata canary. His-
+torical three-tenant measurements show that hardening reduces
+median noisy-arm 99th-percentile latency from 16.463 to 5.617
+milliseconds, a 65.9 percent reduction; both proﬁles meet the 25-
+millisecond target. Twelve tested exposure paths close while three
+positive controls remain functional. Eight expected insecure and
+seven expected hardened detections meet timing and attribution
+criteria. New experiments detect all ten independently injected
+snapshot conﬁguration faults and correctly accept or reject all
+ﬁve isolated startup-integrity challenges. The contribution is
+an executable defense-to-evidence mapping with complementary
+reliability evaluation, rather than a new isolation primitive or
+a reproduction of the 2024 neural-network classiﬁer . Results
+support feasibility within the measured scope; they do not
+establish comprehensive exploit resistance or superiority over
+either source work.
+Index Terms—cloud security, site reliability engineering, multi-
+tenancy, container isolation, noisy neighbor
+I. I NTRODUCTION
+Cloud tenants depend on boundaries that preserve conﬁden-
+tiality and predictable resource access. A workload can suffer
+latency inﬂation when another tenant exhausts shared proces-
+sor capacity, even without a direct compromise. Conversely,
+healthy request latency does not establish that networks,
+storage, or management interfaces are isolated. Assessing a
+cloud security mechanism therefore requires complementary
+evidence about resource interference, boundary enforcement,
+and detection.
+Two recent studies motivate this work. Horchulhack et
+al. [1] investigate provider-side detection of container in-
+terference using resource observations and learned temporal
+classiﬁcation. Jarkas et al. [2] organize container exploits and
+defenses into a security taxonomy. These studies motivate a
+practical question: how can selected defensive recommenda-
+tions be connected to reproducible enforcement and reliability
+evidence in an accessible laboratory? IsoLab answers with
+a scoped implementation and explicit evidence boundaries.
+Its original R1–R4 requirement labels and ﬁve-axis check
+grouping retain their historical provenance in Gonzalez et
+al. [3]; they are not attributed to the recent papers.
+IsoLab connects security controls to site reliability engineer-
+ing (SRE) through a measurable latency objective and tenant-
+level resource observations. The study addresses four research
+questions:
+• RQ1: Does the hardened conﬁguration reduce processor
+interference relative to an intentionally insecure baseline?
+• RQ2: Are the tested tenant boundaries closed while
+required application and monitoring connectivity remains
+functional?
+• RQ3: Are benign isolation-breaking triggers detected
+within speciﬁed latency limits and with the expected
+workload attribution?
+• RQ4: Do selected defense checks and startup integrity
+enforcement reject their speciﬁed conﬁguration and ﬁle-
+integrity faults?
+Our contributions are: (1) a machine-readable crosswalk
+connecting selected 2025 survey defense themes to exist-
+ing conﬁguration checks and complementary observations;
+(2) startup hashing and executable/entry-script allowlisting,
+implementing a selected aspect of mitigation M2; (3) inde-
+pendent conﬁguration-fault and integrity challenges, alongside
+historical latency, segmentation, and detection evidence; and
+(4) fail-closed evidence predicates and an interactive research
+interface. The system integrates established controls rather
+than introducing a new isolation primitive. Historical live runs
+and newly executed local challenges are reported separately.
+II. B ACKGROUND AND RELATED WORK
+A. Recent Multi-Tenant Monitoring and Container Security
+Horchulhack et al. [1] combine engine and process-
+namespace observations with feature reduction and time-series
+classiﬁcation, evaluated on a distributed containerized Big
+Data platform. IsoLab shares the provider-observation moti-
+vation but uses explicit CPU-sharing rules, PSI, resource con-
+trols, and a synthetic request-latency experiment. It does not
+reproduce the autoencoder, recurrent neural network, or four-
+host Kubernetes/Spark evaluation. Detector accuracy numbers
+from that study are therefore not directly comparable with
+IsoLab’s deterministic trigger counts.
+The 2025 ACM survey [ 2] supplies an exploit/defense
+taxonomy rather than one reference algorithm. We implement
+selected software defenses and operationalize their validation.
+
+TABLE I
+POSITIONING RELATIVE TO THE TWO MAIN SOURCE WORKS
+Work Main method Evidence and relationship
+Horchulhack et
+al. (2024) [ 1]
+Resource observation,
+feature reduction,
+temporal classiﬁcation
+Distributed-service
+interference detection;
+motivates our deterministic
+monitoring adaptation
+Jarkas et al.
+(2025) [ 2]
+Exploit and defense
+taxonomy
+Survey synthesis; supplies
+selected defensive
+recommendations
+IsoLab Conﬁguration checks,
+resource controls, event
+rules, startup hashing
+Local E1–E3 comparison
+plus E4–E5 challenges; no
+classiﬁer superiority claim
+This complements the survey with executable local evidence;
+it neither replaces its breadth nor validates every associated
+vulnerability. Binary integrity checking, in particular, is scoped
+to startup under a trusted build and manifest.
+Table I distinguishes the source works from the present
+study by method and evidence. It establishes scope rather than
+a ranking: workloads, deployment sizes, and evaluation units
+differ.
+B. Container Threats and Empirical Security Evaluation
+Sultan et al. [4] distinguish security relationships within
+containers, between containers, and between containers and
+the host. This motivates making the trusted provider and
+host boundary explicit. Lin et al. [5] evaluate Linux-container
+protection using real exploit cases and examine interacting
+kernel defenses. Their exploit-based evidence addresses a
+stronger attack mechanism than our benign probes and con-
+ﬁguration mutations. IsoLab’s closed endpoints and startup
+decisions consequently cannot be interpreted as equivalent
+exploit-resistance evidence.
+C. Virtualization Security Requirements
+The source survey [ 3] treats virtualization as an architec-
+tural security concern and emphasizes isolation and cross-VM
+attacks. IsoLab implements the engineering implications of its
+future-work requirements. It does not implement every branch
+of the taxonomy or claim that the historical literature deﬁcit
+persists. Its check-coverage percentages quantify conﬁguration
+posture and cannot be compared numerically with the survey’s
+citation shares.
+D. Containers and Resource Observation
+NIST SP 800-190 describes containers as operating-system
+virtualization and discusses their security risks [ 6]. Containers
+share a kernel, whereas hardware virtual machines use a
+different isolation boundary. This work is consequently a
+container adaptation of VM-oriented requirements, rather than
+a reproduction of a KVM, Xen, or VMware deployment.
+Felter et al. [7] compare virtual-machine and Linux-
+container performance across workloads. This motivates dis-
+tinguishing virtualization overhead from the interference ques-
+tion examined here. IsoLab compares two container conﬁgu-
+rations and does not measure a container-versus-VM perfor-
+mance advantage.
+Linux cgroup v2 provides hierarchical resource control [ 8],
+while Pressure Stall Information (PSI) measures time lost to
+resource pressure [ 9]. IsoLab combines these interfaces with
+conﬁguration snapshots and engine events. Its explicit service-
+level objective (SLO) follows the SRE practice of assessing
+reliability through measurable service indicators [ 10]. Here,
+the SLO is an experimental latency criterion at a ﬁxed offered
+load, not a contractual availability guarantee.
+Dean and Barroso [11] explain why high-percentile latency
+matters in large services. IsoLab uses p99 as a tenant-visible
+indicator, while recognizing that its synthetic single-service
+workload does not reproduce the fan-out behavior or scale
+considered in that work.
+E. Isolation and Scheduling Defenses
+V aradarajanet al. [12] investigate scheduler-based defenses
+against cross-VM side channels, including minimum run-
+time guarantees and per-core state cleansing in Xen. That
+work evaluates a speciﬁc attack mechanism. IsoLab instead
+measures tenant-visible latency, conﬁguration exposure, and
+benign event detection. Disjoint reported CPU allocations in
+this study must not be interpreted as demonstrating side-
+channel resistance. No comparative benchmark against that
+defense, commercial security products, or alternative detectors
+was performed.
+III. S YSTEM DESIGN
+A. Scope and Threat Model
+The protected assets are tenant application responsive-
+ness, tenant storage markers, process visibility, and access to
+provider management and telemetry interfaces. An untrusted
+tenant may consume its permitted CPU resources and attempt
+connections or reads from its own execution context. The
+testbed also exercises potentially unsafe management opera-
+tions through controlled operator triggers, such as starting a
+privileged workload or attaching a tenant to a foreign network.
+These triggers validate observation; they do not assume that
+an isolated tenant can invoke the provider’s management API.
+The provider plane, conﬁguration policy, host kernel, en-
+gine, and socket proxy form the trusted computing base.
+Workload identity labels are administrative metadata, not cryp-
+tographic attestation. Kernel compromise, malicious provider
+administration, hardware side channels, secret recovery, and
+arbitrary exploit resistance are outside the evaluated threat
+model. This boundary permits defensive experiments without
+executing exploitation code.
+B. Architecture and Conﬁguration Proﬁles
+The tenant plane contains tenant A, a CPU-sensitive pay-
+ments service; tenant B, a batch workload and processor stress
+job; and tenant C, a legacy workload used as a probe origin.
+The provider plane contains the auditor, a restricted engine-
+socket proxy, metadata canary, Prometheus, and Grafana.
+Fig. 1 summarizes the observation and reporting paths. The
+
+Tenant A
+Payments
+Startup hash gate
+Tenant B
+Batch / noise
+Startup hash gate
+Tenant C
+Legacy / probes
+Startup hash gate
+Docker engine and cgroup v2 host interfaces
+ Profiles establish tenant boundaries
+Restricted API proxy
+Snapshots, stats, events
+Read-only mount
+ cgroup PSI
+Metadata canary
+Authenticated hook
+Auditor: checks, attribution, and runtime detections
+ Reports, policy gate, and metrics
+Prometheus / Grafana and published results interface
+Fig. 1. IsoLab observation architecture. The socket proxy carries engine
+observations; cgroup PSI uses a separate read-only host mount. The canary
+reports access through an authenticated hook. Startup gates are enabled in the
+revised hardened proﬁle and postdate E1–E3 measurements.
+TABLE II
+HISTORICAL R1–R4 R EQUIREMENTS AND IMPLEMENTATION EVIDENCE
+Req. Mechanisms Evidence
+R1 Identity Workload and tenant labels; identity
+checks; canary attribution
+E3 attribution
+R2
+Separation
+CPU sets and quotas; network and
+volume boundaries; least privilege
+E1 latency; E2
+probes
+R3
+Observation
+Five-second resource and PSI
+sampling; telemetry and CPU
+fairness rule
+E1 counters; E3
+noise trigger
+R4
+Examination
+Engine events; privileged-start and
+attachment rules; metadata canary
+E2 exposure; E3
+triggers
+provider conﬁguration is held constant across the insecure and
+hardened tenant proﬁles.
+In the hardened proﬁle, workloads run as user 10001, drop
+capabilities, enable no-new-privileges, and use read-only root
+ﬁlesystems. Process and memory limits constrain resource
+use. Separate internal networks and volumes establish tenant
+boundaries. A topology planner allocates disjoint reported
+physical-core groups to tenants and separate groups to the
+provider and load generator; CPU quotas further constrain exe-
+cution. Nested virtualization means that reported core topology
+does not establish exclusive use of physical host cores or
+caches.
+Docker exposes CPU quotas, CPU afﬁnity, and memory
+constraints as distinct resource controls [ 13]. Seccomp restricts
+system-call access [ 14]; its conﬁgured presence reduces ex-
+posed functionality but does not prove the absence of kernel
+defects. Several controls change together, so the experiment
+estimates the effect of the conﬁguration bundle.
+C. Conﬁguration Auditing and Policy Gates
+Table II maps the implementation to R1–R4. The auditor
+evaluates conﬁguration checks against a snapshot and policy,
+groups ﬁndings by the source survey’s ﬁve virtualization axes,
+and exports JSON and Static Analysis Results Interchange For-
+mat (SARIF) 2.1.0 reports [ 15]. Python data models generate
+JSON Schemas. The TypeScript interface validates published
+reports and independently recomputes scores. The auditor
+obtains engine information through a restricted socket proxy
+with write requests disabled; a read-only ﬁlesystem mount
+alone would not make an engine socket safe.
+For the applicable check set A, coverage is
+C = ∑i∈A wici
+∑i∈A wi
+, (1)
+where severity weights wi are 4, 3, 2, and 1 for critical,
+high, medium, and low checks. Passing checks earn credit
+ci = 1, warnings earn 0.5, and failures or errors earn 0. Waived
+ﬁndings also earn 0; skipped checks are excluded from A.
+This project-deﬁned score describes posture, not compromise
+probability. A separate high-severity policy gate determines
+whether blocking ﬁndings remain.
+Time-limited waivers retain provider weaknesses as visible
+ﬁndings. The historical hardened run waived CPU mitigation
+exposure (HV -03) and absence of user namespaces (HV -
+04). Mandatory access control (HV -05) was skipped because
+AppArmor or SELinux was unavailable. Waiver approval ﬁelds
+remain pending owner review; a computationally passing gate
+is therefore not evidence of documented risk acceptance.
+D. Runtime Observation and Detection
+Nine rules observe tenant execution, privileged starts,
+engine-socket mounts, host-namespace joins, missing identity,
+cross-tenant network attachment, canary access, excessive
+shared-CPU use, and out-of-memory events. Docker’s event
+interface exposes container lifecycle and execution events [ 16];
+IsoLab adds project-speciﬁc classiﬁcation and attribution. Re-
+source counters and PSI are sampled every ﬁve seconds. The
+noisy-neighbor rule identiﬁes sustained excessive processor
+use on CPUs shared with another active tenant. Detection
+records include rule, workload, expected attribution evidence,
+and timestamps.
+Rules describe observable behaviors rather than inferred
+malicious intent. Legitimate maintenance can generate similar
+events. Detection state is bounded and held in memory, so
+durable incident retention requires additional infrastructure.
+The experiments exercise eight trigger types; the out-of-
+memory rule is not included in the live detection evaluation.
+E. Selected ACM Defenses and Startup Integrity
+The crosswalk records six selected themes: host-mount
+restriction, root-ﬁlesystem immutability, least privilege, private
+process namespaces, syscall ﬁltering, and resource allocation.
+Mount restriction implements the host-volume aspect of M1;
+immutability implements M3. Other associations use the sur-
+vey’s attack surfaces, including E18/E32, A6.1/E23, A7, and
+
+E34. These are our defensive engineering associations, not
+claims that a conﬁguration check reproduces a CVE or extends
+the survey’s own mitigation table. A theme is conﬁguration-
+veriﬁed only when every mapped check and target passes
+without a waiver. Missing, duplicate, skipped, erroneous, or
+waived evidence cannot establish veriﬁcation. No percentage
+of the complete exploit taxonomy is inferred.
+For a selected aspect of M2, image builds produce SHA-256
+allowlists of the interpreter, startup application, probe script,
+and integrity launcher; the batch image additionally includes
+the stress executable. SHA-256 is speciﬁed in the Secure
+Hash Standard [ 17]; using that hash does not authenticate
+the manifest or establish trusted build provenance. Hardened
+workloads enable a launcher that validates all recorded hashes
+and permits only an allowlisted executable. For Python, it ad-
+ditionally requires an allowlisted entry script, rejecting inline
+or module-mode execution through this launcher. A mismatch,
+missing ﬁle, unlisted command, or invalid manifest returns exit
+code 78 before application execution. The ordinary hardened
+batch job also uses this launcher. The insecure proﬁle leaves
+enforcement disabled as a comparison control.
+The build environment, manifest, launcher, and engine re-
+main trusted. An engine administrator can replace the entry-
+point, and an arbitrary process started through another path
+is not mediated. This mechanism is startup integrity checking
+rather than continuous attestation, complete application con-
+trol, or protection against a compromised image builder. It
+complements the read-only ﬁlesystem instead of replacing it.
+IV. E XPERIMENTAL METHOD
+A. Environment and Evidence Provenance
+The historical E1–E3 measurements were generated on Oc-
+tober 12, 2026, under source identiﬁer dffa2c70c553. The
+environment records six reported physical cores, twelve logi-
+cal CPUs, Docker 29.2.1, kernel 6.6.87.2-microsoft-standard-
+WSL2, and cgroup v2. The artifact contains protocols, per-run
+summaries, outcomes, and machine-readable hypotheses [ 18].
+The revised defense crosswalk and E4–E5 challenges were
+executed on November 11, 2026. They do not update or relabel
+the historical latency measurements; those predate the new
+startup integrity mechanism.
+B. E1 Processor Interference
+A constant-arrival-rate k6 workload sends 50 requests per
+second to tenant A ’s/work endpoint. This open-model execu-
+tor schedules iterations independently of response time while
+sufﬁcient virtual users are available [ 19]; dropped iterations are
+therefore an explicit validity condition. Each arm has 15 sec-
+onds of discarded warm-up and 90 measured seconds. Three
+repetitions per proﬁle and arm produce twelve measured runs.
+Tenant B executes a CPU-only stress-ng job. A separate
+load-generator allocation limits measurement interference. The
+application performs 2500 SHA-256 rounds per request and
+reports server work time separately from request latency.
+The four arms are insecure baseline, insecure noisy, hard-
+ened baseline, and hardened noisy. Arms are interleaved with
+cooldowns. Runs are invalid if arrival iterations are dropped,
+failures exceed 1%, or the noisy job fails the protocol’s
+processor-activity ﬂoor. The committed full run satisﬁes these
+validity conditions. The experimental SLO is a 99th-percentile
+request latency of at most 25 ms.
+For proﬁle p, the interference factor is
+IFp = medianr q.99,p,noisy,rmedianr q.99,p,baseline,r , (2)
+where q.99,p,a,r is the request-latency quantile for repetition r
+in arm a. This is a ratio of medians of run quantiles, not a
+quantile of pooled requests. Three run repetitions, rather than
+the number of requests, determine the experimental replication
+count.
+C. E2 Boundary Probes
+Twelve read-only or connection-based probes test cross-
+tenant DNS and IP access, a published host route, metadata
+and telemetry access, internet egress, process visibility, engine-
+socket access, host-ﬁle visibility, another tenant’s nonsecret
+marker ﬁle, effective capabilities, and tenant-B-to-A connec-
+tivity. Three positive controls verify application health access,
+provider monitoring access, and local loopback connectivity.
+Each probe returns allowed, blocked, or error. A passing hard-
+ened result requires all twelve boundaries explicitly blocked
+and all three controls allowed; an error is not evidence of
+isolation.
+D. E3 Detection V alidation
+Each proﬁle ﬁrst runs under normal load for 120 seconds,
+followed by benign triggers corresponding to unsafe execution,
+privilege, mounts, namespaces, missing labels, network at-
+tachment, canary access, and CPU contention. Ordinary event
+detections have a ﬁve-second limit, while the sustained noisy-
+neighbor rule has a ninety-second limit. Attribution must agree
+with the protocol’s expected identity, which can be unknown
+for unlabelled workloads. Hardened trigger T7 is expected to
+remain silent because its dedicated CPU allocation prevents
+the shared-CPU detection condition. Event and observation
+timestamps use the same VM clock domain.
+E. Hypotheses and Analysis Plan
+The protocol speciﬁes H1: insecure IF ≥ 2; H2: hardened
+IF ≤ 1.25 while meeting the latency target; optional H3:
+increased server time under SMT sharing; H4: noisy-neighbor
+detection in the insecure proﬁle and silence in the hardened
+proﬁle; H5: at least ten insecure paths open; H6: zero hardened
+paths open with passing controls; and H7: timely detection,
+expected attribution, and no observed false positives. The
+protocol logs detector calibration changes after smoke tests.
+A later evidence-validation correction strengthens acceptance
+predicates without changing thresholds or historical measure-
+ments.
+We report run-level medians and ranges rather than statisti-
+cal signiﬁcance from three repetitions. For detection, illustra-
+tive Wilson intervals [20] show the uncertainty associated with
+small success counts; heterogeneous deterministic triggers do
+
+not justify treating those intervals as representative attack-
+detection estimates. A separately qualiﬁed Poisson calculation
+illustrates the limited information supplied by a short quiet
+window.
+F . E4 Conﬁguration Faults and E5 Startup Integrity
+E4 starts with the committed hardened snapshot and in-
+dependently mutates tenant A ten times: privileged execution,
+retained capabilities, unconﬁned seccomp, root execution, host
+PID sharing, missing CPU quota, writable root ﬁlesystem,
+sensitive host bind, engine-socket mount, and absent CPU
+placement. Each mutation starts from a fresh deep copy.
+Success requires the speciﬁed tenant/check pair to pass before
+mutation and explicitly fail afterward. Existing unrelated host
+failures cannot satisfy this criterion. This is a saved-snapshot
+checker-sensitivity experiment, not ten live attacks or ten
+independent deployments.
+For mutation j, let b j and m j denote the targeted baseline
+and mutated check outcomes. The acceptance indicator is
+d j = 1{b j = pass ∧ m j = fail}. (3)
+Only the same tenant/check pair is compared. Missing or
+ambiguous targets earn zero credit, and every case must satisfy
+the indicator for the study gate to pass. This distinguishes
+detection of an introduced regression from rediscovery of an
+existing failure.
+E5 executes the actual launcher in isolated subprocesses
+with a temporary application that writes an execution marker.
+The clean case must exit successfully and create the marker;
+modiﬁed, missing, or unlisted scripts and an invalid manifest
+must return 78 without creating it. These ﬁve deliberately
+selected cases validate startup decisions, not general attack-
+detection accuracy. A separate container check exercises clean
+and bind-mounted altered application ﬁles in each of the three
+built tenant images. Neither challenge modiﬁes a deployed
+tenant or a published historical result.
+V. R ESULTS AND ANALYSIS
+A. Conﬁguration Posture and Boundary Enforcement
+Table III summarizes the posture and segmentation results.
+Equation ( 1) gives 19.51% coverage for the insecure conﬁgu-
+ration and 93.90% for the hardened conﬁguration, an increase
+of 74.39 percentage points. Twenty-nine of the thirty checks
+are applicable. The hardened proﬁle has 27 passes, two waived
+failures, and one skip; the waived ﬁndings retain their coverage
+penalty.
+All twelve tested isolation paths are open in the insecure
+proﬁle and explicitly blocked in the hardened proﬁle. Passing
+positive controls support the interpretation that hardened out-
+comes reﬂect the intended boundaries rather than complete
+application or network failure. They do not exclude every
+alternative cause of a particular connection failure or establish
+isolation beyond the tested endpoints and times. These results
+answer RQ2 for the tested path set.
+TABLE III
+CONFIGURATION AND SEGMENTATION RESULTS
+Metric Insecure Hardened
+Weighted coverage 16/82 (19.51%) 77/82 (93.90%)
+Passing checks 6 27
+Failing checks 23 2 (waived)
+Skipped checks 1 1
+High-severity gate 15 blockers Pass; 2 waivers
+Open isolation paths 12/12 0/12
+Positive controls 3/3 3/3
+TABLE IV
+RUN-L EVEL 99 TH-P ERCENTILE REQUEST LATENCY
+Proﬁle and arm Median (ms) Range (ms)
+Insecure baseline 4.334 4.320–4.492
+Insecure noisy 16.463 16.229–16.663
+Hardened baseline 4.594 4.535–4.628
+Hardened noisy 5.617 5.105–5.904
+B. Latency Under Contention
+Table IV and Fig. 2 show the latency results. Published
+interference factors are 3.799 insecure and 1.223 hardened.
+Recalculation using unrounded medians gives 3.7984 and
+1.2225; the small discrepancy is due to the publisher dividing
+rounded medians. The relative noisy-arm improvement is
+∆99 = 100
+(
+1 − 5.616545416.462774 ) = 65.88%. (4)
+Hardened baseline latency is approximately 6.0% higher
+than insecure baseline latency. Because the experiment
+changes a bundle of controls, it cannot attribute either that
+baseline difference or the noisy-arm reduction to a single
+mechanism. Both conﬁgurations remain within the 25 ms SLO,
+so the demonstrated beneﬁt is reduced interference and greater
+latency headroom, rather than recovery from an observed SLO
+violation. This answers RQ1 within the tested workload.
+The insecure and hardened proﬁles contain 27005 and
+27003 measured iterations, respectively. Those requests are
+nested within only three repetitions per arm. With this replica-
+tion count and no retained request-level traces in the published
+package, the observed ranges are descriptive; they do not sup-
+port precise population tail estimates or a claim of statistical
+signiﬁcance.
+C. Detection and Attribution
+Table V summarizes E3. All eight expected insecure de-
+tections and seven expected hardened detections occur within
+their budgets. Hardened T7 remains silent as required. The
+insecure maximum latency of 43.75 s belongs to the sustained
+CPU-contention trigger, whose budget is ninety seconds; it is
+not an ordinary event exceeding a ﬁve-second limit. Compar-
+ing median detection latencies between proﬁles as a detector-
+speed improvement would be confounded by their different
+expected trigger sets.
+
+0
+5
+10
+15
+20
+25
+25 ms SLO
+Insecure baseline
+4.334
+Insecure noisy
+16.463
+Hardened baseline
+4.594
+Hardened noisy
+5.617
+99th-percentile latency (ms)
+Whiskers: min-max across three runs
+Fig. 2. E1 request latency. Bars show medians of run-level p99 values;
+whiskers show the minimum and maximum across three runs, not conﬁdence
+intervals. The dashed line is the 25 ms SLO. Both proﬁles meet the target.
+TABLE V
+DETECTION RESULTS AND EXPECTED ATTRIBUTION
+Metric Insecure Hardened
+Timely expected detections 8/8 7/7
+Expected attribution agreement 100% 100%
+Median latency (ms) 177.9 95.4
+Maximum latency (ms) 43752.4 216.6
+Alerts in 120-s quiet window 0 0
+All ﬁfteen expected detections match the protocol’s ex-
+pected attribution. This includes an unknown value for in-
+tentionally unlabelled workloads and some insecure-proﬁle
+network and canary triggers. Thus 100% agreement does not
+mean every event has a known tenant identity. These results
+answer RQ3 for the conﬁgured benign trigger set.
+Illustrative Wilson 95% intervals [ 20] for 8/8 and 7/7 suc-
+cesses are 67.6%–100% and 64.6%–100%. Their independent-
+Bernoulli assumption does not hold as a sampling model for
+deliberately different deterministic triggers; the intervals only
+contextualize the small counts. Similarly, zero alerts over two
+minutes does not imply a zero operational false-positive rate.
+Under a stationary Poisson model, the one-sided 95% upper
+bound for each proﬁle is
+λupper = − ln(0.05)2 = 1.50 alerts /min. (5)
+Longer and more diverse benign workloads are required to
+estimate alert burden.
+H1, H2, H4, H5, H6, and H7 meet their speciﬁed criteria.
+H3 is inconclusive because the optional SMT-sharing arm was
+not executed. This is acceptance-criterion support under the
+recorded conditions, not a general proof of security.
+D. Selected Defense V alidation Results
+E4 detected all ten speciﬁed conﬁguration faults, with a
+passing baseline and explicit failing tenant target in each
+TABLE VI
+NEW DEFENSE VALIDATION EVIDENCE (N OVEMBER 2026)
+Criterion Outcome
+E4 speciﬁed conﬁguration faults detected 10/10
+E5 clean subprocess executed 1/1
+E5 invalid subprocess inputs refused 4/4
+Clean container-image checks accepted 3/3
+Altered container-image checks refused 3/3
+Hardened themes with all-target veriﬁcation 4/6
+case. Four of six mapped themes are conﬁguration-veriﬁed
+for the historical hardened report; none is veriﬁed for the
+insecure report. The two remaining hardened themes con-
+tain provider exception targets and consequently receive no
+complete-veriﬁcation credit under the strict all-target rule.
+E5 passed all ﬁve startup challenges: the clean application
+executed, while four invalid cases were rejected before execu-
+tion. Six additional checks in real container images accepted
+each clean application and rejected its altered-ﬁle counterpart.
+These outcomes answer RQ4 for the selected inputs. They do
+not estimate sensitivity to unseen attacks, and conﬁguration
+veriﬁcation does not establish resistance to every exploit
+sharing the survey category.
+The added contribution is the connection among a defense
+recommendation, its enforcement mechanism, and a repro-
+ducible counterexample test, combined with separate reliabil-
+ity evidence. There is no head-to-head comparison with the
+2024 learned classiﬁer and no basis for a claim of greater
+accuracy or comprehensive security than either source paper.
+Table VI separates the distinct validation units. Fresh hard-
+ened smoke checks additionally preserved twelve blocked
+boundary paths and three allowed positive controls, detected
+seven expected triggers with no alerts in a thirty-second quiet
+window, and passed the conﬁguration gate with the two pre-
+existing host waivers. This shortened smoke check does not
+replace the historical full-length evaluation or establish the
+latency performance of the revised system.
+VI. D ISCUSSION AND REPRODUCIBILITY
+A. Security and Reliability Interpretation
+The three experiments provide complementary evidence.
+E1 measures the reliability effect of CPU contention; E2
+checks concrete exposure paths; E3 evaluates observation and
+attribution of selected behaviors. None can replace the others.
+In particular, satisfying a latency target cannot establish con-
+ﬁdentiality, and detecting a management event cannot prove
+that the corresponding action was prevented. The combined
+results support the feasibility of integrating posture controls
+and SRE observations within the stated trust boundary.
+Dedicated allocations also constrain resource sharing. The
+present study does not measure consolidation efﬁciency or
+cost, so the latency improvement should not be interpreted as
+a cost-free optimization. A deployment decision requires ca-
+pacity and utilization measurements alongside these isolation
+indicators.
+
+B. Evidence V alidation
+The ﬁnal evidence predicates require the complete unique
+E2 probe set with explicit outcomes and the complete unique
+E3 trigger set with timely detection, expected attribution,
+required silence, and no false-positive records. This prevents
+an erroneous or missing probe from being counted as a closed
+path and prevents summary detection counts from hiding
+attribution failures. Publisher verdicts and live gates share
+these predicates. The stricter predicates pass the historical
+results.
+Thirteen evidence-gate regression cases exercise valid and
+corrupted inputs, including missing, duplicate, late, erroneous,
+open, and misattributed outcomes. Additional research tests
+verify mutation independence, baseline contamination rejec-
+tion, fail-closed mapping, references, provenance hashes, and
+startup challenge outcomes. The revised Python suite reports
+182 passed and one skipped test; the skipped case depends
+on an unpublished literature extension. The frontend reports
+52 passing tests. Lint and the production build pass. Software
+checks establish internal consistency rather than a new perfor-
+mance benchmark.
+C. Artifact Availability
+The source and machine-readable measurements are avail-
+able in the project repository [ 18]. The experiment protocol
+records conﬁgurations, metrics, thresholds, and deviations.
+Full reproduction uses the lab orchestrator to check the host,
+execute both proﬁles with the full experiment variant, and
+publish the generated results. The reanalysis script indepen-
+dently recalculates scores, latency summaries, run validity, and
+detection outcomes, and records SHA-256 hashes of its inputs.
+The manuscript and IEEEtran source are supplied with the
+artifact.
+An additional literature-replication pipeline is not a com-
+pleted result of this paper. Its blind human annotation remains
+unﬁnished; development-set classiﬁer metrics and unvalidated
+literature-trend hypotheses are excluded. No inference about
+the persistence of the 2012 literature deﬁcit is drawn from that
+extension.
+VII. T HREATS TO VALIDITY
+A. Internal and Construct V alidity
+The insecure baseline is deliberately weak and is not a
+measured average production conﬁguration. Several controls
+change together, preventing causal attribution to individual
+settings. Monitoring overhead is unquantiﬁed because no
+monitoring-disabled arm was measured. Check coverage de-
+pends on project-selected severities and applicability rules; it
+is not a validated risk score. The detector observes behaviors
+that can also occur during legitimate maintenance.
+The metadata canary measures access to a decoy rather
+than secret recovery or prevention of arbitrary exﬁltration.
+No kernel escape, speculative-execution exploit, or cache side
+channel was attempted. Administrative identity labels do not
+supply cryptographic identity. The provider plane is trusted,
+and some rules observe operator-generated events that tenants
+cannot necessarily generate from within their conﬁnement.
+B. External and Statistical V alidity
+The evaluation uses one machine, a synthetic service, ﬁxed
+offered load, three repetitions per arm, and short observation
+windows. It excludes storage and network contention, multiple
+hosts, scaling, sustained incidents, and workload churn. The
+trigger set is deterministic and too small to establish general
+detection sensitivity or a representative false-alarm rate. No
+independent baseline tool was benchmarked.
+Docker Desktop’s nested virtualization limits physical-core
+interpretation and visibility into provider mitigations. Two
+host ﬁndings remain waived, and mandatory access control is
+not evaluated on this host. The measurement source identiﬁer
+predates later repository changes; ﬁxture and schema checks
+do not prove that the ﬁnal revision reproduces identical live
+measurements. Request-level load-test traces and full moni-
+toring time series are absent from the committed published
+package, limiting reconstruction to supplied summaries and
+outcomes.
+VIII. C ONCLUSION AND FUTURE WORK
+IsoLab connects selected recent container-security defenses
+to executable checks and startup integrity enforcement, with
+multi-tenant reliability observation. Its new fault challenges
+detected ten speciﬁed conﬁguration regressions, accepted the
+clean startup application, and refused four invalid startup
+cases. Historical single-host measurements show a 65.9%
+reduction in median noisy-arm 99th-percentile latency, twelve
+closed exposure paths, and three preserved positive controls.
+Expected detection outcomes matched the protocol, and both
+proﬁles satisﬁed the latency target. These ﬁndings support the
+engineering feasibility of the selected defenses and comple-
+mentary evidence under the stated trust boundary.
+Future work should reproduce the ﬁnal revision on multiple
+hosts and workloads, increase independent repetitions, retain
+raw traces, measure monitoring overhead, and separate the
+contributions of individual controls through ablation. Longer
+benign-operation windows, additional detection triggers, and
+VM-based deployments would broaden the evidence. The sep-
+arate literature extension requires completed blind annotation
+before any trend claims are justiﬁed.
+Further extensions should reproduce the 2024 learned mon-
+itoring pipeline against a deterministic baseline, quantify
+startup-hashing cost, add continuous ﬁle-integrity observation
+and signed manifests, and broaden selected ACM defense cov-
+erage. The revised system supplies executable local validation
+rather than evidence that the recent works are outperformed.
+REFERENCES
+[1] P . Horchulhack, E. K. Viegas, A. O. Santin, F. V . Ramos, and P .
+Tedeschi, “Detection of quality of service degradation on multi-tenant
+containerized services,” Journal of Network and Computer Applications ,
+vol. 224, Art. no. 103839, 2024, doi: 10.1016/j.jnca.2024.103839.
+[2] O. Jarkas, R. Ko, N. Dong, and R. Mahmud, “A container security
+survey: Exploits, attacks, and defenses,” ACM Computing Surveys , vol.
+57, no. 7, Art. no. 170, pp. 1–36, 2025, doi: 10.1145/3715001.
+
+[3] N. Gonzalez, C. Miers, F. Redígolo, M. Simplício, T. Carvalho, M.
+Näslund, and M. Pourzandi, “A quantitative analysis of current security
+concerns and solutions for cloud computing,” Journal of Cloud Com-
+puting, vol. 1, Art. no. 11, 2012, doi: 10.1186/2192-113X-1-11.
+[4] S. Sultan, I. Ahmad, and T. Dimitriou, “Container security: Issues,
+challenges, and the road ahead,” IEEE Access, vol. 7, pp. 52976–52996,
+2019, doi: 10.1109/ACCESS.2019.2911732.
+[5] X. Lin, L. Lei, Y . Wang, J. Jing, K. Sun, and Q. Zhou, “A measurement
+study on Linux container security: Attacks and countermeasures,” in
+Proc. 34th Annual Computer Security Applications Conf. , 2018, pp. 418–
+429, doi: 10.1145/3274694.3274720.
+[6] M. Souppaya, J. Morello, and K. Scarfone, Application Container Secu-
+rity Guide, NIST SP 800-190, Sep. 2017, doi: 10.6028/NIST.SP .800-190.
+[7] W. Felter, A. Ferreira, R. Rajamony, and J. Rubio, “An updated perfor-
+mance comparison of virtual machines and Linux containers,” in Proc.
+IEEE Int. Symp. Performance Analysis of Systems and Software , 2015,
+pp. 171–172, doi: 10.1109/ISPASS.2015.7095802.
+[8] Linux Kernel Documentation, “Control Group v2.” Accessed: Nov.
+14, 2026. [Online]. Available: https://docs.kernel.org/admin-guide/
+cgroup-v2.html
+[9] Linux Kernel Documentation, “PSI—Pressure Stall Information.” Ac-
+cessed: Nov. 14, 2026. [Online]. Available: https://docs.kernel.org/
+accounting/psi.html
+[10] S. Thurgood and D. Ferguson, with A. Hidalgo and B. Beyer, “Imple-
+menting SLOs,” in The Site Reliability Workbook. Sebastopol, CA, USA:
+O’Reilly Media, 2018. [Online]. Available: https://sre.google/workbook/
+implementing-slos/
+[11] J. Dean and L. A. Barroso, “The tail at scale,” Communications of the
+ACM, vol. 56, no. 2, pp. 74–80, 2013, doi: 10.1145/2408776.2408794.
+[12] V . V aradarajan, T. Ristenpart, and M. Swift, “Scheduler-based de-
+fenses against cross-VM side-channels,” in Proc. 23rd USENIX Security
+Symp., 2014, pp. 687–702. [Online]. Available: https://www.usenix.org/
+conference/usenixsecurity14/technical-sessions/presentation/varadarajan
+[13] Docker, “Resource constraints.” Accessed: Nov. 14, 2026. [Online].
+Available: https://docs.docker.com/engine/containers/resource_
+constraints/
+[14] Docker, “Seccomp security proﬁles for Docker.” Accessed: Nov.
+14, 2026. [Online]. Available: https://docs.docker.com/engine/security/
+seccomp/
+[15] OASIS, Static Analysis Results Interchange F ormat (SARIF) V ersion
+2.1.0, OASIS Standard, Mar. 27, 2020. [Online]. Available: https://docs.
+oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html
+[16] Docker, “docker system events.” Accessed: Nov. 14, 2026. [Online].
+Available: https://docs.docker.com/reference/cli/docker/system/events/
+[17] National Institute of Standards and Technology, Secure Hash Standard
+(SHS), FIPS PUB 180-4, Aug. 2015, doi: 10.6028/NIST.FIPS.180-4.
+[18] IsoLab project, “Cloud_Security source, protocols, and experimental
+artifacts,” measurement source dffa2c70c553, Oct. 12, 2026; integrity
+and fault studies Nov. 11, 2026. [Online]. Available: https://github.com/
+alpha08-prog/Cloud_Security
+[19] Grafana Labs, “Constant arrival rate,” k6 Documentation . Accessed:
+Nov. 14, 2026. [Online]. Available: https://grafana.com/docs/k6/latest/
+using-k6/scenarios/executors/constant-arrival-rate/
+[20] E. B. Wilson, “Probable inference, the law of succession, and statistical
+inference,” Journal of the American Statistical Association , vol. 22, no.
+158, pp. 209–212, 1927, doi: 10.1080/01621459.1927.10502953.

@@ -1,5 +1,12 @@
 # Viva notes
 
+**Current presentation (November 2026):** use [the revised two-paper demo](research/DEMO.md).
+The Research tab, E4 snapshot fault study and E5 startup integrity control are the current
+contributions based on the 2024 monitoring study and the 2025 ACM security survey.
+The 2024 neural models are not reproduced. Blind literature annotation remains incomplete;
+do not present that extension as a validated result. The older script below is historical
+background about the original 2012 motivation, not the main research pitch.
+
 ## The one-sentence pitch
 The paper found that virtualization isolation is the cloud-security problem with the fewest
 solutions, and its future-work section lists four things a solution must do. I built that

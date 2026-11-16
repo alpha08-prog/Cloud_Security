@@ -88,7 +88,7 @@ def e2_doc(runs: dict[str, dict]) -> dict:
          "verdict": _verdict(None if i is None else i["openPaths"] >= 10),
          "detail": f"{i['openPaths']}/{i['probes']} open" if i else "insecure not run"},
         {"id": "H6", "statement": "Hardened: 0 of 12 paths open, with every positive control passing",
-         "verdict": _verdict(None if h is None else h["openPaths"] == 0 and h["controlsPassed"] == h["controls"]),
+         "verdict": _verdict(None if h is None else e2.isolation_passed("hardened", results)),
          "detail": f"{h['openPaths']}/{h['probes']} open, controls {h['controlsPassed']}/{h['controls']}"
          if h else "hardened not run"},
     ]
@@ -102,8 +102,7 @@ def e3_doc(runs: dict[str, dict]) -> dict:
     results = [r for p in ("insecure", "hardened") if p in runs for r in runs[p]["results"]]
     fps = [f for p in ("insecure", "hardened") if p in runs for f in runs[p]["falsePositives"]]
     summary = [s for p in ("insecure", "hardened") if p in runs for s in runs[p]["summary"]]
-    ok = [s["detected"] == s["expected"] and s["falsePositives"] == 0 and s["attributionAccuracy"] == 1
-          for s in summary]
+    ok = [e3.detection_passed(s["profile"], results, fps) for s in summary]
     detail = "; ".join(f"{s['profile']}: {s['detected']}/{s['expected']} detected, {s['falsePositives']} false "
                        f"positives, median {s['medianLatencyMs']} ms, attribution {s['attributionAccuracy']}"
                        for s in summary)
