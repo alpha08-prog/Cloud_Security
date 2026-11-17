@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "schemaVersion": "1.0",
   "basis": "Historical E1 reanalysis; not matched classifier results",
@@ -41,3 +42,48 @@
   ],
   "matchedComparisonStatus": "separate pilot; see pilot-evidence.json"
 }
+=======
+{
+  "schemaVersion": "1.0",
+  "basis": "Historical E1 reanalysis; not matched classifier results",
+  "sourceSha256": "cd50ceae25a94bf03172eb9754cb65807631649a73e5e9562ec3b9bc1f6aec44",
+  "measuredRunDates": [
+    "2026-10-12"
+  ],
+  "published2024": {
+    "doi": "10.1016/j.jnca.2024.103839",
+    "locator": "Table 3, p. 11",
+    "RF": {
+      "TPR": 0.84,
+      "TNR": 0.89,
+      "AUC": 0.9,
+      "FMeasure": 0.9
+    },
+    "SVM": {
+      "TPR": 0.87,
+      "TNR": 0.59,
+      "AUC": 0.82,
+      "FMeasure": 0.78
+    }
+  },
+  "isolab": [
+    {
+      "profile": "insecure",
+      "baselineP99Ms": 4.334104,
+      "noisyP99Ms": 16.462774,
+      "interferenceFactor": 3.798426156825032,
+      "inflationPct": 279.8426156825032,
+      "sloHeadroomMs": 8.537226
+    },
+    {
+      "profile": "hardened",
+      "baselineP99Ms": 4.59419,
+      "noisyP99Ms": 5.616545400000002,
+      "interferenceFactor": 1.2225322418097646,
+      "inflationPct": 22.25322418097646,
+      "sloHeadroomMs": 19.383454599999997
+    }
+  ],
+  "matchedComparisonStatus": "separate pilot; see pilot-evidence.json"
+}
+>>>>>>> 3767f0d7d130572e6e7c61dce04702aae65d4bb8
