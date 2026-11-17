@@ -1,161 +1,151 @@
-# IsoLab: Cloud Isolation Lab
+# IsoLab: Container Isolation and Interference Evaluation
 
 [![CI](https://github.com/alpha08-prog/Cloud_Security/actions/workflows/ci.yml/badge.svg)](https://github.com/alpha08-prog/Cloud_Security/actions/workflows/ci.yml)
-**Live site: https://alpha08-prog.github.io/Cloud_Security/**
 
-## Current research basis (2024–2025)
+**An executable cloud-security lab with a completed 160-run comparison of resource isolation and interference detection.**
 
-IsoLab now combines provider-side interference observation motivated by
-[Horchulhack et al. (2024)](https://doi.org/10.1016/j.jnca.2024.103839) with selected defenses from
-[Jarkas et al., ACM Computing Surveys (2025)](https://doi.org/10.1145/3715001).
-The new implementation adds SHA-256 startup integrity and executable/entry-script allowlisting
-for hardened tenant workloads (a selected aspect of ACM M2), a six-theme executable defense
-crosswalk, ten independent configuration-fault challenges (E4), and five startup challenges (E5).
-It does not reproduce the 2024 neural classifiers or validate the whole ACM exploit taxonomy.
+[Research paper](docs/research/IsoLab_Research_Paper.pdf) · [Overleaf-ready source](docs/research/IsoLab_Overleaf.zip) · [Pilot report](docs/research/pilot-report.md) · [Interactive dashboard](https://alpha08-prog.github.io/Cloud_Security/)
 
-```powershell
-python scripts/lab.py up hardened
-python scripts/lab.py research   # saved-snapshot E4 + isolated-subprocess E5; writes results/research/study.json
-python scripts/lab.py integrity  # clean/altered files in three built images; six container checks
-npm.cmd run dev
+## Start here: evaluator guide
+
+1. **Read the paper:** the numerical comparison distinguishes published 2024 results, our locally adapted baseline, and our own measured methods.
+2. **Inspect the evidence:** [pilot summary](docs/research/pilot-evidence.json), [full report](docs/research/pilot-report.md), and [raw evidence ZIP](docs/research/IsoLab_Pilot_Evidence.zip).
+3. **Check reproducibility:** [protocol and deviations](docs/research/comparison-protocol.md), [runner and instructions](experiments/comparison/README.md), and [independent publication audit](scripts/pilot_publication.py).
+4. **Explore the implementation:** [auditor](auditor/), [testbed](testbed/), [monitoring](monitor/), and [interactive dashboard source](src/). The extended security/research implementation is also available on the [research branch](https://github.com/alpha08-prog/Cloud_Security/tree/replication).
+
+## What the project demonstrates
+
+- Thirty configuration checks with severity-weighted posture scores, explicit waivers, policy gates, JSON and SARIF output.
+- Tenant resource controls, network/storage boundaries, cgroup v2/PSI observation, engine-event rules, and a metadata canary.
+- Historical boundary and detection experiments, plus startup-integrity and configuration-fault studies in the extended research implementation.
+- A **completed 160-run pilot** with payments, Spark RandomForest and Spark SVM; independently separated training, validation and test executions.
+- A measured comparison of a **2024-inspired autoencoder/LSTM adaptation**, an inexpensive resource-logistic extension, a CPU threshold, and the existing DET-08 rule.
+- Original vector figures and tables generated from recorded measurements, with source hashes and auditable prediction records.
+
+## Verified pilot results
+
+The pilot finished on **17 November 2026**, in **4 hours 29 minutes**, on one Docker Desktop/WSL2 host with 12 logical CPUs. There were ten independent runs per condition. Smoke runs were excluded.
+
+### Resource protection under sustained contention
+
+| Workload and metric | Shared configuration | Hardened adaptation | Reduction |
+|---|---:|---:|---:|
+| Payments: request p99 | 10.997 ms | 4.287 ms | **61.0%** |
+| Spark RF: median job duration | 1103.983 ms | 716.498 ms | **35.1%** |
+| Spark SVM: median job duration | 901.566 ms | 539.942 ms | **40.1%** |
+
+These are median run summaries. The resource-control adaptation also reduced competing-workload throughput by approximately **64–66%**. It protects the victim by restricting competition; it is not a cost-free efficiency gain or a performance improvement over a detector.
+
+### Held-out detection comparison
+
+| Method | Payments F1 (24 test runs) | RF F1 (12) | SVM F1 (12) |
+|---|---:|---:|---:|
+| Adapted AE/LSTM baseline | 0.941 | 1.000 | 0.857 |
+| **IsoLab resource-logistic extension** | **1.000** | **1.000** | 0.400 |
+| CPU threshold | 0.875 | 1.000 | 0.667 |
+| Existing IsoLab DET-08 | 0.500 | 1.000 | 0.857 |
+
+The lightweight extension improved the payments point estimate and tied RF, but lost accuracy on SVM. Its measured fitting time was **0.0033–0.0130 seconds**, versus **43.16–85.78 seconds** for the neural pipeline. Timings are single fitting measurements, not a repeated speed benchmark. Zero observed false positives came from only 15/9/8 negative test runs; it is not an operational false-alarm guarantee. Full confusion counts, AUC, timing and limitations are in the report.
+
+**Research conclusion:** resource isolation offers measurable protection at a throughput cost, while detector choice depends on workload. The pilot does not establish general superiority over the 2024 paper.
+
+## Architecture and evidence flow
+
+```mermaid
+flowchart LR
+  T[Tenant workloads] --> C[Configuration and runtime controls]
+  T --> O[Engine and process telemetry]
+  C --> A[Auditor: checks, policy gates, event rules]
+  O --> A
+  O --> R[Raw run records and independent outcome labels]
+  R --> S[Execution-level train / validation / test splits]
+  S --> M[Neural, logistic, CPU and DET-08 comparison]
+  M --> V[Metric and provenance validation]
+  A --> D[Dashboard and security reports]
+  V --> P[Paper, original figures and Overleaf package]
 ```
 
-Open the Research tab. See [the revised demo and protocol](docs/research/DEMO.md) and
-[the IEEE manuscript](docs/research/IsoLab_Research_Paper.pdf).
-E1–E3 published measurements retain their October provenance; the new control was added in November.
+The operational auditor uses a restricted socket proxy. The separate experimental collector is a trusted host observer requiring Docker API access, host PID visibility and read-only cgroups; it is not a drop-in production deployment.
 
-## Historical motivation
+## Relationship to the reference papers
 
-**Gonzalez et al. (2012)**, *A quantitative analysis of current security concerns and solutions
-for cloud computing* (Journal of Cloud Computing 1:11), counted 200+ references and found one
-area where solutions lag concerns: **virtualization**, with 12% of concern citations but 3% of
-solution citations. Within it, isolation and cross-VM attacks are almost unanswered (Figure 11).
-The paper's future-work section (p.16) says what the missing solution should do:
+The principal quantitative reference is [Horchulhack et al. (2024), Detection of quality of service degradation on multi-tenant containerized services](https://doi.org/10.1016/j.jnca.2024.103839).
 
-> "…employ **virtual machine identification** [R1], provide an **adequate separation of
-> dedicated resources** [R2] combined with a **constant observation of shared ones** [R3], and
-> **examine any attempt of exploiting cross-VM and data leakage** [R4]."
+Our baseline retains its documented neural architecture but uses **32 common local aggregate features**, a single host and smaller workloads, rather than the original 411-feature distributed service pipeline. Scaling, temporal windows and stopping choices are explicitly documented. Original-paper values are contextual and are not subtracted from our local results to claim improvement.
 
-IsoLab originally adapted those requirements to containers. R1–R4 and the five-axis grouping
-retain that historical attribution. A separate literature-counting extension remains unfinished:
-blind human annotation is incomplete, so its trend claims are excluded from the main paper.
+[Jarkas et al. (2025)](https://doi.org/10.1145/3715001) supplies security-defense background. [Gonzalez et al. (2012)](https://doi.org/10.1186/2192-113X-1-11) is the historical source of the R1–R4 requirement labels. The paper also positions the work against PARTIES, Caladan, empirical container-security studies and official platform documentation: **22 references** in total.
 
-![Project overview](docs/screenshots/overview.png)
+## Historical security evidence: separate from the pilot
 
-## What's in it
-
-| Part | What it does |
+| Evidence | Recorded outcome |
 |---|---|
-| `testbed/` | A Docker Compose multi-tenant cloud: three tenants and a hardened provider plane, in two profiles (**insecure** lift-and-shift vs **hardened**, the paper-derived controls). CPU sets are planned from the host's real core/thread topology so no two tenants share a physical core. |
-| `auditor/` | **cloudaudit** (Python, FastAPI, pydantic). It has: <ul><li>**30 checks**, each mapped to a Figure 11 axis, to R1–R4, to the paper's taxonomy nodes, and to CSA / ENISA / NIST</li><li>severity-weighted coverage scores, time-boxed waivers and a policy gate</li><li>JSON, SARIF and a console report</li><li>a per-tenant **cgroup v2 + pressure-stall (PSI)** exporter</li><li>**live detections** from the engine event stream</li><li>a **canary** decoy</li></ul> It only talks to the engine through a read-only socket proxy. |
-| `monitor/` | Prometheus rules and a provisioned Grafana dashboard: the live view during a demo. |
-| `scripts/lab.py` + `experiments/` | A standard-library orchestrator for the whole lab, and three pre-registered experiments: **E1** noisy neighbour (SLO under CPU contention), **E2** segmentation and escape-surface matrix, **E3** detection validation. |
-| `experiments/replication/` + `replication/` | **Unfinished optional extension.** Frozen classifier and literature corpus; blind human annotation is incomplete. No validated literature-trend result is claimed in the main paper. |
-| `src/` | The site, one tab per step: **The gap → Requirements → The system → Results**, plus the paper in an appendix. It imports the published results at build time. |
-| `.github/workflows/ci.yml` | Lint and contract tests, then both profiles run on a fresh runner with their gates (the hardened gate blocks the deploy). Uploads SARIF to code scanning and deploys to Pages. |
+| E1: historical noisy-arm p99 | 16.463 → 5.617 ms; 65.9% reduction |
+| E2: tested exposure paths | 12/12 closed; 3/3 positive controls retained |
+| E3: expected triggers | 8/8 insecure and 7/7 hardened accepted by the protocol |
+| E4: independent configuration faults | 10/10 specified faults detected |
+| E5: startup challenges | Clean case accepted; four invalid cases rejected |
 
-## Results
+Historical E1–E3 measurements are from October 2026; the new pilot is from November. They use different configurations and workloads and must not be pooled. These checks do not establish arbitrary exploit resistance, side-channel resistance or cryptographic attestation.
 
-From `results/published/`, measured on a 6-core/12-thread laptop (Docker Desktop, WSL2). The
-Results tab shows them in full.
+## Run the lab
 
-| | Insecure | Hardened |
-|---|---|---|
-| Policy gate (fail on ≥ high) | fails: 15 blocking checks | **passes** (2 waived host issues) |
-| Isolation coverage, 30 checks | 20% | **94%** |
-| E2: isolation paths open | 12 / 12 | **0 / 12** (controls 3/3) |
-| E1: tenant A p99 alone → with a noisy neighbour | 4.3 → 16.5 ms (×3.8) | **4.6 → 5.6 ms (×1.22)** |
-| E3: isolation-breaking actions detected | 8/8, 0 false positives | **7/7**, 0 false positives, median 95 ms |
-
-Published run: full variant: E1 at 50 req/s, 15 s warm-up + 90 s measured, 3 interleaved repetitions per arm; E3 quiet window 120 s. Commit `dffa2c70c553`. Pre-registered hypotheses: 6 of 7 supported (H3 inconclusive: optional arm not run).
-
-Hypotheses and pass criteria were written down before any run (`docs/experiments.md`); verdicts
-are computed by `lab.py publish`.
-
-**Replication (2013–2026).** Protocol, hypotheses HR1–HR5 and changelog: `docs/replication.md`.
-Status: snapshots, frozen classifier and validation sample are committed; results are published
-(Results → Replication) once the blind labels are complete. Dev-set agreement (tuning sets,
-optimistic): macro-F1 0.74, mean κ 0.69, type κ 0.63.
-
-## Run it
-
-You need Docker Desktop (or Docker Engine with cgroup v2), Python 3.10 or newer (standard
-library only), and Node 22.12+ for the site.
+Prerequisites: Docker with Linux containers/cgroup v2, Python 3.10+, and Node 22.12+ for the dashboard.
 
 ```bash
-python scripts/lab.py doctor             # Docker, cgroup v2, ports, CPU topology
-python scripts/lab.py up hardened         # or: up insecure (read testbed/README.md first)
-python scripts/lab.py audit hardened      # 30 checks -> console + results/runs/.../audit.{json,sarif}
-python scripts/lab.py demo canary         # one benign trigger, live (also: exec, drift, noisy, ...)
-# Grafana: http://127.0.0.1:3000 (anonymous viewer)
-python scripts/lab.py run-all             # both profiles: audit, E3, E2, E1, gates (~45 min)
-python scripts/lab.py publish             # merge, test hypotheses, validate -> results/published
+python scripts/lab.py doctor
+python scripts/lab.py up hardened
+python scripts/lab.py audit hardened
+python scripts/lab.py demo canary
+npm install
+npm run dev
+# Stop the lab when finished:
 python scripts/lab.py down
-
-python scripts/lab.py rep status          # replication: snapshot hashes, freeze, labelling progress
-python scripts/lab.py rep annotate        # the blind labelling form (127.0.0.1 only, resumable)
-python scripts/lab.py rep analyze         # validity, shares, intervals, HR1-HR5 (needs every label)
-python scripts/lab.py rep publish         # -> results/published/replication.json, schema-checked
-
-python scripts/lab.py test                # ruff + pytest (auditor, orchestrator), in a container
-npm install && npm test && npm run dev    # the site, at http://localhost:5173/
 ```
 
-## How it's kept honest
+The dashboard presents the historical published lab results. The new classifier pilot is delivered in the paper and evidence artifacts; it is not silently substituted into the historical dashboard.
 
-- **Pre-registered experiments.** Protocol changes go in a changelog with a reason before the
-  data they affect. Runs that break the validity rules are discarded: dropped iterations, more
-  than 1% failures, or noise that didn't happen.
-- **Controls in both directions.** The insecure profile is a negative control: CI fails if the
-  auditor stops catching it. E2 includes positive controls, so "blocked" can't just mean
-  "broken".
-- **One contract, two languages.** The pydantic models generate JSON Schemas. The site validates
-  every published file against them, resolves every taxonomy and framework reference, and
-  recomputes every score in TypeScript, which must equal the Python result.
-- **Waivers are visible.** Two host-level issues on Docker Desktop (CPU microcode, user
-  namespaces) are waived with a reason and an expiry. They earn no coverage credit, and a waiver can be scoped
-  (`covers`) to the exact CPU flaws observed, so a newly reported flaw fails the gate again.
-- **The replication is frozen before it is checked.** The classifier's two files are hashed
-  before the validation sample is drawn, and any later edit aborts the analysis. The annotator
-  sees only titles and abstracts, in shuffled order, with hidden repeats. `rep analyze` refuses
-  to run until every screen is labelled. Post-freeze changes are logged as deviations (D1 so
-  far, CVE supplement only).
-- **Defensive only.** Configuration auditing, load testing of the victim's own latency,
-  read-only reachability probes and benign detection triggers. There is no attack code, no
-  side-channel measurement and no secret recovery (see `CLAUDE.md` and `testbed/README.md`).
+## Reproduce or audit the matched pilot
 
-## Docs
+The [comparison README](experiments/comparison/README.md) gives the Docker commands. The pilot has a 5.5-hour collection limit and an eight-hour total budget. Use a new output directory for a rerun and keep the machine awake. Its scripts create only the named comparison workloads and retain failed-run evidence.
 
-- [Project completion audit](docs/project-audit.md): rubric mapping, verified checks, fixes and remaining submission tasks.
-- [IEEE research paper PDF](docs/research/IsoLab_Research_Paper.pdf), [editable IEEEtran LaTeX manuscript](docs/research/IsoLab_IEEE.tex), and [recomputed historical evidence](docs/research/evidence.json). Authors: Atharva Agrawal and Niti Priya. The revised paper reports historical E1–E3, new E4–E5, and selected defenses from the two recent papers. It excludes the unfinished blind literature extension.
-- `scripts/research_evidence.py` recomputes manuscript statistics from committed results; `scripts/build_research_paper.py` generates vector figures with ReportLab and compiles the official IEEEtran conference manuscript using Tectonic or pdflatex. These do not overwrite historical measurements.
+For an evidence-only audit, extract [IsoLab_Pilot_Evidence.zip](docs/research/IsoLab_Pilot_Evidence.zip) into the repository root; it contains the `results/comparison/pilot01/` directory. Then:
 
-- `docs/paper-content.md`: everything taken from the paper (figures, quotes, the p.16 brief).
-- `docs/architecture.md`: components, the requirement mapping, the data contract, design
-  decisions.
-- `docs/experiments.md`: E1–E3 protocol, hypotheses and changelog.
-- `docs/replication.md`: the replication's pre-registered protocol, annotation guidelines,
-  hypotheses HR1–HR5, changelog and deviations.
-- `docs/checks.md`: the generated check catalogue.
-- `docs/viva-notes.md`: the demo script and expected questions.
+```bash
+python scripts/pilot_publication.py
+```
 
-## Limitations
+The audit checks the complete matrix, recorded hashes, split coverage, labels, confusion metrics and recomputed request/job summaries. The evidence ZIP includes raw measurements and predictions but excludes large trained-model binaries; retraining commands generate those locally.
 
-- **Containers stand in for VMs.** The CSA guidance cited by the paper treats multi-tenancy as
-  the essential characteristic, and a shared kernel is the harder isolation case.
-- **One host.** On Docker Desktop the "host" is a Hyper-V VM, so SMT topology is indicative and
-  microcode is out of reach.
-- **Different units.** The paper's Figure 11 counts citations; IsoLab's radar is check coverage.
-  The site never plots them on one scale.
-- **The replication reads abstracts, not papers.** It uses keyword rules validated against one
-  annotator (also an author), and an academic corpus where the survey mixed academic and
-  industry sources. Figures 5, 7 and 11 are read from charts, so they are approximate. All of
-  this is reported alongside the numbers.
-- **CI E1 is a smoke test.** Two-core runners can't separate tenants onto physical cores
-  (waived there), so CI latency numbers are informative only.
+### Validation performed
 
-## Credit
+- **160 run summaries and 12 method/workload summaries independently audited.**
+- Five comparison-utility tests passed; neural forward/backward smoke check passed.
+- IEEE PDF checked for citations, links, embedded fonts and page layout.
+- Historical Python/frontend checks are documented separately; their old counts are not presented as a rerun of the new pilot code.
 
-Based on the open-access (CC BY 2.0) paper by Gonzalez, Miers, Redígolo, Simplício, Carvalho,
-Näslund and Pourzandi (2012). Paper content is attributed in `docs/paper-content.md`; the
-requirements' interpretation, the system and all measurements are this project's.
+## Overleaf submission package
+
+Download [IsoLab_Overleaf.zip](docs/research/IsoLab_Overleaf.zip), create an Overleaf project from the ZIP, and select **IsoLab_IEEE.tex** as the main file with **pdfLaTeX**. The package contains all required .tex inputs, vector figure PDFs and the inline bibliography. No external dataset download is needed to compile it.
+
+Use the share link generated by **your Overleaf project** for submission. This repository does not invent an Overleaf project URL. Check your venue's page limit and anonymization requirements before submitting the current 12-page IEEE-format manuscript.
+
+## Limits and next research steps
+
+This is a single-host pilot with 24/12/12 held-out runs, short windows, fixed generated Spark data and a small feature set. Detector scores are offline run classifications, not a matched online detection-delay benchmark. Model-fitting cost is measured; monitoring-disabled overhead and economic consolidation cost are not. The CPU quota and placement effects are not separately identified in this pilot.
+
+Next steps are new held-out workloads, robust validation-selected thresholds, burst-aware policies, individual-control ablations and multi-host evaluation. The optional literature-counting extension remains unfinished and is not used to support the paper's empirical claims.
+
+## Repository map
+
+| Location | Purpose |
+|---|---|
+| auditor/ | Configuration checks, policy and runtime observation |
+| testbed/ | Tenant images and Compose profiles |
+| monitor/ | Prometheus and Grafana configuration |
+| experiments/comparison/ | Bounded collection, training, evaluation and reporting |
+| experiments/isolab/comparison*.py | Metrics, split validation and model architecture |
+| scripts/pilot_publication.py | Independent result audit and publication artifacts |
+| docs/research/ | Paper, Overleaf source, protocol and evidence package |
+| src/ | Interactive research dashboard |
+
+Authors: **Atharva Agrawal and Niti Priya**, Indian Institute of Information Technology Dharwad.
