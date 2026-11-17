@@ -1,0 +1,18 @@
+{
+  "workload": "svm",
+  "profile": "shared",
+  "scenario": "clean",
+  "rep": 9,
+  "runId": "svm-shared-clean-09",
+  "started": 1794901716.5376053,
+  "ended": 1794901776.5683198,
+  "performanceMs": 473.0823040008545,
+  "performanceMetric": "medianJobCompletion",
+  "failures": 0,
+  "requests": 0,
+  "jobs": 113,
+  "backgroundBatchesPerSecond": 0.0,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

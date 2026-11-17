@@ -1,4 +1,3 @@
-import { PAPER } from '../data/paper'
 import type { Theme } from '../hooks/useTheme'
 import './Header.css'
 
@@ -19,7 +18,7 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
             <div>
               <h1 className="brand__title">IsoLab · Cloud Isolation Lab</h1>
               <p className="brand__tagline">
-                Building the virtualization-security solution {PAPER.short} call for
+                Container defenses and multi-tenant reliability · 2024–2025 research
               </p>
             </div>
           </div>

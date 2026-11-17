@@ -1,0 +1,18 @@
+{
+  "workload": "payments",
+  "profile": "hardened",
+  "scenario": "bursty",
+  "rep": 4,
+  "runId": "payments-hardened-bursty-04",
+  "started": 1794912684.1851776,
+  "ended": 1794912744.252132,
+  "performanceMs": 3.865470886230469,
+  "performanceMetric": "requestP99",
+  "failures": 0,
+  "requests": 2503,
+  "jobs": 0,
+  "backgroundBatchesPerSecond": 17.49714149731292,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

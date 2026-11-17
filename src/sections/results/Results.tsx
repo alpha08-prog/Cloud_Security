@@ -9,10 +9,11 @@ import { AuditView } from './AuditView'
 import { DetectionView } from './DetectionView'
 import { HypothesesView } from './HypothesesView'
 import { NoisyView } from './NoisyView'
+import { ReplicationView } from './ReplicationView'
 import { SegmentationView } from './SegmentationView'
 import './Results.css'
 
-const VIEWS = ['audit', 'noisy', 'segmentation', 'detection', 'hypotheses'] as const
+const VIEWS = ['audit', 'noisy', 'segmentation', 'detection', 'replication', 'hypotheses'] as const
 type View = (typeof VIEWS)[number]
 
 const VIEW_OPTIONS: { value: View; label: React.ReactNode }[] = [
@@ -20,6 +21,7 @@ const VIEW_OPTIONS: { value: View; label: React.ReactNode }[] = [
   { value: 'noisy', label: <>Noisy neighbour <span className="segmented__hint">· E1</span></> },
   { value: 'segmentation', label: <>Segmentation <span className="segmented__hint">· E2</span></> },
   { value: 'detection', label: <>Detection <span className="segmented__hint">· E3</span></> },
+  { value: 'replication', label: <>Replication <span className="segmented__hint">· 2013–26</span></> },
   { value: 'hypotheses', label: 'Hypotheses' },
 ]
 
@@ -85,6 +87,7 @@ export function Results() {
       {view === 'noisy' && <NoisyView />}
       {view === 'segmentation' && <SegmentationView />}
       {view === 'detection' && <DetectionView />}
+      {view === 'replication' && <ReplicationView />}
       {view === 'hypotheses' && <HypothesesView />}
 
       <footer className="results__provenance">

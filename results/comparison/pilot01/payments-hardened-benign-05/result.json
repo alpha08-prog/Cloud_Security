@@ -1,0 +1,18 @@
+{
+  "workload": "payments",
+  "profile": "hardened",
+  "scenario": "benign",
+  "rep": 5,
+  "runId": "payments-hardened-benign-05",
+  "started": 1794909386.0592554,
+  "ended": 1794909446.0896413,
+  "performanceMs": 4.070043563842773,
+  "performanceMetric": "requestP99",
+  "failures": 0,
+  "requests": 2501,
+  "jobs": 0,
+  "backgroundBatchesPerSecond": 33.61630893015651,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

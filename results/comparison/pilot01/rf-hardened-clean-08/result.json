@@ -1,0 +1,18 @@
+{
+  "workload": "rf",
+  "profile": "hardened",
+  "scenario": "clean",
+  "rep": 8,
+  "runId": "rf-hardened-clean-08",
+  "started": 1794914387.098839,
+  "ended": 1794914447.1257625,
+  "performanceMs": 638.7114524841309,
+  "performanceMetric": "medianJobCompletion",
+  "failures": 0,
+  "requests": 0,
+  "jobs": 82,
+  "backgroundBatchesPerSecond": 0.0,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

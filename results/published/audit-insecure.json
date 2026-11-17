@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "audit",
-  "generatedAt": "2026-10-12T17:44:49.044Z",
+  "generatedAt": "2026-11-11T16:19:11.974Z",
   "profile": "insecure",
   "tool": {
     "name": "cloudaudit",
     "version": "1.0.0",
-    "gitSha": "dffa2c70c553"
+    "gitSha": "d744dd246f1f"
   },
   "environment": {
     "platform": "docker-desktop-wsl2",
@@ -1053,21 +1053,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "not privileged",
-          "evidence": {
-            "privileged": false
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "prometheus",
           "tenant": null,
           "workloadId": "provider-prometheus",
@@ -1095,6 +1080,21 @@
             "file": "testbed/compose.insecure.yaml",
             "line": 38
           }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "not privileged",
+          "evidence": {
+            "privileged": false
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
+          }
         }
       ]
     },
@@ -1103,7 +1103,7 @@
       "status": "fail",
       "waived": false,
       "waiver": null,
-      "message": "fail on tenant-a, tenant-b, tenant-c: default capability set kept (cap_drop ALL missing)",
+      "message": "fail on tenant-a, tenant-c, tenant-b: default capability set kept (cap_drop ALL missing)",
       "targets": [
         {
           "kind": "container",
@@ -1191,25 +1191,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "fail",
-          "message": "default capability set kept (cap_drop ALL missing)",
-          "evidence": {
-            "capDrop": [],
-            "capAdd": [
-              "NET_ADMIN",
-              "SYS_PTRACE"
-            ]
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
           }
         },
         {
@@ -1245,6 +1226,25 @@
             "file": "testbed/compose.insecure.yaml",
             "line": 38
           }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "fail",
+          "message": "default capability set kept (cap_drop ALL missing)",
+          "evidence": {
+            "capDrop": [],
+            "capAdd": [
+              "NET_ADMIN",
+              "SYS_PTRACE"
+            ]
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
+          }
         }
       ]
     },
@@ -1253,7 +1253,7 @@
       "status": "fail",
       "waived": false,
       "waiver": null,
-      "message": "fail on tenant-a, tenant-b, tenant-c: no-new-privileges not set",
+      "message": "fail on tenant-a, tenant-c, tenant-b: no-new-privileges not set",
       "targets": [
         {
           "kind": "container",
@@ -1341,22 +1341,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "fail",
-          "message": "no-new-privileges not set",
-          "evidence": {
-            "securityOpt": [],
-            "engineSeccomp": true
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
           }
         },
         {
@@ -1395,6 +1379,22 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "fail",
+          "message": "no-new-privileges not set",
+          "evidence": {
+            "securityOpt": [],
+            "engineSeccomp": true
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -1487,22 +1487,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "runs as 10001:10001 (container setting)",
-          "evidence": {
-            "user": "10001:10001",
-            "source": "container"
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "prometheus",
           "tenant": null,
           "workloadId": "provider-prometheus",
@@ -1531,6 +1515,22 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "runs as 10001:10001 (container setting)",
+          "evidence": {
+            "user": "10001:10001",
+            "source": "container"
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -1624,22 +1624,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "private PID and UTS namespaces",
-          "evidence": {
-            "pidMode": "private",
-            "utsMode": "private"
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "prometheus",
           "tenant": null,
           "workloadId": "provider-prometheus",
@@ -1669,6 +1653,22 @@
             "file": "testbed/compose.insecure.yaml",
             "line": 38
           }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "private PID and UTS namespaces",
+          "evidence": {
+            "pidMode": "private",
+            "utsMode": "private"
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
+          }
         }
       ]
     },
@@ -1677,7 +1677,7 @@
       "status": "fail",
       "waived": false,
       "waiver": null,
-      "message": "fail on tenant-a, tenant-b, tenant-c: no limit on cpu, memory, pids",
+      "message": "fail on tenant-a, tenant-c, tenant-b: no limit on cpu, memory, pids",
       "targets": [
         {
           "kind": "container",
@@ -1699,24 +1699,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "fail",
-          "message": "no limit on cpu, memory, pids",
-          "evidence": {
-            "cpus": 0.0,
-            "memoryBytes": 0,
-            "memorySwapBytes": 0,
-            "pidsLimit": 0
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": null,
           "workloadId": null,
@@ -1731,6 +1713,24 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "fail",
+          "message": "no limit on cpu, memory, pids",
+          "evidence": {
+            "cpus": 0.0,
+            "memoryBytes": 0,
+            "memorySwapBytes": 0,
+            "pidsLimit": 0
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -1740,7 +1740,7 @@
       "status": "fail",
       "waived": false,
       "waiver": null,
-      "message": "fail on tenant-a, tenant-b, tenant-c: no cpuset: may run on any CPU, including other tenants'",
+      "message": "fail on tenant-a, tenant-c, tenant-b: no cpuset: may run on any CPU, including other tenants'",
       "targets": [
         {
           "kind": "container",
@@ -1759,21 +1759,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "fail",
-          "message": "no cpuset: may run on any CPU, including other tenants'",
-          "evidence": {
-            "cpuset": ""
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": null,
           "workloadId": null,
@@ -1786,6 +1771,21 @@
             "file": "testbed/compose.insecure.yaml",
             "line": 38
           }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "fail",
+          "message": "no cpuset: may run on any CPU, including other tenants'",
+          "evidence": {
+            "cpuset": ""
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
+          }
         }
       ]
     },
@@ -1794,7 +1794,7 @@
       "status": "fail",
       "waived": false,
       "waiver": null,
-      "message": "fail on tenant-c: engine socket mounted: /run/host-services/docker.proxy.sock",
+      "message": "fail on tenant-c: engine socket mounted: /var/run/docker.sock",
       "targets": [
         {
           "kind": "container",
@@ -1873,21 +1873,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "no engine socket",
-          "evidence": {
-            "sockets": []
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "prometheus",
           "tenant": null,
           "workloadId": "provider-prometheus",
@@ -1907,15 +1892,30 @@
           "tenant": null,
           "workloadId": null,
           "status": "fail",
-          "message": "engine socket mounted: /run/host-services/docker.proxy.sock",
+          "message": "engine socket mounted: /var/run/docker.sock",
           "evidence": {
             "sockets": [
-              "/run/host-services/docker.proxy.sock"
+              "/var/run/docker.sock"
             ]
           },
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "no engine socket",
+          "evidence": {
+            "sockets": []
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -1955,6 +1955,9 @@
         "checkId": "HV-03",
         "platform": "docker-desktop-wsl2",
         "target": null,
+        "covers": [
+          "spec_rstack_overflow"
+        ],
         "reason": "The WSL2 kernel reports spec_rstack_overflow as \"Vulnerable: Safe RET, no microcode\". The SRSO microcode fix is delivered through the physical host's firmware/Windows updates; the container host (a WSL2 VM) cannot load microcode itself. This is a provider-layer weakness outside the testbed's control - the paper's point about tenants depending on a hypervisor they cannot inspect or fix.",
         "expires": "2026-12-31",
         "approvedBy": "project owner (pending review)"
@@ -1990,6 +1993,7 @@
         "checkId": "HV-04",
         "platform": "docker-desktop-wsl2",
         "target": null,
+        "covers": null,
         "reason": "User-namespace remapping and rootless mode are not available in Docker Desktop without Enhanced Container Isolation (Business subscription). Compensating controls: every tenant runs as uid 10001 with all capabilities dropped, no-new-privileges and seccomp.",
         "expires": "2026-12-31",
         "approvedBy": "project owner (pending review)"
@@ -2038,19 +2042,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "skip",
-          "message": "host has no AppArmor or SELinux",
-          "evidence": {},
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": null,
           "workloadId": null,
@@ -2060,6 +2051,19 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "skip",
+          "message": "host has no AppArmor or SELinux",
+          "evidence": {},
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -2096,7 +2100,7 @@
       "status": "fail",
       "waived": false,
       "waiver": null,
-      "message": "fail on tenant-c: sensitive host paths: /run/host-services/docker.proxy.sock, /etc; writable host paths: /run/host-services/docker.proxy.sock",
+      "message": "fail on tenant-c: sensitive host paths: /var/run/docker.sock, /etc; writable host paths: /var/run/docker.sock",
       "targets": [
         {
           "kind": "container",
@@ -2115,6 +2119,24 @@
         },
         {
           "kind": "container",
+          "ref": "tenant-c",
+          "tenant": null,
+          "workloadId": null,
+          "status": "fail",
+          "message": "sensitive host paths: /var/run/docker.sock, /etc; writable host paths: /var/run/docker.sock",
+          "evidence": {
+            "binds": [
+              "/var/run/docker.sock",
+              "/etc"
+            ]
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 38
+          }
+        },
+        {
+          "kind": "container",
           "ref": "tenant-b",
           "tenant": "b",
           "workloadId": "b-batch-analytics",
@@ -2126,24 +2148,6 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 23
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": null,
-          "workloadId": null,
-          "status": "fail",
-          "message": "sensitive host paths: /run/host-services/docker.proxy.sock, /etc; writable host paths: /run/host-services/docker.proxy.sock",
-          "evidence": {
-            "binds": [
-              "/run/host-services/docker.proxy.sock",
-              "/etc"
-            ]
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 38
           }
         }
       ]
@@ -2175,7 +2179,7 @@
         },
         {
           "kind": "volume",
-          "ref": "/run/host-services/docker.proxy.sock",
+          "ref": "/var/run/docker.sock",
           "tenant": null,
           "workloadId": null,
           "status": "pass",
@@ -2236,21 +2240,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "private IPC namespace",
-          "evidence": {
-            "ipcMode": "private"
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": null,
           "workloadId": null,
@@ -2263,6 +2252,21 @@
             "file": "testbed/compose.insecure.yaml",
             "line": 38
           }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "private IPC namespace",
+          "evidence": {
+            "ipcMode": "private"
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
+          }
         }
       ]
     },
@@ -2271,7 +2275,7 @@
       "status": "fail",
       "waived": false,
       "waiver": null,
-      "message": "fail on tenant-a, tenant-b, tenant-c: writable root filesystem",
+      "message": "fail on tenant-a, tenant-c, tenant-b: writable root filesystem",
       "targets": [
         {
           "kind": "container",
@@ -2350,21 +2354,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "fail",
-          "message": "writable root filesystem",
-          "evidence": {
-            "readOnlyRootfs": false
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "prometheus",
           "tenant": null,
           "workloadId": "provider-prometheus",
@@ -2391,6 +2380,21 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "fail",
+          "message": "writable root filesystem",
+          "evidence": {
+            "readOnlyRootfs": false
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -2419,21 +2423,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "no secret-like variable names",
-          "evidence": {
-            "variables": []
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": null,
           "workloadId": null,
@@ -2447,6 +2436,21 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "no secret-like variable names",
+          "evidence": {
+            "variables": []
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -2631,21 +2635,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "own network namespace (isolab_ops-net)",
-          "evidence": {
-            "networkMode": "isolab_ops-net"
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "prometheus",
           "tenant": null,
           "workloadId": "provider-prometheus",
@@ -2672,6 +2661,21 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "own network namespace (isolab_ops-net)",
+          "evidence": {
+            "networkMode": "isolab_ops-net"
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -2702,21 +2706,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "publishes no host ports",
-          "evidence": {
-            "published": []
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": null,
           "workloadId": null,
@@ -2728,6 +2717,21 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "publishes no host ports",
+          "evidence": {
+            "published": []
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -2802,9 +2806,9 @@
           "tenant": null,
           "workloadId": null,
           "status": "pass",
-          "message": "heartbeat 0s ago",
+          "message": "heartbeat 1s ago",
           "evidence": {
-            "heartbeatAgeSeconds": 0.29346227645874023
+            "heartbeatAgeSeconds": 0.6248002052307129
           },
           "location": {
             "file": "testbed/policy.yaml",
@@ -2932,22 +2936,6 @@
         },
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "identified as b-batch-analytics",
-          "evidence": {
-            "plane": "tenant",
-            "missing": []
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
-          }
-        },
-        {
-          "kind": "container",
           "ref": "prometheus",
           "tenant": null,
           "workloadId": "provider-prometheus",
@@ -2981,6 +2969,22 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "identified as b-batch-analytics",
+          "evidence": {
+            "plane": "tenant",
+            "missing": []
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]
@@ -3037,6 +3041,19 @@
         },
         {
           "kind": "container",
+          "ref": "tenant-c",
+          "tenant": null,
+          "workloadId": null,
+          "status": "skip",
+          "message": "no tenant label (see ID-01)",
+          "evidence": {},
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 38
+          }
+        },
+        {
+          "kind": "container",
           "ref": "tenant-b",
           "tenant": "b",
           "workloadId": "b-batch-analytics",
@@ -3051,19 +3068,6 @@
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 23
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": null,
-          "workloadId": null,
-          "status": "skip",
-          "message": "no tenant label (see ID-01)",
-          "evidence": {},
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 38
           }
         }
       ]
@@ -3081,11 +3085,11 @@
           "tenant": null,
           "workloadId": "provider-auditor",
           "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
+          "message": "built from a pinned base at revision d744dd246f1f",
           "evidence": {
             "image": "isolab/auditor:local",
             "base": "python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
-            "revision": "dffa2c70c553"
+            "revision": "d744dd246f1f"
           },
           "location": {
             "file": "testbed/compose.yaml",
@@ -3132,11 +3136,11 @@
           "tenant": "a",
           "workloadId": "a-payments-api",
           "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
+          "message": "built from a pinned base at revision d744dd246f1f",
           "evidence": {
             "image": "isolab/payments-api:local",
             "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
-            "revision": "dffa2c70c553"
+            "revision": "d744dd246f1f"
           },
           "location": {
             "file": "testbed/compose.insecure.yaml",
@@ -3149,32 +3153,15 @@
           "tenant": null,
           "workloadId": "provider-canary",
           "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
+          "message": "built from a pinned base at revision d744dd246f1f",
           "evidence": {
             "image": "isolab/canary:local",
             "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
-            "revision": "dffa2c70c553"
+            "revision": "d744dd246f1f"
           },
           "location": {
             "file": "testbed/compose.yaml",
             "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
-          "evidence": {
-            "image": "isolab/batch-analytics:local",
-            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
-            "revision": "dffa2c70c553"
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
           }
         },
         {
@@ -3210,6 +3197,23 @@
             "file": "testbed/compose.insecure.yaml",
             "line": 38
           }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "built from a pinned base at revision d744dd246f1f",
+          "evidence": {
+            "image": "isolab/batch-analytics:local",
+            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+            "revision": "d744dd246f1f"
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
+          }
         }
       ]
     },
@@ -3228,28 +3232,12 @@
           "status": "pass",
           "message": "usage and pressure sampled",
           "evidence": {
-            "lastSampleAgeSeconds": 4.3,
+            "lastSampleAgeSeconds": 4.8,
             "psi": true
           },
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 12
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "usage and pressure sampled",
-          "evidence": {
-            "lastSampleAgeSeconds": 4.3,
-            "psi": true
-          },
-          "location": {
-            "file": "testbed/compose.insecure.yaml",
-            "line": 23
           }
         },
         {
@@ -3260,12 +3248,28 @@
           "status": "pass",
           "message": "usage and pressure sampled",
           "evidence": {
-            "lastSampleAgeSeconds": 4.3,
+            "lastSampleAgeSeconds": 4.8,
             "psi": true
           },
           "location": {
             "file": "testbed/compose.insecure.yaml",
             "line": 38
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "usage and pressure sampled",
+          "evidence": {
+            "lastSampleAgeSeconds": 4.8,
+            "psi": true
+          },
+          "location": {
+            "file": "testbed/compose.insecure.yaml",
+            "line": 23
           }
         }
       ]

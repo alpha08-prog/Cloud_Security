@@ -1,0 +1,1158 @@
+IsoLab: Executable Container Defenses and
+Multi-Tenant Reliability Evaluation
+Atharva Agrawal
+Indian Institute of Information Technology Dharwad
+Dharwad, India
+23bds010@iiitdwd.ac.in
+Niti Priya
+Indian Institute of Information Technology Dharwad
+Dharwad, India
+23bcs087@iiitdwd.ac.in
+Abstract—Multi-tenant containers require both enforceable
+boundaries and predictable resource access. IsoLab integrates
+thirty conﬁguration checks, resource controls, event rules and
+startup-integrity enforcement with a reproducible interference
+evaluation. A new single-host pilot comprises 160 runs of a
+payments service and Spark RandomForest and SVM work-
+loads. Under sustained contention, the hardened resource-control
+adaptation reduces median victim latency or job time by 61.0,
+35.1 and 40.1 percent, respectively, while reducing competing-
+workload throughput by approximately 64–66 percent. Us-
+ing common telemetry and execution-level held-out splits, a
+lightweight resource-logistic detector achieves F1 1.000 versus
+0.941 for a 2024-inspired autoencoder/LSTM adaptation on
+payments; both reach 1.000 on RandomForest. On SVM, logistic
+F1 is 0.400 versus 0.857 for the neural adaptation. Logistic ﬁtting
+takes milliseconds rather than tens of seconds, but accuracy
+depends on workload and the small test sets do not establish
+general superiority. Historical security experiments additionally
+validate twelve blocked exposure paths, independent conﬁgura-
+tion faults and startup-integrity decisions. The contribution is a
+reproducible evaluation of isolation beneﬁts, resource cost and
+detector tradeoffs, with explicit separation between published
+reference numbers and locally measured adaptations.
+Index Terms—cloud security, site reliability engineering, multi-
+tenancy, container isolation, noisy neighbor
+I. I NTRODUCTION
+Cloud tenants depend on boundaries that preserve conﬁden-
+tiality and predictable resource access. A workload can suffer
+latency inﬂation when another tenant exhausts shared proces-
+sor capacity, even without a direct compromise. Conversely,
+healthy request latency does not establish that networks,
+storage, or management interfaces are isolated. Assessing a
+cloud security mechanism therefore requires complementary
+evidence about resource interference, boundary enforcement,
+and detection.
+Two recent studies motivate this work. Horchulhack et
+al. [1] investigate provider-side detection of container in-
+terference using resource observations and learned temporal
+classiﬁcation. Jarkas et al. [2] organize container exploits and
+defenses into a security taxonomy. These studies motivate a
+practical question: how can selected defensive recommenda-
+tions be connected to reproducible enforcement and reliability
+evidence in an accessible laboratory? IsoLab answers with
+a scoped implementation and explicit evidence boundaries.
+Its original R1–R4 requirement labels and ﬁve-axis check
+grouping retain their historical provenance in Gonzalez et
+al. [3]; they are not attributed to the recent papers.
+IsoLab connects security controls to site reliability engineer-
+ing (SRE) through a measurable latency objective and tenant-
+level resource observations. The study addresses ﬁve research
+questions:
+• RQ1: Does the hardened conﬁguration reduce processor
+interference relative to an intentionally insecure baseline?
+• RQ2: Are the tested tenant boundaries closed while
+required application and monitoring connectivity remains
+functional?
+• RQ3: Are benign isolation-breaking triggers detected
+within speciﬁed latency limits and with the expected
+workload attribution?
+• RQ4: Do selected defense checks and startup integrity
+enforcement reject their speciﬁed conﬁguration and ﬁle-
+integrity faults?
+• RQ5: How do a lightweight resource classiﬁer, a 2024-
+inspired temporal model and existing rules trade detection
+quality against ﬁtting cost on common measurements?
+Our contributions are: (1) a 160-run matched pilot compar-
+ing interference protection, competing throughput and detector
+accuracy/cost on three workloads; (2) a machine-readable
+crosswalk connecting selected 2025 survey defense themes
+to existing conﬁguration checks and complementary observa-
+tions; (3) startup hashing and executable/entry-script allowlist-
+ing, implementing a selected aspect of mitigation M2; (4) inde-
+pendent conﬁguration-fault and integrity challenges, alongside
+historical latency, segmentation, and detection evidence; and
+(5) fail-closed evidence predicates and an interactive research
+interface. The system integrates established controls rather
+than introducing a new isolation primitive. Historical live runs
+and newly executed local challenges are reported separately.
+II. B ACKGROUND AND RELATED WORK
+A. Recent Multi-Tenant Monitoring and Container Security
+Horchulhack et al. [1] combine engine and process-
+namespace observations with feature reduction and time-
+series classiﬁcation, evaluated on a distributed containerized
+Big Data platform. IsoLab shares the provider-observation
+motivation but uses explicit CPU-sharing rules, PSI, resource
+controls, and a synthetic request-latency experiment. The new
+
+TABLE I
+POSITIONING RELATIVE TO THE TWO MAIN SOURCE WORKS
+Work Main method Evidence and relationship
+Horchulhack et
+al. (2024) [ 1]
+Resource observation,
+feature reduction,
+temporal classiﬁcation
+Distributed-service
+interference detection;
+principal quantitative
+reference
+Jarkas et al.
+(2025) [ 2]
+Exploit and defense
+taxonomy
+Survey synthesis; supplies
+selected defensive
+recommendations
+IsoLab Conﬁguration checks,
+resource controls, event
+rules, startup hashing
+E1–E5 evidence and a
+160-run matched adaptation;
+workload-dependent results
+pilot implements an explicit single-host architecture adaptation
+using common local telemetry, not the original four-host
+feature pipeline or deployment. Detector accuracy numbers
+from that study are therefore not directly comparable with
+IsoLab’s deterministic trigger counts.
+The 2025 ACM survey [ 2] supplies an exploit/defense
+taxonomy rather than one reference algorithm. We implement
+selected software defenses and operationalize their validation.
+This complements the survey with executable local evidence;
+it neither replaces its breadth nor validates every associated
+vulnerability. Binary integrity checking, in particular, is scoped
+to startup under a trusted build and manifest.
+Table I distinguishes the source works from the present
+study by method and evidence. It establishes scope rather than
+a ranking: workloads, deployment sizes, and evaluation units
+differ.
+B. Container Threats and Empirical Security Evaluation
+Sultan et al. [4] distinguish security relationships within
+containers, between containers, and between containers and
+the host. This motivates making the trusted provider and
+host boundary explicit. Lin et al. [5] evaluate Linux-container
+protection using real exploit cases and examine interacting
+kernel defenses. Their exploit-based evidence addresses a
+stronger attack mechanism than our benign probes and con-
+ﬁguration mutations. IsoLab’s closed endpoints and startup
+decisions consequently cannot be interpreted as equivalent
+exploit-resistance evidence.
+C. Virtualization Security Requirements
+The source survey [ 3] treats virtualization as an architec-
+tural security concern and emphasizes isolation and cross-VM
+attacks. IsoLab implements the engineering implications of its
+future-work requirements. It does not implement every branch
+of the taxonomy or claim that the historical literature deﬁcit
+persists. Its check-coverage percentages quantify conﬁguration
+posture and cannot be compared numerically with the survey’s
+citation shares.
+D. Containers and Resource Observation
+NIST SP 800-190 describes containers as operating-system
+virtualization and discusses their security risks [ 6]. Containers
+share a kernel, whereas hardware virtual machines use a
+different isolation boundary. This work is consequently a
+container adaptation of VM-oriented requirements, rather than
+a reproduction of a KVM, Xen, or VMware deployment.
+Felter et al. [7] compare virtual-machine and Linux-
+container performance across workloads. This motivates dis-
+tinguishing virtualization overhead from the interference ques-
+tion examined here. IsoLab compares two container conﬁgu-
+rations and does not measure a container-versus-VM perfor-
+mance advantage.
+Linux cgroup v2 provides hierarchical resource control [ 8],
+while Pressure Stall Information (PSI) measures time lost to
+resource pressure [ 9]. IsoLab combines these interfaces with
+conﬁguration snapshots and engine events. Its explicit service-
+level objective (SLO) follows the SRE practice of assessing
+reliability through measurable service indicators [ 10]. Here,
+the SLO is an experimental latency criterion at a ﬁxed offered
+load, not a contractual availability guarantee.
+Dean and Barroso [11] explain why high-percentile latency
+matters in large services. IsoLab uses p99 as a tenant-visible
+indicator, while recognizing that its synthetic single-service
+workload does not reproduce the fan-out behavior or scale
+considered in that work.
+E. Isolation and Scheduling Defenses
+V aradarajanet al. [12] investigate scheduler-based defenses
+against cross-VM side channels, including minimum run-
+time guarantees and per-core state cleansing in Xen. That
+work evaluates a speciﬁc attack mechanism. IsoLab instead
+measures tenant-visible latency, conﬁguration exposure, and
+benign event detection. Disjoint reported CPU allocations in
+this study must not be interpreted as demonstrating side-
+channel resistance. No comparative benchmark against that
+scheduler or commercial security products was performed; the
+later pilot compares four detection approaches on common
+telemetry.
+III. S YSTEM DESIGN
+A. Scope and Threat Model
+The protected assets are tenant application responsive-
+ness, tenant storage markers, process visibility, and access to
+provider management and telemetry interfaces. An untrusted
+tenant may consume its permitted CPU resources and attempt
+connections or reads from its own execution context. The
+testbed also exercises potentially unsafe management opera-
+tions through controlled operator triggers, such as starting a
+privileged workload or attaching a tenant to a foreign network.
+These triggers validate observation; they do not assume that
+an isolated tenant can invoke the provider’s management API.
+The provider plane, conﬁguration policy, host kernel, en-
+gine, and socket proxy form the trusted computing base.
+Workload identity labels are administrative metadata, not cryp-
+tographic attestation. Kernel compromise, malicious provider
+administration, hardware side channels, secret recovery, and
+arbitrary exploit resistance are outside the evaluated threat
+
+Tenant A
+Payments
+Startup hash gate
+Tenant B
+Batch / noise
+Startup hash gate
+Tenant C
+Legacy / probes
+Startup hash gate
+Docker engine and cgroup v2 host interfaces
+ Profiles establish tenant boundaries
+Restricted API proxy
+Snapshots, stats, events
+Read-only mount
+ cgroup PSI
+Metadata canary
+Authenticated hook
+Auditor: checks, attribution, and runtime detections
+ Reports, policy gate, and metrics
+Prometheus / Grafana and published results interface
+Fig. 1. IsoLab observation architecture. The socket proxy carries engine
+observations; cgroup PSI uses a separate read-only host mount. The canary
+reports access through an authenticated hook. Startup gates are enabled in the
+revised hardened proﬁle and postdate E1–E3 measurements.
+model. This boundary permits defensive experiments without
+executing exploitation code.
+B. Architecture and Conﬁguration Proﬁles
+The tenant plane contains tenant A, a CPU-sensitive pay-
+ments service; tenant B, a batch workload and processor stress
+job; and tenant C, a legacy workload used as a probe origin.
+The provider plane contains the auditor, a restricted engine-
+socket proxy, metadata canary, Prometheus, and Grafana.
+Fig. 1 summarizes the observation and reporting paths. The
+provider conﬁguration is held constant across the insecure and
+hardened tenant proﬁles.
+In the hardened proﬁle, workloads run as user 10001, drop
+capabilities, enable no-new-privileges, and use read-only root
+ﬁlesystems. Process and memory limits constrain resource
+use. Separate internal networks and volumes establish tenant
+boundaries. A topology planner allocates disjoint reported
+physical-core groups to tenants and separate groups to the
+provider and load generator; CPU quotas further constrain exe-
+cution. Nested virtualization means that reported core topology
+does not establish exclusive use of physical host cores or
+caches.
+Docker exposes CPU quotas, CPU afﬁnity, and memory
+constraints as distinct resource controls [ 13]. Seccomp restricts
+system-call access [ 14]; its conﬁgured presence reduces ex-
+posed functionality but does not prove the absence of kernel
+defects. Several controls change together, so the experiment
+estimates the effect of the conﬁguration bundle.
+C. Conﬁguration Auditing and Policy Gates
+Table II maps the implementation to R1–R4. The auditor
+evaluates conﬁguration checks against a snapshot and policy,
+TABLE II
+HISTORICAL R1–R4 R EQUIREMENTS AND IMPLEMENTATION EVIDENCE
+Req. Mechanisms Evidence
+R1 Identity Workload and tenant labels; identity
+checks; canary attribution
+E3 attribution
+R2
+Separation
+CPU sets and quotas; network and
+volume boundaries; least privilege
+E1 latency; E2
+probes
+R3
+Observation
+Five-second resource and PSI
+sampling; telemetry and CPU
+fairness rule
+E1 counters; E3
+noise trigger
+R4
+Examination
+Engine events; privileged-start and
+attachment rules; metadata canary
+E2 exposure; E3
+triggers
+groups ﬁndings by the source survey’s ﬁve virtualization axes,
+and exports JSON and Static Analysis Results Interchange For-
+mat (SARIF) 2.1.0 reports [ 15]. Python data models generate
+JSON Schemas. The TypeScript interface validates published
+reports and independently recomputes scores. The auditor
+obtains engine information through a restricted socket proxy
+with write requests disabled; a read-only ﬁlesystem mount
+alone would not make an engine socket safe.
+For the applicable check set A, coverage is
+C = ∑i∈A wici
+∑i∈A wi
+, (1)
+where severity weights wi are 4, 3, 2, and 1 for critical,
+high, medium, and low checks. Passing checks earn credit
+ci = 1, warnings earn 0.5, and failures or errors earn 0. Waived
+ﬁndings also earn 0; skipped checks are excluded from A.
+This project-deﬁned score describes posture, not compromise
+probability. A separate high-severity policy gate determines
+whether blocking ﬁndings remain.
+Time-limited waivers retain provider weaknesses as visible
+ﬁndings. The historical hardened run waived CPU mitigation
+exposure (HV -03) and absence of user namespaces (HV -
+04). Mandatory access control (HV -05) was skipped because
+AppArmor or SELinux was unavailable. Waiver approval ﬁelds
+remain pending owner review; a computationally passing gate
+is therefore not evidence of documented risk acceptance.
+D. Runtime Observation and Detection
+Nine rules observe tenant execution, privileged starts,
+engine-socket mounts, host-namespace joins, missing identity,
+cross-tenant network attachment, canary access, excessive
+shared-CPU use, and out-of-memory events. Docker’s event
+interface exposes container lifecycle and execution events [ 16];
+IsoLab adds project-speciﬁc classiﬁcation and attribution. Re-
+source counters and PSI are sampled every ﬁve seconds. The
+noisy-neighbor rule identiﬁes sustained excessive processor
+use on CPUs shared with another active tenant. Detection
+records include rule, workload, expected attribution evidence,
+and timestamps.
+Rules describe observable behaviors rather than inferred
+malicious intent. Legitimate maintenance can generate similar
+events. Detection state is bounded and held in memory, so
+durable incident retention requires additional infrastructure.
+
+The experiments exercise eight trigger types; the out-of-
+memory rule is not included in the live detection evaluation.
+E. Selected ACM Defenses and Startup Integrity
+The crosswalk records six selected themes: host-mount
+restriction, root-ﬁlesystem immutability, least privilege, private
+process namespaces, syscall ﬁltering, and resource allocation.
+Mount restriction implements the host-volume aspect of M1;
+immutability implements M3. Other associations use the sur-
+vey’s attack surfaces, including E18/E32, A6.1/E23, A7, and
+E34. These are our defensive engineering associations, not
+claims that a conﬁguration check reproduces a CVE or extends
+the survey’s own mitigation table. A theme is conﬁguration-
+veriﬁed only when every mapped check and target passes
+without a waiver. Missing, duplicate, skipped, erroneous, or
+waived evidence cannot establish veriﬁcation. No percentage
+of the complete exploit taxonomy is inferred.
+For a selected aspect of M2, image builds produce SHA-256
+allowlists of the interpreter, startup application, probe script,
+and integrity launcher; the batch image additionally includes
+the stress executable. SHA-256 is speciﬁed in the Secure
+Hash Standard [ 17]; using that hash does not authenticate
+the manifest or establish trusted build provenance. Hardened
+workloads enable a launcher that validates all recorded hashes
+and permits only an allowlisted executable. For Python, it ad-
+ditionally requires an allowlisted entry script, rejecting inline
+or module-mode execution through this launcher. A mismatch,
+missing ﬁle, unlisted command, or invalid manifest returns exit
+code 78 before application execution. The ordinary hardened
+batch job also uses this launcher. The insecure proﬁle leaves
+enforcement disabled as a comparison control.
+The build environment, manifest, launcher, and engine re-
+main trusted. An engine administrator can replace the entry-
+point, and an arbitrary process started through another path
+is not mediated. This mechanism is startup integrity checking
+rather than continuous attestation, complete application con-
+trol, or protection against a compromised image builder. It
+complements the read-only ﬁlesystem instead of replacing it.
+IV. E XPERIMENTAL METHOD
+A. Environment and Evidence Provenance
+The historical E1–E3 measurements were generated on Oc-
+tober 12, 2026, under source identiﬁer dffa2c70c553. The
+environment records six reported physical cores, twelve logi-
+cal CPUs, Docker 29.2.1, kernel 6.6.87.2-microsoft-standard-
+WSL2, and cgroup v2. The artifact contains protocols, per-run
+summaries, outcomes, and machine-readable hypotheses [ 18].
+The revised defense crosswalk and E4–E5 challenges were
+executed on November 11, 2026. They do not update or relabel
+the historical latency measurements; those predate the new
+startup integrity mechanism.
+B. E1 Processor Interference
+A constant-arrival-rate k6 workload sends 50 requests per
+second to tenant A ’s/work endpoint. This open-model execu-
+tor schedules iterations independently of response time while
+sufﬁcient virtual users are available [ 19]; dropped iterations are
+therefore an explicit validity condition. Each arm has 15 sec-
+onds of discarded warm-up and 90 measured seconds. Three
+repetitions per proﬁle and arm produce twelve measured runs.
+Tenant B executes a CPU-only stress-ng job. A separate
+load-generator allocation limits measurement interference. The
+application performs 2500 SHA-256 rounds per request and
+reports server work time separately from request latency.
+The four arms are insecure baseline, insecure noisy, hard-
+ened baseline, and hardened noisy. Arms are interleaved with
+cooldowns. Runs are invalid if arrival iterations are dropped,
+failures exceed 1%, or the noisy job fails the protocol’s
+processor-activity ﬂoor. The committed full run satisﬁes these
+validity conditions. The experimental SLO is a 99th-percentile
+request latency of at most 25 ms.
+For proﬁle p, the interference factor is
+IFp = medianr q.99,p,noisy,rmedianr q.99,p,baseline,r , (2)
+where q.99,p,a,r is the request-latency quantile for repetition r
+in arm a. This is a ratio of medians of run quantiles, not a
+quantile of pooled requests. Three run repetitions, rather than
+the number of requests, determine the experimental replication
+count.
+C. E2 Boundary Probes
+Twelve read-only or connection-based probes test cross-
+tenant DNS and IP access, a published host route, metadata
+and telemetry access, internet egress, process visibility, engine-
+socket access, host-ﬁle visibility, another tenant’s nonsecret
+marker ﬁle, effective capabilities, and tenant-B-to-A connec-
+tivity. Three positive controls verify application health access,
+provider monitoring access, and local loopback connectivity.
+Each probe returns allowed, blocked, or error. A passing hard-
+ened result requires all twelve boundaries explicitly blocked
+and all three controls allowed; an error is not evidence of
+isolation.
+D. E3 Detection V alidation
+Each proﬁle ﬁrst runs under normal load for 120 seconds,
+followed by benign triggers corresponding to unsafe execution,
+privilege, mounts, namespaces, missing labels, network at-
+tachment, canary access, and CPU contention. Ordinary event
+detections have a ﬁve-second limit, while the sustained noisy-
+neighbor rule has a ninety-second limit. Attribution must agree
+with the protocol’s expected identity, which can be unknown
+for unlabelled workloads. Hardened trigger T7 is expected to
+remain silent because its dedicated CPU allocation prevents
+the shared-CPU detection condition. Event and observation
+timestamps use the same VM clock domain.
+E. Hypotheses and Analysis Plan
+The protocol speciﬁes H1: insecure IF ≥ 2; H2: hardened
+IF ≤ 1.25 while meeting the latency target; optional H3:
+increased server time under SMT sharing; H4: noisy-neighbor
+detection in the insecure proﬁle and silence in the hardened
+proﬁle; H5: at least ten insecure paths open; H6: zero hardened
+
+paths open with passing controls; and H7: timely detection,
+expected attribution, and no observed false positives. The
+protocol logs detector calibration changes after smoke tests.
+A later evidence-validation correction strengthens acceptance
+predicates without changing thresholds or historical measure-
+ments.
+We report run-level medians and ranges rather than statisti-
+cal signiﬁcance from three repetitions. For detection, illustra-
+tive Wilson intervals [20] show the uncertainty associated with
+small success counts; heterogeneous deterministic triggers do
+not justify treating those intervals as representative attack-
+detection estimates. A separately qualiﬁed Poisson calculation
+illustrates the limited information supplied by a short quiet
+window.
+F . E4 Conﬁguration Faults and E5 Startup Integrity
+E4 starts with the committed hardened snapshot and in-
+dependently mutates tenant A ten times: privileged execution,
+retained capabilities, unconﬁned seccomp, root execution, host
+PID sharing, missing CPU quota, writable root ﬁlesystem,
+sensitive host bind, engine-socket mount, and absent CPU
+placement. Each mutation starts from a fresh deep copy.
+Success requires the speciﬁed tenant/check pair to pass before
+mutation and explicitly fail afterward. Existing unrelated host
+failures cannot satisfy this criterion. This is a saved-snapshot
+checker-sensitivity experiment, not ten live attacks or ten
+independent deployments.
+For mutation j, let b j and m j denote the targeted baseline
+and mutated check outcomes. The acceptance indicator is
+d j = 1{b j = pass ∧ m j = fail}. (3)
+Only the same tenant/check pair is compared. Missing or
+ambiguous targets earn zero credit, and every case must satisfy
+the indicator for the study gate to pass. This distinguishes
+detection of an introduced regression from rediscovery of an
+existing failure.
+E5 executes the actual launcher in isolated subprocesses
+with a temporary application that writes an execution marker.
+The clean case must exit successfully and create the marker;
+modiﬁed, missing, or unlisted scripts and an invalid manifest
+must return 78 without creating it. These ﬁve deliberately
+selected cases validate startup decisions, not general attack-
+detection accuracy. A separate container check exercises clean
+and bind-mounted altered application ﬁles in each of the three
+built tenant images. Neither challenge modiﬁes a deployed
+tenant or a published historical result.
+V. R ESULTS AND ANALYSIS
+A. Conﬁguration Posture and Boundary Enforcement
+Table III summarizes the posture and segmentation results.
+Equation ( 1) gives 19.51% coverage for the insecure conﬁgu-
+ration and 93.90% for the hardened conﬁguration, an increase
+of 74.39 percentage points. Twenty-nine of the thirty checks
+are applicable. The hardened proﬁle has 27 passes, two waived
+failures, and one skip; the waived ﬁndings retain their coverage
+penalty.
+TABLE III
+CONFIGURATION AND SEGMENTATION RESULTS
+Metric Insecure Hardened
+Weighted coverage 16/82 (19.51%) 77/82 (93.90%)
+Passing checks 6 27
+Failing checks 23 2 (waived)
+Skipped checks 1 1
+High-severity gate 15 blockers Pass; 2 waivers
+Open isolation paths 12/12 0/12
+Positive controls 3/3 3/3
+TABLE IV
+RUN-L EVEL 99 TH-P ERCENTILE REQUEST LATENCY
+Proﬁle and arm Median (ms) Range (ms)
+Insecure baseline 4.334 4.320–4.492
+Insecure noisy 16.463 16.229–16.663
+Hardened baseline 4.594 4.535–4.628
+Hardened noisy 5.617 5.105–5.904
+All twelve tested isolation paths are open in the insecure
+proﬁle and explicitly blocked in the hardened proﬁle. Passing
+positive controls support the interpretation that hardened out-
+comes reﬂect the intended boundaries rather than complete
+application or network failure. They do not exclude every
+alternative cause of a particular connection failure or establish
+isolation beyond the tested endpoints and times. These results
+answer RQ2 for the tested path set.
+B. Latency Under Contention
+Table IV and Fig. 2 show the latency results. Published
+interference factors are 3.799 insecure and 1.223 hardened.
+Recalculation using unrounded medians gives 3.7984 and
+1.2225; the small discrepancy is due to the publisher dividing
+rounded medians. The relative noisy-arm improvement is
+∆99 = 100
+(
+1 − 5.616545416.462774 ) = 65.88%. (4)
+Hardened baseline latency is approximately 6.0% higher
+than insecure baseline latency. Because the experiment
+changes a bundle of controls, it cannot attribute either that
+baseline difference or the noisy-arm reduction to a single
+mechanism. Both conﬁgurations remain within the 25 ms SLO,
+so the demonstrated beneﬁt is reduced interference and greater
+latency headroom, rather than recovery from an observed SLO
+violation. This answers RQ1 within the tested workload.
+The insecure and hardened proﬁles contain 27005 and
+27003 measured iterations, respectively. Those requests are
+nested within only three repetitions per arm. With this replica-
+tion count and no retained request-level traces in the published
+package, the observed ranges are descriptive; they do not sup-
+port precise population tail estimates or a claim of statistical
+signiﬁcance.
+
+0
+5
+10
+15
+20
+25
+25 ms SLO
+Insecure baseline
+4.334
+Insecure noisy
+16.463
+Hardened baseline
+4.594
+Hardened noisy
+5.617
+99th-percentile latency (ms)
+Whiskers: min-max across three runs
+Fig. 2. E1 request latency. Bars show medians of run-level p99 values;
+whiskers show the minimum and maximum across three runs, not conﬁdence
+intervals. The dashed line is the 25 ms SLO. Both proﬁles meet the target.
+TABLE V
+DETECTION RESULTS AND EXPECTED ATTRIBUTION
+Metric Insecure Hardened
+Timely expected detections 8/8 7/7
+Expected attribution agreement 100% 100%
+Median latency (ms) 177.9 95.4
+Maximum latency (ms) 43752.4 216.6
+Alerts in 120-s quiet window 0 0
+C. Detection and Attribution
+Table V summarizes E3. All eight expected insecure de-
+tections and seven expected hardened detections occur within
+their budgets. Hardened T7 remains silent as required. The
+insecure maximum latency of 43.75 s belongs to the sustained
+CPU-contention trigger, whose budget is ninety seconds; it is
+not an ordinary event exceeding a ﬁve-second limit. Compar-
+ing median detection latencies between proﬁles as a detector-
+speed improvement would be confounded by their different
+expected trigger sets.
+All ﬁfteen expected detections match the protocol’s ex-
+pected attribution. This includes an unknown value for in-
+tentionally unlabelled workloads and some insecure-proﬁle
+network and canary triggers. Thus 100% agreement does not
+mean every event has a known tenant identity. These results
+answer RQ3 for the conﬁgured benign trigger set.
+Illustrative Wilson 95% intervals [ 20] for 8/8 and 7/7 suc-
+cesses are 67.6%–100% and 64.6%–100%. Their independent-
+Bernoulli assumption does not hold as a sampling model for
+deliberately different deterministic triggers; the intervals only
+contextualize the small counts. Similarly, zero alerts over two
+minutes does not imply a zero operational false-positive rate.
+Under a stationary Poisson model, the one-sided 95% upper
+bound for each proﬁle is
+λupper = − ln(0.05)2 = 1.50 alerts /min. (5)
+TABLE VI
+NEW DEFENSE VALIDATION EVIDENCE (N OVEMBER 2026)
+Criterion Outcome
+E4 speciﬁed conﬁguration faults detected 10/10
+E5 clean subprocess executed 1/1
+E5 invalid subprocess inputs refused 4/4
+Clean container-image checks accepted 3/3
+Altered container-image checks refused 3/3
+Hardened themes with all-target veriﬁcation 4/6
+Longer and more diverse benign workloads are required to
+estimate alert burden.
+H1, H2, H4, H5, H6, and H7 meet their speciﬁed criteria.
+H3 is inconclusive because the optional SMT-sharing arm was
+not executed. This is acceptance-criterion support under the
+recorded conditions, not a general proof of security.
+D. Selected Defense V alidation Results
+E4 detected all ten speciﬁed conﬁguration faults, with a
+passing baseline and explicit failing tenant target in each
+case. Four of six mapped themes are conﬁguration-veriﬁed
+for the historical hardened report; none is veriﬁed for the
+insecure report. The two remaining hardened themes con-
+tain provider exception targets and consequently receive no
+complete-veriﬁcation credit under the strict all-target rule.
+E5 passed all ﬁve startup challenges: the clean application
+executed, while four invalid cases were rejected before execu-
+tion. Six additional checks in real container images accepted
+each clean application and rejected its altered-ﬁle counterpart.
+These outcomes answer RQ4 for the selected inputs. They do
+not estimate sensitivity to unseen attacks, and conﬁguration
+veriﬁcation does not establish resistance to every exploit
+sharing the survey category.
+The added contribution is the connection among a de-
+fense recommendation, its enforcement mechanism, and a
+reproducible counterexample test, combined with separate
+reliability evidence. The separate pilot in Section VIII-B
+compares a locally adapted neural architecture with alternative
+detectors. Its workload-dependent ﬁndings do not establish
+general superiority over the source paper or broader security.
+Table VI separates the distinct validation units. Fresh hard-
+ened smoke checks additionally preserved twelve blocked
+boundary paths and three allowed positive controls, detected
+seven expected triggers with no alerts in a thirty-second quiet
+window, and passed the conﬁguration gate with the two pre-
+existing host waivers. This shortened smoke check does not
+replace the historical full-length evaluation or establish the
+latency performance of the revised system.
+VI. D ISCUSSION AND REPRODUCIBILITY
+A. Security and Reliability Interpretation
+The three experiments provide complementary evidence.
+E1 measures the reliability effect of CPU contention; E2
+checks concrete exposure paths; E3 evaluates observation and
+attribution of selected behaviors. None can replace the others.
+
+In particular, satisfying a latency target cannot establish con-
+ﬁdentiality, and detecting a management event cannot prove
+that the corresponding action was prevented. The combined
+results support the feasibility of integrating posture controls
+and SRE observations within the stated trust boundary.
+Dedicated allocations also constrain resource sharing. The
+new pilot measures competing-workload throughput but not
+economic consolidation cost; its latency improvements must be
+read alongside the observed throughput reduction. A deploy-
+ment decision requires capacity and utilization measurements
+alongside these isolation indicators.
+B. Evidence V alidation
+The ﬁnal evidence predicates require the complete unique
+E2 probe set with explicit outcomes and the complete unique
+E3 trigger set with timely detection, expected attribution,
+required silence, and no false-positive records. This prevents
+an erroneous or missing probe from being counted as a closed
+path and prevents summary detection counts from hiding
+attribution failures. Publisher verdicts and live gates share
+these predicates. The stricter predicates pass the historical
+results.
+Thirteen evidence-gate regression cases exercise valid and
+corrupted inputs, including missing, duplicate, late, erroneous,
+open, and misattributed outcomes. Additional research tests
+verify mutation independence, baseline contamination rejec-
+tion, fail-closed mapping, references, provenance hashes, and
+startup challenge outcomes. Previously reported software val-
+idation recorded 182 Python tests passed and one skipped; the
+skipped case depends on an unpublished literature extension.
+That revision also recorded 52 frontend tests passing, together
+with lint and production-build checks. The pilot adds ﬁve
+comparison-utility tests, a model forward/backward smoke
+check, and independent recalculation of all 160 run sum-
+maries and twelve detector/workload results. Software checks
+establish internal consistency rather than a new performance
+benchmark.
+C. Artifact Availability
+The source and machine-readable measurements are avail-
+able in the project repository [ 18]. The experiment protocol
+records conﬁgurations, metrics, thresholds, and deviations.
+Full reproduction uses the lab orchestrator to check the host,
+execute both proﬁles with the full experiment variant, and
+publish the generated results. The reanalysis script indepen-
+dently recalculates scores, latency summaries, run validity, and
+detection outcomes, and records SHA-256 hashes of its inputs.
+The manuscript and IEEEtran source are supplied with the
+artifact.
+An additional literature-replication pipeline is not a com-
+pleted result of this paper. Its blind human annotation remains
+unﬁnished; development-set classiﬁer metrics and unvalidated
+literature-trend hypotheses are excluded. No inference about
+the persistence of the 2012 literature deﬁcit is drawn from that
+extension.
+VII. T HREATS TO VALIDITY
+A. Internal and Construct V alidity
+The insecure baseline is deliberately weak and is not a
+measured average production conﬁguration. Several controls
+change together, preventing causal attribution to individual
+settings. Monitoring overhead is unquantiﬁed because no
+monitoring-disabled arm was measured. Check coverage de-
+pends on project-selected severities and applicability rules; it
+is not a validated risk score. The detector observes behaviors
+that can also occur during legitimate maintenance.
+The metadata canary measures access to a decoy rather
+than secret recovery or prevention of arbitrary exﬁltration.
+No kernel escape, speculative-execution exploit, or cache side
+channel was attempted. Administrative identity labels do not
+supply cryptographic identity. The provider plane is trusted,
+and some rules observe operator-generated events that tenants
+cannot necessarily generate from within their conﬁnement.
+B. External and Statistical V alidity
+Historical E1 uses one machine, a synthetic service, ﬁxed
+offered load and three repetitions per arm. The new pilot
+extends to three workloads with ten runs per cell, but retains
+one host and short observation windows. It excludes storage
+and network contention, multiple hosts, scaling, sustained
+incidents, and workload churn. The trigger set is deterministic
+and too small to establish general detection sensitivity or a
+representative false-alarm rate. The pilot implements baselines
+locally; it does not benchmark the source authors’ released
+executable or a production security tool.
+Docker Desktop’s nested virtualization limits physical-core
+interpretation and visibility into provider mitigations. Two
+host ﬁndings remain waived, and mandatory access control is
+not evaluated on this host. The measurement source identiﬁer
+predates later repository changes; ﬁxture and schema checks
+do not prove that the ﬁnal revision reproduces identical live
+measurements. Historical E1 lacks request-level traces in its
+published package. The new pilot retains request records,
+Spark job logs, telemetry, execution splits, predictions and
+model artifacts; its source hashes and manifest identify the
+local experimental revision.
+VIII. N UMERICAL CONTEXT AND COMPARATIVE
+EVALUATION
+The principal quantitative reference is the multi-tenant mon-
+itoring study of Horchulhack et al. [ 1]. Table VII records its
+service-level results, preserving the workload and evaluation
+level. These are published reference values, not measurements
+of our implementation. IsoLab’s trigger acceptance counts
+cannot substitute for classiﬁer F1 or AUC: the tests have
+different labels, sampling units, and negative examples.
+Table VIII provides a complementary numerical view of our
+project. Inﬂation is 100 (IF − 1); headroom is 25 − q.99,noisy
+milliseconds. These quantities derive from medians of the ex-
+isting independent run summaries, not additional experiments.
+The hardened proﬁle has lower interference but both proﬁles
+satisfy the latency criterion. This is an internal conﬁguration
+
+TABLE VII
+PUBLISHED 2024 SERVICE -CLASSIFIER RESULTS (SOURCE TABLE 3)
+Spark job TPR TNR AUC F-measure
+RF 0.84 0.89 0.90 0.90
+SVM 0.87 0.59 0.82 0.78
+These are published source values. Our measured single-host adaptation is
+reported separately in Table X; the experimental conditions differ.
+TABLE VIII
+HISTORICAL PERFORMANCE ISOLATION : DERIVED METRICS
+Proﬁle IF Inﬂation (%) Headroom (ms)
+Insecure 3.798 279.8 8.537
+Hardened 1.223 22.3 19.383
+comparison, not a percentage improvement over the 2024
+classiﬁer.
+A. Positioning Against Resource-Management Systems
+Performance isolation is already an established research
+problem. PARTIES [ 21] studies QoS-aware resource parti-
+tioning for colocated interactive services. Caladan [ 22] uses
+fast scheduling and contention signals, including memory-
+hierarchy and hyperthread interference. These studies moti-
+vate measuring background throughput and bursty workloads
+alongside victim latency: static separation may protect one
+workload at a utilization cost. IsoLab does not implement their
+schedulers or benchmark against their published performance
+numbers. Its distinction is the joint, auditable evidence for con-
+ﬁguration enforcement, tenant boundaries, integrity checks and
+interference. That engineering integration does not establish a
+new scheduling algorithm.
+B. Completed Single-Host Pilot
+On November 17, 2026, we completed 160 independently
+executed runs on Docker Desktop 29.2.1, WSL2 kernel
+6.6.87.2, twelve logical CPUs and approximately 7.43 GiB
+of Docker-visible memory. The seeded, randomized schedule
+used ten runs per cell: two conﬁgurations and four interference
+scenarios for payments (80 runs), and two conﬁgurations and
+two scenarios for each Spark workload (80 runs). Collection,
+ﬁtting and reporting ﬁnished in 4 h 29 min. Smoke runs used
+to check execution were excluded.
+The shared conﬁguration placed the victim on logical CPUs
+4–5 and an eight-process competing workload on CPUs 4–11.
+The hardened adaptation placed the competitor on CPUs 6–
+11, applied a two-CPU quota per tenant, dropped capabilities
+and enabled no-new-privileges. Observer and load-generation
+work used CPUs 0–3. This performance-control adaptation
+is distinct from the complete security conﬁguration used in
+E1–E5; it does not repeat their boundary or integrity tests.
+Both proﬁles used the same application and competing work.
+Resource allocation and quota effects remain bundled in this
+pilot.
+TABLE IX
+COMPARISON SCOPE AND EVIDENCE REQUIRED
+Work Principal mechanism Relation to IsoLab
+2024 monitor-
+ing
+Learned temporal de-
+tection
+Measured single-host
+architecture adaptation
+PARTIES QoS-aware partition-
+ing
+Motivates throughput
+accounting
+Caladan Fast contention-aware
+scheduling
+Motivates burst evalua-
+tion
+IsoLab Controls, checks and
+event rules
+Historical security evi-
+dence and matched pi-
+lot tradeoffs
+Payments received 50 requests/s using an open-arrival
+HTTP driver. Requests retain scheduled and completed times-
+tamps, including scheduling delay; the ﬁrst ten seconds were
+excluded from request p99. Spark 4.0.1 ran in local[2]
+mode on 20,000 seeded generated rows with eight features.
+RandomForest used ten trees and depth ﬁve; linear SVM
+used ten iterations. Dataset initialization was excluded and
+successive model-ﬁtting jobs were timed. Spark results sum-
+marize completed-job durations, not request percentiles. Each
+run retained twelve ﬁve-second telemetry samples over 60 s,
+followed by a 30 s cooldown. Payments scenarios were clean,
+sustained contention, 15 s alternating bursts, and a competitor
+on disjoint logical CPUs. The latter is named “benign” in
+the artifact, but its degradation label comes from measured
+performance rather than that scenario name. Spark used clean
+and sustained-contention scenarios.
+C. Common Telemetry and Model Adaptation
+The collector retained sixteen engine/process aggregate fea-
+tures for each of the victim and competing containers: CPU
+utilization, memory, process count, network and I/O rates,
+throttling, CPU pressure, process CPU and resident memory,
+threads, process I/O, and context switches. It required a trusted
+host-PID observer, SYS_PTRACE, the Docker API, and read-
+only cgroup access. Application latency and job time were
+excluded from detector inputs. Missing process access failed
+collection; disappearing processes were skipped.
+The neural baseline adapts the architecture documented
+in the 2024 study [ 1]: dense encoder widths 512/256/128,
+a 20-dimensional sigmoid bottleneck and mirrored decoder,
+followed by LSTM layers of 1024/512 units, dense layers
+of 512/256 units and two-class softmax. Our input has 32
+aggregate features from two containers, rather than the original
+411-feature distributed service representation. We use train-
+only min/max scaling clipped to [0, 1] for the sigmoid decoder,
+a six-sample temporal window, and current runtime libraries.
+The topology, feature pipeline, workloads, scaling and window
+policy are therefore explicit adaptations, not an exact repro-
+duction of the original method or its published accuracy.
+The IsoLab resource-logistic extension uses standard, class-
+balanced logistic regression with ﬁxed C = 1 on the mean of
+the same six samples, with train-only standardization. This
+
+Weak
+clean
+Weak
+noise
+Hard
+clean
+Hard
+noise
+4
+6
+8
+10
+12
+14
+16Per-run request p99 (ms)
+0.0 0.2 0.4 0.6 0.8 1.0 1.2
+Victim CPU pressure (%)
+4
+6
+8
+10
+12
+14
+16Per-run request p99 (ms)
+Fig. 3. Original visualization of historical IsoLab measurements. Left: every run’s request p99, three runs per arm. Right: recorded victim CPU pressure
+versus p99; gray is insecure, blue is hardened, circles are clean, triangles are noisy. Points summarize runs, not individual requests. Association does not
+isolate a causal effect of CPU pressure because multiple controls change together.
+is an inexpensive engineering alternative, not a new learning
+algorithm. Comparators are a validation-selected competing-
+CPU threshold and the unchanged DET-08 implementation.
+DET-08 is positive when its sustained-sharing event occurs
+during the run. Learned scores summarize the last 30 s;
+the comparison is consequently ofﬂine run classiﬁcation, not
+equivalent online detection-delay measurement.
+D. Partitions, Labels and Evaluation
+Executions were split 40/30/30 within each cell, with all
+samples from one run kept in one partition. Payments has
+32 training, 24 validation and 24 test runs; RF and SVM
+each have 16/12/12. The run-level positive label is victim
+time exceeding 1.2 times the largest clean training-run value
+for its workload/proﬁle, or any failed request. Thus injected
+contention alone is not ground truth. All runs completed and
+no request errors were recorded.
+The autoencoder minimizes root-mean-square reconstruc-
+tion loss; the classiﬁer minimizes cross-entropy. Both use
+Adam at 10 −4, batch size 512 and at most 1000 epochs.
+Autoencoder validation patience is ten epochs; classiﬁcation
+patience is twenty, restoring the best validation weights. The
+autoencoders reached 1000 epochs; payments/RF/SVM clas-
+siﬁers stopped after 49/117/239 epochs. Thresholds maximize
+validation F1, with ties favoring lower FPR and then a higher
+threshold. No test-set retuning was performed. Model ﬁtting
+is measured once per workload; timing is not a repeated
+performance benchmark.
+E. Accuracy, Cost and Workload Dependence
+Table X and Fig. 4 show the complete matched comparison.
+On payments, the resource-logistic model correctly classiﬁed
+all 24 test runs (nine positives, ﬁfteen negatives), yielding F1
+1.000; the neural adaptation missed one bursty run, yielding
+0.941. Both have AUC 1.000, illustrating that validation-
+selected operating thresholds matter even with identical test
+ranking. On RF, all four methods classify three positives and
+nine negatives correctly. On SVM, the logistic model detects
+one of four positives, compared with three for the neural model
+and DET-08: F1 is 0.400 versus 0.857. The lightweight method
+therefore improves the payments point estimate and ties RF,
+but is not consistently more accurate.
+No method produced a false positive in these test sets. Nega-
+tive counts are only 15/9/8 for payments/RF/SVM. A post-hoc
+paired run bootstrap (5000 resamples, excluding undeﬁned F1
+draws) gives 95% intervals for logistic minus neural F1 of
+[0, 0.231], [0, 0], and [−1, 0], respectively. These conditional
+intervals are exploratory, unadjusted for multiple comparisons
+and limited by the small sample. The RF interval reﬂects
+identical observed predictions, not established equivalence on
+future data. The intervals do not establish a general accuracy
+advantage.
+Logistic ﬁtting took 0.01295/0.00629/0.00330 s
+for payments/RF/SVM; the neural pipeline took
+43.16/56.55/85.78 s. Batch-amortized inference took
+approximately 0.00394/0.00533/0.00315 ms per run for
+logistic regression, compared with 1.623/2.652/2.480 ms
+for the neural classiﬁer. These timings exclude telemetry
+collection and do not measure end-to-end online latency.
+A production cost claim also needs repeated timing and a
+monitoring-disabled comparison.
+DET-08’s payments F1 of 0.500 follows from its narrower
+semantics: it missed the three bursty and three disjoint-CPU
+competitor positives. A 30 s sustained-sharing rule is not
+designed to capture every short burst or every residual source
+of degradation. The logistic extension detects those cases in
+this sample, while its SVM errors show that replacing DET-08
+universally would be unjustiﬁed. These observations answer
+RQ5 as a workload-dependent accuracy/cost tradeoff.
+
+TABLE X
+HELD -OUT SINGLE -HOST PILOT : RUN -LEVEL DETECTION AND FITTING COST
+Workload Method Test runs Precision Recall F1 FPR Fit time (s)
+Payments Adapted AE/LSTM 24 1.000 0.889 0.941 0.000 43.16
+Payments Resource logistic 24 1.000 1.000 1.000 0.000 0.01
+Payments CPU threshold 24 1.000 0.778 0.875 0.000 0.00
+Payments DET-08 24 1.000 0.333 0.500 0.000 0.00
+RF Adapted AE/LSTM 12 1.000 1.000 1.000 0.000 56.55
+RF Resource logistic 12 1.000 1.000 1.000 0.000 0.01
+RF CPU threshold 12 1.000 1.000 1.000 0.000 0.00
+RF DET-08 12 1.000 1.000 1.000 0.000 0.00
+SVM Adapted AE/LSTM 12 1.000 0.750 0.857 0.000 85.78
+SVM Resource logistic 12 1.000 0.250 0.400 0.000 0.00
+SVM CPU threshold 12 1.000 0.500 0.667 0.000 0.00
+SVM DET-08 12 1.000 0.750 0.857 0.000 0.00
+Payments Spark RF Spark SVM
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0Held-out run F1
+Payments Spark RF Spark SVM
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0Held-out run false-positive rate
+Adapted AE/LSTM
+Resource logistic
+CPU threshold
+DET-08
+Adapted AE/LSTM
+Resource logistic
+CPU threshold
+DET-08
+Fig. 4. Measured held-out run classiﬁcation using common local telemetry. Payments has 24 test runs; RF and SVM each have twelve. Zero observed false
+positives applies only to the small negative test sets, not to an operational false-alarm guarantee. Lines connect workload categories for readability.
+TABLE XI
+SUSTAINED -CONTENTION PILOT : PERFORMANCE BENEFIT AND COMPETING -WORKLOAD COST
+Workload Shared (ms) Hardened (ms) Reduction (%) Shared bg. Hardened bg. Bg. loss (%)
+PA YMENTS 10.997 4.287 61.011 98.953 34.124 65.515
+RF 1103.983 716.498 35.099 89.499 31.131 65.216
+SVM 901.566 539.942 40.111 88.731 31.506 64.493
+Ten independent runs per cell; entries are medians of run summaries. Payments uses request p99; RF and SVM use median completed-job duration.
+Background (bg.) throughput is completed 100,000-hash batches per second, not tenant requests.
+F . Interference Reduction and Resource Cost
+Under sustained contention, median payments request p99
+fell from 10.997 to 4.287 ms (61.0%); RF job time fell from
+1103.983 to 716.498 ms (35.1%); and SVM job time fell from
+901.566 to 539.942 ms (40.1%). Each cell has ten indepen-
+dent runs. These are within-testbed conﬁguration effects, not
+improvements over the 2024 detector, which is a monitoring
+method rather than this control arm. Table XI reports the
+competing-workload throughput loss alongside those gains.
+Restricting the competitor to two CPUs reduces its completed
+hash-batch throughput by approximately 64–66%. A provider
+must weigh protection of the victim against the reduced service
+available to competing tenants.
+G. Implications for Further Improvement
+The strongest supported result is an inspectable combi-
+nation of resource protection, inexpensive workload-speciﬁc
+classiﬁcation and security evidence. Improvement should next
+target robust operating points and workload diversity: use
+additional validation executions to assess threshold sensitivity,
+retain CPU-sharing rules as complementary evidence, and test
+a burst-aware policy on new held-out data. Model selection
+or hybrid routing based on the present SVM test errors
+
+Payments Spark RF Spark SVM
+1
+2
+3
+4
+5Victim time / clean profile median
+Payments Spark RF Spark SVM
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0Background throughput / shared median
+Shared
+Hardened
+Fig. 5. Original pilot measurements under sustained contention. Each point is one run and each black segment is a median. Left: victim time normalized by
+its proﬁle’s clean median. Right: competing throughput normalized by the shared conﬁguration’s median. Lower victim time accompanies lower competing
+throughput; the controls are not a cost-free efﬁciency improvement.
+would require a new independent evaluation. Longer runs,
+unseen datasets, workload churn, individual-control ablations
+and multi-host experiments are needed before a general im-
+provement over the source method can be claimed.
+IX. C ONCLUSION AND FUTURE WORK
+IsoLab connects container controls to reproducible security
+and reliability evidence. The completed 160-run pilot demon-
+strates 61.0%, 35.1% and 40.1% reductions in victim time
+under sustained contention for payments, Spark RF and Spark
+SVM, respectively. These gains accompany approximately 64–
+66% lower competing throughput, making the allocation trade-
+off explicit. The lightweight detector has a higher payments F1
+point estimate and ties RF at much lower measured ﬁtting cost
+than the neural adaptation, but loses accuracy on SVM. The
+complete comparison supports workload-speciﬁc engineering
+choices, not universal classiﬁer superiority.
+Historical experiments additionally demonstrate the tested
+boundary, conﬁguration and startup-integrity outcomes. To-
+gether, the artifacts provide a basis for evaluating controls
+and detection on common evidence without conﬂating pos-
+ture scores, trigger acceptance, classiﬁer accuracy or pub-
+lished literature statistics. Future work should add indepen-
+dent workloads and hosts, longer observation, monitoring-
+disabled measurements, individual-control ablations and robust
+validation-selected operating points. Signed manifests, contin-
+uous integrity observation and broader exploit-based validation
+remain separate extensions.
+REFERENCES
+[1] P . Horchulhack, E. K. Viegas, A. O. Santin, F. V . Ramos, and P .
+Tedeschi, “Detection of quality of service degradation on multi-tenant
+containerized services,” Journal of Network and Computer Applications ,
+vol. 224, Art. no. 103839, 2024, doi: 10.1016/j.jnca.2024.103839.
+[2] O. Jarkas, R. Ko, N. Dong, and R. Mahmud, “A container security
+survey: Exploits, attacks, and defenses,” ACM Computing Surveys , vol.
+57, no. 7, Art. no. 170, pp. 1–36, 2025, doi: 10.1145/3715001.
+[3] N. Gonzalez, C. Miers, F. Redígolo, M. Simplício, T. Carvalho, M.
+Näslund, and M. Pourzandi, “A quantitative analysis of current security
+concerns and solutions for cloud computing,” Journal of Cloud Com-
+puting, vol. 1, Art. no. 11, 2012, doi: 10.1186/2192-113X-1-11.
+[4] S. Sultan, I. Ahmad, and T. Dimitriou, “Container security: Issues,
+challenges, and the road ahead,” IEEE Access, vol. 7, pp. 52976–52996,
+2019, doi: 10.1109/ACCESS.2019.2911732.
+[5] X. Lin, L. Lei, Y . Wang, J. Jing, K. Sun, and Q. Zhou, “A measurement
+study on Linux container security: Attacks and countermeasures,” in
+Proc. 34th Annual Computer Security Applications Conf. , 2018, pp. 418–
+429, doi: 10.1145/3274694.3274720.
+[6] M. Souppaya, J. Morello, and K. Scarfone, Application Container Secu-
+rity Guide, NIST SP 800-190, Sep. 2017, doi: 10.6028/NIST.SP .800-190.
+[7] W. Felter, A. Ferreira, R. Rajamony, and J. Rubio, “An updated perfor-
+mance comparison of virtual machines and Linux containers,” in Proc.
+IEEE Int. Symp. Performance Analysis of Systems and Software , 2015,
+pp. 171–172, doi: 10.1109/ISPASS.2015.7095802.
+[8] Linux Kernel Documentation, “Control Group v2.” Accessed: Nov.
+14, 2026. [Online]. Available: https://docs.kernel.org/admin-guide/
+cgroup-v2.html
+[9] Linux Kernel Documentation, “PSI—Pressure Stall Information.” Ac-
+cessed: Nov. 14, 2026. [Online]. Available: https://docs.kernel.org/
+accounting/psi.html
+[10] S. Thurgood and D. Ferguson, with A. Hidalgo and B. Beyer, “Imple-
+menting SLOs,” in The Site Reliability Workbook. Sebastopol, CA, USA:
+O’Reilly Media, 2018. [Online]. Available: https://sre.google/workbook/
+implementing-slos/
+[11] J. Dean and L. A. Barroso, “The tail at scale,” Communications of the
+ACM, vol. 56, no. 2, pp. 74–80, 2013, doi: 10.1145/2408776.2408794.
+[12] V . V aradarajan, T. Ristenpart, and M. Swift, “Scheduler-based de-
+fenses against cross-VM side-channels,” in Proc. 23rd USENIX Security
+Symp., 2014, pp. 687–702. [Online]. Available: https://www.usenix.org/
+conference/usenixsecurity14/technical-sessions/presentation/varadarajan
+[13] Docker, “Resource constraints.” Accessed: Nov. 14, 2026. [Online].
+Available: https://docs.docker.com/engine/containers/resource_
+constraints/
+[14] Docker, “Seccomp security proﬁles for Docker.” Accessed: Nov.
+14, 2026. [Online]. Available: https://docs.docker.com/engine/security/
+seccomp/
+[15] OASIS, Static Analysis Results Interchange F ormat (SARIF) V ersion
+2.1.0, OASIS Standard, Mar. 27, 2020. [Online]. Available: https://docs.
+oasis-open.org/sarif/sarif/v2.1.0/os/sarif-v2.1.0-os.html
+[16] Docker, “docker system events.” Accessed: Nov. 14, 2026. [Online].
+Available: https://docs.docker.com/reference/cli/docker/system/events/
+[17] National Institute of Standards and Technology, Secure Hash Standard
+(SHS), FIPS PUB 180-4, Aug. 2015, doi: 10.6028/NIST.FIPS.180-4.
+
+[18] IsoLab project, “Cloud_Security source, protocols, and experimental
+artifacts,” measurement source dffa2c70c553, Oct. 12, 2026; integrity
+and fault studies Nov. 11, 2026; matched pilot Nov. 17, 2026. [Online].
+Available: https://github.com/alpha08-prog/Cloud_Security
+[19] Grafana Labs, “Constant arrival rate,” k6 Documentation . Accessed:
+Nov. 14, 2026. [Online]. Available: https://grafana.com/docs/k6/latest/
+using-k6/scenarios/executors/constant-arrival-rate/
+[20] E. B. Wilson, “Probable inference, the law of succession, and statistical
+inference,” Journal of the American Statistical Association , vol. 22, no.
+158, pp. 209–212, 1927, doi: 10.1080/01621459.1927.10502953.
+[21] S. Chen, C. Delimitrou, and J. F. Martinez, “PARTIES: QoS-aware
+resource partitioning for multiple interactive services,” in Proc. ASP-
+LOS, 2019, pp. 107–120. [Online]. Available: https://doi.org/10.1145/
+3297858.3304005
+[22] J. Fried, Z. Ruan, A. Ousterhout, and A. Belay, “Caladan: Mitigat-
+ing interference at microsecond timescales,” in Proc. OSDI , 2020,
+pp. 281–297. [Online]. Available: https://www.usenix.org/conference/
+osdi20/presentation/fried

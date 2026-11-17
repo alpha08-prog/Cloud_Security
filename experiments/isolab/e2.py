@@ -108,6 +108,16 @@ def run(profile: str, variant: str = "full", out: Path | None = None) -> dict:
     return doc
 
 
+def isolation_passed(profile: str, results: list[dict]) -> bool:
+    """Require every probe and control; an error is never evidence of isolation."""
+    rows = [r for r in results if r["profile"] == profile]
+    expected = {p["id"]: p for p in probe_catalogue()}
+    if len(rows) != len(expected) or {r["probeId"] for r in rows} != set(expected):
+        return False
+    return all(r["outcome"] == ("allowed" if expected[r["probeId"]]["control"] else "blocked")
+               for r in rows)
+
+
 def summary_for(profile: str, results: list[dict]) -> dict:
     controls = {p[0] for p in PROBES if p[4]}
     rs = [r for r in results if r["profile"] == profile]

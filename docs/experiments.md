@@ -162,6 +162,10 @@ window, and attribution correctness (detected tenant = expected tenant).
 
 ## Changelog
 
+- **2026-11-11: recent-paper defense refinement.** Added E4 independent saved-snapshot configuration mutations and E5 isolated startup-integrity challenges, with separate real-container checks. See [research/DEMO.md](research/DEMO.md) for the protocol, enforcement boundary and commands. New evidence is written to `results/research/`; October `results/published/` measurements are preserved. The new SHA-256 startup launcher is enabled in hardened tenants and the batch job. It predates no published latency measurement; startup overhead and a fresh full two-profile benchmark remain unmeasured in this revision.
+
+- **2026-11-09: post-run evidence-validation correction.** No experiment design, thresholds or historical measurements changed. E2 H6 and the live gate now require the complete unique probe set, explicit blocked outcomes on all hardened paths, and allowed controls; missing/error/duplicate outcomes cannot pass by leaving the open-path count at zero. E3 H7 and the live gate now share a predicate requiring the complete unique trigger set, timely and correctly attributed detections, expected silence, and no false-positive records. The stricter predicates pass the committed October results. Thirteen regression cases cover valid and invalid evidence. This correction was made during the project audit, after the original data were collected.
+
 - **2026-10-12: calibration, before any measured run.** The `/work` loop was set to 2500
   SHA-256 rounds, which measured about 2 ms of server time (6000 rounds measured 4.7 ms).
 - **2026-10-12: DET-08 definition changed after the E1 smoke runs.**

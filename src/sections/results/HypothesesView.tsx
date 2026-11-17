@@ -1,6 +1,7 @@
 import { StatusBadge } from '../../components/StatusBadge'
 import type { Verdict } from '../../data/resultTypes'
-import { E1, E2, E3 } from '../../data/results'
+import { REPLICATION_HYPOTHESES } from '../../data/replication'
+import { E1, E2, E3, REPLICATION } from '../../data/results'
 
 const BADGE: Record<Verdict, { status: 'pass' | 'fail' | 'skip'; label: string }> = {
   supported: { status: 'pass', label: 'Supported' },
@@ -12,15 +13,16 @@ const GROUPS = [
   { experiment: 'E1 · Noisy neighbour', hypotheses: E1.hypotheses },
   { experiment: 'E2 · Segmentation', hypotheses: E2.hypotheses },
   { experiment: 'E3 · Detection', hypotheses: E3.hypotheses },
+  ...(REPLICATION ? [{ experiment: 'Replication · 2013–26', hypotheses: REPLICATION.hypotheses }] : []),
 ]
 
 export function HypothesesView() {
   return (
     <div className="results__view">
       <p className="results__lede">
-        The hypotheses and pass criteria were written down before any experiment ran (docs/experiments.md), and
-        any later protocol change is logged there with its reason. Verdicts are computed by{' '}
-        <code>lab.py publish</code>, not chosen by hand.
+        The hypotheses and pass criteria were written down before any experiment ran (docs/experiments.md and,
+        for the replication, docs/replication.md), and any later protocol change is logged there with its reason.
+        Verdicts are computed by <code>lab.py publish</code> and <code>lab.py rep publish</code>, not chosen by hand.
       </p>
       {GROUPS.map((g) => (
         <section key={g.experiment} className="card results__block">
@@ -38,6 +40,19 @@ export function HypothesesView() {
           </ul>
         </section>
       ))}
+      {!REPLICATION && (
+        <section className="card results__block">
+          <h3 className="card__title">Replication · 2013–26 (pending)</h3>
+          <ul className="results__hypotheses">
+            {REPLICATION_HYPOTHESES.map((h) => (
+              <li key={h.id}>
+                <StatusBadge status="skip" label={`${h.id} · Pending`} />
+                <p>{h.statement}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   )
 }

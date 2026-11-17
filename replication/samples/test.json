@@ -1,0 +1,734 @@
+{
+  "seed": 11,
+  "drawnAt": "2026-10-13T18:58:27.524Z",
+  "strata": {
+    "2013-2017": {
+      "A": {
+        "N": 67,
+        "n": 9,
+        "ids": [
+          "W1989067506",
+          "W2381433564",
+          "W2182581018",
+          "W2613098895",
+          "W7219671495",
+          "W2626762741",
+          "W2022570654",
+          "W2302098303",
+          "W2727583294"
+        ]
+      },
+      "B": {
+        "N": 1322,
+        "n": 19,
+        "ids": [
+          "W2960895664",
+          "W2491069023",
+          "W2070026467",
+          "W2603160958",
+          "W2022533820",
+          "W2586713344",
+          "W1832536446",
+          "W2182028044",
+          "W2182534793",
+          "W2188538329",
+          "W2009128435",
+          "W2467289067",
+          "W2781917142",
+          "W2545220949",
+          "W2051953593",
+          "W2184764924",
+          "W7219627266",
+          "W2796512924",
+          "W2744644190"
+        ]
+      },
+      "C": {
+        "N": 965,
+        "n": 6,
+        "ids": [
+          "W2538658752",
+          "W2389503072",
+          "W2462016929",
+          "W2745038012",
+          "W2065305807",
+          "W2001233473"
+        ]
+      }
+    },
+    "2018-2022": {
+      "A": {
+        "N": 52,
+        "n": 9,
+        "ids": [
+          "W3208080834",
+          "W3164774207",
+          "W3080674992",
+          "W2789479285",
+          "W3173746294",
+          "W2959182856",
+          "W4232425283",
+          "W2921318726",
+          "W4240568911"
+        ]
+      },
+      "B": {
+        "N": 1109,
+        "n": 18,
+        "ids": [
+          "W3011344576",
+          "W4324268090",
+          "W2992955955",
+          "W3048870209",
+          "W3206120397",
+          "W4366215560",
+          "W3206306675",
+          "W4294647542",
+          "W4285797004",
+          "W2946364701",
+          "W2900994469",
+          "W3130332527",
+          "W3153487835",
+          "W2998410416",
+          "W3202227090",
+          "W2987992784",
+          "W4231155208",
+          "W2801611232"
+        ]
+      },
+      "C": {
+        "N": 1193,
+        "n": 6,
+        "ids": [
+          "W3027431742",
+          "W2896209956",
+          "W4220691452",
+          "W2910996288",
+          "W3171456078",
+          "W4318159336"
+        ]
+      }
+    },
+    "2023-2026": {
+      "A": {
+        "N": 34,
+        "n": 9,
+        "ids": [
+          "W2287020326",
+          "W7125598652",
+          "W4414829632",
+          "W7216157675",
+          "W4411319246",
+          "W4323254926",
+          "W4401209615",
+          "W4392775898",
+          "W4389052952"
+        ]
+      },
+      "B": {
+        "N": 1037,
+        "n": 18,
+        "ids": [
+          "W7133947759",
+          "W7217950649",
+          "W4411964251",
+          "W7139978184",
+          "W4327853701",
+          "W7211959442",
+          "W4392659682",
+          "W4391341380",
+          "W4409261440",
+          "W7201861974",
+          "W7169525261",
+          "W7203973761",
+          "W7154568344",
+          "W4415135240",
+          "W4386970639",
+          "W7216952232",
+          "W7221434187",
+          "W4410305403"
+        ]
+      },
+      "C": {
+        "N": 1331,
+        "n": 6,
+        "ids": [
+          "W4412803332",
+          "W4386964015",
+          "W4413824805",
+          "W4393131412",
+          "W4406856899",
+          "W4415016525"
+        ]
+      }
+    }
+  },
+  "repeats": [
+    "W4231155208",
+    "W4392775898",
+    "W1989067506",
+    "W2613098895",
+    "W7125598652",
+    "W2992955955",
+    "W4412803332",
+    "W3173746294",
+    "W2009128435",
+    "W4392659682"
+  ],
+  "screens": [
+    {
+      "screen": "s001",
+      "id": "W3048870209",
+      "repeat": false
+    },
+    {
+      "screen": "s002",
+      "id": "W2626762741",
+      "repeat": false
+    },
+    {
+      "screen": "s003",
+      "id": "W2744644190",
+      "repeat": false
+    },
+    {
+      "screen": "s004",
+      "id": "W2182028044",
+      "repeat": false
+    },
+    {
+      "screen": "s005",
+      "id": "W2538658752",
+      "repeat": false
+    },
+    {
+      "screen": "s006",
+      "id": "W2900994469",
+      "repeat": false
+    },
+    {
+      "screen": "s007",
+      "id": "W7125598652",
+      "repeat": true
+    },
+    {
+      "screen": "s008",
+      "id": "W2896209956",
+      "repeat": false
+    },
+    {
+      "screen": "s009",
+      "id": "W4220691452",
+      "repeat": false
+    },
+    {
+      "screen": "s010",
+      "id": "W2992955955",
+      "repeat": true
+    },
+    {
+      "screen": "s011",
+      "id": "W7221434187",
+      "repeat": false
+    },
+    {
+      "screen": "s012",
+      "id": "W2727583294",
+      "repeat": false
+    },
+    {
+      "screen": "s013",
+      "id": "W3080674992",
+      "repeat": false
+    },
+    {
+      "screen": "s014",
+      "id": "W4323254926",
+      "repeat": false
+    },
+    {
+      "screen": "s015",
+      "id": "W2491069023",
+      "repeat": false
+    },
+    {
+      "screen": "s016",
+      "id": "W4412803332",
+      "repeat": false
+    },
+    {
+      "screen": "s017",
+      "id": "W4392775898",
+      "repeat": false
+    },
+    {
+      "screen": "s018",
+      "id": "W4392659682",
+      "repeat": false
+    },
+    {
+      "screen": "s019",
+      "id": "W4391341380",
+      "repeat": false
+    },
+    {
+      "screen": "s020",
+      "id": "W4366215560",
+      "repeat": false
+    },
+    {
+      "screen": "s021",
+      "id": "W2009128435",
+      "repeat": true
+    },
+    {
+      "screen": "s022",
+      "id": "W2188538329",
+      "repeat": false
+    },
+    {
+      "screen": "s023",
+      "id": "W4401209615",
+      "repeat": false
+    },
+    {
+      "screen": "s024",
+      "id": "W4406856899",
+      "repeat": false
+    },
+    {
+      "screen": "s025",
+      "id": "W7216157675",
+      "repeat": false
+    },
+    {
+      "screen": "s026",
+      "id": "W7217950649",
+      "repeat": false
+    },
+    {
+      "screen": "s027",
+      "id": "W4409261440",
+      "repeat": false
+    },
+    {
+      "screen": "s028",
+      "id": "W4411964251",
+      "repeat": false
+    },
+    {
+      "screen": "s029",
+      "id": "W7211959442",
+      "repeat": false
+    },
+    {
+      "screen": "s030",
+      "id": "W2467289067",
+      "repeat": false
+    },
+    {
+      "screen": "s031",
+      "id": "W7201861974",
+      "repeat": false
+    },
+    {
+      "screen": "s032",
+      "id": "W7139978184",
+      "repeat": false
+    },
+    {
+      "screen": "s033",
+      "id": "W1832536446",
+      "repeat": false
+    },
+    {
+      "screen": "s034",
+      "id": "W7216952232",
+      "repeat": false
+    },
+    {
+      "screen": "s035",
+      "id": "W2745038012",
+      "repeat": false
+    },
+    {
+      "screen": "s036",
+      "id": "W2051953593",
+      "repeat": false
+    },
+    {
+      "screen": "s037",
+      "id": "W3011344576",
+      "repeat": false
+    },
+    {
+      "screen": "s038",
+      "id": "W2801611232",
+      "repeat": false
+    },
+    {
+      "screen": "s039",
+      "id": "W4386964015",
+      "repeat": false
+    },
+    {
+      "screen": "s040",
+      "id": "W2796512924",
+      "repeat": false
+    },
+    {
+      "screen": "s041",
+      "id": "W7219671495",
+      "repeat": false
+    },
+    {
+      "screen": "s042",
+      "id": "W3206120397",
+      "repeat": false
+    },
+    {
+      "screen": "s043",
+      "id": "W4389052952",
+      "repeat": false
+    },
+    {
+      "screen": "s044",
+      "id": "W4232425283",
+      "repeat": false
+    },
+    {
+      "screen": "s045",
+      "id": "W2545220949",
+      "repeat": false
+    },
+    {
+      "screen": "s046",
+      "id": "W7133947759",
+      "repeat": false
+    },
+    {
+      "screen": "s047",
+      "id": "W2921318726",
+      "repeat": false
+    },
+    {
+      "screen": "s048",
+      "id": "W3202227090",
+      "repeat": false
+    },
+    {
+      "screen": "s049",
+      "id": "W4231155208",
+      "repeat": true
+    },
+    {
+      "screen": "s050",
+      "id": "W2182534793",
+      "repeat": false
+    },
+    {
+      "screen": "s051",
+      "id": "W2603160958",
+      "repeat": false
+    },
+    {
+      "screen": "s052",
+      "id": "W4412803332",
+      "repeat": true
+    },
+    {
+      "screen": "s053",
+      "id": "W4294647542",
+      "repeat": false
+    },
+    {
+      "screen": "s054",
+      "id": "W4318159336",
+      "repeat": false
+    },
+    {
+      "screen": "s055",
+      "id": "W3206306675",
+      "repeat": false
+    },
+    {
+      "screen": "s056",
+      "id": "W2009128435",
+      "repeat": false
+    },
+    {
+      "screen": "s057",
+      "id": "W3153487835",
+      "repeat": false
+    },
+    {
+      "screen": "s058",
+      "id": "W2389503072",
+      "repeat": false
+    },
+    {
+      "screen": "s059",
+      "id": "W4415016525",
+      "repeat": false
+    },
+    {
+      "screen": "s060",
+      "id": "W4324268090",
+      "repeat": false
+    },
+    {
+      "screen": "s061",
+      "id": "W4392659682",
+      "repeat": true
+    },
+    {
+      "screen": "s062",
+      "id": "W2184764924",
+      "repeat": false
+    },
+    {
+      "screen": "s063",
+      "id": "W2910996288",
+      "repeat": false
+    },
+    {
+      "screen": "s064",
+      "id": "W1989067506",
+      "repeat": false
+    },
+    {
+      "screen": "s065",
+      "id": "W4392775898",
+      "repeat": true
+    },
+    {
+      "screen": "s066",
+      "id": "W4386970639",
+      "repeat": false
+    },
+    {
+      "screen": "s067",
+      "id": "W3130332527",
+      "repeat": false
+    },
+    {
+      "screen": "s068",
+      "id": "W2022570654",
+      "repeat": false
+    },
+    {
+      "screen": "s069",
+      "id": "W2613098895",
+      "repeat": true
+    },
+    {
+      "screen": "s070",
+      "id": "W4414829632",
+      "repeat": false
+    },
+    {
+      "screen": "s071",
+      "id": "W2998410416",
+      "repeat": false
+    },
+    {
+      "screen": "s072",
+      "id": "W4393131412",
+      "repeat": false
+    },
+    {
+      "screen": "s073",
+      "id": "W4411319246",
+      "repeat": false
+    },
+    {
+      "screen": "s074",
+      "id": "W3208080834",
+      "repeat": false
+    },
+    {
+      "screen": "s075",
+      "id": "W7219627266",
+      "repeat": false
+    },
+    {
+      "screen": "s076",
+      "id": "W7203973761",
+      "repeat": false
+    },
+    {
+      "screen": "s077",
+      "id": "W2302098303",
+      "repeat": false
+    },
+    {
+      "screen": "s078",
+      "id": "W1989067506",
+      "repeat": true
+    },
+    {
+      "screen": "s079",
+      "id": "W2789479285",
+      "repeat": false
+    },
+    {
+      "screen": "s080",
+      "id": "W2992955955",
+      "repeat": false
+    },
+    {
+      "screen": "s081",
+      "id": "W4285797004",
+      "repeat": false
+    },
+    {
+      "screen": "s082",
+      "id": "W4415135240",
+      "repeat": false
+    },
+    {
+      "screen": "s083",
+      "id": "W2946364701",
+      "repeat": false
+    },
+    {
+      "screen": "s084",
+      "id": "W7125598652",
+      "repeat": false
+    },
+    {
+      "screen": "s085",
+      "id": "W3164774207",
+      "repeat": false
+    },
+    {
+      "screen": "s086",
+      "id": "W4240568911",
+      "repeat": false
+    },
+    {
+      "screen": "s087",
+      "id": "W3027431742",
+      "repeat": false
+    },
+    {
+      "screen": "s088",
+      "id": "W4413824805",
+      "repeat": false
+    },
+    {
+      "screen": "s089",
+      "id": "W2959182856",
+      "repeat": false
+    },
+    {
+      "screen": "s090",
+      "id": "W7154568344",
+      "repeat": false
+    },
+    {
+      "screen": "s091",
+      "id": "W4327853701",
+      "repeat": false
+    },
+    {
+      "screen": "s092",
+      "id": "W3173746294",
+      "repeat": true
+    },
+    {
+      "screen": "s093",
+      "id": "W4410305403",
+      "repeat": false
+    },
+    {
+      "screen": "s094",
+      "id": "W2586713344",
+      "repeat": false
+    },
+    {
+      "screen": "s095",
+      "id": "W3171456078",
+      "repeat": false
+    },
+    {
+      "screen": "s096",
+      "id": "W4231155208",
+      "repeat": false
+    },
+    {
+      "screen": "s097",
+      "id": "W2001233473",
+      "repeat": false
+    },
+    {
+      "screen": "s098",
+      "id": "W2381433564",
+      "repeat": false
+    },
+    {
+      "screen": "s099",
+      "id": "W2781917142",
+      "repeat": false
+    },
+    {
+      "screen": "s100",
+      "id": "W2070026467",
+      "repeat": false
+    },
+    {
+      "screen": "s101",
+      "id": "W7169525261",
+      "repeat": false
+    },
+    {
+      "screen": "s102",
+      "id": "W2022533820",
+      "repeat": false
+    },
+    {
+      "screen": "s103",
+      "id": "W2065305807",
+      "repeat": false
+    },
+    {
+      "screen": "s104",
+      "id": "W2182581018",
+      "repeat": false
+    },
+    {
+      "screen": "s105",
+      "id": "W2613098895",
+      "repeat": false
+    },
+    {
+      "screen": "s106",
+      "id": "W2462016929",
+      "repeat": false
+    },
+    {
+      "screen": "s107",
+      "id": "W2960895664",
+      "repeat": false
+    },
+    {
+      "screen": "s108",
+      "id": "W3173746294",
+      "repeat": false
+    },
+    {
+      "screen": "s109",
+      "id": "W2287020326",
+      "repeat": false
+    },
+    {
+      "screen": "s110",
+      "id": "W2987992784",
+      "repeat": false
+    }
+  ],
+  "frozen": {
+    "lexicon.py": "4dc7168d34878724ba653ac6540b591ca1080172555eb897bb86bfca0bb903ad",
+    "classify.py": "1329f6f2dbc0badc3f03b4c77b0d1257a186d4a9f3be4ce7db5b6c2fa72be5c3"
+  }
+}

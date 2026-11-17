@@ -1,0 +1,42 @@
+{
+  "source": "NVD CVE API 2.0 (public domain)",
+  "retrievedAt": "2026-10-13T18:31:33.046Z",
+  "productTerms": [
+    "hypervisor",
+    "hypervisors",
+    "Xen",
+    "KVM",
+    "QEMU",
+    "ESXi",
+    "Hyper-V",
+    "VirtualBox",
+    "bhyve",
+    "Firecracker",
+    "runc",
+    "containerd",
+    "CRI-O",
+    "LXC",
+    "gVisor",
+    "Kata Containers",
+    "Docker"
+  ],
+  "phrases": [
+    "virtual machine escape",
+    "VM escape",
+    "guest-to-host",
+    "container escape",
+    "guest OS",
+    "guest kernel",
+    "side channel",
+    "side-channel",
+    "speculative execution",
+    "transient execution",
+    "cross-tenant",
+    "co-resident",
+    "another guest"
+  ],
+  "noRejected": true,
+  "candidates": 5436,
+  "sha256": "618df3404b9f0879e38d6e3af07905c83135a816f3aff21e3227d42ca24a7e02",
+  "firstYear": 2008
+}

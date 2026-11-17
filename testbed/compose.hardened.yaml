@@ -13,6 +13,8 @@
 # real core/thread topology so that no two tenants share a physical core.
 
 x-tenant: &tenant
+  environment:
+    ISOLAB_INTEGRITY_ENFORCE: "1"
   user: "10001:10001"
   read_only: true
   tmpfs: ["/tmp:size=16m"]
@@ -51,6 +53,7 @@ services:
 
   tenant-b-job:
     <<: *tenant
+    entrypoint: ["python", "/opt/integrity/integrity.py", "--", "stress-ng"]
     # Same tenant, same dedicated cores: the job can only exhaust tenant-b's share.
     cpuset: ${CPUSET_TENANT_B:?run scripts/lab.py cpus}
     cpus: ${CPUS_TENANT_B:?run scripts/lab.py cpus}

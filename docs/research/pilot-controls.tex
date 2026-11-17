@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\caption{Sustained-contention pilot: performance benefit and competing-workload cost}
+\label{tab:pilotcontrols}
+\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Workload & Shared (ms) & Hardened (ms) & Reduction (\%) & Shared bg. & Hardened bg. & Bg. loss (\%) \\
+\midrule
+PAYMENTS & 10.997 & 4.287 & 61.011 & 98.953 & 34.124 & 65.515 \\
+RF & 1103.983 & 716.498 & 35.099 & 89.499 & 31.131 & 65.216 \\
+SVM & 901.566 & 539.942 & 40.111 & 88.731 & 31.506 & 64.493 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\parbox{.95\textwidth}{\footnotesize Ten independent runs per cell; entries are medians of run summaries. Payments uses request p99; RF and SVM use median completed-job duration. Background (bg.) throughput is completed 100,000-hash batches per second, not tenant requests.}
+\end{table*}

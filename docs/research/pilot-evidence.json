@@ -1,0 +1,340 @@
+{
+  "basis": "Measured single-host adaptation; not original-paper reproduction",
+  "manifestSha256": "7e80a08156260e1dbcc429ab4d96fb3fa4990c5aa96504f97e77a229643e82f4",
+  "results": [
+    {
+      "workload": "payments",
+      "method": "adapted-2024-ae-lstm",
+      "threshold": 0.9961731433868408,
+      "metrics": {
+        "tp": 8,
+        "tn": 15,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.8888888888888888,
+        "falsePositiveRate": 0.0,
+        "f1": 0.9411764705882353,
+        "auc": 1.0
+      },
+      "testRuns": 24,
+      "groundTruthThresholdMs": {
+        "hardened": 4.896068572998047,
+        "shared": 4.687786102294922
+      },
+      "trainingSeconds": 43.15616174399838,
+      "inferenceSecondsPerRun": 0.0016229958374879062
+    },
+    {
+      "workload": "payments",
+      "method": "isolab-resource-logistic",
+      "threshold": 0.8633166927230712,
+      "metrics": {
+        "tp": 9,
+        "tn": 15,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "falsePositiveRate": 0.0,
+        "f1": 1.0,
+        "auc": 1.0
+      },
+      "testRuns": 24,
+      "groundTruthThresholdMs": {
+        "hardened": 4.896068572998047,
+        "shared": 4.687786102294922
+      },
+      "trainingSeconds": 0.012949626001500292,
+      "inferenceSecondsPerRun": 3.936687471650658e-06
+    },
+    {
+      "workload": "payments",
+      "method": "cpu-threshold",
+      "threshold": 0.3153609335422516,
+      "metrics": {
+        "tp": 7,
+        "tn": 15,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.7777777777777778,
+        "falsePositiveRate": 0.0,
+        "f1": 0.875,
+        "auc": 1.0
+      },
+      "testRuns": 24,
+      "groundTruthThresholdMs": {
+        "hardened": 4.896068572998047,
+        "shared": 4.687786102294922
+      },
+      "trainingSeconds": 0,
+      "inferenceSecondsPerRun": null
+    },
+    {
+      "workload": "payments",
+      "method": "isolab-det08",
+      "threshold": 0.5,
+      "metrics": {
+        "tp": 3,
+        "tn": 15,
+        "fp": 0,
+        "fn": 6,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "falsePositiveRate": 0.0,
+        "f1": 0.5,
+        "auc": null
+      },
+      "testRuns": 24,
+      "groundTruthThresholdMs": {
+        "hardened": 4.896068572998047,
+        "shared": 4.687786102294922
+      },
+      "trainingSeconds": 0,
+      "inferenceSecondsPerRun": null
+    },
+    {
+      "workload": "rf",
+      "method": "adapted-2024-ae-lstm",
+      "threshold": 0.9999719262123108,
+      "metrics": {
+        "tp": 3,
+        "tn": 9,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "falsePositiveRate": 0.0,
+        "f1": 1.0,
+        "auc": 1.0
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 803.8636207580566,
+        "shared": 800.2488613128662
+      },
+      "trainingSeconds": 56.55137236399969,
+      "inferenceSecondsPerRun": 0.0026523978999648534
+    },
+    {
+      "workload": "rf",
+      "method": "isolab-resource-logistic",
+      "threshold": 0.9781218255068493,
+      "metrics": {
+        "tp": 3,
+        "tn": 9,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "falsePositiveRate": 0.0,
+        "f1": 1.0,
+        "auc": 1.0
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 803.8636207580566,
+        "shared": 800.2488613128662
+      },
+      "trainingSeconds": 0.006293861999438377,
+      "inferenceSecondsPerRun": 5.334900015441235e-06
+    },
+    {
+      "workload": "rf",
+      "method": "cpu-threshold",
+      "threshold": 0.5292456746101379,
+      "metrics": {
+        "tp": 3,
+        "tn": 9,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "falsePositiveRate": 0.0,
+        "f1": 1.0,
+        "auc": 1.0
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 803.8636207580566,
+        "shared": 800.2488613128662
+      },
+      "trainingSeconds": 0,
+      "inferenceSecondsPerRun": null
+    },
+    {
+      "workload": "rf",
+      "method": "isolab-det08",
+      "threshold": 0.5,
+      "metrics": {
+        "tp": 3,
+        "tn": 9,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "falsePositiveRate": 0.0,
+        "f1": 1.0,
+        "auc": null
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 803.8636207580566,
+        "shared": 800.2488613128662
+      },
+      "trainingSeconds": 0,
+      "inferenceSecondsPerRun": null
+    },
+    {
+      "workload": "svm",
+      "method": "adapted-2024-ae-lstm",
+      "threshold": 0.9999838471412659,
+      "metrics": {
+        "tp": 3,
+        "tn": 8,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.75,
+        "falsePositiveRate": 0.0,
+        "f1": 0.8571428571428571,
+        "auc": 0.96875
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 616.8285369873047,
+        "shared": 617.9981231689453
+      },
+      "trainingSeconds": 85.78230249300032,
+      "inferenceSecondsPerRun": 0.0024799916250231036
+    },
+    {
+      "workload": "svm",
+      "method": "isolab-resource-logistic",
+      "threshold": 0.9711437648943324,
+      "metrics": {
+        "tp": 1,
+        "tn": 8,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1.0,
+        "recall": 0.25,
+        "falsePositiveRate": 0.0,
+        "f1": 0.4,
+        "auc": 0.9375
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 616.8285369873047,
+        "shared": 617.9981231689453
+      },
+      "trainingSeconds": 0.0032977970004139934,
+      "inferenceSecondsPerRun": 3.149900021526264e-06
+    },
+    {
+      "workload": "svm",
+      "method": "cpu-threshold",
+      "threshold": 0.5385472178459167,
+      "metrics": {
+        "tp": 2,
+        "tn": 8,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "falsePositiveRate": 0.0,
+        "f1": 0.6666666666666666,
+        "auc": 0.9375
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 616.8285369873047,
+        "shared": 617.9981231689453
+      },
+      "trainingSeconds": 0,
+      "inferenceSecondsPerRun": null
+    },
+    {
+      "workload": "svm",
+      "method": "isolab-det08",
+      "threshold": 0.5,
+      "metrics": {
+        "tp": 3,
+        "tn": 8,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.75,
+        "falsePositiveRate": 0.0,
+        "f1": 0.8571428571428571,
+        "auc": null
+      },
+      "testRuns": 12,
+      "groundTruthThresholdMs": {
+        "hardened": 616.8285369873047,
+        "shared": 617.9981231689453
+      },
+      "trainingSeconds": 0,
+      "inferenceSecondsPerRun": null
+    }
+  ],
+  "postHocUncertainty": [
+    {
+      "workload": "payments",
+      "logisticMinusNeuralF1Interval": {
+        "low": 0.0,
+        "high": 0.23076923076923073,
+        "validDraws": 5000,
+        "interpretation": "post-hoc paired run bootstrap; no multiple-comparison correction"
+      }
+    },
+    {
+      "workload": "rf",
+      "logisticMinusNeuralF1Interval": {
+        "low": 0.0,
+        "high": 0.0,
+        "validDraws": 4837,
+        "interpretation": "post-hoc paired run bootstrap; no multiple-comparison correction"
+      }
+    },
+    {
+      "workload": "svm",
+      "logisticMinusNeuralF1Interval": {
+        "low": -1.0,
+        "high": 0.0,
+        "validDraws": 4961,
+        "interpretation": "post-hoc paired run bootstrap; no multiple-comparison correction"
+      }
+    }
+  ],
+  "controlEffects": [
+    {
+      "workload": "payments",
+      "sharedMs": 10.996701717376684,
+      "hardenedMs": 4.287481307983398,
+      "reductionPct": 61.01120664927704,
+      "backgroundShared": 98.95326334467791,
+      "backgroundHardened": 34.12387635624064,
+      "backgroundReductionPct": 65.51515816372925
+    },
+    {
+      "workload": "rf",
+      "sharedMs": 1103.982925415039,
+      "hardenedMs": 716.4976000785828,
+      "reductionPct": 35.098851297068954,
+      "backgroundShared": 89.49913082076381,
+      "backgroundHardened": 31.13106845619007,
+      "backgroundReductionPct": 65.21634548771767
+    },
+    {
+      "workload": "svm",
+      "sharedMs": 901.5663266181946,
+      "hardenedMs": 539.941668510437,
+      "reductionPct": 40.11071037493422,
+      "backgroundShared": 88.73083902491263,
+      "backgroundHardened": 31.505585874413953,
+      "backgroundReductionPct": 64.4930824269922
+    }
+  ]
+}

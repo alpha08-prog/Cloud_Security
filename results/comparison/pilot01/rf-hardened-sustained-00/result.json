@@ -1,0 +1,18 @@
+{
+  "workload": "rf",
+  "profile": "hardened",
+  "scenario": "sustained",
+  "rep": 0,
+  "runId": "rf-hardened-sustained-00",
+  "started": 1794913586.9391687,
+  "ended": 1794913646.9737513,
+  "performanceMs": 710.309624671936,
+  "performanceMetric": "medianJobCompletion",
+  "failures": 0,
+  "requests": 0,
+  "jobs": 72,
+  "backgroundBatchesPerSecond": 31.481854585776063,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Replication labelling</title>
+<style>
+:root{--bg:#f7f7f5;--panel:#fff;--ink:#1d1d1b;--muted:#5f5f5a;--line:#dcdcd6;--accent:#2b59c3;--accent-ink:#fff;
+--warn:#8a5a00;--chip:#eef1f8}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--panel:#1e1e1c;--ink:#ecece8;--muted:#a3a39c;--line:#3a3a36;
+--accent:#7aa2ff;--accent-ink:#0d1220;--warn:#f0b54a;--chip:#232838}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:0 auto;padding:16px}
+header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+h1{font-size:17px;margin:0}.muted{color:var(--muted)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:10px 0 16px}.bar i{display:block;height:100%;background:var(--accent)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
+#title{font-size:18px;font-weight:600;margin:0 0 8px}#abstract{white-space:pre-wrap;margin:0}
+fieldset{border:0;padding:0;margin:0 0 12px}legend{font-weight:600;margin-bottom:6px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg label{padding:5px 12px;cursor:pointer;border-right:1px solid var(--line);user-select:none}
+.seg label:last-child{border-right:0}.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--accent);color:var(--accent-ink)}
+.seg label:has(input[value="none"]:checked){background:var(--chip);color:var(--ink)}
+.seg label:has(input:disabled){opacity:.4;cursor:not-allowed}.seg input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+table{width:100%;border-collapse:collapse}td{padding:6px 4px;border-top:1px solid var(--line);vertical-align:middle}
+td.n{width:55%}td small{display:block;color:var(--muted)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button{font:inherit;padding:8px 16px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+button:disabled{opacity:.5;cursor:not-allowed}#msg{color:var(--warn);min-height:1.5em}
+details summary{cursor:pointer;font-weight:600}details li{margin:4px 0}
+.hidden{display:none}
+@media (max-width:640px){td.n{width:auto}td{display:block;border-top:0}tr{display:block;border-top:1px solid var(--line);padding:6px 0}}
+</style></head><body><main>
+<header><h1>Cloud-security abstracts: blind labelling</h1><span class="muted" id="count"></span></header>
+<div class="bar"><i id="prog" style="width:0"></i></div>
+<details class="card"><summary>Guidelines (frozen; docs/replication.md §4)</summary><ol id="guide"></ol></details>
+<section class="card" id="item"><p id="title"></p><p id="abstract"></p></section>
+<section class="card" id="form">
+ <fieldset><legend>1. On topic?</legend><div class="seg" id="ontopic"></div></fieldset>
+ <div id="rest">
+  <fieldset><legend>2. Type</legend><div class="seg" id="type"></div></fieldset>
+  <fieldset><legend>3. Categories</legend><table id="cats"></table></fieldset>
+  <fieldset id="axesbox"><legend>4. Virtualization sub-issues</legend><table id="axes"></table></fieldset>
+ </div>
+ <div class="row"><label><input type="checkbox" id="unsure"> unsure</label></div>
+ <p id="msg"></p>
+ <div class="row"><button id="back">Back</button><button id="next" class="primary">Save and next</button>
+ <span class="muted">Answers save on every step; you can close the tab and resume later.</span></div>
+</section>
+<section class="card hidden" id="finished"><p><strong>All screens are labelled.</strong> You can close this tab and
+stop the server (Ctrl+C). The answers are in replication/labels/test.json.</p><button id="review">Review from the start</button></section>
+</main>
+<script>
+"use strict";
+const GUIDE=__GUIDELINES__, CATS=__CATEGORIES__, AXES=__AXES__;
+const token=new URLSearchParams(location.search).get("t");
+history.replaceState(null,"","/?t="+encodeURIComponent(token));
+let cur=null;
+const $=id=>document.getElementById(id);
+function el(tag,text){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e}
+function seg(name,options,onchange){const box=el("div");box.className="seg";for(const [v,label] of options){
+ const l=el("label"),i=el("input"),s=el("span",label);i.type="radio";i.name=name;i.value=v;i.addEventListener("change",onchange);
+ l.append(i,s);box.append(l)}return box}
+function val(name){const c=document.querySelector(`input[name="${name}"]:checked`);return c?c.value:null}
+function setv(name,v){for(const i of document.querySelectorAll(`input[name="${name}"]`))i.checked=(i.value===v)}
+for(const g of GUIDE)$("guide").append(el("li",g));
+$("ontopic").replaceWith(Object.assign(seg("ontopic",[["yes","Yes"],["no","No (off topic)"]],sync),{id:"ontopic"}));
+$("type").replaceWith(Object.assign(seg("type",[["solution","Proposes a solution"],["concern","Concern only"]],sync),{id:"type"}));
+const triple=[["none","—"],["concern","Concern"],["solution","Solution"]];
+function rows(table,list,prefix){for(const [k,label,help] of list){const tr=el("tr"),a=el("td"),b=el("td");a.className="n";
+ a.append(el("span",label),el("small",help));b.append(seg(prefix+k,triple,sync));tr.append(a,b);$(table).append(tr)}}
+rows("cats",CATS,"c:");rows("axes",AXES,"a:");
+function sync(){const on=val("ontopic");$("rest").classList.toggle("hidden",on!=="yes");
+ const concernOnly=val("type")==="concern";const virt=val("c:virtualization");
+ for(const i of document.querySelectorAll('input[value="solution"]')){
+  const isAxis=i.name.startsWith("a:");i.disabled=concernOnly||(isAxis&&virt!=="solution");
+  if(i.disabled&&i.checked){setv(i.name,"concern")}}
+ $("axesbox").classList.toggle("hidden",!virt||virt==="none")}
+function fill(a){setv("ontopic",a?(a.onTopic?"yes":"no"):null);setv("type",a&&a.type||null);
+ for(const [k] of CATS)setv("c:"+k,a&&a.categories?a.categories[k]:"none");
+ for(const [k] of AXES)setv("a:"+k,a&&a.axes?a.axes[k]:"none");$("unsure").checked=!!(a&&a.unsure);sync()}
+function collect(){const on=val("ontopic");if(!on)throw new Error("Answer question 1 first.");
+ if(on==="no")return{onTopic:false,unsure:$("unsure").checked};
+ const type=val("type");if(!type)throw new Error("Choose a type (question 2).");
+ const categories={},axes={};for(const [k] of CATS)categories[k]=val("c:"+k)||"none";
+ for(const [k] of AXES)axes[k]=categories.virtualization==="none"?"none":(val("a:"+k)||"none");
+ if(type==="solution"&&!Object.values(categories).includes("solution")&&!confirm("No category is marked Solution. Save anyway?"))throw new Error("");
+ return{onTopic:true,type,categories,axes,unsure:$("unsure").checked}}
+async function api(path,opts={}){const r=await fetch(path,{...opts,headers:{"X-Token":token,"Content-Type":"application/json"}});
+ const j=await r.json();if(!r.ok)throw new Error(j.error||("HTTP "+r.status));return j}
+async function load(n){const q=n===undefined?"":"?n="+n;const s=await api("/api/screen"+q);cur=s;
+ $("count").textContent=`${s.done} of ${s.total} labelled`;$("prog").style.width=(100*s.done/s.total)+"%";
+ $("finished").classList.toggle("hidden",!s.finished);$("item").classList.toggle("hidden",s.finished);$("form").classList.toggle("hidden",s.finished);
+ if(s.finished)return;$("title").textContent=s.title;$("abstract").textContent=s.abstract;fill(s.answer);$("msg").textContent="";
+ $("back").disabled=s.n===0;window.scrollTo(0,0)}
+$("next").addEventListener("click",async()=>{try{const answer=collect();$("next").disabled=true;
+ const r=await api("/api/save",{method:"POST",body:JSON.stringify({n:cur.n,answer})});await load(r.next)}
+ catch(e){$("msg").textContent=e.message}finally{$("next").disabled=false}});
+$("back").addEventListener("click",()=>load(Math.max(0,cur.n-1)).catch(e=>$("msg").textContent=e.message));
+$("review").addEventListener("click",()=>load(0));
+load().catch(e=>{$("msg").textContent=e.message});
+</script></body></html>

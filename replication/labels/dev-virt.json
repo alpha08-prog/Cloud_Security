@@ -1,0 +1,649 @@
+{
+  "sample": "dev-virt",
+  "annotator": "implementer (virtualization dev supplement, tuning only; drawn from classifier-tagged works, blind to per-item output)",
+  "guidelines": "docs/replication.md section 4",
+  "items": [
+    {
+      "id": "W4220937369",
+      "onTopic": true,
+      "type": "concern",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "concern",
+        "interfaces": "none",
+        "network-security": "concern"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "concern",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W2904240842",
+      "onTopic": true,
+      "type": "concern",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "concern",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "concern",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W4353090777",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "solution",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "concern",
+        "isolation": "solution",
+        "data-leakage": "solution",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W3033183000",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "solution",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "solution",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W2391359728",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "solution"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "solution"
+      }
+    },
+    {
+      "id": "W2615468580",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "solution",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W2562095577",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "concern",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "solution"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W190140981",
+      "onTopic": true,
+      "type": "concern",
+      "survey": false,
+      "categories": {
+        "legal-issues": "concern",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "concern",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W7214954455",
+      "onTopic": true,
+      "type": "concern",
+      "survey": false,
+      "categories": {
+        "legal-issues": "concern",
+        "compliance": "concern",
+        "governance": "concern",
+        "virtualization": "concern",
+        "data-security": "concern",
+        "interfaces": "concern",
+        "network-security": "concern"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "concern"
+      }
+    },
+    {
+      "id": "W2117869930",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "solution",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "solution",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W3125591458",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "solution",
+        "cross-vm-attacks": "none",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W3152616793",
+      "onTopic": false
+    },
+    {
+      "id": "W7215587775",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "solution",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "solution",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "concern",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W2330264227",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "solution",
+        "interfaces": "solution",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "solution",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W3116055699",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "none",
+        "data-security": "solution",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W4320459214",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "concern",
+        "interfaces": "none",
+        "network-security": "solution"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W4415270400",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "solution",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "solution"
+      }
+    },
+    {
+      "id": "W2999345642",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "solution",
+        "governance": "solution",
+        "virtualization": "concern",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "concern",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W3095275465",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "none",
+        "interfaces": "solution",
+        "network-security": "solution"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "concern",
+        "cross-vm-attacks": "concern",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W4408856203",
+      "onTopic": true,
+      "type": "concern",
+      "survey": true,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "concern",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "concern",
+        "interfaces": "concern",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "concern",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W2792587241",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "none",
+        "data-security": "solution",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W2389941193",
+      "onTopic": true,
+      "type": "concern",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "concern",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "concern",
+        "cross-vm-attacks": "none",
+        "isolation": "concern",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W1665205069",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "solution"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "solution",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W2398262958",
+      "onTopic": true,
+      "type": "concern",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "concern",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "concern",
+        "isolation": "concern",
+        "data-leakage": "concern",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W4405429639",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "solution",
+        "network-security": "solution"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W4407835825",
+      "onTopic": true,
+      "type": "concern",
+      "survey": true,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "concern",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "concern",
+        "isolation": "concern",
+        "data-leakage": "concern",
+        "vm-identification": "none"
+      }
+    },
+    {
+      "id": "W7117964127",
+      "onTopic": true,
+      "type": "concern",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "concern",
+        "governance": "none",
+        "virtualization": "concern",
+        "data-security": "none",
+        "interfaces": "concern",
+        "network-security": "concern"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "concern"
+      }
+    },
+    {
+      "id": "W4414334691",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "none",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "concern",
+        "cross-vm-attacks": "none",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "solution"
+      }
+    },
+    {
+      "id": "W4319878514",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "solution",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "solution",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "solution",
+        "data-leakage": "none",
+        "vm-identification": "solution"
+      }
+    },
+    {
+      "id": "W2405568208",
+      "onTopic": true,
+      "type": "solution",
+      "survey": false,
+      "categories": {
+        "legal-issues": "none",
+        "compliance": "none",
+        "governance": "none",
+        "virtualization": "solution",
+        "data-security": "solution",
+        "interfaces": "none",
+        "network-security": "none"
+      },
+      "axes": {
+        "hypervisor-vulnerabilities": "none",
+        "cross-vm-attacks": "none",
+        "isolation": "none",
+        "data-leakage": "none",
+        "vm-identification": "none"
+      }
+    }
+  ]
+}

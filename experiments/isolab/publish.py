@@ -88,7 +88,7 @@ def e2_doc(runs: dict[str, dict]) -> dict:
          "verdict": _verdict(None if i is None else i["openPaths"] >= 10),
          "detail": f"{i['openPaths']}/{i['probes']} open" if i else "insecure not run"},
         {"id": "H6", "statement": "Hardened: 0 of 12 paths open, with every positive control passing",
-         "verdict": _verdict(None if h is None else h["openPaths"] == 0 and h["controlsPassed"] == h["controls"]),
+         "verdict": _verdict(None if h is None else e2.isolation_passed("hardened", results)),
          "detail": f"{h['openPaths']}/{h['probes']} open, controls {h['controlsPassed']}/{h['controls']}"
          if h else "hardened not run"},
     ]
@@ -102,8 +102,7 @@ def e3_doc(runs: dict[str, dict]) -> dict:
     results = [r for p in ("insecure", "hardened") if p in runs for r in runs[p]["results"]]
     fps = [f for p in ("insecure", "hardened") if p in runs for f in runs[p]["falsePositives"]]
     summary = [s for p in ("insecure", "hardened") if p in runs for s in runs[p]["summary"]]
-    ok = [s["detected"] == s["expected"] and s["falsePositives"] == 0 and s["attributionAccuracy"] == 1
-          for s in summary]
+    ok = [e3.detection_passed(s["profile"], results, fps) for s in summary]
     detail = "; ".join(f"{s['profile']}: {s['detected']}/{s['expected']} detected, {s['falsePositives']} false "
                        f"positives, median {s['medianLatencyMs']} ms, attribution {s['attributionAccuracy']}"
                        for s in summary)
@@ -113,6 +112,10 @@ def e3_doc(runs: dict[str, dict]) -> dict:
             "environment": base["environment"], "hypotheses": hypotheses,
             "quietWindowSeconds": base["quietWindowSeconds"], "triggers": e3.catalogue(), "results": results,
             "falsePositives": fps, "summary": summary}
+
+
+OWNED = {f"audit-{p}.{ext}" for p in ("insecure", "hardened") for ext in ("json", "sarif")} | {
+    "e1.json", "e2.json", "e3.json"}
 
 
 def publish(run_root: Path | None = None, dest: Path | None = None) -> Path:
@@ -137,8 +140,13 @@ def publish(run_root: Path | None = None, dest: Path | None = None) -> Path:
     if runs["e1"]:
         util.write_json(dest / "e1.json", e1_doc(runs["e1"], runs["e3"]))
         written.append("e1.json")
+    # Keep entries other publishers own (e.g. replication.json from `rep publish`).
+    previous = util.read_json(dest / "manifest.json") if (dest / "manifest.json").exists() else {}
+    kept = {f for f in previous.get("files", []) if f not in OWNED and (dest / f).exists()}
+    extra = {k: v for k, v in previous.items() if k not in ("generatedAt", "platform", "gitSha", "files")}
     util.write_json(dest / "manifest.json", {"generatedAt": util.utc_now(), "platform": run_root.name,
-                                             "gitSha": util.git_sha(), "files": sorted(written)})
+                                             "gitSha": util.git_sha(), "files": sorted({*written, *kept}),
+                                             **extra})
     rc = devtools.validate(dest)
     if rc != 0:
         raise util.CommandError("published results do not match schemas/*.schema.json")

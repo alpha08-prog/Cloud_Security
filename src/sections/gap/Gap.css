@@ -117,3 +117,14 @@
     padding: var(--space-5);
   }
 }
+
+.gap__still {
+  padding: var(--space-5);
+  border-left: 4px solid var(--highlight);
+}
+.gap__still h3 {
+  margin: 0 0 var(--space-2);
+}
+.gap__still p:last-child {
+  margin: 0;
+}

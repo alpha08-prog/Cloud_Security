@@ -2,6 +2,7 @@ import { lazy, type ComponentType } from 'react'
 
 // Each section is its own chunk, loaded when its tab is first opened.
 const Gap = lazy(() => import('./gap/Gap').then((m) => ({ default: m.Gap })))
+const Research = lazy(() => import('./research/Research').then((m) => ({ default: m.Research })))
 const Requirements = lazy(() =>
   import('./requirements/Requirements').then((m) => ({ default: m.Requirements })),
 )
@@ -9,7 +10,7 @@ const System = lazy(() => import('./system/System').then((m) => ({ default: m.Sy
 const Results = lazy(() => import('./results/Results').then((m) => ({ default: m.Results })))
 const Paper = lazy(() => import('./paper/Paper').then((m) => ({ default: m.Paper })))
 
-export type SectionId = 'gap' | 'requirements' | 'system' | 'results' | 'paper'
+export type SectionId = 'research' | 'gap' | 'requirements' | 'system' | 'results' | 'paper'
 
 export interface Section {
   id: SectionId
@@ -26,9 +27,15 @@ export interface Section {
 // The story in order: the paper's finding, what it asks for, what we built, what we measured.
 export const SECTIONS: readonly Section[] = [
   {
+    id: 'research', label: 'Research', title: 'Recent research to executable defenses',
+    summary: 'A scoped extension of 2024 multi-tenant monitoring and the 2025 ACM container-security survey.',
+    source: 'Horchulhack et al. (2024) · Jarkas et al. (2025) · E4 and E5',
+    Component: Research,
+  },
+  {
     id: 'gap',
-    label: '1 · The gap',
-    title: 'The gap the paper found',
+    label: '2012 background',
+    title: 'Historical motivation from 2012',
     summary:
       'Across 200+ references, virtualization is the one area where solutions lag concerns: 12% of concern citations but 3% of solution citations. Inside it, isolation and cross-VM attacks are almost unanswered.',
     source: 'Gonzalez et al. (2012), Figures 6, 8 & 11',
@@ -36,8 +43,8 @@ export const SECTIONS: readonly Section[] = [
   },
   {
     id: 'requirements',
-    label: '2 · Requirements',
-    title: 'What the paper asks for',
+    label: 'Legacy R1–R4',
+    title: 'Original requirements from Gonzalez (2012)',
     summary:
       'The paper’s own future-work section lists four requirements for the missing solution. IsoLab implements each one and verifies it with checks, detections and experiments.',
     source: 'Gonzalez et al. (2012), p.16 “Considerations and future work”',
@@ -58,14 +65,14 @@ export const SECTIONS: readonly Section[] = [
     label: '4 · Results',
     title: 'What we measured',
     summary:
-      'Measured, not claimed: the hardened profile closes every isolation path we probed, holds latency under a noisy neighbour, and detects every isolation-breaking action, attributed to the right tenant.',
+      'Historical E1–E3: twelve tested paths blocked, reduced latency inflation, and expected trigger detections with protocol-defined attribution, including unknown identities.',
     source: 'results/published (lab.py publish) · protocol in docs/experiments.md',
     Component: Results,
   },
   {
     id: 'paper',
-    label: 'Paper',
-    title: 'The paper, in detail',
+    label: '2012 appendix',
+    title: 'The historical paper, in detail',
     summary:
       'Appendix: the full taxonomy, every concern-vs-solution figure, the CSA / ENISA / NIST frameworks, and best-practice controls per category.',
     source: 'Gonzalez et al. (2012), Figures 1–11, Tables 1 & 2',
@@ -73,7 +80,7 @@ export const SECTIONS: readonly Section[] = [
   },
 ]
 
-export const DEFAULT_SECTION: SectionId = 'gap'
+export const DEFAULT_SECTION: SectionId = 'research'
 
 /** Links from the earlier, explorer-style version of the site keep working. */
 export const LEGACY_HASHES: Readonly<Record<string, string>> = {

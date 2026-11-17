@@ -1,0 +1,47 @@
+{
+  "workload": "svm",
+  "profile": "shared",
+  "scenario": "sustained",
+  "rep": 7,
+  "runId": "svm-shared-sustained-07",
+  "started": 1794910283.9905128,
+  "ended": 1794910344.0356333,
+  "performanceMs": 848.731279373169,
+  "performanceMetric": "medianJobCompletion",
+  "failures": 0,
+  "requests": 0,
+  "jobs": 59,
+  "backgroundBatchesPerSecond": 87.90056474218014,
+  "detections": [
+    {
+      "id": "DET-08-00001",
+      "rule": "DET-08",
+      "title": "Noisy neighbour: one tenant starving another of CPU",
+      "severity": "medium",
+      "requirements": [
+        "R3"
+      ],
+      "tenant": "noise",
+      "workload_id": "noise",
+      "service": "noise",
+      "event_time_ns": 1794910274236821760,
+      "detected_at_ns": 1794910334026803547,
+      "latency_ms": 59790.0,
+      "message": "tenant noise uses 6.5 cores (fair share 6.0) on CPUs it shares with tenant(s) victim",
+      "evidence": {
+        "aggressorCores": 6.48,
+        "fairShareCores": 6.0,
+        "victims": [
+          "victim"
+        ],
+        "victimCpuPressurePct": [
+          "victim 37.98%"
+        ],
+        "sharedCpus": 2,
+        "sustainedSeconds": 35.0
+      }
+    }
+  ],
+  "samples": 12,
+  "status": "measured"
+}

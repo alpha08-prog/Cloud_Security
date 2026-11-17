@@ -1,0 +1,18 @@
+{
+  "workload": "payments",
+  "profile": "shared",
+  "scenario": "benign",
+  "rep": 2,
+  "runId": "payments-shared-benign-02",
+  "started": 1794902705.6158311,
+  "ended": 1794902765.6527216,
+  "performanceMs": 6.559610366821289,
+  "performanceMetric": "requestP99",
+  "failures": 0,
+  "requests": 2501,
+  "jobs": 0,
+  "backgroundBatchesPerSecond": 89.04525125929773,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

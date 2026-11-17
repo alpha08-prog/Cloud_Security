@@ -1,0 +1,619 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-11T15:31:33.071798+00:00",
+  "sources": {
+    "qos2024": "https://doi.org/10.1016/j.jnca.2024.103839",
+    "security2025": "https://doi.org/10.1145/3715001"
+  },
+  "inputs": {
+    "snapshot": {
+      "path": "auditor/tests/fixtures/snapshots/hardened-desktop.json",
+      "sha256": "82caf59e6a5d23688f5b395f227c2d26ce7c666962b7bf732f5d7bced1145171"
+    },
+    "policy": {
+      "path": "testbed/policy.yaml",
+      "sha256": "d7ad4015677c6488ed3090d1130c76da2f9c558a8b60fd4fd62a2f404dc36be8"
+    },
+    "crosswalkCode": {
+      "path": "auditor/src/cloudaudit/research.py",
+      "sha256": "8f9fa29d5cf85e976d737b3a61a5c64d8607d724f9735f020ec3ff06367965d9"
+    },
+    "launcher": {
+      "path": "testbed/images/common/integrity.py",
+      "sha256": "59b04468706d71e8bbea3ca7280bba8c10705563882acc1b8b99ad700c19405c"
+    },
+    "integrityExperiment": {
+      "path": "scripts/integrity_study.py",
+      "sha256": "327c7b38e0a3343ff165b4ab6ec2a546550f1318bc7df4bed2d7c5224abe661f"
+    },
+    "hardenedCompose": {
+      "path": "testbed/compose.hardened.yaml",
+      "sha256": "1cf7b4fd257e260043ffd07a84e0d0db60241c4837efcea7ea3ac099015a6d7a"
+    },
+    "insecure": {
+      "path": "results/published/audit-insecure.json",
+      "sha256": "754d58d0d383850beffc6cad799b5fed46559cbce0b1b10e9f26535b42edc320"
+    },
+    "hardened": {
+      "path": "results/published/audit-hardened.json",
+      "sha256": "36e7b0eaaebd40ab6699d3a2142b494199c4c5a8837d87241f3ffc222b312e90"
+    }
+  },
+  "measurementBasis": "E1-E3: historical published live runs; E4: current saved-snapshot experiment.",
+  "themes": [
+    {
+      "id": "mounts",
+      "title": "Restrict sensitive host mounts",
+      "source": "M1 (selected host-volume aspect); E30 context",
+      "checks": [
+        "DL-01",
+        "HV-01"
+      ],
+      "boundary": "E2 host and engine-access probes",
+      "runtime": "DET-03",
+      "profiles": {
+        "insecure": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "DL-01",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "sensitive host paths: /run/host-services/docker.proxy.sock, /etc; writable host paths: /run/host-services/docker.proxy.sock"
+                }
+              ]
+            },
+            {
+              "check": "HV-01",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "auditor",
+                  "status": "skip",
+                  "reason": "documented provider exception: DOCKER_HOST points at the read-only socket proxy (tcp://socket-proxy:2375), not at the engine socket; the proxy rejects every write (POST) request, so the auditor can observe the engine but not control it."
+                },
+                {
+                  "ref": "socket-proxy",
+                  "status": "skip",
+                  "reason": "documented provider exception: The proxy is the single holder of the engine socket by design. It runs as root only to open the root-owned socket, exposes a read-only API subset (POST disabled) and sits on an internal network shared with nothing but the auditor."
+                },
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "engine socket mounted: /run/host-services/docker.proxy.sock"
+                }
+              ]
+            }
+          ]
+        },
+        "hardened": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "DL-01",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            },
+            {
+              "check": "HV-01",
+              "status": "pass",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "auditor",
+                  "status": "skip",
+                  "reason": "documented provider exception: DOCKER_HOST points at the read-only socket proxy (tcp://socket-proxy:2375), not at the engine socket; the proxy rejects every write (POST) request, so the auditor can observe the engine but not control it."
+                },
+                {
+                  "ref": "socket-proxy",
+                  "status": "skip",
+                  "reason": "documented provider exception: The proxy is the single holder of the engine socket by design. It runs as root only to open the root-owned socket, exposes a read-only API subset (POST disabled) and sits on an internal network shared with nothing but the auditor."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "immutability",
+      "title": "Read-only container root filesystems",
+      "source": "M3",
+      "checks": [
+        "DL-04"
+      ],
+      "boundary": "Configuration evidence only",
+      "runtime": "Not directly observed",
+      "profiles": {
+        "insecure": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "DL-04",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-a",
+                  "status": "fail",
+                  "reason": "writable root filesystem"
+                },
+                {
+                  "ref": "tenant-b",
+                  "status": "fail",
+                  "reason": "writable root filesystem"
+                },
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "writable root filesystem"
+                }
+              ]
+            }
+          ]
+        },
+        "hardened": {
+          "configurationVerified": true,
+          "evidence": [
+            {
+              "check": "DL-04",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "privilege",
+      "title": "Least privilege and non-root execution",
+      "source": "E18, E32 (defensive association)",
+      "checks": [
+        "ISO-01",
+        "ISO-02",
+        "ISO-04"
+      ],
+      "boundary": "Configuration evidence only",
+      "runtime": "DET-02",
+      "profiles": {
+        "insecure": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "ISO-01",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "runs privileged"
+                }
+              ]
+            },
+            {
+              "check": "ISO-02",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-a",
+                  "status": "fail",
+                  "reason": "default capability set kept (cap_drop ALL missing)"
+                },
+                {
+                  "ref": "tenant-b",
+                  "status": "fail",
+                  "reason": "default capability set kept (cap_drop ALL missing)"
+                },
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "privileged: holds every capability"
+                }
+              ]
+            },
+            {
+              "check": "ISO-04",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "socket-proxy",
+                  "status": "skip",
+                  "reason": "documented provider exception: The proxy is the single holder of the engine socket by design. It runs as root only to open the root-owned socket, exposes a read-only API subset (POST disabled) and sits on an internal network shared with nothing but the auditor."
+                },
+                {
+                  "ref": "tenant-a",
+                  "status": "fail",
+                  "reason": "runs as root (container setting)"
+                },
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "runs as root (container setting)"
+                }
+              ]
+            }
+          ]
+        },
+        "hardened": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "ISO-01",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            },
+            {
+              "check": "ISO-02",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            },
+            {
+              "check": "ISO-04",
+              "status": "pass",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "socket-proxy",
+                  "status": "skip",
+                  "reason": "documented provider exception: The proxy is the single holder of the engine socket by design. It runs as root only to open the root-owned socket, exposes a read-only API subset (POST disabled) and sits on an internal network shared with nothing but the auditor."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "process",
+      "title": "Private process namespaces",
+      "source": "A6.1, E23 (defensive association)",
+      "checks": [
+        "ISO-05"
+      ],
+      "boundary": "E2 process-visibility probe",
+      "runtime": "DET-04",
+      "profiles": {
+        "insecure": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "ISO-05",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "shares the host PID namespace"
+                }
+              ]
+            }
+          ]
+        },
+        "hardened": {
+          "configurationVerified": true,
+          "evidence": [
+            {
+              "check": "ISO-05",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "syscalls",
+      "title": "Seccomp and no-new-privileges",
+      "source": "A7 (attack-surface reduction)",
+      "checks": [
+        "ISO-03"
+      ],
+      "boundary": "Configuration evidence only",
+      "runtime": "No syscall-level detector",
+      "profiles": {
+        "insecure": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "ISO-03",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-a",
+                  "status": "fail",
+                  "reason": "no-new-privileges not set"
+                },
+                {
+                  "ref": "tenant-b",
+                  "status": "fail",
+                  "reason": "no-new-privileges not set"
+                },
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "seccomp unconfined; no-new-privileges not set"
+                }
+              ]
+            }
+          ]
+        },
+        "hardened": {
+          "configurationVerified": true,
+          "evidence": [
+            {
+              "check": "ISO-03",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "resources",
+      "title": "Resource limits and dedicated allocations",
+      "source": "E34 (defensive association)",
+      "checks": [
+        "ISO-06",
+        "ISO-07"
+      ],
+      "boundary": "E1 CPU-contention experiment",
+      "runtime": "DET-08",
+      "profiles": {
+        "insecure": {
+          "configurationVerified": false,
+          "evidence": [
+            {
+              "check": "ISO-06",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-a",
+                  "status": "fail",
+                  "reason": "no limit on cpu, memory, pids"
+                },
+                {
+                  "ref": "tenant-b",
+                  "status": "fail",
+                  "reason": "no limit on cpu, memory, pids"
+                },
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "no limit on cpu, memory, pids"
+                }
+              ]
+            },
+            {
+              "check": "ISO-07",
+              "status": "fail",
+              "waived": false,
+              "verified": false,
+              "nonPassingTargets": [
+                {
+                  "ref": "tenant-a",
+                  "status": "fail",
+                  "reason": "no cpuset: may run on any CPU, including other tenants'"
+                },
+                {
+                  "ref": "tenant-b",
+                  "status": "fail",
+                  "reason": "no cpuset: may run on any CPU, including other tenants'"
+                },
+                {
+                  "ref": "tenant-c",
+                  "status": "fail",
+                  "reason": "no cpuset: may run on any CPU, including other tenants'"
+                }
+              ]
+            }
+          ]
+        },
+        "hardened": {
+          "configurationVerified": true,
+          "evidence": [
+            {
+              "check": "ISO-06",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            },
+            {
+              "check": "ISO-07",
+              "status": "pass",
+              "waived": false,
+              "verified": true,
+              "nonPassingTargets": []
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "e4": {
+    "kind": "snapshot-configuration-fault-injection",
+    "target": "tenant-a",
+    "cases": [
+      {
+        "id": "F01",
+        "theme": "privilege",
+        "mutation": "privileged",
+        "check": "ISO-01",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F02",
+        "theme": "privilege",
+        "mutation": "capabilities",
+        "check": "ISO-02",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F03",
+        "theme": "syscalls",
+        "mutation": "seccomp",
+        "check": "ISO-03",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F04",
+        "theme": "privilege",
+        "mutation": "root",
+        "check": "ISO-04",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F05",
+        "theme": "process",
+        "mutation": "host-pid",
+        "check": "ISO-05",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F06",
+        "theme": "resources",
+        "mutation": "unlimited-cpu",
+        "check": "ISO-06",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F07",
+        "theme": "immutability",
+        "mutation": "writable-root",
+        "check": "DL-04",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F08",
+        "theme": "mounts",
+        "mutation": "host-bind",
+        "check": "DL-01",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F09",
+        "theme": "mounts",
+        "mutation": "engine-socket",
+        "check": "HV-01",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      },
+      {
+        "id": "F10",
+        "theme": "resources",
+        "mutation": "unplaced-cpu",
+        "check": "ISO-07",
+        "baseline": "pass",
+        "mutated": "fail",
+        "detected": true
+      }
+    ],
+    "detected": 10,
+    "total": 10,
+    "passed": true,
+    "claim": "Checker sensitivity to these ten configuration faults; no live exploit or CVE validation."
+  },
+  "e5": {
+    "kind": "isolated-subprocess-startup-integrity",
+    "source": "ACM 2025 M2 (selected startup aspect)",
+    "cases": [
+      {
+        "case": "clean",
+        "expectedExecution": true,
+        "executed": true,
+        "exitCode": 0,
+        "passed": true
+      },
+      {
+        "case": "modified-script",
+        "expectedExecution": false,
+        "executed": false,
+        "exitCode": 78,
+        "passed": true
+      },
+      {
+        "case": "missing-script",
+        "expectedExecution": false,
+        "executed": false,
+        "exitCode": 78,
+        "passed": true
+      },
+      {
+        "case": "unlisted-script",
+        "expectedExecution": false,
+        "executed": false,
+        "exitCode": 78,
+        "passed": true
+      },
+      {
+        "case": "invalid-manifest",
+        "expectedExecution": false,
+        "executed": false,
+        "exitCode": 78,
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "scope": "Trusted image manifest, launcher and builder; excludes post-start tampering and arbitrary exec."
+  },
+  "notImplemented": [
+    "2024 autoencoder and recurrent-neural-network classifiers",
+    "2024 four-host Kubernetes/Spark replication",
+    "Full 47-exploit ACM taxonomy validation",
+    "Symlink defense testing (M4), hardware attestation, eBPF defenses",
+    "Post-start continuous binary attestation"
+  ],
+  "contribution": "Selected survey defenses linked to checks, startup integrity enforcement, independent fault challenges, and separate reliability evidence."
+}

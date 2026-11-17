@@ -7,5 +7,8 @@ LABEL org.opencontainers.image.title="isolab batch-analytics"       org.opencont
 RUN apk add --no-cache stress-ng  && addgroup -g 10001 app && adduser -D -u 10001 -G app app && mkdir -p /data /opt/probes && chown 10001:10001 /data
 COPY common/probe.py /opt/probes/probe.py
 COPY common/idle.py /opt/app/idle.py
+COPY common/integrity.py /opt/integrity/integrity.py
+RUN python /opt/integrity/integrity.py --create /usr/local/bin/python3.12 /usr/bin/stress-ng /opt/integrity/integrity.py /opt/app/idle.py /opt/probes/probe.py
 USER 10001:10001
-ENTRYPOINT ["python", "-u", "/opt/app/idle.py", "batch-analytics"]
+ENTRYPOINT ["python", "/opt/integrity/integrity.py", "--"]
+CMD ["python", "-u", "/opt/app/idle.py", "batch-analytics"]

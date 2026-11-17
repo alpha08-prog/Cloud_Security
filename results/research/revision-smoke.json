@@ -1,0 +1,239 @@
+{
+  "generatedAt": "2026-11-11T15:32:41.809020+00:00",
+  "kind": "fresh-hardened-smoke-summary",
+  "variant": "ci",
+  "quietWindowSeconds": 30,
+  "e2Passed": true,
+  "e3Passed": true,
+  "auditGate": {
+    "failOn": "high",
+    "passed": true,
+    "blocking": [],
+    "waived": [
+      "HV-03",
+      "HV-04"
+    ],
+    "expiredWaivers": []
+  },
+  "e2Results": [
+    {
+      "profile": "hardened",
+      "probeId": "C1",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from tenant-a:8080",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "C2",
+      "outcome": "allowed",
+      "detail": "HTTP 200 from auditor:8088",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "C3",
+      "outcome": "allowed",
+      "detail": "TCP connect to 127.0.0.1:59875 succeeded",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P1",
+      "outcome": "blocked",
+      "detail": "name tenant-a does not resolve",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P2",
+      "outcome": "blocked",
+      "detail": "OSError: Network unreachable",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P3",
+      "outcome": "blocked",
+      "detail": "no host gateway",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P4",
+      "outcome": "blocked",
+      "detail": "name metadata does not resolve",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P5",
+      "outcome": "blocked",
+      "detail": "name prometheus does not resolve",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P6",
+      "outcome": "blocked",
+      "detail": "OSError: Network unreachable",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P7",
+      "outcome": "blocked",
+      "detail": "not visible among 2 processes",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P8",
+      "outcome": "blocked",
+      "detail": "/var/run/docker.sock not present",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P9",
+      "outcome": "blocked",
+      "detail": "/host-etc/os-release not present",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P10",
+      "outcome": "blocked",
+      "detail": "/data/tenant-a/marker.txt not present",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P11",
+      "outcome": "blocked",
+      "detail": "CapEff=0 (no capabilities)",
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "probeId": "P12",
+      "outcome": "blocked",
+      "detail": "name tenant-a does not resolve",
+      "asExpected": true
+    }
+  ],
+  "e3Results": [
+    {
+      "profile": "hardened",
+      "triggerId": "T1",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-01",
+      "tenant": "a",
+      "latencyMs": 1.5,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T2",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-02",
+      "tenant": "b",
+      "latencyMs": 210.6,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T3",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-03",
+      "tenant": "c",
+      "latencyMs": 181.1,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T4",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-05",
+      "tenant": null,
+      "latencyMs": 175.2,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T5",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-06",
+      "tenant": "c",
+      "latencyMs": 48.1,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T6",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-07",
+      "tenant": "c",
+      "latencyMs": 77.8,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T7",
+      "expected": "silent",
+      "detected": false,
+      "rule": null,
+      "tenant": null,
+      "latencyMs": null,
+      "withinSlo": true,
+      "attributionCorrect": null,
+      "asExpected": true
+    },
+    {
+      "profile": "hardened",
+      "triggerId": "T8",
+      "expected": "detect",
+      "detected": true,
+      "rule": "DET-04",
+      "tenant": "c",
+      "latencyMs": 247.9,
+      "withinSlo": true,
+      "attributionCorrect": true,
+      "asExpected": true
+    }
+  ],
+  "falsePositives": [],
+  "inputs": {
+    "audit": {
+      "path": "results/runs/revision-2026-11-11/hardened/audit.json",
+      "sha256": "3e2d67308f5b7d1004f357d64556ae9eacb47b0a7436fa3f1aaade015c967533"
+    },
+    "e2": {
+      "path": "results/runs/revision-2026-11-11/hardened/e2.json",
+      "sha256": "cde13bbb6b5e49ef9f8711ee9eeb61d8dee74dab8548b4964e128e24f88f5b35"
+    },
+    "e3": {
+      "path": "results/runs/revision-2026-11-11/hardened/e3.json",
+      "sha256": "2540d78e26627237e0423e3b5191380bb381133b458bf586df27aba0da2b3a32"
+    }
+  },
+  "limit": "Shortened hardened checks; no fresh E1 benchmark or insecure comparison in this smoke run."
+}

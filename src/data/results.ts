@@ -14,6 +14,7 @@ import type {
   E3Result,
   Manifest,
   ProfileName,
+  ReplicationResult,
 } from './resultTypes'
 
 export const SUPPORTED_SCHEMA_MAJOR = 1
@@ -36,6 +37,16 @@ export const E1 = narrow<E1Result>(e1Json, 'e1')
 export const E2 = narrow<E2Result>(e2Json, 'e2')
 export const E3 = narrow<E3Result>(e3Json, 'e3')
 export const MANIFEST = manifestJson as Manifest
+
+// The replication publishes separately (`lab.py rep publish`) and only once the blind
+// validation labels are complete; until then the site shows the protocol instead.
+const replicationFiles = import.meta.glob<unknown>('../../results/published/replication.json', {
+  eager: true,
+  import: 'default',
+})
+const replicationJson = Object.values(replicationFiles)[0]
+export const REPLICATION: ReplicationResult | null =
+  replicationJson === undefined ? null : narrow<ReplicationResult>(replicationJson, 'replication')
 
 export const PROFILES: readonly ProfileName[] = ['insecure', 'hardened']
 
