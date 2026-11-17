@@ -1,14 +1,14 @@
 {
   "basis": "Reanalysis of committed 2026-10-12 measurements; not a fresh live run",
   "sha256": {
-    "audit-hardened.json": "36e7b0eaaebd40ab6699d3a2142b494199c4c5a8837d87241f3ffc222b312e90",
+    "audit-hardened.json": "e129a63d9b5ca9586319f9945426ee0f984d9ef9616b60a51a0875661efd8b67",
     "audit-hardened.sarif": "b16dafe4c251e1433cf35bb25038659c892eb4cb568e29af4974aec0710390db",
-    "audit-insecure.json": "754d58d0d383850beffc6cad799b5fed46559cbce0b1b10e9f26535b42edc320",
-    "audit-insecure.sarif": "8a3486134d904b228216ae8b5e647c6a463b0cea6de45083613c23b58d78cd15",
-    "e1.json": "2773784ada58279f65718daaf194fe5fbf426e9f7717654dfa8a613afe34734f",
-    "e2.json": "3478cbf96f2cc1b0c677276effcad31116cdbb14cff44b17facbdfca388e5cd1",
-    "e3.json": "941e0f3c96a46041a49fa44dc8523da3ea479a37a58d013a7d55d434e4be0dee",
-    "manifest.json": "c12634fb31b300699ddd7cdf92b47c02df66435cd28b97b10b6deb7fbbc2e9fe"
+    "audit-insecure.json": "003325fbed3785f738e026e0a6b69abe079c3196c13ffa45cee6fabf16c0ba05",
+    "audit-insecure.sarif": "21c09312c10ec1cfc7f8301fe2297fe5f03638c89e3f8b8b8f8fab4fe1446fdd",
+    "e1.json": "cd50ceae25a94bf03172eb9754cb65807631649a73e5e9562ec3b9bc1f6aec44",
+    "e2.json": "7708eb0fafd6c8c17550282b72a4aa72fc3e62f77fd89dda4767c8285c639935",
+    "e3.json": "aa0f6b3240d3da8cfbd6625c3599f7d15e6a77b71ea505759ddf9f832be48842",
+    "manifest.json": "93dafcc7af750eafea240b40541a9e31af7cf3ef6c28ed8071fd511435f295f4"
   },
   "profiles": {
     "insecure": {

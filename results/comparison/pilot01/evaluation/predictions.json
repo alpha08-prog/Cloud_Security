@@ -1,0 +1,5762 @@
+[
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-00",
+    "timestamp": 1794915640.8312273,
+    "split": "test",
+    "label": 0,
+    "score": 0.0793524980545044,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-01",
+    "timestamp": 1794914341.4332235,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0781523734331131,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-02",
+    "timestamp": 1794905761.3570461,
+    "split": "test",
+    "label": 0,
+    "score": 0.146518275141716,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-03",
+    "timestamp": 1794916136.5023072,
+    "split": "test",
+    "label": 0,
+    "score": 0.11742818355560303,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-04",
+    "timestamp": 1794915445.3086548,
+    "split": "train",
+    "label": 0,
+    "score": 0.12743903696537018,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-05",
+    "timestamp": 1794909446.0896413,
+    "split": "train",
+    "label": 0,
+    "score": 0.09327750653028488,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-06",
+    "timestamp": 1794913139.146919,
+    "split": "validation",
+    "label": 0,
+    "score": 0.10174105316400528,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-07",
+    "timestamp": 1794902468.0800078,
+    "split": "train",
+    "label": 0,
+    "score": 0.0899854525923729,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-08",
+    "timestamp": 1794905161.4751918,
+    "split": "train",
+    "label": 0,
+    "score": 0.17738912999629974,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-benign-09",
+    "timestamp": 1794910836.20376,
+    "split": "validation",
+    "label": 1,
+    "score": 0.08091951906681061,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-00",
+    "timestamp": 1794900670.5596526,
+    "split": "test",
+    "label": 0,
+    "score": 0.02146318554878235,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-01",
+    "timestamp": 1794900475.1954281,
+    "split": "validation",
+    "label": 0,
+    "score": 0.03330017998814583,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-02",
+    "timestamp": 1794911337.409257,
+    "split": "test",
+    "label": 0,
+    "score": 0.05685916915535927,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-03",
+    "timestamp": 1794906258.5876236,
+    "split": "test",
+    "label": 0,
+    "score": 0.017954301089048386,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-04",
+    "timestamp": 1794912744.252132,
+    "split": "train",
+    "label": 0,
+    "score": 0.027454910799860954,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-05",
+    "timestamp": 1794915543.0917084,
+    "split": "train",
+    "label": 0,
+    "score": 0.03439277037978172,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-06",
+    "timestamp": 1794900768.2248218,
+    "split": "validation",
+    "label": 0,
+    "score": 0.033586982637643814,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-07",
+    "timestamp": 1794902170.9729075,
+    "split": "train",
+    "label": 0,
+    "score": 0.03494371846318245,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-08",
+    "timestamp": 1794912141.7078242,
+    "split": "train",
+    "label": 0,
+    "score": 0.05722969025373459,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-bursty-09",
+    "timestamp": 1794903261.748107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.04312606528401375,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-00",
+    "timestamp": 1794915144.4179144,
+    "split": "test",
+    "label": 0,
+    "score": 0.00036900286795571446,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-01",
+    "timestamp": 1794903457.1204107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0004521936643868685,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-02",
+    "timestamp": 1794908152.486849,
+    "split": "test",
+    "label": 0,
+    "score": 0.0002544970775488764,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-03",
+    "timestamp": 1794903957.013802,
+    "split": "test",
+    "label": 0,
+    "score": 0.0003746772126760334,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-04",
+    "timestamp": 1794908250.50924,
+    "split": "train",
+    "label": 0,
+    "score": 0.00028322101570665836,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-05",
+    "timestamp": 1794910539.4911242,
+    "split": "train",
+    "label": 0,
+    "score": 0.0003872080415021628,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-06",
+    "timestamp": 1794908851.9488072,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0003509403904899955,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-07",
+    "timestamp": 1794902863.3149264,
+    "split": "train",
+    "label": 0,
+    "score": 0.00029109761817380786,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-08",
+    "timestamp": 1794903359.3219607,
+    "split": "train",
+    "label": 0,
+    "score": 0.0003948898520320654,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-clean-09",
+    "timestamp": 1794913236.6921642,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0003269231820013374,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-00",
+    "timestamp": 1794904054.8150344,
+    "split": "test",
+    "label": 0,
+    "score": 0.07299698889255524,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-01",
+    "timestamp": 1794909543.6876907,
+    "split": "validation",
+    "label": 0,
+    "score": 0.08623070269823074,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-02",
+    "timestamp": 1794912646.697965,
+    "split": "test",
+    "label": 0,
+    "score": 0.11080386489629745,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-03",
+    "timestamp": 1794901870.187305,
+    "split": "test",
+    "label": 0,
+    "score": 0.12230163812637329,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-04",
+    "timestamp": 1794906063.142761,
+    "split": "train",
+    "label": 0,
+    "score": 0.08031570911407471,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-05",
+    "timestamp": 1794910039.5304148,
+    "split": "train",
+    "label": 1,
+    "score": 0.1596803367137909,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-06",
+    "timestamp": 1794908348.3639314,
+    "split": "validation",
+    "label": 0,
+    "score": 0.11846195161342621,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-07",
+    "timestamp": 1794906559.7533824,
+    "split": "train",
+    "label": 0,
+    "score": 0.08526908606290817,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-08",
+    "timestamp": 1794909149.0892963,
+    "split": "train",
+    "label": 0,
+    "score": 0.12358658760786057,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-hardened-sustained-09",
+    "timestamp": 1794906856.8350904,
+    "split": "validation",
+    "label": 0,
+    "score": 0.11582294851541519,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-00",
+    "timestamp": 1794906759.3286426,
+    "split": "test",
+    "label": 1,
+    "score": 0.9968478083610535,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-01",
+    "timestamp": 1794915937.4267018,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9977232217788696,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-02",
+    "timestamp": 1794902765.6527216,
+    "split": "test",
+    "label": 1,
+    "score": 0.9967861175537109,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-03",
+    "timestamp": 1794904356.2055042,
+    "split": "test",
+    "label": 1,
+    "score": 0.9973301291465759,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-04",
+    "timestamp": 1794906160.8548455,
+    "split": "train",
+    "label": 1,
+    "score": 0.9976193904876709,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-05",
+    "timestamp": 1794907257.4374533,
+    "split": "train",
+    "label": 1,
+    "score": 0.9978398680686951,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-06",
+    "timestamp": 1794914740.6156404,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9976665377616882,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-07",
+    "timestamp": 1794913740.557044,
+    "split": "train",
+    "label": 1,
+    "score": 0.9969354271888733,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-08",
+    "timestamp": 1794913838.1117716,
+    "split": "train",
+    "label": 1,
+    "score": 0.997755229473114,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-benign-09",
+    "timestamp": 1794914643.0714178,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9979442954063416,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-00",
+    "timestamp": 1794906954.5212102,
+    "split": "test",
+    "label": 1,
+    "score": 0.9970283508300781,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-01",
+    "timestamp": 1794907558.4549294,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9972234964370728,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-02",
+    "timestamp": 1794910238.3402736,
+    "split": "test",
+    "label": 1,
+    "score": 0.9962723255157471,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-03",
+    "timestamp": 1794900572.956109,
+    "split": "test",
+    "label": 1,
+    "score": 0.995725691318512,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-04",
+    "timestamp": 1794911742.675399,
+    "split": "train",
+    "label": 1,
+    "score": 0.9958745241165161,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-05",
+    "timestamp": 1794907656.08962,
+    "split": "train",
+    "label": 1,
+    "score": 0.9974497556686401,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-06",
+    "timestamp": 1794911942.2099183,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9961731433868408,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-07",
+    "timestamp": 1794909246.6794448,
+    "split": "train",
+    "label": 1,
+    "score": 0.9973194599151611,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-08",
+    "timestamp": 1794905259.412838,
+    "split": "train",
+    "label": 1,
+    "score": 0.9960588812828064,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-bursty-09",
+    "timestamp": 1794908949.869963,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9968370795249939,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-00",
+    "timestamp": 1794905560.6681256,
+    "split": "test",
+    "label": 0,
+    "score": 0.00028033656417392194,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-01",
+    "timestamp": 1794912841.8774734,
+    "split": "validation",
+    "label": 0,
+    "score": 0.00034699219395406544,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-02",
+    "timestamp": 1794907753.6323135,
+    "split": "test",
+    "label": 0,
+    "score": 0.0004376188444439322,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-03",
+    "timestamp": 1794902370.2783396,
+    "split": "test",
+    "label": 0,
+    "score": 0.000460844166809693,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-04",
+    "timestamp": 1794902667.80424,
+    "split": "train",
+    "label": 0,
+    "score": 0.00035924225812777877,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-05",
+    "timestamp": 1794915839.518069,
+    "split": "train",
+    "label": 0,
+    "score": 0.0002793624298647046,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-06",
+    "timestamp": 1794907953.0139132,
+    "split": "validation",
+    "label": 0,
+    "score": 0.00027805057470686734,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-07",
+    "timestamp": 1794912939.7030973,
+    "split": "train",
+    "label": 0,
+    "score": 0.0004092408635187894,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-08",
+    "timestamp": 1794903062.6942446,
+    "split": "train",
+    "label": 0,
+    "score": 0.00034788085031323135,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-clean-09",
+    "timestamp": 1794904453.7567074,
+    "split": "validation",
+    "label": 0,
+    "score": 0.00039203919004648924,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-00",
+    "timestamp": 1794910637.2929325,
+    "split": "test",
+    "label": 1,
+    "score": 0.9984135627746582,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-01",
+    "timestamp": 1794909641.3502305,
+    "split": "validation",
+    "label": 1,
+    "score": 0.997996985912323,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-02",
+    "timestamp": 1794916336.059543,
+    "split": "test",
+    "label": 1,
+    "score": 0.9985519647598267,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-03",
+    "timestamp": 1794903757.8836904,
+    "split": "test",
+    "label": 1,
+    "score": 0.9985389113426208,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-04",
+    "timestamp": 1794901372.030352,
+    "split": "train",
+    "label": 1,
+    "score": 0.9985687732696533,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-05",
+    "timestamp": 1794909738.9226077,
+    "split": "train",
+    "label": 1,
+    "score": 0.998428225517273,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-06",
+    "timestamp": 1794911239.7687495,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9985520839691162,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-07",
+    "timestamp": 1794901274.2883167,
+    "split": "train",
+    "label": 1,
+    "score": 0.9983028769493103,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-08",
+    "timestamp": 1794901469.7589123,
+    "split": "train",
+    "label": 1,
+    "score": 0.9982409477233887,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "payments-shared-sustained-09",
+    "timestamp": 1794901670.9377728,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9985601902008057,
+    "threshold": 0.9961731433868408
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-00",
+    "timestamp": 1794915640.8312273,
+    "split": "test",
+    "label": 0,
+    "score": 0.08512472478868202,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-01",
+    "timestamp": 1794914341.4332235,
+    "split": "validation",
+    "label": 0,
+    "score": 0.10928265328929684,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-02",
+    "timestamp": 1794905761.3570461,
+    "split": "test",
+    "label": 0,
+    "score": 0.14648246679328417,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-03",
+    "timestamp": 1794916136.5023072,
+    "split": "test",
+    "label": 0,
+    "score": 0.08581421770914818,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-04",
+    "timestamp": 1794915445.3086548,
+    "split": "train",
+    "label": 0,
+    "score": 0.1955681055274729,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-05",
+    "timestamp": 1794909446.0896413,
+    "split": "train",
+    "label": 0,
+    "score": 0.1174860170054147,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-06",
+    "timestamp": 1794913139.146919,
+    "split": "validation",
+    "label": 0,
+    "score": 0.11530335707462352,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-07",
+    "timestamp": 1794902468.0800078,
+    "split": "train",
+    "label": 0,
+    "score": 0.13511380447146906,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-08",
+    "timestamp": 1794905161.4751918,
+    "split": "train",
+    "label": 0,
+    "score": 0.2506424241580456,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-benign-09",
+    "timestamp": 1794910836.20376,
+    "split": "validation",
+    "label": 1,
+    "score": 0.08279331389653814,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-00",
+    "timestamp": 1794900670.5596526,
+    "split": "test",
+    "label": 0,
+    "score": 0.08047770610252113,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-01",
+    "timestamp": 1794900475.1954281,
+    "split": "validation",
+    "label": 0,
+    "score": 0.19355180111890932,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-02",
+    "timestamp": 1794911337.409257,
+    "split": "test",
+    "label": 0,
+    "score": 0.16696284031510678,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-03",
+    "timestamp": 1794906258.5876236,
+    "split": "test",
+    "label": 0,
+    "score": 0.1513366902079861,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-04",
+    "timestamp": 1794912744.252132,
+    "split": "train",
+    "label": 0,
+    "score": 0.0678398773713243,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-05",
+    "timestamp": 1794915543.0917084,
+    "split": "train",
+    "label": 0,
+    "score": 0.0754893204327756,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-06",
+    "timestamp": 1794900768.2248218,
+    "split": "validation",
+    "label": 0,
+    "score": 0.11168724343386509,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-07",
+    "timestamp": 1794902170.9729075,
+    "split": "train",
+    "label": 0,
+    "score": 0.10465299164092878,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-08",
+    "timestamp": 1794912141.7078242,
+    "split": "train",
+    "label": 0,
+    "score": 0.1416120154751268,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-bursty-09",
+    "timestamp": 1794903261.748107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0629461572008044,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-00",
+    "timestamp": 1794915144.4179144,
+    "split": "test",
+    "label": 0,
+    "score": 0.011087408331198919,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-01",
+    "timestamp": 1794903457.1204107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.011842825912996801,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-02",
+    "timestamp": 1794908152.486849,
+    "split": "test",
+    "label": 0,
+    "score": 0.00912080776515434,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-03",
+    "timestamp": 1794903957.013802,
+    "split": "test",
+    "label": 0,
+    "score": 0.010764165389330359,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-04",
+    "timestamp": 1794908250.50924,
+    "split": "train",
+    "label": 0,
+    "score": 0.008502434238651725,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-05",
+    "timestamp": 1794910539.4911242,
+    "split": "train",
+    "label": 0,
+    "score": 0.007880148597241137,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-06",
+    "timestamp": 1794908851.9488072,
+    "split": "validation",
+    "label": 0,
+    "score": 0.008513788414392997,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-07",
+    "timestamp": 1794902863.3149264,
+    "split": "train",
+    "label": 0,
+    "score": 0.008805975510931286,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-08",
+    "timestamp": 1794903359.3219607,
+    "split": "train",
+    "label": 0,
+    "score": 0.017896932450325895,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-clean-09",
+    "timestamp": 1794913236.6921642,
+    "split": "validation",
+    "label": 0,
+    "score": 0.007873611337742831,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-00",
+    "timestamp": 1794904054.8150344,
+    "split": "test",
+    "label": 0,
+    "score": 0.1682659879915788,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-01",
+    "timestamp": 1794909543.6876907,
+    "split": "validation",
+    "label": 0,
+    "score": 0.10293003018768672,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-02",
+    "timestamp": 1794912646.697965,
+    "split": "test",
+    "label": 0,
+    "score": 0.12032932354705009,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-03",
+    "timestamp": 1794901870.187305,
+    "split": "test",
+    "label": 0,
+    "score": 0.21214615332629977,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-04",
+    "timestamp": 1794906063.142761,
+    "split": "train",
+    "label": 0,
+    "score": 0.09203125401861599,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-05",
+    "timestamp": 1794910039.5304148,
+    "split": "train",
+    "label": 1,
+    "score": 0.2134513903492044,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-06",
+    "timestamp": 1794908348.3639314,
+    "split": "validation",
+    "label": 0,
+    "score": 0.08253153693090069,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-07",
+    "timestamp": 1794906559.7533824,
+    "split": "train",
+    "label": 0,
+    "score": 0.2031193276045381,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-08",
+    "timestamp": 1794909149.0892963,
+    "split": "train",
+    "label": 0,
+    "score": 0.1489153391873864,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-hardened-sustained-09",
+    "timestamp": 1794906856.8350904,
+    "split": "validation",
+    "label": 0,
+    "score": 0.17737190855328913,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-00",
+    "timestamp": 1794906759.3286426,
+    "split": "test",
+    "label": 1,
+    "score": 0.9850346464116614,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-01",
+    "timestamp": 1794915937.4267018,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9876260609198506,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-02",
+    "timestamp": 1794902765.6527216,
+    "split": "test",
+    "label": 1,
+    "score": 0.9746204887474895,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-03",
+    "timestamp": 1794904356.2055042,
+    "split": "test",
+    "label": 1,
+    "score": 0.9752959309282003,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-04",
+    "timestamp": 1794906160.8548455,
+    "split": "train",
+    "label": 1,
+    "score": 0.9604545198805543,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-05",
+    "timestamp": 1794907257.4374533,
+    "split": "train",
+    "label": 1,
+    "score": 0.9901891065611311,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-06",
+    "timestamp": 1794914740.6156404,
+    "split": "validation",
+    "label": 1,
+    "score": 0.971413271127983,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-07",
+    "timestamp": 1794913740.557044,
+    "split": "train",
+    "label": 1,
+    "score": 0.9807241325543185,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-08",
+    "timestamp": 1794913838.1117716,
+    "split": "train",
+    "label": 1,
+    "score": 0.97655387971283,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-benign-09",
+    "timestamp": 1794914643.0714178,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9873802800395755,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-00",
+    "timestamp": 1794906954.5212102,
+    "split": "test",
+    "label": 1,
+    "score": 0.8855611111422657,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-01",
+    "timestamp": 1794907558.4549294,
+    "split": "validation",
+    "label": 1,
+    "score": 0.8905016021792133,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-02",
+    "timestamp": 1794910238.3402736,
+    "split": "test",
+    "label": 1,
+    "score": 0.9556531220619228,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-03",
+    "timestamp": 1794900572.956109,
+    "split": "test",
+    "label": 1,
+    "score": 0.9169720756572459,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-04",
+    "timestamp": 1794911742.675399,
+    "split": "train",
+    "label": 1,
+    "score": 0.9219818992031987,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-05",
+    "timestamp": 1794907656.08962,
+    "split": "train",
+    "label": 1,
+    "score": 0.9537753419742734,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-06",
+    "timestamp": 1794911942.2099183,
+    "split": "validation",
+    "label": 1,
+    "score": 0.8633166927230712,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-07",
+    "timestamp": 1794909246.6794448,
+    "split": "train",
+    "label": 1,
+    "score": 0.9356514941646903,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-08",
+    "timestamp": 1794905259.412838,
+    "split": "train",
+    "label": 1,
+    "score": 0.9554294186395771,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-bursty-09",
+    "timestamp": 1794908949.869963,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9442167399332828,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-00",
+    "timestamp": 1794905560.6681256,
+    "split": "test",
+    "label": 0,
+    "score": 0.030411840806022612,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-01",
+    "timestamp": 1794912841.8774734,
+    "split": "validation",
+    "label": 0,
+    "score": 0.007397783533678002,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-02",
+    "timestamp": 1794907753.6323135,
+    "split": "test",
+    "label": 0,
+    "score": 0.0062362046576549925,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-03",
+    "timestamp": 1794902370.2783396,
+    "split": "test",
+    "label": 0,
+    "score": 0.016311732366264178,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-04",
+    "timestamp": 1794902667.80424,
+    "split": "train",
+    "label": 0,
+    "score": 0.012885111359715559,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-05",
+    "timestamp": 1794915839.518069,
+    "split": "train",
+    "label": 0,
+    "score": 0.013832168249922706,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-06",
+    "timestamp": 1794907953.0139132,
+    "split": "validation",
+    "label": 0,
+    "score": 0.016742743754275455,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-07",
+    "timestamp": 1794912939.7030973,
+    "split": "train",
+    "label": 0,
+    "score": 0.009966979688140962,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-08",
+    "timestamp": 1794903062.6942446,
+    "split": "train",
+    "label": 0,
+    "score": 0.01323923715803465,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-clean-09",
+    "timestamp": 1794904453.7567074,
+    "split": "validation",
+    "label": 0,
+    "score": 0.019742005694778377,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-00",
+    "timestamp": 1794910637.2929325,
+    "split": "test",
+    "label": 1,
+    "score": 0.9995346430386323,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-01",
+    "timestamp": 1794909641.3502305,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9995825457402933,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-02",
+    "timestamp": 1794916336.059543,
+    "split": "test",
+    "label": 1,
+    "score": 0.9997683763212262,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-03",
+    "timestamp": 1794903757.8836904,
+    "split": "test",
+    "label": 1,
+    "score": 0.9996639588042707,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-04",
+    "timestamp": 1794901372.030352,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999830196739184,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-05",
+    "timestamp": 1794909738.9226077,
+    "split": "train",
+    "label": 1,
+    "score": 0.9996382208445207,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-06",
+    "timestamp": 1794911239.7687495,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9996382545433151,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-07",
+    "timestamp": 1794901274.2883167,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999820929730004,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-08",
+    "timestamp": 1794901469.7589123,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999937079162569,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "payments-shared-sustained-09",
+    "timestamp": 1794901670.9377728,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9999642866674523,
+    "threshold": 0.8633166927230712
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-00",
+    "timestamp": 1794915640.8312273,
+    "split": "test",
+    "label": 0,
+    "score": 0.1666892170906067,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-01",
+    "timestamp": 1794914341.4332235,
+    "split": "validation",
+    "label": 0,
+    "score": 0.1666625440120697,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-02",
+    "timestamp": 1794905761.3570461,
+    "split": "test",
+    "label": 0,
+    "score": 0.1666616052389145,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-03",
+    "timestamp": 1794916136.5023072,
+    "split": "test",
+    "label": 0,
+    "score": 0.16663873195648193,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-04",
+    "timestamp": 1794915445.3086548,
+    "split": "train",
+    "label": 0,
+    "score": 0.1666562557220459,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-05",
+    "timestamp": 1794909446.0896413,
+    "split": "train",
+    "label": 0,
+    "score": 0.16665324568748474,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-06",
+    "timestamp": 1794913139.146919,
+    "split": "validation",
+    "label": 0,
+    "score": 0.1666882187128067,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-07",
+    "timestamp": 1794902468.0800078,
+    "split": "train",
+    "label": 0,
+    "score": 0.16672717034816742,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-08",
+    "timestamp": 1794905161.4751918,
+    "split": "train",
+    "label": 0,
+    "score": 0.16671086847782135,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-benign-09",
+    "timestamp": 1794910836.20376,
+    "split": "validation",
+    "label": 1,
+    "score": 0.166668102145195,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-00",
+    "timestamp": 1794900670.5596526,
+    "split": "test",
+    "label": 0,
+    "score": 0.08351927995681763,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-01",
+    "timestamp": 1794900475.1954281,
+    "split": "validation",
+    "label": 0,
+    "score": 0.08355342596769333,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-02",
+    "timestamp": 1794911337.409257,
+    "split": "test",
+    "label": 0,
+    "score": 0.08358188718557358,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-03",
+    "timestamp": 1794906258.5876236,
+    "split": "test",
+    "label": 0,
+    "score": 0.08375287801027298,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-04",
+    "timestamp": 1794912744.252132,
+    "split": "train",
+    "label": 0,
+    "score": 0.08368024230003357,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-05",
+    "timestamp": 1794915543.0917084,
+    "split": "train",
+    "label": 0,
+    "score": 0.08369651436805725,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-06",
+    "timestamp": 1794900768.2248218,
+    "split": "validation",
+    "label": 0,
+    "score": 0.08366543799638748,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-07",
+    "timestamp": 1794902170.9729075,
+    "split": "train",
+    "label": 0,
+    "score": 0.08372179418802261,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-08",
+    "timestamp": 1794912141.7078242,
+    "split": "train",
+    "label": 0,
+    "score": 0.08371264487504959,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-bursty-09",
+    "timestamp": 1794903261.748107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.08354044705629349,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-00",
+    "timestamp": 1794915144.4179144,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-01",
+    "timestamp": 1794903457.1204107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-02",
+    "timestamp": 1794908152.486849,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-03",
+    "timestamp": 1794903957.013802,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-04",
+    "timestamp": 1794908250.50924,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-05",
+    "timestamp": 1794910539.4911242,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-06",
+    "timestamp": 1794908851.9488072,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-07",
+    "timestamp": 1794902863.3149264,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-08",
+    "timestamp": 1794903359.3219607,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-clean-09",
+    "timestamp": 1794913236.6921642,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-00",
+    "timestamp": 1794904054.8150344,
+    "split": "test",
+    "label": 0,
+    "score": 0.16665518283843994,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-01",
+    "timestamp": 1794909543.6876907,
+    "split": "validation",
+    "label": 0,
+    "score": 0.16666877269744873,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-02",
+    "timestamp": 1794912646.697965,
+    "split": "test",
+    "label": 0,
+    "score": 0.16666154563426971,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-03",
+    "timestamp": 1794901870.187305,
+    "split": "test",
+    "label": 0,
+    "score": 0.16664166748523712,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-04",
+    "timestamp": 1794906063.142761,
+    "split": "train",
+    "label": 0,
+    "score": 0.16665641963481903,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-05",
+    "timestamp": 1794910039.5304148,
+    "split": "train",
+    "label": 1,
+    "score": 0.16662971675395966,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-06",
+    "timestamp": 1794908348.3639314,
+    "split": "validation",
+    "label": 0,
+    "score": 0.16667050123214722,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-07",
+    "timestamp": 1794906559.7533824,
+    "split": "train",
+    "label": 0,
+    "score": 0.1666824221611023,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-08",
+    "timestamp": 1794909149.0892963,
+    "split": "train",
+    "label": 0,
+    "score": 0.16664256155490875,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-hardened-sustained-09",
+    "timestamp": 1794906856.8350904,
+    "split": "validation",
+    "label": 0,
+    "score": 0.1661854237318039,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-00",
+    "timestamp": 1794906759.3286426,
+    "split": "test",
+    "label": 1,
+    "score": 0.4913823902606964,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-01",
+    "timestamp": 1794915937.4267018,
+    "split": "validation",
+    "label": 1,
+    "score": 0.4886901080608368,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-02",
+    "timestamp": 1794902765.6527216,
+    "split": "test",
+    "label": 1,
+    "score": 0.48996683955192566,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-03",
+    "timestamp": 1794904356.2055042,
+    "split": "test",
+    "label": 1,
+    "score": 0.4910287857055664,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-04",
+    "timestamp": 1794906160.8548455,
+    "split": "train",
+    "label": 1,
+    "score": 0.4895852506160736,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-05",
+    "timestamp": 1794907257.4374533,
+    "split": "train",
+    "label": 1,
+    "score": 0.4904564321041107,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-06",
+    "timestamp": 1794914740.6156404,
+    "split": "validation",
+    "label": 1,
+    "score": 0.49176743626594543,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-07",
+    "timestamp": 1794913740.557044,
+    "split": "train",
+    "label": 1,
+    "score": 0.4898354113101959,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-08",
+    "timestamp": 1794913838.1117716,
+    "split": "train",
+    "label": 1,
+    "score": 0.49049580097198486,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-benign-09",
+    "timestamp": 1794914643.0714178,
+    "split": "validation",
+    "label": 1,
+    "score": 0.49030783772468567,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-00",
+    "timestamp": 1794906954.5212102,
+    "split": "test",
+    "label": 1,
+    "score": 0.3152124583721161,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-01",
+    "timestamp": 1794907558.4549294,
+    "split": "validation",
+    "label": 1,
+    "score": 0.3165852129459381,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-02",
+    "timestamp": 1794910238.3402736,
+    "split": "test",
+    "label": 1,
+    "score": 0.3152649700641632,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-03",
+    "timestamp": 1794900572.956109,
+    "split": "test",
+    "label": 1,
+    "score": 0.31607586145401,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-04",
+    "timestamp": 1794911742.675399,
+    "split": "train",
+    "label": 1,
+    "score": 0.318360835313797,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-05",
+    "timestamp": 1794907656.08962,
+    "split": "train",
+    "label": 1,
+    "score": 0.3140406906604767,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-06",
+    "timestamp": 1794911942.2099183,
+    "split": "validation",
+    "label": 1,
+    "score": 0.3153609335422516,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-07",
+    "timestamp": 1794909246.6794448,
+    "split": "train",
+    "label": 1,
+    "score": 0.3158106505870819,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-08",
+    "timestamp": 1794905259.412838,
+    "split": "train",
+    "label": 1,
+    "score": 0.31622669100761414,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-bursty-09",
+    "timestamp": 1794908949.869963,
+    "split": "validation",
+    "label": 1,
+    "score": 0.31620070338249207,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-00",
+    "timestamp": 1794905560.6681256,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-01",
+    "timestamp": 1794912841.8774734,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-02",
+    "timestamp": 1794907753.6323135,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-03",
+    "timestamp": 1794902370.2783396,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-04",
+    "timestamp": 1794902667.80424,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-05",
+    "timestamp": 1794915839.518069,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-06",
+    "timestamp": 1794907953.0139132,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-07",
+    "timestamp": 1794912939.7030973,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-08",
+    "timestamp": 1794903062.6942446,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-clean-09",
+    "timestamp": 1794904453.7567074,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-00",
+    "timestamp": 1794910637.2929325,
+    "split": "test",
+    "label": 1,
+    "score": 0.6313850283622742,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-01",
+    "timestamp": 1794909641.3502305,
+    "split": "validation",
+    "label": 1,
+    "score": 0.6315249800682068,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-02",
+    "timestamp": 1794916336.059543,
+    "split": "test",
+    "label": 1,
+    "score": 0.632002055644989,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-03",
+    "timestamp": 1794903757.8836904,
+    "split": "test",
+    "label": 1,
+    "score": 0.6295739412307739,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-04",
+    "timestamp": 1794901372.030352,
+    "split": "train",
+    "label": 1,
+    "score": 0.615929126739502,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-05",
+    "timestamp": 1794909738.9226077,
+    "split": "train",
+    "label": 1,
+    "score": 0.6299899220466614,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-06",
+    "timestamp": 1794911239.7687495,
+    "split": "validation",
+    "label": 1,
+    "score": 0.6310641169548035,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-07",
+    "timestamp": 1794901274.2883167,
+    "split": "train",
+    "label": 1,
+    "score": 0.6227300763130188,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-08",
+    "timestamp": 1794901469.7589123,
+    "split": "train",
+    "label": 1,
+    "score": 0.6196833848953247,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "payments-shared-sustained-09",
+    "timestamp": 1794901670.9377728,
+    "split": "validation",
+    "label": 1,
+    "score": 0.6290270090103149,
+    "threshold": 0.3153609335422516
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-00",
+    "timestamp": 1794915640.8312273,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-01",
+    "timestamp": 1794914341.4332235,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-02",
+    "timestamp": 1794905761.3570461,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-03",
+    "timestamp": 1794916136.5023072,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-04",
+    "timestamp": 1794915445.3086548,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-05",
+    "timestamp": 1794909446.0896413,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-06",
+    "timestamp": 1794913139.146919,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-07",
+    "timestamp": 1794902468.0800078,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-08",
+    "timestamp": 1794905161.4751918,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-benign-09",
+    "timestamp": 1794910836.20376,
+    "split": "validation",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-00",
+    "timestamp": 1794900670.5596526,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-01",
+    "timestamp": 1794900475.1954281,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-02",
+    "timestamp": 1794911337.409257,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-03",
+    "timestamp": 1794906258.5876236,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-04",
+    "timestamp": 1794912744.252132,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-05",
+    "timestamp": 1794915543.0917084,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-06",
+    "timestamp": 1794900768.2248218,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-07",
+    "timestamp": 1794902170.9729075,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-08",
+    "timestamp": 1794912141.7078242,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-bursty-09",
+    "timestamp": 1794903261.748107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-00",
+    "timestamp": 1794915144.4179144,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-01",
+    "timestamp": 1794903457.1204107,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-02",
+    "timestamp": 1794908152.486849,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-03",
+    "timestamp": 1794903957.013802,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-04",
+    "timestamp": 1794908250.50924,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-05",
+    "timestamp": 1794910539.4911242,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-06",
+    "timestamp": 1794908851.9488072,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-07",
+    "timestamp": 1794902863.3149264,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-08",
+    "timestamp": 1794903359.3219607,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-clean-09",
+    "timestamp": 1794913236.6921642,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-00",
+    "timestamp": 1794904054.8150344,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-01",
+    "timestamp": 1794909543.6876907,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-02",
+    "timestamp": 1794912646.697965,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-03",
+    "timestamp": 1794901870.187305,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-04",
+    "timestamp": 1794906063.142761,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-05",
+    "timestamp": 1794910039.5304148,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-06",
+    "timestamp": 1794908348.3639314,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-07",
+    "timestamp": 1794906559.7533824,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-08",
+    "timestamp": 1794909149.0892963,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-hardened-sustained-09",
+    "timestamp": 1794906856.8350904,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-00",
+    "timestamp": 1794906759.3286426,
+    "split": "test",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-01",
+    "timestamp": 1794915937.4267018,
+    "split": "validation",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-02",
+    "timestamp": 1794902765.6527216,
+    "split": "test",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-03",
+    "timestamp": 1794904356.2055042,
+    "split": "test",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-04",
+    "timestamp": 1794906160.8548455,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-05",
+    "timestamp": 1794907257.4374533,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-06",
+    "timestamp": 1794914740.6156404,
+    "split": "validation",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-07",
+    "timestamp": 1794913740.557044,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-08",
+    "timestamp": 1794913838.1117716,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-benign-09",
+    "timestamp": 1794914643.0714178,
+    "split": "validation",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-00",
+    "timestamp": 1794906954.5212102,
+    "split": "test",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-01",
+    "timestamp": 1794907558.4549294,
+    "split": "validation",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-02",
+    "timestamp": 1794910238.3402736,
+    "split": "test",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-03",
+    "timestamp": 1794900572.956109,
+    "split": "test",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-04",
+    "timestamp": 1794911742.675399,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-05",
+    "timestamp": 1794907656.08962,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-06",
+    "timestamp": 1794911942.2099183,
+    "split": "validation",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-07",
+    "timestamp": 1794909246.6794448,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-08",
+    "timestamp": 1794905259.412838,
+    "split": "train",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-bursty-09",
+    "timestamp": 1794908949.869963,
+    "split": "validation",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-00",
+    "timestamp": 1794905560.6681256,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-01",
+    "timestamp": 1794912841.8774734,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-02",
+    "timestamp": 1794907753.6323135,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-03",
+    "timestamp": 1794902370.2783396,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-04",
+    "timestamp": 1794902667.80424,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-05",
+    "timestamp": 1794915839.518069,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-06",
+    "timestamp": 1794907953.0139132,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-07",
+    "timestamp": 1794912939.7030973,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-08",
+    "timestamp": 1794903062.6942446,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-clean-09",
+    "timestamp": 1794904453.7567074,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-00",
+    "timestamp": 1794910637.2929325,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-01",
+    "timestamp": 1794909641.3502305,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-02",
+    "timestamp": 1794916336.059543,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-03",
+    "timestamp": 1794903757.8836904,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-04",
+    "timestamp": 1794901372.030352,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-05",
+    "timestamp": 1794909738.9226077,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-06",
+    "timestamp": 1794911239.7687495,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-07",
+    "timestamp": 1794901274.2883167,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-08",
+    "timestamp": 1794901469.7589123,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "payments-shared-sustained-09",
+    "timestamp": 1794901670.9377728,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-00",
+    "timestamp": 1794908454.1316342,
+    "split": "test",
+    "label": 0,
+    "score": 9.034308301458793e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-01",
+    "timestamp": 1794902573.8563838,
+    "split": "validation",
+    "label": 0,
+    "score": 9.213091956006281e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-02",
+    "timestamp": 1794913045.6600902,
+    "split": "test",
+    "label": 0,
+    "score": 8.979951782173146e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-03",
+    "timestamp": 1794914247.8618772,
+    "split": "test",
+    "label": 0,
+    "score": 8.907571902305733e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-04",
+    "timestamp": 1794905969.5223281,
+    "split": "train",
+    "label": 0,
+    "score": 8.610277490994633e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-05",
+    "timestamp": 1794915050.6862442,
+    "split": "train",
+    "label": 0,
+    "score": 8.603563417253213e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-06",
+    "timestamp": 1794906665.632899,
+    "split": "validation",
+    "label": 0,
+    "score": 8.499567161202037e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-07",
+    "timestamp": 1794911648.74396,
+    "split": "train",
+    "label": 0,
+    "score": 9.256015953695851e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-08",
+    "timestamp": 1794914447.1257625,
+    "split": "train",
+    "label": 0,
+    "score": 9.051902005730028e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-clean-09",
+    "timestamp": 1794900874.0496914,
+    "split": "validation",
+    "label": 0,
+    "score": 8.437461285204506e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-00",
+    "timestamp": 1794913646.9737513,
+    "split": "test",
+    "label": 0,
+    "score": 6.071979441912845e-06,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-01",
+    "timestamp": 1794910145.215766,
+    "split": "validation",
+    "label": 0,
+    "score": 3.0331179914355744e-06,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-02",
+    "timestamp": 1794909945.8678224,
+    "split": "test",
+    "label": 0,
+    "score": 1.1897271178895608e-05,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-03",
+    "timestamp": 1794903664.527481,
+    "split": "test",
+    "label": 0,
+    "score": 1.6009707906050608e-05,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-04",
+    "timestamp": 1794907164.0674975,
+    "split": "train",
+    "label": 0,
+    "score": 5.281482117425185e-06,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-05",
+    "timestamp": 1794905466.8916943,
+    "split": "train",
+    "label": 0,
+    "score": 1.0156766620639246e-05,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-06",
+    "timestamp": 1794907859.6896844,
+    "split": "validation",
+    "label": 0,
+    "score": 1.0645575457601808e-05,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-07",
+    "timestamp": 1794908656.8562505,
+    "split": "train",
+    "label": 0,
+    "score": 1.1771489880629815e-05,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-08",
+    "timestamp": 1794914948.9146547,
+    "split": "train",
+    "label": 0,
+    "score": 4.213227384752827e-06,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-hardened-sustained-09",
+    "timestamp": 1794915250.3685482,
+    "split": "validation",
+    "label": 0,
+    "score": 5.878243882762035e-06,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-00",
+    "timestamp": 1794904864.0532947,
+    "split": "test",
+    "label": 0,
+    "score": 8.845217336350686e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-01",
+    "timestamp": 1794905365.1070588,
+    "split": "validation",
+    "label": 0,
+    "score": 1.0224665558666857e-09,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-02",
+    "timestamp": 1794911848.4195535,
+    "split": "test",
+    "label": 0,
+    "score": 8.911887894313963e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-03",
+    "timestamp": 1794903863.6225948,
+    "split": "test",
+    "label": 0,
+    "score": 8.277959984148708e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-04",
+    "timestamp": 1794911044.7338498,
+    "split": "train",
+    "label": 0,
+    "score": 1.0403424788307802e-09,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-05",
+    "timestamp": 1794911547.1218545,
+    "split": "train",
+    "label": 0,
+    "score": 9.048449767234956e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-06",
+    "timestamp": 1794909352.3430285,
+    "split": "validation",
+    "label": 0,
+    "score": 8.69835703465327e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-07",
+    "timestamp": 1794905067.4179037,
+    "split": "train",
+    "label": 0,
+    "score": 9.262921540909019e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-08",
+    "timestamp": 1794913943.795761,
+    "split": "train",
+    "label": 0,
+    "score": 8.817255814363989e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-clean-09",
+    "timestamp": 1794912047.9750426,
+    "split": "validation",
+    "label": 0,
+    "score": 9.705384274028006e-10,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-00",
+    "timestamp": 1794910742.9695196,
+    "split": "test",
+    "label": 1,
+    "score": 0.9999729990959167,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-01",
+    "timestamp": 1794904160.6444035,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9999719262123108,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-02",
+    "timestamp": 1794904965.510039,
+    "split": "test",
+    "label": 1,
+    "score": 0.9999739527702332,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-03",
+    "timestamp": 1794909844.578492,
+    "split": "test",
+    "label": 1,
+    "score": 0.9999726414680481,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-04",
+    "timestamp": 1794905667.5765076,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999738335609436,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-05",
+    "timestamp": 1794916242.1717234,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999751448631287,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-06",
+    "timestamp": 1794916043.113151,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9999720454216003,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-07",
+    "timestamp": 1794913342.5881534,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999707341194153,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-08",
+    "timestamp": 1794907464.8184342,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999739527702332,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "rf-shared-sustained-09",
+    "timestamp": 1794913545.8693278,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9999722838401794,
+    "threshold": 0.9999719262123108
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-00",
+    "timestamp": 1794908454.1316342,
+    "split": "test",
+    "label": 0,
+    "score": 0.006440289464248269,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-01",
+    "timestamp": 1794902573.8563838,
+    "split": "validation",
+    "label": 0,
+    "score": 0.008978600186799144,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-02",
+    "timestamp": 1794913045.6600902,
+    "split": "test",
+    "label": 0,
+    "score": 0.006584912270284885,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-03",
+    "timestamp": 1794914247.8618772,
+    "split": "test",
+    "label": 0,
+    "score": 0.008094353693104505,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-04",
+    "timestamp": 1794905969.5223281,
+    "split": "train",
+    "label": 0,
+    "score": 0.007385045036214488,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-05",
+    "timestamp": 1794915050.6862442,
+    "split": "train",
+    "label": 0,
+    "score": 0.012234433101246913,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-06",
+    "timestamp": 1794906665.632899,
+    "split": "validation",
+    "label": 0,
+    "score": 0.008560959700603547,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-07",
+    "timestamp": 1794911648.74396,
+    "split": "train",
+    "label": 0,
+    "score": 0.0076328994120798,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-08",
+    "timestamp": 1794914447.1257625,
+    "split": "train",
+    "label": 0,
+    "score": 0.006846489704466252,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-clean-09",
+    "timestamp": 1794900874.0496914,
+    "split": "validation",
+    "label": 0,
+    "score": 0.009854846393589103,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-00",
+    "timestamp": 1794913646.9737513,
+    "split": "test",
+    "label": 0,
+    "score": 0.05000097299263813,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-01",
+    "timestamp": 1794910145.215766,
+    "split": "validation",
+    "label": 0,
+    "score": 0.025118869959717707,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-02",
+    "timestamp": 1794909945.8678224,
+    "split": "test",
+    "label": 0,
+    "score": 0.030568786319789945,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-03",
+    "timestamp": 1794903664.527481,
+    "split": "test",
+    "label": 0,
+    "score": 0.05448713092849625,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-04",
+    "timestamp": 1794907164.0674975,
+    "split": "train",
+    "label": 0,
+    "score": 0.03345644609048302,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-05",
+    "timestamp": 1794905466.8916943,
+    "split": "train",
+    "label": 0,
+    "score": 0.04191468687345914,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-06",
+    "timestamp": 1794907859.6896844,
+    "split": "validation",
+    "label": 0,
+    "score": 0.02943550899088597,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-07",
+    "timestamp": 1794908656.8562505,
+    "split": "train",
+    "label": 0,
+    "score": 0.024300180990866352,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-08",
+    "timestamp": 1794914948.9146547,
+    "split": "train",
+    "label": 0,
+    "score": 0.029705852898818094,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-hardened-sustained-09",
+    "timestamp": 1794915250.3685482,
+    "split": "validation",
+    "label": 0,
+    "score": 0.02874908924535955,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-00",
+    "timestamp": 1794904864.0532947,
+    "split": "test",
+    "label": 0,
+    "score": 0.009384924694503378,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-01",
+    "timestamp": 1794905365.1070588,
+    "split": "validation",
+    "label": 0,
+    "score": 0.011813968397077027,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-02",
+    "timestamp": 1794911848.4195535,
+    "split": "test",
+    "label": 0,
+    "score": 0.007257273043809493,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-03",
+    "timestamp": 1794903863.6225948,
+    "split": "test",
+    "label": 0,
+    "score": 0.007966592858075633,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-04",
+    "timestamp": 1794911044.7338498,
+    "split": "train",
+    "label": 0,
+    "score": 0.011033236577511681,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-05",
+    "timestamp": 1794911547.1218545,
+    "split": "train",
+    "label": 0,
+    "score": 0.010362183770585478,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-06",
+    "timestamp": 1794909352.3430285,
+    "split": "validation",
+    "label": 0,
+    "score": 0.005332791029462683,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-07",
+    "timestamp": 1794905067.4179037,
+    "split": "train",
+    "label": 0,
+    "score": 0.012149889415315467,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-08",
+    "timestamp": 1794913943.795761,
+    "split": "train",
+    "label": 0,
+    "score": 0.00626274214583748,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-clean-09",
+    "timestamp": 1794912047.9750426,
+    "split": "validation",
+    "label": 0,
+    "score": 0.008851778627317152,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-00",
+    "timestamp": 1794910742.9695196,
+    "split": "test",
+    "label": 1,
+    "score": 0.9854725189581722,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-01",
+    "timestamp": 1794904160.6444035,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9781422478801067,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-02",
+    "timestamp": 1794904965.510039,
+    "split": "test",
+    "label": 1,
+    "score": 0.9810438794064215,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-03",
+    "timestamp": 1794909844.578492,
+    "split": "test",
+    "label": 1,
+    "score": 0.9831355864523346,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-04",
+    "timestamp": 1794905667.5765076,
+    "split": "train",
+    "label": 1,
+    "score": 0.981692090868596,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-05",
+    "timestamp": 1794916242.1717234,
+    "split": "train",
+    "label": 1,
+    "score": 0.9863185502459322,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-06",
+    "timestamp": 1794916043.113151,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9781218255068493,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-07",
+    "timestamp": 1794913342.5881534,
+    "split": "train",
+    "label": 1,
+    "score": 0.9787871190243423,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-08",
+    "timestamp": 1794907464.8184342,
+    "split": "train",
+    "label": 1,
+    "score": 0.9853089984114756,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "rf-shared-sustained-09",
+    "timestamp": 1794913545.8693278,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9869175435855095,
+    "threshold": 0.9781218255068493
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-00",
+    "timestamp": 1794908454.1316342,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-01",
+    "timestamp": 1794902573.8563838,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-02",
+    "timestamp": 1794913045.6600902,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-03",
+    "timestamp": 1794914247.8618772,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-04",
+    "timestamp": 1794905969.5223281,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-05",
+    "timestamp": 1794915050.6862442,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-06",
+    "timestamp": 1794906665.632899,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-07",
+    "timestamp": 1794911648.74396,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-08",
+    "timestamp": 1794914447.1257625,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-clean-09",
+    "timestamp": 1794900874.0496914,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-00",
+    "timestamp": 1794913646.9737513,
+    "split": "test",
+    "label": 0,
+    "score": 0.16665859520435333,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-01",
+    "timestamp": 1794910145.215766,
+    "split": "validation",
+    "label": 0,
+    "score": 0.16664528846740723,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-02",
+    "timestamp": 1794909945.8678224,
+    "split": "test",
+    "label": 0,
+    "score": 0.16663777828216553,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-03",
+    "timestamp": 1794903664.527481,
+    "split": "test",
+    "label": 0,
+    "score": 0.16668663918972015,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-04",
+    "timestamp": 1794907164.0674975,
+    "split": "train",
+    "label": 0,
+    "score": 0.16671699285507202,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-05",
+    "timestamp": 1794905466.8916943,
+    "split": "train",
+    "label": 0,
+    "score": 0.16664059460163116,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-06",
+    "timestamp": 1794907859.6896844,
+    "split": "validation",
+    "label": 0,
+    "score": 0.16649393737316132,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-07",
+    "timestamp": 1794908656.8562505,
+    "split": "train",
+    "label": 0,
+    "score": 0.16666747629642487,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-08",
+    "timestamp": 1794914948.9146547,
+    "split": "train",
+    "label": 0,
+    "score": 0.16665296256542206,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-hardened-sustained-09",
+    "timestamp": 1794915250.3685482,
+    "split": "validation",
+    "label": 0,
+    "score": 0.1666775792837143,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-00",
+    "timestamp": 1794904864.0532947,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-01",
+    "timestamp": 1794905365.1070588,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-02",
+    "timestamp": 1794911848.4195535,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-03",
+    "timestamp": 1794903863.6225948,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-04",
+    "timestamp": 1794911044.7338498,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-05",
+    "timestamp": 1794911547.1218545,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-06",
+    "timestamp": 1794909352.3430285,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-07",
+    "timestamp": 1794905067.4179037,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-08",
+    "timestamp": 1794913943.795761,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-clean-09",
+    "timestamp": 1794912047.9750426,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-00",
+    "timestamp": 1794910742.9695196,
+    "split": "test",
+    "label": 1,
+    "score": 0.5372673869132996,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-01",
+    "timestamp": 1794904160.6444035,
+    "split": "validation",
+    "label": 1,
+    "score": 0.5292456746101379,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-02",
+    "timestamp": 1794904965.510039,
+    "split": "test",
+    "label": 1,
+    "score": 0.5361954569816589,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-03",
+    "timestamp": 1794909844.578492,
+    "split": "test",
+    "label": 1,
+    "score": 0.5367493033409119,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-04",
+    "timestamp": 1794905667.5765076,
+    "split": "train",
+    "label": 1,
+    "score": 0.533645749092102,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-05",
+    "timestamp": 1794916242.1717234,
+    "split": "train",
+    "label": 1,
+    "score": 0.5421596169471741,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-06",
+    "timestamp": 1794916043.113151,
+    "split": "validation",
+    "label": 1,
+    "score": 0.5297912359237671,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-07",
+    "timestamp": 1794913342.5881534,
+    "split": "train",
+    "label": 1,
+    "score": 0.5347759127616882,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-08",
+    "timestamp": 1794907464.8184342,
+    "split": "train",
+    "label": 1,
+    "score": 0.5353779196739197,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "rf-shared-sustained-09",
+    "timestamp": 1794913545.8693278,
+    "split": "validation",
+    "label": 1,
+    "score": 0.5365819931030273,
+    "threshold": 0.5292456746101379
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-00",
+    "timestamp": 1794908454.1316342,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-01",
+    "timestamp": 1794902573.8563838,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-02",
+    "timestamp": 1794913045.6600902,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-03",
+    "timestamp": 1794914247.8618772,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-04",
+    "timestamp": 1794905969.5223281,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-05",
+    "timestamp": 1794915050.6862442,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-06",
+    "timestamp": 1794906665.632899,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-07",
+    "timestamp": 1794911648.74396,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-08",
+    "timestamp": 1794914447.1257625,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-clean-09",
+    "timestamp": 1794900874.0496914,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-00",
+    "timestamp": 1794913646.9737513,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-01",
+    "timestamp": 1794910145.215766,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-02",
+    "timestamp": 1794909945.8678224,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-03",
+    "timestamp": 1794903664.527481,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-04",
+    "timestamp": 1794907164.0674975,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-05",
+    "timestamp": 1794905466.8916943,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-06",
+    "timestamp": 1794907859.6896844,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-07",
+    "timestamp": 1794908656.8562505,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-08",
+    "timestamp": 1794914948.9146547,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-hardened-sustained-09",
+    "timestamp": 1794915250.3685482,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-00",
+    "timestamp": 1794904864.0532947,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-01",
+    "timestamp": 1794905365.1070588,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-02",
+    "timestamp": 1794911848.4195535,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-03",
+    "timestamp": 1794903863.6225948,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-04",
+    "timestamp": 1794911044.7338498,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-05",
+    "timestamp": 1794911547.1218545,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-06",
+    "timestamp": 1794909352.3430285,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-07",
+    "timestamp": 1794905067.4179037,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-08",
+    "timestamp": 1794913943.795761,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-clean-09",
+    "timestamp": 1794912047.9750426,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-00",
+    "timestamp": 1794910742.9695196,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-01",
+    "timestamp": 1794904160.6444035,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-02",
+    "timestamp": 1794904965.510039,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-03",
+    "timestamp": 1794909844.578492,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-04",
+    "timestamp": 1794905667.5765076,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-05",
+    "timestamp": 1794916242.1717234,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-06",
+    "timestamp": 1794916043.113151,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-07",
+    "timestamp": 1794913342.5881534,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-08",
+    "timestamp": 1794907464.8184342,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "rf-shared-sustained-09",
+    "timestamp": 1794913545.8693278,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-00",
+    "timestamp": 1794909055.4457903,
+    "split": "test",
+    "label": 0,
+    "score": 4.586644397619466e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-01",
+    "timestamp": 1794914146.2286096,
+    "split": "validation",
+    "label": 0,
+    "score": 6.11144157502963e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-02",
+    "timestamp": 1794901079.3428485,
+    "split": "test",
+    "label": 0,
+    "score": 5.074125564163978e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-03",
+    "timestamp": 1794908758.2370238,
+    "split": "test",
+    "label": 0,
+    "score": 3.2756330980987514e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-04",
+    "timestamp": 1794911146.008319,
+    "split": "train",
+    "label": 0,
+    "score": 5.790866453025956e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-05",
+    "timestamp": 1794907062.4470804,
+    "split": "train",
+    "label": 0,
+    "score": 3.985348495660901e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-06",
+    "timestamp": 1794906466.0515883,
+    "split": "validation",
+    "label": 0,
+    "score": 3.8540188818103616e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-07",
+    "timestamp": 1794911444.3692908,
+    "split": "train",
+    "label": 0,
+    "score": 5.4618700673358944e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-08",
+    "timestamp": 1794912451.5466483,
+    "split": "train",
+    "label": 0,
+    "score": 4.324932856292207e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-clean-09",
+    "timestamp": 1794902969.211814,
+    "split": "validation",
+    "label": 0,
+    "score": 4.793586860785126e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-00",
+    "timestamp": 1794910943.1246479,
+    "split": "test",
+    "label": 1,
+    "score": 1.085602525563445e-05,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-01",
+    "timestamp": 1794914847.2646484,
+    "split": "validation",
+    "label": 0,
+    "score": 4.111131784156896e-05,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-02",
+    "timestamp": 1794914045.1374402,
+    "split": "test",
+    "label": 0,
+    "score": 1.0915478924289346e-05,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-03",
+    "timestamp": 1794908555.669681,
+    "split": "test",
+    "label": 0,
+    "score": 4.068498583364999e-06,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-04",
+    "timestamp": 1794912553.5240636,
+    "split": "train",
+    "label": 0,
+    "score": 3.92027595808031e-06,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-05",
+    "timestamp": 1794902077.7292938,
+    "split": "train",
+    "label": 0,
+    "score": 3.044382083317032e-06,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-06",
+    "timestamp": 1794915746.5057945,
+    "split": "validation",
+    "label": 0,
+    "score": 2.861031134671066e-05,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-07",
+    "timestamp": 1794912248.3697956,
+    "split": "train",
+    "label": 0,
+    "score": 8.714224350114819e-06,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-08",
+    "timestamp": 1794912350.1372237,
+    "split": "train",
+    "label": 0,
+    "score": 4.059088951180456e-06,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-hardened-sustained-09",
+    "timestamp": 1794914549.3402755,
+    "split": "validation",
+    "label": 0,
+    "score": 4.3984023250231985e-06,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-00",
+    "timestamp": 1794905868.0675266,
+    "split": "test",
+    "label": 0,
+    "score": 5.28029264756924e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-01",
+    "timestamp": 1794906364.244621,
+    "split": "validation",
+    "label": 0,
+    "score": 4.348921667229888e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-02",
+    "timestamp": 1794904262.4361024,
+    "split": "test",
+    "label": 0,
+    "score": 4.67489602584692e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-03",
+    "timestamp": 1794901976.011663,
+    "split": "test",
+    "label": 0,
+    "score": 5.034340944121141e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-04",
+    "timestamp": 1794913444.222069,
+    "split": "train",
+    "label": 0,
+    "score": 4.4334362847564535e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-05",
+    "timestamp": 1794910445.7885687,
+    "split": "train",
+    "label": 0,
+    "score": 4.229414152234767e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-06",
+    "timestamp": 1794907363.1646256,
+    "split": "validation",
+    "label": 0,
+    "score": 3.3202052218683775e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-07",
+    "timestamp": 1794902276.609087,
+    "split": "train",
+    "label": 0,
+    "score": 3.556602123921948e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-08",
+    "timestamp": 1794904661.3734615,
+    "split": "train",
+    "label": 0,
+    "score": 6.945978903161176e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-clean-09",
+    "timestamp": 1794901776.5683198,
+    "split": "validation",
+    "label": 0,
+    "score": 4.365243277959507e-09,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-00",
+    "timestamp": 1794901180.7939963,
+    "split": "test",
+    "label": 1,
+    "score": 0.9999881386756897,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-01",
+    "timestamp": 1794904559.6924903,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9999863505363464,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-02",
+    "timestamp": 1794903168.609133,
+    "split": "test",
+    "label": 1,
+    "score": 0.9999849200248718,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-03",
+    "timestamp": 1794903563.0578895,
+    "split": "test",
+    "label": 1,
+    "score": 0.9999863505363464,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-04",
+    "timestamp": 1794904762.8007236,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999845623970032,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-05",
+    "timestamp": 1794908058.9007695,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999882578849792,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-06",
+    "timestamp": 1794915351.9820542,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9999838471412659,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-07",
+    "timestamp": 1794910344.0356333,
+    "split": "train",
+    "label": 1,
+    "score": 0.99998539686203,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-08",
+    "timestamp": 1794900976.7915437,
+    "split": "train",
+    "label": 1,
+    "score": 0.9999881386756897,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "adapted-2024-ae-lstm",
+    "runId": "svm-shared-sustained-09",
+    "timestamp": 1794901577.6243856,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9999869465827942,
+    "threshold": 0.9999838471412659
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-00",
+    "timestamp": 1794909055.4457903,
+    "split": "test",
+    "label": 0,
+    "score": 0.0128039949290926,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-01",
+    "timestamp": 1794914146.2286096,
+    "split": "validation",
+    "label": 0,
+    "score": 0.010762494858387022,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-02",
+    "timestamp": 1794901079.3428485,
+    "split": "test",
+    "label": 0,
+    "score": 0.0348971064077648,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-03",
+    "timestamp": 1794908758.2370238,
+    "split": "test",
+    "label": 0,
+    "score": 0.024392203828860863,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-04",
+    "timestamp": 1794911146.008319,
+    "split": "train",
+    "label": 0,
+    "score": 0.009580876722386623,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-05",
+    "timestamp": 1794907062.4470804,
+    "split": "train",
+    "label": 0,
+    "score": 0.005774472167004948,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-06",
+    "timestamp": 1794906466.0515883,
+    "split": "validation",
+    "label": 0,
+    "score": 0.008621380394584847,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-07",
+    "timestamp": 1794911444.3692908,
+    "split": "train",
+    "label": 0,
+    "score": 0.028035871793352485,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-08",
+    "timestamp": 1794912451.5466483,
+    "split": "train",
+    "label": 0,
+    "score": 0.005524542185138497,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-clean-09",
+    "timestamp": 1794902969.211814,
+    "split": "validation",
+    "label": 0,
+    "score": 0.006306979211728918,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-00",
+    "timestamp": 1794910943.1246479,
+    "split": "test",
+    "label": 1,
+    "score": 0.029941808016122395,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-01",
+    "timestamp": 1794914847.2646484,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0783238546624565,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-02",
+    "timestamp": 1794914045.1374402,
+    "split": "test",
+    "label": 0,
+    "score": 0.11595770334869519,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-03",
+    "timestamp": 1794908555.669681,
+    "split": "test",
+    "label": 0,
+    "score": 0.02367667299001153,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-04",
+    "timestamp": 1794912553.5240636,
+    "split": "train",
+    "label": 0,
+    "score": 0.05017772142675046,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-05",
+    "timestamp": 1794902077.7292938,
+    "split": "train",
+    "label": 0,
+    "score": 0.018245070242186454,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-06",
+    "timestamp": 1794915746.5057945,
+    "split": "validation",
+    "label": 0,
+    "score": 0.037398837182657456,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-07",
+    "timestamp": 1794912248.3697956,
+    "split": "train",
+    "label": 0,
+    "score": 0.05725530935897274,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-08",
+    "timestamp": 1794912350.1372237,
+    "split": "train",
+    "label": 0,
+    "score": 0.04892487387708347,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-hardened-sustained-09",
+    "timestamp": 1794914549.3402755,
+    "split": "validation",
+    "label": 0,
+    "score": 0.03964948985988541,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-00",
+    "timestamp": 1794905868.0675266,
+    "split": "test",
+    "label": 0,
+    "score": 0.007789246508532775,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-01",
+    "timestamp": 1794906364.244621,
+    "split": "validation",
+    "label": 0,
+    "score": 0.013943855199237716,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-02",
+    "timestamp": 1794904262.4361024,
+    "split": "test",
+    "label": 0,
+    "score": 0.02382683933837719,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-03",
+    "timestamp": 1794901976.011663,
+    "split": "test",
+    "label": 0,
+    "score": 0.012166015225211121,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-04",
+    "timestamp": 1794913444.222069,
+    "split": "train",
+    "label": 0,
+    "score": 0.012342705067038334,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-05",
+    "timestamp": 1794910445.7885687,
+    "split": "train",
+    "label": 0,
+    "score": 0.00869247056186026,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-06",
+    "timestamp": 1794907363.1646256,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0077519471962643385,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-07",
+    "timestamp": 1794902276.609087,
+    "split": "train",
+    "label": 0,
+    "score": 0.0074005330541217045,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-08",
+    "timestamp": 1794904661.3734615,
+    "split": "train",
+    "label": 0,
+    "score": 0.018654148964141262,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-clean-09",
+    "timestamp": 1794901776.5683198,
+    "split": "validation",
+    "label": 0,
+    "score": 0.008009503790054438,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-00",
+    "timestamp": 1794901180.7939963,
+    "split": "test",
+    "label": 1,
+    "score": 0.9887864891578514,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-01",
+    "timestamp": 1794904559.6924903,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9711437648943324,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-02",
+    "timestamp": 1794903168.609133,
+    "split": "test",
+    "label": 1,
+    "score": 0.9671677522350358,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-03",
+    "timestamp": 1794903563.0578895,
+    "split": "test",
+    "label": 1,
+    "score": 0.9634469510348175,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-04",
+    "timestamp": 1794904762.8007236,
+    "split": "train",
+    "label": 1,
+    "score": 0.9759636748404867,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-05",
+    "timestamp": 1794908058.9007695,
+    "split": "train",
+    "label": 1,
+    "score": 0.9758375426522045,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-06",
+    "timestamp": 1794915351.9820542,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9872758399451703,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-07",
+    "timestamp": 1794910344.0356333,
+    "split": "train",
+    "label": 1,
+    "score": 0.9792975241402149,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-08",
+    "timestamp": 1794900976.7915437,
+    "split": "train",
+    "label": 1,
+    "score": 0.9785560968465884,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "isolab-resource-logistic",
+    "runId": "svm-shared-sustained-09",
+    "timestamp": 1794901577.6243856,
+    "split": "validation",
+    "label": 1,
+    "score": 0.9794059704361494,
+    "threshold": 0.9711437648943324
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-00",
+    "timestamp": 1794909055.4457903,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-01",
+    "timestamp": 1794914146.2286096,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-02",
+    "timestamp": 1794901079.3428485,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-03",
+    "timestamp": 1794908758.2370238,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-04",
+    "timestamp": 1794911146.008319,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-05",
+    "timestamp": 1794907062.4470804,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-06",
+    "timestamp": 1794906466.0515883,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-07",
+    "timestamp": 1794911444.3692908,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-08",
+    "timestamp": 1794912451.5466483,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-clean-09",
+    "timestamp": 1794902969.211814,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-00",
+    "timestamp": 1794910943.1246479,
+    "split": "test",
+    "label": 1,
+    "score": 0.1666698455810547,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-01",
+    "timestamp": 1794914847.2646484,
+    "split": "validation",
+    "label": 0,
+    "score": 0.16665677726268768,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-02",
+    "timestamp": 1794914045.1374402,
+    "split": "test",
+    "label": 0,
+    "score": 0.1667291522026062,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-03",
+    "timestamp": 1794908555.669681,
+    "split": "test",
+    "label": 0,
+    "score": 0.16667969524860382,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-04",
+    "timestamp": 1794912553.5240636,
+    "split": "train",
+    "label": 0,
+    "score": 0.1666688770055771,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-05",
+    "timestamp": 1794902077.7292938,
+    "split": "train",
+    "label": 0,
+    "score": 0.16664813458919525,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-06",
+    "timestamp": 1794915746.5057945,
+    "split": "validation",
+    "label": 0,
+    "score": 0.1667073369026184,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-07",
+    "timestamp": 1794912248.3697956,
+    "split": "train",
+    "label": 0,
+    "score": 0.16664767265319824,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-08",
+    "timestamp": 1794912350.1372237,
+    "split": "train",
+    "label": 0,
+    "score": 0.16669853031635284,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-hardened-sustained-09",
+    "timestamp": 1794914549.3402755,
+    "split": "validation",
+    "label": 0,
+    "score": 0.16666051745414734,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-00",
+    "timestamp": 1794905868.0675266,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-01",
+    "timestamp": 1794906364.244621,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-02",
+    "timestamp": 1794904262.4361024,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-03",
+    "timestamp": 1794901976.011663,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-04",
+    "timestamp": 1794913444.222069,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-05",
+    "timestamp": 1794910445.7885687,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-06",
+    "timestamp": 1794907363.1646256,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-07",
+    "timestamp": 1794902276.609087,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-08",
+    "timestamp": 1794904661.3734615,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-clean-09",
+    "timestamp": 1794901776.5683198,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-00",
+    "timestamp": 1794901180.7939963,
+    "split": "test",
+    "label": 1,
+    "score": 0.5393572449684143,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-01",
+    "timestamp": 1794904559.6924903,
+    "split": "validation",
+    "label": 1,
+    "score": 0.5397016406059265,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-02",
+    "timestamp": 1794903168.609133,
+    "split": "test",
+    "label": 1,
+    "score": 0.5425254106521606,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-03",
+    "timestamp": 1794903563.0578895,
+    "split": "test",
+    "label": 1,
+    "score": 0.5355293154716492,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-04",
+    "timestamp": 1794904762.8007236,
+    "split": "train",
+    "label": 1,
+    "score": 0.5425321459770203,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-05",
+    "timestamp": 1794908058.9007695,
+    "split": "train",
+    "label": 1,
+    "score": 0.531006932258606,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-06",
+    "timestamp": 1794915351.9820542,
+    "split": "validation",
+    "label": 1,
+    "score": 0.5394280552864075,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-07",
+    "timestamp": 1794910344.0356333,
+    "split": "train",
+    "label": 1,
+    "score": 0.540493905544281,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-08",
+    "timestamp": 1794900976.7915437,
+    "split": "train",
+    "label": 1,
+    "score": 0.5328410267829895,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "cpu-threshold",
+    "runId": "svm-shared-sustained-09",
+    "timestamp": 1794901577.6243856,
+    "split": "validation",
+    "label": 1,
+    "score": 0.5385472178459167,
+    "threshold": 0.5385472178459167
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-00",
+    "timestamp": 1794909055.4457903,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-01",
+    "timestamp": 1794914146.2286096,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-02",
+    "timestamp": 1794901079.3428485,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-03",
+    "timestamp": 1794908758.2370238,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-04",
+    "timestamp": 1794911146.008319,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-05",
+    "timestamp": 1794907062.4470804,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-06",
+    "timestamp": 1794906466.0515883,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-07",
+    "timestamp": 1794911444.3692908,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-08",
+    "timestamp": 1794912451.5466483,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-clean-09",
+    "timestamp": 1794902969.211814,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-00",
+    "timestamp": 1794910943.1246479,
+    "split": "test",
+    "label": 1,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-01",
+    "timestamp": 1794914847.2646484,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-02",
+    "timestamp": 1794914045.1374402,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-03",
+    "timestamp": 1794908555.669681,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-04",
+    "timestamp": 1794912553.5240636,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-05",
+    "timestamp": 1794902077.7292938,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-06",
+    "timestamp": 1794915746.5057945,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-07",
+    "timestamp": 1794912248.3697956,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-08",
+    "timestamp": 1794912350.1372237,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-hardened-sustained-09",
+    "timestamp": 1794914549.3402755,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-00",
+    "timestamp": 1794905868.0675266,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-01",
+    "timestamp": 1794906364.244621,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-02",
+    "timestamp": 1794904262.4361024,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-03",
+    "timestamp": 1794901976.011663,
+    "split": "test",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-04",
+    "timestamp": 1794913444.222069,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-05",
+    "timestamp": 1794910445.7885687,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-06",
+    "timestamp": 1794907363.1646256,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-07",
+    "timestamp": 1794902276.609087,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-08",
+    "timestamp": 1794904661.3734615,
+    "split": "train",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-clean-09",
+    "timestamp": 1794901776.5683198,
+    "split": "validation",
+    "label": 0,
+    "score": 0.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-00",
+    "timestamp": 1794901180.7939963,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-01",
+    "timestamp": 1794904559.6924903,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-02",
+    "timestamp": 1794903168.609133,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-03",
+    "timestamp": 1794903563.0578895,
+    "split": "test",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-04",
+    "timestamp": 1794904762.8007236,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-05",
+    "timestamp": 1794908058.9007695,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-06",
+    "timestamp": 1794915351.9820542,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-07",
+    "timestamp": 1794910344.0356333,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-08",
+    "timestamp": 1794900976.7915437,
+    "split": "train",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  },
+  {
+    "method": "isolab-det08",
+    "runId": "svm-shared-sustained-09",
+    "timestamp": 1794901577.6243856,
+    "split": "validation",
+    "label": 1,
+    "score": 1.0,
+    "threshold": 0.5
+  }
+]

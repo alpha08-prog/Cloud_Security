@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "audit",
-  "generatedAt": "2026-10-12T17:24:44.357Z",
+  "generatedAt": "2026-11-11T16:18:40.650Z",
   "profile": "hardened",
   "tool": {
     "name": "cloudaudit",
     "version": "1.0.0",
-    "gitSha": "dffa2c70c553"
+    "gitSha": "d744dd246f1f"
   },
   "environment": {
     "platform": "docker-desktop-wsl2",
@@ -978,6 +978,21 @@
       "targets": [
         {
           "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "not privileged",
+          "evidence": {
+            "privileged": false
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
+        {
+          "kind": "container",
           "ref": "auditor",
           "tenant": null,
           "workloadId": "provider-auditor",
@@ -993,9 +1008,24 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "not privileged",
+          "evidence": {
+            "privileged": false
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
           "tenant": null,
-          "workloadId": "provider-grafana",
+          "workloadId": "provider-canary",
           "status": "pass",
           "message": "not privileged",
           "evidence": {
@@ -1003,7 +1033,7 @@
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -1018,7 +1048,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "not privileged",
+          "evidence": {
+            "privileged": false
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -1049,51 +1094,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 116
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "not privileged",
-          "evidence": {
-            "privileged": false
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "not privileged",
-          "evidence": {
-            "privileged": false
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "not privileged",
-          "evidence": {
-            "privileged": false
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
           }
         }
       ]
@@ -1107,6 +1107,24 @@
       "targets": [
         {
           "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "all capabilities dropped",
+          "evidence": {
+            "capDrop": [
+              "ALL"
+            ],
+            "capAdd": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
+        {
+          "kind": "container",
           "ref": "auditor",
           "tenant": null,
           "workloadId": "provider-auditor",
@@ -1125,9 +1143,27 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "all capabilities dropped",
+          "evidence": {
+            "capDrop": [
+              "ALL"
+            ],
+            "capAdd": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
           "tenant": null,
-          "workloadId": "provider-grafana",
+          "workloadId": "provider-canary",
           "status": "pass",
           "message": "all capabilities dropped",
           "evidence": {
@@ -1138,7 +1174,7 @@
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -1156,7 +1192,25 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "all capabilities dropped",
+          "evidence": {
+            "capDrop": [
+              "ALL"
+            ],
+            "capAdd": []
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -1193,60 +1247,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 116
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "all capabilities dropped",
-          "evidence": {
-            "capDrop": [
-              "ALL"
-            ],
-            "capAdd": []
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "all capabilities dropped",
-          "evidence": {
-            "capDrop": [
-              "ALL"
-            ],
-            "capAdd": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "all capabilities dropped",
-          "evidence": {
-            "capDrop": [
-              "ALL"
-            ],
-            "capAdd": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
           }
         }
       ]
@@ -1260,6 +1260,24 @@
       "targets": [
         {
           "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "seccomp on, no-new-privileges",
+          "evidence": {
+            "securityOpt": [
+              "no-new-privileges:true"
+            ],
+            "engineSeccomp": true
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
+        {
+          "kind": "container",
           "ref": "auditor",
           "tenant": null,
           "workloadId": "provider-auditor",
@@ -1278,9 +1296,27 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "seccomp on, no-new-privileges",
+          "evidence": {
+            "securityOpt": [
+              "no-new-privileges:true"
+            ],
+            "engineSeccomp": true
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
           "tenant": null,
-          "workloadId": "provider-grafana",
+          "workloadId": "provider-canary",
           "status": "pass",
           "message": "seccomp on, no-new-privileges",
           "evidence": {
@@ -1291,7 +1327,7 @@
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -1309,7 +1345,25 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "seccomp on, no-new-privileges",
+          "evidence": {
+            "securityOpt": [
+              "no-new-privileges:true"
+            ],
+            "engineSeccomp": true
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -1347,60 +1401,6 @@
             "file": "testbed/compose.yaml",
             "line": 116
           }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "seccomp on, no-new-privileges",
-          "evidence": {
-            "securityOpt": [
-              "no-new-privileges:true"
-            ],
-            "engineSeccomp": true
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "seccomp on, no-new-privileges",
-          "evidence": {
-            "securityOpt": [
-              "no-new-privileges:true"
-            ],
-            "engineSeccomp": true
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "seccomp on, no-new-privileges",
-          "evidence": {
-            "securityOpt": [
-              "no-new-privileges:true"
-            ],
-            "engineSeccomp": true
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
-          }
         }
       ]
     },
@@ -1411,6 +1411,22 @@
       "waiver": null,
       "message": "7 of 8 passed",
       "targets": [
+        {
+          "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "runs as 10001:10001 (container setting)",
+          "evidence": {
+            "user": "10001:10001",
+            "source": "container"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
         {
           "kind": "container",
           "ref": "auditor",
@@ -1425,6 +1441,54 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 55
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "runs as 10001:10001 (container setting)",
+          "evidence": {
+            "user": "10001:10001",
+            "source": "container"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
+          "tenant": null,
+          "workloadId": "provider-canary",
+          "status": "pass",
+          "message": "runs as 10001:10001 (container setting)",
+          "evidence": {
+            "user": "10001:10001",
+            "source": "container"
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 91
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "runs as 10001:10001 (container setting)",
+          "evidence": {
+            "user": "10001:10001",
+            "source": "container"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         },
         {
@@ -1441,22 +1505,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 138
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "runs as 10001:10001 (container setting)",
-          "evidence": {
-            "user": "10001:10001",
-            "source": "container"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
           }
         },
         {
@@ -1489,54 +1537,6 @@
             "file": "testbed/compose.yaml",
             "line": 116
           }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "runs as 10001:10001 (container setting)",
-          "evidence": {
-            "user": "10001:10001",
-            "source": "container"
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "runs as 10001:10001 (container setting)",
-          "evidence": {
-            "user": "10001:10001",
-            "source": "container"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "runs as 10001:10001 (container setting)",
-          "evidence": {
-            "user": "10001:10001",
-            "source": "container"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
-          }
         }
       ]
     },
@@ -1547,6 +1547,22 @@
       "waiver": null,
       "message": "8 of 8 passed",
       "targets": [
+        {
+          "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "private PID and UTS namespaces",
+          "evidence": {
+            "pidMode": "private",
+            "utsMode": "private"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
         {
           "kind": "container",
           "ref": "auditor",
@@ -1565,9 +1581,25 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "private PID and UTS namespaces",
+          "evidence": {
+            "pidMode": "private",
+            "utsMode": "private"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
           "tenant": null,
-          "workloadId": "provider-grafana",
+          "workloadId": "provider-canary",
           "status": "pass",
           "message": "private PID and UTS namespaces",
           "evidence": {
@@ -1576,7 +1608,7 @@
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -1592,7 +1624,23 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "private PID and UTS namespaces",
+          "evidence": {
+            "pidMode": "private",
+            "utsMode": "private"
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -1626,54 +1674,6 @@
             "file": "testbed/compose.yaml",
             "line": 116
           }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "private PID and UTS namespaces",
-          "evidence": {
-            "pidMode": "private",
-            "utsMode": "private"
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "private PID and UTS namespaces",
-          "evidence": {
-            "pidMode": "private",
-            "utsMode": "private"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "private PID and UTS namespaces",
-          "evidence": {
-            "pidMode": "private",
-            "utsMode": "private"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
-          }
         }
       ]
     },
@@ -1684,24 +1684,6 @@
       "waiver": null,
       "message": "3 of 3 passed",
       "targets": [
-        {
-          "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "cpu, memory, swap and pids limited",
-          "evidence": {
-            "cpus": 3.0,
-            "memoryBytes": 268435456,
-            "memorySwapBytes": 268435456,
-            "pidsLimit": 64
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
         {
           "kind": "container",
           "ref": "tenant-c",
@@ -1717,7 +1699,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -1735,7 +1717,25 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "cpu, memory, swap and pids limited",
+          "evidence": {
+            "cpus": 3.0,
+            "memoryBytes": 268435456,
+            "memorySwapBytes": 268435456,
+            "pidsLimit": 64
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -1749,22 +1749,6 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "dedicated cpuset",
-          "evidence": {
-            "cpuset": "6,7,8,9",
-            "overlapsWith": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
@@ -1776,7 +1760,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -1792,7 +1776,23 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "dedicated cpuset",
+          "evidence": {
+            "cpuset": "6,7,8,9",
+            "overlapsWith": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -1804,6 +1804,21 @@
       "waiver": null,
       "message": "6 of 8 passed",
       "targets": [
+        {
+          "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "no engine socket",
+          "evidence": {
+            "sockets": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
         {
           "kind": "container",
           "ref": "auditor",
@@ -1821,9 +1836,24 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "no engine socket",
+          "evidence": {
+            "sockets": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
           "tenant": null,
-          "workloadId": "provider-grafana",
+          "workloadId": "provider-canary",
           "status": "pass",
           "message": "no engine socket",
           "evidence": {
@@ -1831,7 +1861,7 @@
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -1846,7 +1876,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "no engine socket",
+          "evidence": {
+            "sockets": []
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -1877,51 +1922,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 116
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "no engine socket",
-          "evidence": {
-            "sockets": []
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "no engine socket",
-          "evidence": {
-            "sockets": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "no engine socket",
-          "evidence": {
-            "sockets": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
           }
         }
       ]
@@ -1961,6 +1961,9 @@
         "checkId": "HV-03",
         "platform": "docker-desktop-wsl2",
         "target": null,
+        "covers": [
+          "spec_rstack_overflow"
+        ],
         "reason": "The WSL2 kernel reports spec_rstack_overflow as \"Vulnerable: Safe RET, no microcode\". The SRSO microcode fix is delivered through the physical host's firmware/Windows updates; the container host (a WSL2 VM) cannot load microcode itself. This is a provider-layer weakness outside the testbed's control - the paper's point about tenants depending on a hypervisor they cannot inspect or fix.",
         "expires": "2026-12-31",
         "approvedBy": "project owner (pending review)"
@@ -1996,6 +1999,7 @@
         "checkId": "HV-04",
         "platform": "docker-desktop-wsl2",
         "target": null,
+        "covers": null,
         "reason": "User-namespace remapping and rootless mode are not available in Docker Desktop without Enhanced Container Isolation (Business subscription). Compensating controls: every tenant runs as uid 10001 with all capabilities dropped, no-new-privileges and seccomp.",
         "expires": "2026-12-31",
         "approvedBy": "project owner (pending review)"
@@ -2031,19 +2035,6 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "skip",
-          "message": "host has no AppArmor or SELinux",
-          "evidence": {},
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
@@ -2052,7 +2043,7 @@
           "evidence": {},
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -2065,7 +2056,20 @@
           "evidence": {},
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "skip",
+          "message": "host has no AppArmor or SELinux",
+          "evidence": {},
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -2106,21 +2110,6 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "no host bind mounts",
-          "evidence": {
-            "binds": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
@@ -2131,7 +2120,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -2146,7 +2135,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "no host bind mounts",
+          "evidence": {
+            "binds": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -2173,7 +2177,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 98
+            "line": 101
           }
         },
         {
@@ -2191,7 +2195,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 100
+            "line": 103
           }
         },
         {
@@ -2209,7 +2213,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 102
+            "line": 105
           }
         }
       ]
@@ -2223,21 +2227,6 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "private IPC namespace",
-          "evidence": {
-            "ipcMode": "private"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
@@ -2248,7 +2237,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -2263,7 +2252,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "private IPC namespace",
+          "evidence": {
+            "ipcMode": "private"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -2275,6 +2279,21 @@
       "waiver": null,
       "message": "8 of 8 passed",
       "targets": [
+        {
+          "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "read-only root filesystem",
+          "evidence": {
+            "readOnlyRootfs": true
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
         {
           "kind": "container",
           "ref": "auditor",
@@ -2292,9 +2311,24 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "read-only root filesystem",
+          "evidence": {
+            "readOnlyRootfs": true
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
           "tenant": null,
-          "workloadId": "provider-grafana",
+          "workloadId": "provider-canary",
           "status": "pass",
           "message": "read-only root filesystem",
           "evidence": {
@@ -2302,7 +2336,7 @@
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -2317,7 +2351,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "read-only root filesystem",
+          "evidence": {
+            "readOnlyRootfs": true
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -2349,51 +2398,6 @@
             "file": "testbed/compose.yaml",
             "line": 116
           }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "read-only root filesystem",
-          "evidence": {
-            "readOnlyRootfs": true
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "read-only root filesystem",
-          "evidence": {
-            "readOnlyRootfs": true
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "read-only root filesystem",
-          "evidence": {
-            "readOnlyRootfs": true
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
-          }
         }
       ]
     },
@@ -2406,21 +2410,6 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "no secret-like variable names",
-          "evidence": {
-            "variables": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
@@ -2431,7 +2420,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -2446,7 +2435,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "no secret-like variable names",
+          "evidence": {
+            "variables": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -2472,7 +2476,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 87
+            "line": 90
           }
         },
         {
@@ -2489,7 +2493,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 90
+            "line": 93
           }
         },
         {
@@ -2506,7 +2510,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 93
+            "line": 96
           }
         }
       ]
@@ -2533,7 +2537,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 87
+            "line": 90
           }
         },
         {
@@ -2551,7 +2555,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 90
+            "line": 93
           }
         },
         {
@@ -2569,7 +2573,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 93
+            "line": 96
           }
         }
       ]
@@ -2581,6 +2585,21 @@
       "waiver": null,
       "message": "8 of 8 passed",
       "targets": [
+        {
+          "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "own network namespace (isolab_net-c)",
+          "evidence": {
+            "networkMode": "isolab_net-c"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
         {
           "kind": "container",
           "ref": "auditor",
@@ -2598,17 +2617,32 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
-          "tenant": null,
-          "workloadId": "provider-grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
           "status": "pass",
-          "message": "own network namespace (isolab_ops-net)",
+          "message": "own network namespace (isolab_net-a)",
           "evidence": {
-            "networkMode": "isolab_ops-net"
+            "networkMode": "isolab_net-a"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
+          "tenant": null,
+          "workloadId": "provider-canary",
+          "status": "pass",
+          "message": "own network namespace (isolab_provider-net)",
+          "evidence": {
+            "networkMode": "isolab_provider-net"
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -2623,7 +2657,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "own network namespace (isolab_ops-net)",
+          "evidence": {
+            "networkMode": "isolab_ops-net"
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -2655,51 +2704,6 @@
             "file": "testbed/compose.yaml",
             "line": 116
           }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "own network namespace (isolab_provider-net)",
-          "evidence": {
-            "networkMode": "isolab_provider-net"
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "own network namespace (isolab_net-c)",
-          "evidence": {
-            "networkMode": "isolab_net-c"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "own network namespace (isolab_net-a)",
-          "evidence": {
-            "networkMode": "isolab_net-a"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
-          }
         }
       ]
     },
@@ -2712,21 +2716,6 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "publishes no host ports",
-          "evidence": {
-            "published": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
@@ -2737,7 +2726,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -2752,7 +2741,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "publishes no host ports",
+          "evidence": {
+            "published": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -2820,9 +2824,9 @@
           "tenant": null,
           "workloadId": null,
           "status": "pass",
-          "message": "heartbeat 0s ago",
+          "message": "heartbeat 1s ago",
           "evidence": {
-            "heartbeatAgeSeconds": 0.46254730224609375
+            "heartbeatAgeSeconds": 0.6174812316894531
           },
           "location": {
             "file": "testbed/policy.yaml",
@@ -2870,6 +2874,22 @@
       "targets": [
         {
           "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "identified as c-legacy-app",
+          "evidence": {
+            "plane": "tenant",
+            "missing": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
+        {
+          "kind": "container",
           "ref": "auditor",
           "tenant": null,
           "workloadId": "provider-auditor",
@@ -2886,18 +2906,34 @@
         },
         {
           "kind": "container",
-          "ref": "grafana",
-          "tenant": null,
-          "workloadId": "provider-grafana",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
           "status": "pass",
-          "message": "identified as provider-grafana",
+          "message": "identified as a-payments-api",
+          "evidence": {
+            "plane": "tenant",
+            "missing": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
+          "tenant": null,
+          "workloadId": "provider-canary",
+          "status": "pass",
+          "message": "identified as provider-canary",
           "evidence": {
             "plane": "provider",
             "missing": []
           },
           "location": {
             "file": "testbed/compose.yaml",
-            "line": 138
+            "line": 91
           }
         },
         {
@@ -2913,7 +2949,23 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 38
+            "line": 40
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "grafana",
+          "tenant": null,
+          "workloadId": "provider-grafana",
+          "status": "pass",
+          "message": "identified as provider-grafana",
+          "evidence": {
+            "plane": "provider",
+            "missing": []
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 138
           }
         },
         {
@@ -2946,54 +2998,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 116
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "identified as provider-canary",
-          "evidence": {
-            "plane": "provider",
-            "missing": []
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "identified as c-legacy-app",
-          "evidence": {
-            "plane": "tenant",
-            "missing": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "identified as a-payments-api",
-          "evidence": {
-            "plane": "tenant",
-            "missing": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
           }
         }
       ]
@@ -3031,21 +3035,6 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "only tenant b's networks and volumes",
-          "evidence": {
-            "mismatches": []
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
@@ -3056,7 +3045,7 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -3071,7 +3060,22 @@
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "only tenant b's networks and volumes",
+          "evidence": {
+            "mismatches": []
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]
@@ -3085,19 +3089,87 @@
       "targets": [
         {
           "kind": "container",
+          "ref": "tenant-c",
+          "tenant": "c",
+          "workloadId": "c-legacy-app",
+          "status": "pass",
+          "message": "built from a pinned base at revision d744dd246f1f",
+          "evidence": {
+            "image": "isolab/legacy-app:hardened",
+            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+            "revision": "d744dd246f1f"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 67
+          }
+        },
+        {
+          "kind": "container",
           "ref": "auditor",
           "tenant": null,
           "workloadId": "provider-auditor",
           "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
+          "message": "built from a pinned base at revision d744dd246f1f",
           "evidence": {
             "image": "isolab/auditor:local",
             "base": "python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
-            "revision": "dffa2c70c553"
+            "revision": "d744dd246f1f"
           },
           "location": {
             "file": "testbed/compose.yaml",
             "line": 55
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-a",
+          "tenant": "a",
+          "workloadId": "a-payments-api",
+          "status": "pass",
+          "message": "built from a pinned base at revision d744dd246f1f",
+          "evidence": {
+            "image": "isolab/payments-api:local",
+            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+            "revision": "d744dd246f1f"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "canary",
+          "tenant": null,
+          "workloadId": "provider-canary",
+          "status": "pass",
+          "message": "built from a pinned base at revision d744dd246f1f",
+          "evidence": {
+            "image": "isolab/canary:local",
+            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+            "revision": "d744dd246f1f"
+          },
+          "location": {
+            "file": "testbed/compose.yaml",
+            "line": 91
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "built from a pinned base at revision d744dd246f1f",
+          "evidence": {
+            "image": "isolab/batch-analytics:local",
+            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
+            "revision": "d744dd246f1f"
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         },
         {
@@ -3115,23 +3187,6 @@
           "location": {
             "file": "testbed/compose.yaml",
             "line": 138
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
-          "evidence": {
-            "image": "isolab/batch-analytics:local",
-            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
-            "revision": "dffa2c70c553"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
           }
         },
         {
@@ -3167,57 +3222,6 @@
             "file": "testbed/compose.yaml",
             "line": 116
           }
-        },
-        {
-          "kind": "container",
-          "ref": "canary",
-          "tenant": null,
-          "workloadId": "provider-canary",
-          "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
-          "evidence": {
-            "image": "isolab/canary:local",
-            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
-            "revision": "dffa2c70c553"
-          },
-          "location": {
-            "file": "testbed/compose.yaml",
-            "line": 91
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-c",
-          "tenant": "c",
-          "workloadId": "c-legacy-app",
-          "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
-          "evidence": {
-            "image": "isolab/legacy-app:hardened",
-            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
-            "revision": "dffa2c70c553"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 64
-          }
-        },
-        {
-          "kind": "container",
-          "ref": "tenant-a",
-          "tenant": "a",
-          "workloadId": "a-payments-api",
-          "status": "pass",
-          "message": "built from a pinned base at revision dffa2c70c553",
-          "evidence": {
-            "image": "isolab/payments-api:local",
-            "base": "python:3.12-alpine3.22@sha256:a190708a2dec1bd18b1decb539f8e8f5407abaa9bf39cacda583f7f8c11db322",
-            "revision": "dffa2c70c553"
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 24
-          }
         }
       ]
     },
@@ -3230,34 +3234,18 @@
       "targets": [
         {
           "kind": "container",
-          "ref": "tenant-b",
-          "tenant": "b",
-          "workloadId": "b-batch-analytics",
-          "status": "pass",
-          "message": "usage and pressure sampled",
-          "evidence": {
-            "lastSampleAgeSeconds": 4.6,
-            "psi": true
-          },
-          "location": {
-            "file": "testbed/compose.hardened.yaml",
-            "line": 38
-          }
-        },
-        {
-          "kind": "container",
           "ref": "tenant-c",
           "tenant": "c",
           "workloadId": "c-legacy-app",
           "status": "pass",
           "message": "usage and pressure sampled",
           "evidence": {
-            "lastSampleAgeSeconds": 4.6,
+            "lastSampleAgeSeconds": 4.9,
             "psi": true
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 64
+            "line": 67
           }
         },
         {
@@ -3268,12 +3256,28 @@
           "status": "pass",
           "message": "usage and pressure sampled",
           "evidence": {
-            "lastSampleAgeSeconds": 4.6,
+            "lastSampleAgeSeconds": 4.9,
             "psi": true
           },
           "location": {
             "file": "testbed/compose.hardened.yaml",
-            "line": 24
+            "line": 26
+          }
+        },
+        {
+          "kind": "container",
+          "ref": "tenant-b",
+          "tenant": "b",
+          "workloadId": "b-batch-analytics",
+          "status": "pass",
+          "message": "usage and pressure sampled",
+          "evidence": {
+            "lastSampleAgeSeconds": 4.9,
+            "psi": true
+          },
+          "location": {
+            "file": "testbed/compose.hardened.yaml",
+            "line": 40
           }
         }
       ]

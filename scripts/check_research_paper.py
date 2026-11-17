@@ -12,6 +12,10 @@ DEST = ROOT / "docs/research"
 def main():
     source = (DEST / "IsoLab_IEEE.tex").read_text(encoding="utf-8")
     body, bibliography = source.split(r"\begin{thebibliography}{00}")
+    def expand_inputs(value):
+        return re.sub(r"\\input\{([^}]+)\}", lambda m: expand_inputs(
+            (DEST / m.group(1)).read_text(encoding='utf-8')), value)
+    body = expand_inputs(body)
     keys = re.findall(r"\\bibitem\{([^}]+)\}", bibliography)
     cited = list(dict.fromkeys(key for group in re.findall(r"\\cite\{([^}]+)\}", body)
                               for key in group.split(",")))
@@ -54,8 +58,10 @@ def main():
     (DEST / "manuscript.txt").write_text(text, encoding="utf-8")
     print(f"Verified {len(reader.pages)} Letter pages; {len(keys)} linked references; "
           f"{len(annotations)} PDF link annotations; all fonts embedded.")
-    print(f"Figures: {body.count(chr(92) + 'begin{figure}')}; "
-          f"tables: {body.count(chr(92) + 'begin{table}')}; authors verified.")
+    expanded = body
+    figure_count = expanded.count(chr(92) + 'begin{figure}') + expanded.count(chr(92) + 'begin{figure*}')
+    print(f"Figures: {figure_count}; "
+          f"tables: {expanded.count(chr(92) + 'begin{table}') + expanded.count(chr(92) + 'begin{table*}')}; authors verified.")
 
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
@@ -129,6 +130,10 @@ def main():
     register_figure_font()
     latency_figure()
     architecture_figure()
+    subprocess.run([sys.executable, str(ROOT / 'scripts/build_comparison.py')], check=True)
+    has_pilot = r'\input{pilot-section.tex}' in (DEST / 'IsoLab_IEEE.tex').read_text(encoding='utf-8')
+    if has_pilot:
+        subprocess.run([sys.executable, str(ROOT / 'scripts/pilot_publication.py'), '--write-artifacts'], check=True)
     source = DEST / "IsoLab_IEEE.tex"
     if "tectonic" in compiler.name.lower():
         options = ["--only-cached"] if args.offline else []
@@ -140,8 +145,14 @@ def main():
                            cwd=DEST, check=True)
     shutil.copyfile(DEST / "IsoLab_IEEE.pdf", DEST / "IsoLab_Research_Paper.pdf")
     with ZipFile(DEST / "IsoLab_IEEE_Source.zip", "w", compression=ZIP_DEFLATED) as archive:
-        for name in ("IsoLab_IEEE.tex", "ieee-architecture.pdf", "ieee-latency.pdf", "IEEE_README.txt"):
+        files = ["IsoLab_IEEE.tex", "ieee-architecture.pdf", "ieee-latency.pdf", "IEEE_README.txt",
+                 "ieee-comparison-runs.pdf", "comparison-derived.tex", "comparison-evidence.json"]
+        if has_pilot:
+            files += ['pilot-section.tex', 'pilot-results.tex', 'pilot-controls.tex',
+                      'ieee-pilot-detection.pdf', 'ieee-pilot-controls.pdf', 'pilot-evidence.json']
+        for name in files:
             archive.write(DEST / name, arcname=name)
+    shutil.copyfile(DEST / 'IsoLab_IEEE_Source.zip', DEST / 'IsoLab_Overleaf.zip')
     print(DEST / "IsoLab_Research_Paper.pdf")
 
 

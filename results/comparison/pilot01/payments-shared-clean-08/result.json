@@ -1,0 +1,18 @@
+{
+  "workload": "payments",
+  "profile": "shared",
+  "scenario": "clean",
+  "rep": 8,
+  "runId": "payments-shared-clean-08",
+  "started": 1794903002.6645849,
+  "ended": 1794903062.6942446,
+  "performanceMs": 3.9064884185791016,
+  "performanceMetric": "requestP99",
+  "failures": 0,
+  "requests": 2501,
+  "jobs": 0,
+  "backgroundBatchesPerSecond": 0.0,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

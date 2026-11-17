@@ -1,0 +1,18 @@
+{
+  "workload": "svm",
+  "profile": "hardened",
+  "scenario": "sustained",
+  "rep": 9,
+  "runId": "svm-hardened-sustained-09",
+  "started": 1794914489.29892,
+  "ended": 1794914549.3402755,
+  "performanceMs": 557.0012331008911,
+  "performanceMetric": "medianJobCompletion",
+  "failures": 0,
+  "requests": 0,
+  "jobs": 96,
+  "backgroundBatchesPerSecond": 31.411682511865525,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

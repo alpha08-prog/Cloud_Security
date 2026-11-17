@@ -1,0 +1,18 @@
+{
+  "workload": "rf",
+  "profile": "shared",
+  "scenario": "clean",
+  "rep": 4,
+  "runId": "rf-shared-clean-04",
+  "started": 1794910984.7037277,
+  "ended": 1794911044.7338498,
+  "performanceMs": 666.8740510940552,
+  "performanceMetric": "medianJobCompletion",
+  "failures": 0,
+  "requests": 0,
+  "jobs": 78,
+  "backgroundBatchesPerSecond": 0.0,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

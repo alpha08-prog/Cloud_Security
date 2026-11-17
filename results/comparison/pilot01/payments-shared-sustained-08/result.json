@@ -1,0 +1,47 @@
+{
+  "workload": "payments",
+  "profile": "shared",
+  "scenario": "sustained",
+  "rep": 8,
+  "runId": "payments-shared-sustained-08",
+  "started": 1794901409.6324732,
+  "ended": 1794901469.7589123,
+  "performanceMs": 17.550687789917,
+  "performanceMetric": "requestP99",
+  "failures": 0,
+  "requests": 2505,
+  "jobs": 0,
+  "backgroundBatchesPerSecond": 73.7778599032746,
+  "detections": [
+    {
+      "id": "DET-08-00001",
+      "rule": "DET-08",
+      "title": "Noisy neighbour: one tenant starving another of CPU",
+      "severity": "medium",
+      "requirements": [
+        "R3"
+      ],
+      "tenant": "noise",
+      "workload_id": "noise",
+      "service": "noise",
+      "event_time_ns": 1794901407887811584,
+      "detected_at_ns": 1794901449684298650,
+      "latency_ms": 41796.5,
+      "message": "tenant noise uses 7.4 cores (fair share 6.0) on CPUs it shares with tenant(s) victim",
+      "evidence": {
+        "aggressorCores": 7.45,
+        "fairShareCores": 6.0,
+        "victims": [
+          "victim"
+        ],
+        "victimCpuPressurePct": [
+          "victim 4.17%"
+        ],
+        "sharedCpus": 2,
+        "sustainedSeconds": 35.0
+      }
+    }
+  ],
+  "samples": 12,
+  "status": "measured"
+}

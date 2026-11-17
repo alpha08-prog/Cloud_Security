@@ -1,0 +1,18 @@
+{
+  "workload": "svm",
+  "profile": "hardened",
+  "scenario": "clean",
+  "rep": 8,
+  "runId": "svm-hardened-clean-08",
+  "started": 1794912391.479537,
+  "ended": 1794912451.5466483,
+  "performanceMs": 491.9055700302124,
+  "performanceMetric": "medianJobCompletion",
+  "failures": 0,
+  "requests": 0,
+  "jobs": 108,
+  "backgroundBatchesPerSecond": 0.0,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

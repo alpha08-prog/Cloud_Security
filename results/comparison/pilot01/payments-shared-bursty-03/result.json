@@ -1,0 +1,18 @@
+{
+  "workload": "payments",
+  "profile": "shared",
+  "scenario": "bursty",
+  "rep": 3,
+  "runId": "payments-shared-bursty-03",
+  "started": 1794900512.8571627,
+  "ended": 1794900572.956109,
+  "performanceMs": 8.614029884338334,
+  "performanceMetric": "requestP99",
+  "failures": 0,
+  "requests": 2504,
+  "jobs": 0,
+  "backgroundBatchesPerSecond": 50.36693960042591,
+  "detections": [],
+  "samples": 12,
+  "status": "measured"
+}

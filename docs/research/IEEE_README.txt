@@ -17,7 +17,7 @@ figure captions below figures, and numbered references. No publication identifie
 acceptance statement, funding claim, or copyright notice has been invented.
 
 Build in Overleaf
-Upload IsoLab_IEEE.tex and both vector figure PDFs to a project and select
+Upload IsoLab_IEEE.tex, comparison-derived.tex and all three vector figure PDFs to a project and select
 IsoLab_IEEE.tex as the main document. IEEEtran and the standard LaTeX packages
 are provided by Overleaf. Compile with pdfLaTeX.
 
@@ -50,3 +50,13 @@ There are two figures and six tables. The comparison table separates the source
 works from our evaluation. The architecture shows the separate read-only cgroup
 PSI mount. The latency figure reads evidence.json, checks its E1 input hash,
 and displays descriptive min-max whiskers plus the 25 ms reference target.
+
+Comparison revision, November 17, 2026
+Adds the 2024 Table 3 numerical context, a derived historical-results table,
+a related-systems comparison table, and an original two-panel run-level figure.
+There are now three figures and nine tables (including generated table input).
+comparison-evidence.json records source hashes and actual run dates. The newer
+publication timestamp does not represent new measurements. The model scaffolding
+and metric validation do not constitute a completed matched classifier study.
+The full collection/training campaign remains pending; see comparison-protocol.md.
+Build requires Matplotlib in addition to the existing PDF dependencies.
