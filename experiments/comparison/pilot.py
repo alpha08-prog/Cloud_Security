@@ -1,11 +1,11 @@
 """Bounded pilot: collect, train, report; machine-readable progress and failures."""
 import argparse
-from datetime import datetime, timezone
 import json
-from pathlib import Path
 import subprocess
 import sys
 import time
+from datetime import UTC, datetime
+from pathlib import Path
 
 
 def main():
@@ -17,8 +17,8 @@ def main():
     out.mkdir(parents=True,exist_ok=True)
     started=time.time()
     def status(state, **extra):
-        data=dict(state=state,startedAt=datetime.fromtimestamp(started,timezone.utc).isoformat(),
-                  updatedAt=datetime.now(timezone.utc).isoformat(),elapsedSeconds=time.time()-started,**extra)
+        data=dict(state=state,startedAt=datetime.fromtimestamp(started,UTC).isoformat(),
+                  updatedAt=datetime.now(UTC).isoformat(),elapsedSeconds=time.time()-started,**extra)
         tmp=out/'status.tmp'
         tmp.write_text(json.dumps(data,indent=2)+'\n')
         tmp.replace(out/'status.json')

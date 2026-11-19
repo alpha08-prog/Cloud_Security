@@ -12,7 +12,7 @@ def confusion(labels, predictions):
     if any(x not in (0, 1) for x in [*labels, *predictions]):
         raise ValueError("Binary observations required")
     counts = {key: 0 for key in ("tp", "tn", "fp", "fn")}
-    for actual, predicted in zip(labels, predictions):
+    for actual, predicted in zip(labels, predictions, strict=False):
         counts[{(1, 1): "tp", (0, 0): "tn", (0, 1): "fp", (1, 0): "fn"}[actual, predicted]] += 1
     tp, tn, fp, fn = (counts[k] for k in ("tp", "tn", "fp", "fn"))
     def ratio(a, b):

@@ -5,15 +5,15 @@
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import time
+from pathlib import Path
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.metrics import roc_auc_score
 from isolab.comparison import confusion, split_runs, validate_predictions
 from isolab.comparison_models import service_models
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 
 def dump(path, value):
@@ -64,7 +64,8 @@ def main():
         subset = [r for r in runs if r['workload']==workload]
         thresholds = {}
         for profile in sorted({r['profile'] for r in subset}):
-            clean = [r['performanceMs'] for r in subset if r['profile']==profile and r['scenario']=='clean' and splits[r['runId']]=='train']
+            clean = [r['performanceMs'] for r in subset
+                     if r['profile']==profile and r['scenario']=='clean' and splits[r['runId']]=='train']
             if not clean:
                 raise RuntimeError('Missing independent clean training baseline')
             thresholds[profile] = max(clean)*1.2
@@ -72,10 +73,13 @@ def main():
         x = np.array([[t['features'] for t in r['telemetry'][-args.window:]] for r in subset],dtype=np.float32)
         if not np.isfinite(x).all():
             raise RuntimeError('Nonfinite telemetry')
-        indices = {s:np.array([i for i,r in enumerate(subset) if splits[r['runId']]==s]) for s in ('train','validation','test')}
+        indices = {s:np.array([i for i,r in enumerate(subset) if splits[r['runId']]==s])
+                   for s in ('train','validation','test')}
         tr,va,te = (indices[s] for s in ('train','validation','test'))
         if any(len(set(y[idx]))<2 for idx in (tr,va,te)):
-            raise RuntimeError(f'{workload}: both classes required in each split; preserve data and report insufficiency')
+            raise RuntimeError(
+                f'{workload}: both classes required in each split; preserve data and report insufficiency'
+            )
         start = time.perf_counter()
         # Sigmoid autoencoder requires bounded input. Train-only min/max scaling is
         # an explicit adaptation of the source's ambiguous robust-scaling wording.
@@ -86,7 +90,7 @@ def main():
         def fit(model, a,b,av,bv,patience):
             best, wait, weights = float('inf'),0,None
             history=[]
-            for epoch in range(args.epochs):
+            for _epoch in range(args.epochs):
                 model.reset_metrics()
                 for offset in range(0,len(a),512):
                     model.train_on_batch(a[offset:offset+512],b[offset:offset+512])
@@ -116,7 +120,9 @@ def main():
         aggregate=x.mean(axis=1)
         lightweight_scale=StandardScaler().fit(aggregate[tr])
         a=lightweight_scale.transform(aggregate)
-        lightweight=LogisticRegression(C=1, class_weight='balanced',random_state=20261117,max_iter=2000).fit(a[tr],y[tr])
+        lightweight=LogisticRegression(
+            C=1, class_weight='balanced',random_state=20261117,max_iter=2000,
+        ).fit(a[tr],y[tr])
         lightweight_train=time.perf_counter()-start
         start=time.perf_counter()
         light=lightweight.predict_proba(a)[:,1]
@@ -130,8 +136,11 @@ def main():
             metrics['auc']=float(roc_auc_score(y[te],scores[te])) if method!='isolab-det08' else None
             summaries.append(dict(workload=workload,method=method,threshold=float(threshold),metrics=metrics,
                                   testRuns=len(te),groundTruthThresholdMs=thresholds,
-                                  trainingSeconds=neural_train if method=='adapted-2024-ae-lstm' else lightweight_train if method=='isolab-resource-logistic' else 0,
-                                  inferenceSecondsPerRun=neural_infer if method=='adapted-2024-ae-lstm' else lightweight_infer if method=='isolab-resource-logistic' else None))
+                                  trainingSeconds=(neural_train if method=='adapted-2024-ae-lstm'
+                                                   else lightweight_train if method=='isolab-resource-logistic' else 0),
+                                  inferenceSecondsPerRun=(neural_infer if method=='adapted-2024-ae-lstm'
+                                                          else lightweight_infer
+                                                          if method=='isolab-resource-logistic' else None)))
             for i,r in enumerate(subset):
                 predictions.append(dict(method=method,runId=r['runId'],timestamp=r['ended'],split=splits[r['runId']],
                                         label=int(y[i]),score=float(scores[i]),threshold=float(threshold)))

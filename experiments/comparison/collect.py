@@ -4,23 +4,23 @@ Only containers with the campaign's label are controlled or removed.
 Raw samples and load outcomes are saved before model fitting.
 """
 import argparse
-from collections import deque
 import concurrent.futures
 import hashlib
 import json
-import os
-from pathlib import Path
 import random
 import statistics
 import threading
 import time
 import urllib.request
+from collections import deque
+from pathlib import Path
 
 import docker
 import numpy as np
 import psutil
-from cloudaudit.service.stats import StatsPoller, Workload, Sample
+
 from cloudaudit.service.detections import DetectionStore
+from cloudaudit.service.stats import Sample, StatsPoller, Workload
 
 IMAGE = 'isolab/comparison:20261117'
 FEATURES = ['cpuCores', 'memoryBytes', 'pids', 'rxBytesPerSec', 'txBytesPerSec',
@@ -54,7 +54,10 @@ def sample(container, previous):
     writes = sum(v['value'] for v in io if v['op'].lower() == 'write')
     throttle = st['cpu_stats'].get('throttling_data', {}).get('throttled_time', 0) / 1e9
     counters = [cpu, rx, tx, reads, writes, throttle]
-    rates = [(a-b)/(now-previous['time']) for a,b in zip(counters, previous['counters'])] if previous else [0]*6
+    rates = (
+        [(a-b)/(now-previous['time']) for a,b in zip(counters, previous['counters'], strict=False)]
+        if previous else [0]*6
+    )
     container.reload()
     proc = psutil.Process(container.attrs['State']['Pid'])
     processes = [proc] + proc.children(recursive=True)
@@ -65,11 +68,11 @@ def sample(container, previous):
             pi = process.io_counters()
             values = [ct.user+ct.system, mem.rss, process.num_threads(), pi.read_bytes, pi.write_bytes,
                       switches.voluntary, switches.involuntary]
-            totals = [a+b for a,b in zip(totals, values)]
+            totals = [a+b for a,b in zip(totals, values, strict=False)]
         except psutil.NoSuchProcess:
             continue  # transient processes may exit between enumeration and sampling
-        except psutil.AccessDenied:
-            raise RuntimeError('Process features unavailable; refuse silent zero imputation')
+        except psutil.AccessDenied as exc:
+            raise RuntimeError('Process features unavailable; refuse silent zero imputation') from exc
     cg = Path('/host/cgroup/docker') / container.id
     if not cg.exists():
         from cloudaudit.service.stats import find_cgroup
@@ -166,7 +169,9 @@ def run(client, args, spec, network):
         if spec['workload'] == 'payments':
             victim.reload()
             ip = victim.attrs['NetworkSettings']['Networks'][network.name]['IPAddress']
-            loader = threading.Thread(target=load, args=(f'http://{ip}:8080', dest/'requests.jsonl', stopper), daemon=True)
+            loader = threading.Thread(
+                target=load, args=(f'http://{ip}:8080', dest/'requests.jsonl', stopper), daemon=True,
+            )
             loader.start()
         store = DetectionStore()
         detector = StatsPoller(client, store)
@@ -258,7 +263,8 @@ def main():
         specs = [s for s in specs if s['profile'] in ('shared','hardened') and
                  (s['workload']=='payments' or s['scenario'] in ('clean','sustained'))]
     deadline = time.monotonic()+args.max_hours*3600
-    save(dest/'manifest.json', {'schemaVersion':1, 'arguments':vars(args), 'featureNames':['victim.'+f for f in FEATURES]+['noise.'+f for f in FEATURES],
+    save(dest/'manifest.json', {'schemaVersion':1, 'arguments':vars(args),
+                              'featureNames':['victim.'+f for f in FEATURES]+['noise.'+f for f in FEATURES],
                               'imageId':client.images.get(IMAGE).id, 'environment':client.info(), 'schedule':specs,
                               'sourceHashes':{str(p.relative_to('/workspace')):hashlib.sha256(p.read_bytes()).hexdigest()
                                               for p in Path('/workspace/experiments/comparison').glob('*.py')}})

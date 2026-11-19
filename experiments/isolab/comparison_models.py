@@ -5,8 +5,8 @@ Input collection, scaling and run-level splits must be validated separately.
 
 
 def service_models(feature_count=411, window=6):
-    from tensorflow import keras
     import tensorflow as tf
+    from tensorflow import keras
 
     source = keras.Input((feature_count,))
     x = source

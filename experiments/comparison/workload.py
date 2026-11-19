@@ -40,10 +40,10 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def spark():
-    from pyspark.sql import SparkSession
-    from pyspark.ml.classification import RandomForestClassifier, LinearSVC
+    from pyspark.ml.classification import LinearSVC, RandomForestClassifier
     from pyspark.ml.feature import VectorAssembler
-    from pyspark.sql import functions as F
+    from pyspark.sql import SparkSession
+    from pyspark.sql import functions as f
     session = (SparkSession.builder.master('local[2]').appName('isolab-comparison')
                .config('spark.ui.enabled', 'false').config('spark.driver.memory', '768m')
                .config('spark.sql.shuffle.partitions', '2').getOrCreate())
@@ -51,8 +51,8 @@ def spark():
     data = session.range(int(os.environ.get('SPARK_ROWS', '20000')))
     columns = [f'f{i}' for i in range(8)]
     for i, col in enumerate(columns):
-        data = data.withColumn(col, F.rand(100 + i))
-    data = data.withColumn('label', (F.col('f0') + F.col('f1') > 1).cast('double'))
+        data = data.withColumn(col, f.rand(100 + i))
+    data = data.withColumn('label', (f.col('f0') + f.col('f1') > 1).cast('double'))
     data = VectorAssembler(inputCols=columns, outputCol='features').transform(data).select('features', 'label').cache()
     data.count()
     (ROOT / 'ready').write_text('ready')
@@ -61,7 +61,8 @@ def spark():
         model = RandomForestClassifier(numTrees=10, maxDepth=5, seed=42) if kind == 'rf' else LinearSVC(maxIter=10)
         start = time.time()
         model.fit(data)
-        append('jobs.jsonl', {'job': job, 'started': start, 'ended': time.time(), 'durationMs': (time.time() - start) * 1000})
+        append('jobs.jsonl', {'job': job, 'started': start, 'ended': time.time(),
+                              'durationMs': (time.time() - start) * 1000})
         job += 1
     session.stop()
 

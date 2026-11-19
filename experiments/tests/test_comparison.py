@@ -1,5 +1,6 @@
 import unittest
-from isolab.comparison import confusion, split_runs, median_interval, validate_predictions
+
+from isolab.comparison import confusion, median_interval, split_runs, validate_predictions
 
 
 class ComparisonTests(unittest.TestCase):
